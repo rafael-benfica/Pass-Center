@@ -1,8 +1,8 @@
 <template>
   <div>
-    <nav class="grey lighten-3">  
-        <a href="#" class="ajuste brand-logo center"><span class="brand-logo-pass">PASS</span> CENTER</a>
-    </nav>
+    <div class="ajuste base grey lighten-3">  
+        <a href="#" class="brand-logo center-align"><span class="brand-logo-pass">PASS</span> CENTER</a>
+    </div>
 
     <nav class="transparent">
       <div class="nav-wrapper">
@@ -28,8 +28,8 @@
     <li><a class="waves-effect" href="#!"><i class="material-icons">assignment_ind</i>Meus dados</a></li>
     <li class="center-align sair"><a class="waves-effect waves-light btn red darken-4">Sair</a></li>
   </ul>
-  <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons">menu</i></a>
-    <router-view/>
+  <a href="#" data-target="slide-out" class="sidenav-trigger show-on-small"><i class="material-icons">menu</i></a>
+    <router-view class="ajuste"/>
   </div>
 </template>
 
@@ -40,6 +40,15 @@ export default {
 </script>
 
 <style scoped>
+    .base{
+      width: 100%;
+      height: 64px;
+      line-height: 64px;
+      display: block;
+      box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.12),0 1px 5px 0 rgba(0,0,0,0.2);
+      font-size: 32px;
+      text-align: center;
+    }
     .sair{
       bottom: 4rem;
       left: 27%;
