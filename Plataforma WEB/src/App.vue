@@ -7,9 +7,9 @@
     <nav class="transparent">
       <div class="nav-wrapper">
           <div class="ajuste col s12">
-            <a href="#!" class="breadcrumb">First</a>
-            <a href="#!" class="breadcrumb">Second</a>
-            <a href="#!" class="breadcrumb">Third</a>
+            <a v-for="(breadcrumbs, indice) in breadcrumbsLista" :key="indice" @click="levarPara(indice)" class="breadcrumb">
+              {{ breadcrumbs.nome }}
+            </a>
           </div>
         </div>
     </nav>
@@ -33,12 +33,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "app"
-};
-</script>
-
 <style scoped>
     .base{
       width: 100%;
@@ -58,12 +52,12 @@ export default {
     
     .brand-logo-pass{
       color: black;
-      font-weight:900 !important;
+      font-weight: 900 !important;
     }
 
     .brand-logo{
       color: black;
-      font-weight:100 !important;
+      font-weight: 100 !important;
        
     }
     .breadcrumb::before{
