@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="row tamanho">
-            <div class="col s12 m3 l3" v-for="item in 6" :key="item.id">
-                {{ item }}
+            <div class="col s12 m3 l3 oi" v-for="item in 6" :key="item.id">
+                <!-- {{ item }} -->
                 <div class="card">
                     <div class="card-image">        
                         <a class="btn-floating halfway-fab waves-effect waves-light blue darken-1"><i class="material-icons">history</i></a>
@@ -25,6 +25,9 @@
 </script>
 
 <style scoped>
+    .oi{
+        padding-top: 20px;
+    }
     .tamanho{
         width: 90%;
     }

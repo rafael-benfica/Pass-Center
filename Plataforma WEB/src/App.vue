@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="ajuste base grey lighten-3">  
+    <div class="ajuste base grey lighten-3 oi">  
         <a href="#" class="brand-logo center-align"><span class="brand-logo-pass">PASS</span> CENTER</a>
     </div>
 
-    <nav class="transparent">
+    <nav class="transparent oi2">
       <div class="nav-wrapper">
           <div class="ajuste col s12">
             <a v-for="(breadcrumbs, indice) in breadcrumbsLista" :key="indice" @click="levarPara(indice)" class="breadcrumb">
@@ -34,6 +34,10 @@
 </template>
 
 <style scoped>
+    .oi2{
+      padding-top: 64px;
+      padding-bottom: 30px;     
+    }
     .base{
       width: 100%;
       height: 64px;
@@ -42,6 +46,8 @@
       box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.12),0 1px 5px 0 rgba(0,0,0,0.2);
       font-size: 32px;
       text-align: center;
+      position: fixed;
+      z-index:2;
     }
     .sair{
       bottom: 4rem;
