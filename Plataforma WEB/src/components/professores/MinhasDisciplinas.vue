@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row tamanho">
-            <div class="col s12 m3 l3 oi" v-for="item in 6" :key="item.id">
+            <div class="col s12 m3 l3 oi" v-for="item in 7" :key="item.id">
                 <!-- {{ item }} -->
                 <div class="card">
                     <div class="card-image">        

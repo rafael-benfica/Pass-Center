@@ -21,7 +21,7 @@
         <img src="./assets/02.jpg">
       </div>
       <a href="#user"><img class="circle" src="./assets/01.jpg"></a>
-      <a href="#name"><span class="white-text name">Rafael A. B. Silva</span></a>
+      <a href="#name"><span class="white-text name">Nome do Usuário</span></a>
       <a href="#email"><span class="white-text email">ID #9999999</span></a>
     </div></li>
     <li><a class="waves-effect" href="#!"><i class="material-icons">assignment</i>Minhas Disciplinas</a></li>

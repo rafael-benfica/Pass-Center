@@ -11,7 +11,7 @@ export default new Router({
       name: 'MinhasDisciplinas',
       component: MinhasDisciplinas,
       meta:{
-        breadcrumbs: [{nome: 'Auditor'},
+        breadcrumbs: [{nome: 'Professor'},
       				        {nome: 'Minhas Disciplinas'}]
       }
     }
