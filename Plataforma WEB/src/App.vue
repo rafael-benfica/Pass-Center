@@ -18,7 +18,7 @@
   <ul id="slide-out" class="sidenav sidenav-fixed">
     <li><div class="user-view">
       <div class="background">
-        <img src="./assets/02.jpg">
+       <!-- <img src="./assets/02.jpg"> -->
       </div>
       <a href="#user"><img class="circle" src="./assets/01.jpg"></a>
       <a href="#name"><span class="white-text name">Nome do Usuário</span></a>
@@ -34,9 +34,13 @@
 </template>
 
 <style scoped>
+.background{
+  background-color: #960404;
+}
     .oi2{
       padding-top: 64px;
       padding-bottom: 30px;     
+      background-color: #F3F3F3;
     }
     .base{
       width: 100%;
@@ -57,20 +61,20 @@
     }
     
     .brand-logo-pass{
-      color: black;
+      color: #474747;
       font-weight: 900 !important;
     }
 
     .brand-logo{
-      color: black;
-      font-weight: 100 !important;
+      color: #FED045;
+      font-weight: 400 !important;
        
     }
     .breadcrumb::before{
-      color: black;
+      color: white;
     }
     .breadcrumb{
-      color: black;
+      color: white;
     }
     .ajuste {
       padding-left: 300px;
