@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="ajuste base grey lighten-3 oi">  
-        <a href="#" class="brand-logo center-align"><span class="brand-logo-pass">PASS</span> CENTER</a>
+        <a href="#" class="brand-logo center-align"><span class="brand-logo-pass">
+          <img src="./logo.png">
+          </span></a>
     </div>
 
     <nav class="transparent oi2">
@@ -38,10 +40,7 @@
   background-color: #424242;
   color: #ffffff;
 }
-.icone{
-  
-  color: #ffffff !important;
-}
+
     .oi2{
       padding-top: 64px;
       padding-bottom: 30px;     
@@ -71,7 +70,7 @@
     }
 
     .brand-logo{
-      color: #FED045;
+      
       font-weight: 400 !important;
        
     }
