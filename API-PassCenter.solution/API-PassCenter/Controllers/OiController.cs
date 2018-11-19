@@ -1,4 +1,6 @@
-﻿using System;
+﻿using API_PassCenter.Models.Classes;
+using API_PassCenter.Models.Persistencia;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,8 +13,21 @@ namespace API_PassCenter.Controllers {
         /// olá tudo bem?
         /// </summary>
         /// <returns>oioioi</returns>
-        public IEnumerable<string> Get() {
-            return new string[] { "value1", "value2" };
+        public IEnumerable<string> Post() {
+
+            User usr = new User();
+
+            usr.nome = "rafa";
+            usr.senha = "oi123";
+
+            if(UserDB.Insert(usr) == 0) {
+                return new string[] { "ok", "ok" };
+
+            } else {
+                return new string[] { "fu", "fu" };
+            }
+
+
         }
 
     }

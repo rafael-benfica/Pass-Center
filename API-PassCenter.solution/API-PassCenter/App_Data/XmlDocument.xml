@@ -481,11 +481,16 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="M:API_PassCenter.Controllers.OiController.Get">
+        <member name="M:API_PassCenter.Controllers.OiController.Post">
             <summary>
             olá tudo bem?
             </summary>
             <returns>oioioi</returns>
+        </member>
+        <member name="T:API_PassCenter.Models.Mapped">
+            <summary>
+            Descrição resumida de Mapped
+            </summary>
         </member>
     </members>
 </doc>
