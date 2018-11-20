@@ -1,5 +1,5 @@
 export default {
-    name: 'DashProfessor',
+    name: 'DashBoard Professor',
     data () {
         return {
             breadcrumbsLista: []

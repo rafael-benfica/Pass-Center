@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Professor from '@/components/professores/professor.vue'
+import Professor from '@/components/professores/DashBoardProfessor.vue'
 import MinhasDisciplinas from '@/components/professores/MinhasDisciplinas.vue'
 
 Vue.use(Router)

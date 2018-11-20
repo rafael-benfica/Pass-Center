@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="row tamanho">
-            <div class="col s12 m3 l3 oi" v-for="item in 7" :key="item.id">
+        <div class="row area-exibicao">
+            <div class="col s12 m3 l3 espacamento" v-for="item in 7" :key="item.id">
                 <!-- {{ item }} -->
                 <div class="card">
                     <div class="card-image">        
@@ -24,23 +24,4 @@
     }
 </script>
 
-<style scoped>
-    .oi{
-        padding-top: 20px;
-    }
-    .tamanho{
-        width: 90%;
-    }
-    .tituloCard{
-        font-weight: 900 !important;
-    }
-    .turmaCard{
-        font-weight: 400 !important;
-    }
-    .horarioCard{
-        font-weight: 100 !important;
-    }
-    .card-content{
-        text-align: center;
-    }
-</style>
+<style src="./../../assets/css/MinhasDisciplinas.css" scoped></style>
