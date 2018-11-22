@@ -29,10 +29,10 @@
     <li><router-link :to="{ name: 'MinhasDisciplinasAluno' }" class=" waves-effect"><i class="icone material-icons">view_comfy</i>Minhas Disciplinas</router-link></li>
     <li><router-link :to="{ name: 'MeusDadosAluno' }" class=" waves-effect"><i class="icone material-icons">assignment_ind</i>Meus dados</router-link></li>
     <li><a class=" waves-effect" href="#!"><i class="icone material-icons">chrome_reader_mode</i>Histórico Completo</a></li>
-    <li class="center-align botao-sair"><a class="waves-effect waves-light btn red darken-4">Sair</a></li>
+    <li class="center-align botao-sair"><router-link :to="{ name: 'Login' }" class="waves-effect waves-light btn red darken-4">Sair</router-link></li>
   </ul>
 
-  <a href="#" data-target="slide-out" class="sidenav-trigger show-on-small "><i class="material-icons gatilho-mobile">menu</i></a>
+  <a data-target="slide-out" class="sidenav-trigger show-on-small "><i class="material-icons gatilho-mobile">menu</i></a>
     
     <router-view class="ajuste"/>
   

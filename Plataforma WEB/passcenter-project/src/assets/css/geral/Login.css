@@ -13,3 +13,23 @@
     position: fixed;
     z-index:2;
 }
+
+.ajuste{
+    margin-top: 15vh;
+}
+.card{
+    text-align: center; 
+}
+.login{
+    font-size: 4rem;
+    font-weight: 400;
+    padding-top: 2rem;
+}
+.formulario{
+    margin: 0 2vw 0 2vw;
+}
+
+.esqueciSenha{
+    color: #397bE0 !important;
+    margin-right: 0 !important;
+}

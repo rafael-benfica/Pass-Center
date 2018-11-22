@@ -8,6 +8,9 @@ export default {
   
     mounted (){
         this.atualizarListaBreadcrumbs()
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+        });
     },
   
     watch:{
@@ -26,7 +29,3 @@ export default {
         }
     }
 }  
-
-$(document).ready(function () {
-    $('.sidenav').sidenav();
-});
