@@ -33,11 +33,14 @@
 
 <script>
     export default {
-        name: "MinhasDisciplinasAluno"
+        name: "MinhasDisciplinasAluno",
+
+        mounted: function () {
+            $(document).ready(function(){
+                $('.modal').modal();
+            });
+        },
     }
-    $(document).ready(function(){
-        $('.modal').modal();
-    });
 </script>
 
 <style src="./../../assets/css/aluno/MinhasDisciplinasAluno.css" scoped></style>
