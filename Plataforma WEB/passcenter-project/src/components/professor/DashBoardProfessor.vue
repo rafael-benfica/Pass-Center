@@ -31,16 +31,16 @@
     <li class="center-align botao-sair"><a class="waves-effect waves-light btn red darken-4">Sair</a></li>
   </ul>
 
-  <a href="#" data-target="slide-out" class="sidenav-trigger show-on-small"><i class="material-icons">menu</i></a>
+  <a href="#" data-target="slide-out" class="sidenav-trigger show-on-small "><i class="material-icons gatilho-mobile">menu</i></a>
     
     <router-view class="ajuste"/>
   
   </div>
 </template>
 
-<script src="./../../assets/js/DashBoardProfessor.js"></script>
+<script src="./../../assets/js/professor/DashBoardProfessor.js"></script>
 
-<style src="./../../assets/css/DashBoardProfessor.css" scoped></style>
+<style src="./../../assets/css/professor/DashBoardProfessor.css" scoped></style>
 
 
 

@@ -47,3 +47,10 @@
         padding-left: 0;
     }
 }
+
+.gatilho-mobile{
+    position: fixed;
+    top:1.5rem;
+    left: 2rem;
+    z-index:2;
+}
