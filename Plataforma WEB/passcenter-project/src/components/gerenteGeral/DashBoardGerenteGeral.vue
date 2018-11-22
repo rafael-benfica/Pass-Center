@@ -26,8 +26,13 @@
       <a href="#name"><span class="white-text name">Nome do Usuário</span></a>
       <a href="#email"><span class="white-text email">ID #9999999</span></a>
     </div></li>
-    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">assignment</i>Minhas Disciplinas</a></li>
+    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">person</i>Alunos</a></li>
+    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">supervisor_account</i>Professores</a></li>
+    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">folder_shared</i>Turmas</a></li>
+    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">book</i>Disciplinas</a></li>
+    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">perm_device_information</i>Totens</a></li>
     <li><a class=" waves-effect" href="#!"><i class="icone material-icons">account_circle</i>Meus dados</a></li>
+    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">attach_money</i>Financeiro</a></li>
     <li class="center-align botao-sair"><router-link :to="{ name: 'Login' }" class="waves-effect waves-light btn red darken-4">Sair</router-link></li>
   </ul>
 
