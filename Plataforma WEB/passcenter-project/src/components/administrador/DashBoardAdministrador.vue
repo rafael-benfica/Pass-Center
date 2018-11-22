@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="fonte">
     
     <div class="grey lighten-3 ajuste menu-superior">  
         <a href="#" class="center-align">

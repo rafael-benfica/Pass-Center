@@ -1,0 +1,14 @@
+.area-exibicao{
+    width: 88%;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.card-title{
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+
+.topo{
+    padding-top: 2vh;
+}

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="fonte">
         <div class="row area-exibicao">
             <div class="col s12 m3 l3 espacamento" v-for="item in 7" :key="item.id">
                 <!-- {{ item }} -->
