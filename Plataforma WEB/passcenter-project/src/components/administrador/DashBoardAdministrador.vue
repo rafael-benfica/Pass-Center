@@ -27,7 +27,7 @@
       <a href="#email"><span class="white-text email">ID #9999999</span></a>
     </div></li>
     <li><a class=" waves-effect" href="#!"><i class="icone material-icons">assignment</i>Minhas Disciplinas</a></li>
-    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">assignment_ind</i>Meus dados</a></li>
+    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">account_circle</i>Meus dados</a></li>
         <li class="center-align botao-sair"><router-link :to="{ name: 'Login' }" class="waves-effect waves-light btn red darken-4">Sair</router-link></li>
   </ul>
 

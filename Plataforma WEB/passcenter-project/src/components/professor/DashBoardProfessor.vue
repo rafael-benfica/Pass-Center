@@ -27,7 +27,7 @@
       <a href="#email"><span class="white-text email">ID #9999999</span></a>
     </div></li>
     <li><router-link :to="{ name: 'MinhasDisciplinasProfessor' }" class=" waves-effect"><i class="icone material-icons">view_comfy</i>Minhas Disciplinas</router-link></li>
-    <li><router-link :to="{ name: 'MeusDadosProfessor' }" class=" waves-effect"><i class="icone material-icons">assignment_ind</i>Meus Dados</router-link></li>
+    <li><router-link :to="{ name: 'MeusDadosProfessor' }" class=" waves-effect"><i class="icone material-icons">account_circle</i>Meus Dados</router-link></li>
         <li class="center-align botao-sair"><router-link :to="{ name: 'Login' }" class="waves-effect waves-light btn red darken-4">Sair</router-link></li>
   </ul>
 
