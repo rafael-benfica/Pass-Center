@@ -2,7 +2,8 @@ export default {
     name: 'DashBoardGerenteCadastro',
     data () {
         return {
-            breadcrumbsLista: []
+            breadcrumbsLista: [],
+            disciplinas:[{nome: "ADS"}, {nome: "GTI"}, {nome: "LOG"}, {nome: "GFIN"}, {nome: "GCOM"}, {nome: "GEMP"}]
         }
     },
   
