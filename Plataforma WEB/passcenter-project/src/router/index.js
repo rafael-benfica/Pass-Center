@@ -9,6 +9,7 @@ import GerenteGeral from '@/components/gerenteGeral/DashBoardGerenteGeral.vue'
 import Professor from '@/components/professor/DashBoardProfessor.vue'
 
 //Geral
+import Login from '@/components/geral/Login.vue'
 import MeusDados from '@/components/geral/MeusDados.vue'
 
 // Aluno
@@ -22,6 +23,11 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/',
+      name: 'Login',
+      component: Login
+    },
     {
       path: '/administrador',
       component: Administrador,
@@ -106,7 +112,7 @@ export default new Router({
       children:[
         {
           path: '',
-          name: 'MinhasDisciplinas2',
+          name: 'MinhasDisciplinas3',
           component: MinhasDisciplinas,
           meta: {
             breadcrumbs: [{ nome: 'Gerente Geral' },
@@ -132,7 +138,7 @@ export default new Router({
       children:[
         {
           path: '',
-          name: 'MinhasDisciplinas2',
+          name: 'MinhasDisciplinasProfessor',
           component: MinhasDisciplinas,
           meta: {
             breadcrumbs: [{ nome: 'Professor' },
