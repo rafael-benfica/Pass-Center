@@ -26,8 +26,8 @@
       <a href="#name"><span class="white-text name">Nome do Usuário</span></a>
       <a href="#email"><span class="white-text email">ID #9999999</span></a>
     </div></li>
-    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">assignment</i>Minhas Disciplinas</a></li>
-    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">assignment_ind</i>Meus dados</a></li>
+    <li><router-link :to="{ name: 'MinhasDisciplinasProfessor' }" class=" waves-effect"><i class="icone material-icons">view_comfy</i>Minhas Disciplinas</router-link></li>
+    <li><router-link :to="{ name: 'MeusDadosProfessor' }" class=" waves-effect"><i class="icone material-icons">assignment_ind</i>Meus Dados</router-link></li>
     <li class="center-align botao-sair"><a class="waves-effect waves-light btn red darken-4">Sair</a></li>
   </ul>
 

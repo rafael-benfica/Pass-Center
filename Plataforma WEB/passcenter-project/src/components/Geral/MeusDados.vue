@@ -81,7 +81,7 @@
 
 <script>
     export default {
-        nome:"MeusDados"
+        nome: 'MeusDados'
     }
     
   $(document).ready(function() {
