@@ -42,7 +42,7 @@ export default new Router({
             }
         },
         {
-          path: 'meusdados',
+          path: '',
           name: 'MeusDadosAdministrador',
           component: MeusDados,
           meta: {
@@ -85,7 +85,7 @@ export default new Router({
       component: GerenteCadastro,
       children:[
         {
-          path: '',
+          path: 'MinhasDisciplinas2',
           name: 'MinhasDisciplinas2',
           component: MinhasDisciplinas,
           meta: {
@@ -94,7 +94,7 @@ export default new Router({
           }
         },
         {
-          path: 'meusdados',
+          path: '/',
           name: 'MeusDadosGerenteCadastro',
           component: MeusDados,
           meta: {
@@ -111,7 +111,7 @@ export default new Router({
       component: GerenteGeral,
       children:[
         {
-          path: '',
+          path: 'MinhasDisciplinas3',
           name: 'MinhasDisciplinas3',
           component: MinhasDisciplinas,
           meta: {
@@ -120,7 +120,7 @@ export default new Router({
           }
         },
         {
-          path: 'meusdados',
+          path: '',
           name: 'MeusDadosGerenteGeral',
           component: MeusDados,
           meta: {
