@@ -215,4 +215,3 @@ D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution
 D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.dll
 D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.pdb
 D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Paseto.Public.dll
-D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\MySql.Data.dll

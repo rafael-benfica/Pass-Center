@@ -1,4 +1,4 @@
-﻿using API_PassCenter.Models.Classes;
+﻿using API_PassCenter.Models.PasetoToken;
 using API_PassCenter.Models.Persistencia;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace API_PassCenter.Controllers {
 
             User usr = new User();
 
-            usr.nome = "rafa";
+            usr.login = "rafa";
             usr.senha = "oi123";
 
             if(UserDB.Insert(usr) == 0) {
