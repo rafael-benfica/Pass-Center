@@ -191,16 +191,22 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\EnderecoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OiController.cs" />
     <Compile Include="Controllers\TokenController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Classes\Endereco.cs" />
+    <Compile Include="Models\Classes\TipoEndereco.cs" />
+    <Compile Include="Models\PasetoToken\autenticar.cs" />
     <Compile Include="Models\PasetoToken\Indentificacao.cs" />
     <Compile Include="Models\PasetoToken\UserToken.cs" />
     <Compile Include="Models\Mapped.cs" />
     <Compile Include="Models\PasetoToken\Token.cs" />
+    <Compile Include="Models\Persistencia\EnderecoDB.cs" />
+    <Compile Include="Models\Persistencia\TipoEnderecoDB.cs" />
     <Compile Include="Models\Persistencia\UserDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -261,9 +267,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Classes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>

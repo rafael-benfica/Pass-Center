@@ -24,7 +24,8 @@ namespace API_PassCenter.Models.PasetoToken {
                 AdditionalClaims = new Dictionary<string, object> {
                     ["instituicao"] = new object[] { 0 },
                     ["turma"] = new object[] { 2 },
-                    ["usuario"] = new object[] { 3 }
+                    ["tipo_usuario"] = new object[] { 5 },
+                    ["usuario_codigo"] = new object[] { 3 }
                 },
             };
 
@@ -45,7 +46,8 @@ namespace API_PassCenter.Models.PasetoToken {
 
             ident.Institiuicao = converteObjStr(tokenDescodificado.AdditionalClaims["instituicao"]);
             ident.Turma = converteObjStr(tokenDescodificado.AdditionalClaims["turma"]);
-            ident.usuario = converteObjStr(tokenDescodificado.AdditionalClaims["usuario"]);
+            ident.tipo = Convert.ToInt32(converteObjStr(tokenDescodificado.AdditionalClaims["tipo_usuario"]));
+            ident.usuario = converteObjStr(tokenDescodificado.AdditionalClaims["usuario_codigo"]);
 
             return ident;
         }

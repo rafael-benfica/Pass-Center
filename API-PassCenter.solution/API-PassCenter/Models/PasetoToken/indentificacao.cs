@@ -8,6 +8,7 @@ namespace API_PassCenter.Models.PasetoToken {
 
         public string Institiuicao { get; set; }
         public string Turma { get; set; }
+        public int tipo { get; set; }
         public string usuario { get; set; }
     }
 }
