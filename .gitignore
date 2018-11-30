@@ -1,8 +1,0 @@
-# Iten ignorados #
-###################
-
-storage.ide-shm
-applicationhost.config
-API-PassCenter.csproj.CoreCompileInputs.cache
-API-PassCenter.csprojAssemblyReference.cache
-.suo
