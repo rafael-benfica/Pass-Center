@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 
 namespace API_PassCenter.Models.Classes {
-    public class TipoEndereco {
+    public class TiposUsuarios {
 
-        public int Ten_codigo { get; set; }
-        public string Ten_titulo { get; set; }
+        public int Tus_codigo { get; set; }
+        public string Tus_titulo { get; set; }
     }
 }

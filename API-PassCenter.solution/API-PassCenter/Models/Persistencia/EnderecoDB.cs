@@ -7,7 +7,7 @@ using System.Web;
 
 namespace API_PassCenter.Models.Persistencia {
     public class EnderecoDB {
-        public static int Insert(Endereco endereco) {
+        public static int Insert(Enderecos endereco) {
             int retorno = 0;
             try {
                 IDbConnection objConexao; // Abre a conexao

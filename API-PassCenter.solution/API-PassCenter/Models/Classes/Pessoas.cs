@@ -14,7 +14,7 @@ namespace API_PassCenter.Models.Classes {
         public string Pes_tel_residencial { get; set; }
         public string Pes_tel_celular { get; set; }
         public string Pes_info_adicionais { get; set; }
-        public Endereco End_codigo { get; set; }
+        public Enderecos End_codigo { get; set; }
         public Instituicoes Ins_codigo { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 namespace API_PassCenter.Models.Classes {
-    public class Endereco {
+    public class Enderecos {
         public int End_codigo { get; set; }
 
         public string End_logradouro { get; set; }
@@ -21,7 +21,7 @@ namespace API_PassCenter.Models.Classes {
 
         public string End_pais { get; set; }
 
-        public TipoEndereco Ten_codigo { get; set; }
+        public TiposEnderecos Ten_codigo { get; set; }
 
     }
 }

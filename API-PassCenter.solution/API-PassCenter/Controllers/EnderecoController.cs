@@ -12,13 +12,13 @@ namespace API_PassCenter.Controllers {
     public class EnderecoController : ApiController {
         [HttpPost, Route("api/Endereco")]
         // POST: api/Endereco
-        public IHttpActionResult Endereco([FromBody]Endereco endereco) {
+        public IHttpActionResult Endereco([FromBody]Enderecos endereco) {
 
             if (autenticar.autenticacao(Request, 5) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
-            Endereco end = new Endereco();
+            Enderecos end = new Enderecos();
 
             end.End_logradouro = endereco.End_logradouro;
             end.End_numero = endereco.End_numero;
@@ -41,13 +41,13 @@ namespace API_PassCenter.Controllers {
 
         [HttpPost, Route("api/Endereco/TipoEndereco")]
         // POST: api/Endereco
-        public IHttpActionResult TipoEndereco([FromBody]TipoEndereco tipo_endereco) {
+        public IHttpActionResult TipoEndereco([FromBody]TiposEnderecos tipo_endereco) {
 
             if (autenticar.autenticacao(Request, 5) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
-            TipoEndereco tem = new TipoEndereco();
+            TiposEnderecos tem = new TiposEnderecos();
 
             tem.Ten_titulo = tipo_endereco.Ten_titulo;
 
