@@ -5,12 +5,12 @@ using System.Web;
 
 namespace API_PassCenter.Models.Classes {
     public class Eventos {
-        public int eve_codigo { get; set; }
-        public int eve_nome { get; set; }
-        public int eve_sigla { get; set; }
-        public int eve_descricao { get; set; }
-        public bool eve_estado { get; set; }
-        public bool eve_operacao { get; set; }
-        public int tev_codigo { get; set; }
+        public int Eve_codigo { get; set; }
+        public string Eve_nome { get; set; }
+        public string Eve_sigla { get; set; }
+        public string Eve_descricao { get; set; }
+        public bool Eve_estado { get; set; }
+        public bool Eve_operacao { get; set; }
+        public TiposEventos Tev_codigo { get; set; }
     }
 }
