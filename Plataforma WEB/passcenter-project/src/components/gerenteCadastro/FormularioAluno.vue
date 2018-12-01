@@ -5,17 +5,33 @@
 				<!-- {{ item }} -->
 				<div class="card">
 					<div class="card-content">
-						<span class="card-title cardDisciplina">Interação Humano Computador</span>
-					
-						<a class="waves-effect waves-light btn modal-trigger botaoVerMais" href="#modal">Adicionar</a>
+						<span class="card-title cardDisciplina">4º ADS</span>
+                            <p>2018</p>
+						<a class="waves-effect waves-light btn modal-trigger botaoVerMais" href="#modal">Ver Mais</a>
 					</div>
 				</div>
 			</div>
 		</div>
+    
 		<!-- Modal Structure -->
-		<div id="modal" class="modal">
+	        	<div id="modal" class="modal bottom-sheet">
+                     <div class="modal-content">
+                        <h3>Lista de Alunos:</h3>
+                        <h4><i class="icone material-icons">person</i>  Aluno º 1</h4>
+                        <h4><i class="icone material-icons">person</i>  Aluno º2</h4>
+                        <h4><i class="icone material-icons">person</i>  Aluno º3</h4>
+                        
+                             
+                    </div>
+                        <div class="modal-footer row col s12 m12 l12">
+                            <p class="col s12 m4 l4"></p>
+                             <a class="col s12 m4 l4 waves-effect waves-light btn modal-trigger botaoVerMais" href="#modal2">Adicionar</a>
+                             <p class="col s12 m4 l4"></p>
+                        </div>
+                </div>
+                <div id="modal2" class="modal">
 			<div class="modal-content">
-				<h4>Cadastro Professor</h4>
+				<h4>Cadastro Aluno</h4>
 				<hr>
 					<div class="row col s12 m12 l12">
        					 <div class="input-field col s12 m4 l4">
@@ -107,7 +123,7 @@
 		</div>
 		</div>
 		
-	</div>
+    </div>
 </template>
 
 <script>

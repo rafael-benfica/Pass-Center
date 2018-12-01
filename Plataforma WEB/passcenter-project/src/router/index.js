@@ -24,7 +24,7 @@ import MinhasDisciplinas from '@/components/professor/MinhasDisciplinas.vue'
 import GerenteCadastroProfessor from '@/components/gerenteCadastro/GerenteCadastroProfessor.vue'
 import GerenteCadastroTurma from '@/components/gerenteCadastro/GerenteCadastroTurma.vue'
 import GerenteCadastroMateria from '@/components/gerenteCadastro/GerenteCadastroMateria.vue'
-import FormularioProfessor from '@/components/gerenteCadastro/FormularioProfessor.vue'
+import FormularioAluno from '@/components/gerenteCadastro/FormularioAluno.vue'
 
 Vue.use(Router)
 
@@ -160,17 +160,17 @@ export default new Router({
           }
         },
         {
-          path: 'FormularioProfessor',
-          name: 'FormularioProfessor',
-          component: FormularioProfessor,
+          path: 'FormularioAluno',
+          name: 'FormularioAluno',
+          component: FormularioAluno,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-            { nome: 'Professor' },
+            { nome: 'Aluno' },
             { nome: 'Análise e Desenvolvimento de Sistemas' },
-            { nome: '4º ADS' },
-          {nome:'Interação Humano/Computador'}]
+           ]
           }
         }
+       
       ]
     },
 
