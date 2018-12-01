@@ -3,7 +3,7 @@ export default {
 
     mounted: function () {
             $(document).ready(function () {
-                $('.modal').modal();
+                $('.modal2').modal();
             });
     },
       

@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-          <!-- Modal Structure -->
+        <!-- Modal Structure -->
         <div id="modal1" class="modal bottom-sheet">
             <div class="modal-content">
                 <h4>Histórico de Faltas</h4>
