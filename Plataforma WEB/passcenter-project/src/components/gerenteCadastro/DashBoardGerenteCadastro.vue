@@ -27,7 +27,11 @@
       <a href="#email"><span class="white-text email">ID #9999999</span></a>
     </div></li>
     <li><a class=" waves-effect" href="#!"><i class="icone material-icons">person</i>Alunos</a></li>
-    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">supervisor_account</i>Professores</a></li>
+
+
+    <li><router-link :to="{ name: 'GerenteCadastroProfessor' }" class=" waves-effect"><i class="icone material-icons">supervisor_account</i>Professores</router-link></li>
+
+
     <li><router-link :to="{ name: 'MeusDadosGerenteCadastro' }" class=" waves-effect"><i class="icone material-icons">account_circle</i>Meus Dados</router-link></li>
     <li class="center-align botao-sair"><router-link :to="{ name: 'Login' }" class="waves-effect waves-light btn red darken-4">Sair</router-link></li>
     <li><div class="divider"></div></li>

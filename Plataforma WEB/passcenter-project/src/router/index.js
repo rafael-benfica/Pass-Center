@@ -14,9 +14,17 @@ import MeusDados from '@/components/geral/MeusDados.vue'
 
 // Aluno
 import MinhasDisciplinasAluno from '@/components/aluno/MinhasDisciplinasAluno.vue'
+import HistoricoCompletoAluno from '@/components/aluno/HistoricoCompletoAluno.vue'
+import HistoricoCompletoDisciplinas from '@/components/aluno/HistoricoCompletoDisciplinas.vue'
 
 //Professor
 import MinhasDisciplinas from '@/components/professor/MinhasDisciplinas.vue'
+
+//Cadastro
+import GerenteCadastroProfessor from '@/components/gerenteCadastro/GerenteCadastroProfessor.vue'
+import GerenteCadastroTurma from '@/components/gerenteCadastro/GerenteCadastroTurma.vue'
+import GerenteCadastroMateria from '@/components/gerenteCadastro/GerenteCadastroMateria.vue'
+import FormularioProfessor from '@/components/gerenteCadastro/FormularioProfessor.vue'
 
 Vue.use(Router)
 
@@ -75,6 +83,25 @@ export default new Router({
             breadcrumbs: [{ nome: 'Aluno' },
             { nome: 'Meus Dados' }]
           }
+        },
+        {
+          path: 'HistoricoCompletoAluno',
+          name: 'HistoricoCompletoAluno',
+          component: HistoricoCompletoAluno,
+          meta: {
+            breadcrumbs: [{ nome: 'Aluno' },
+              { nome: 'Histórico Completo' }]
+          }
+        },
+        {
+          path: 'HistoricoCompletoDisciplinas',
+          name: 'HistoricoCompletoDisciplinas',
+          component: HistoricoCompletoDisciplinas,
+          meta: {
+            breadcrumbs: [{ nome: 'Aluno' },
+            { nome: 'Histórico Completo' },
+              { nome: 'Disciplinas 20XX' }]
+          }
         }
       ]
     },
@@ -100,6 +127,48 @@ export default new Router({
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
             { nome: 'Meus Dados' }]
+          }
+        },
+        {
+          path: 'GerenteCadastroProfessor',
+          name: 'GerenteCadastroProfessor',
+          component: GerenteCadastroProfessor,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente de Cadastro' },
+            { nome: 'Professor' }]
+          }
+        },
+        {
+          path: 'GerenteCadastroTurma',
+          name: 'GerenteCadastroTurma',
+          component: GerenteCadastroTurma,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente de Cadastro' },
+            { nome: 'Professor' },
+              {nome:'Análise e Desenvolvimento de Sistemas'}]
+          }
+        },
+        {
+          path: 'GerenteCadastroMateria',
+          name: 'GerenteCadastroMateria',
+          component: GerenteCadastroMateria,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente de Cadastro' },
+            { nome: 'Professor' },
+            { nome: 'Análise e Desenvolvimento de Sistemas' },
+              { nome:'4º ADS'}]
+          }
+        },
+        {
+          path: 'FormularioProfessor',
+          name: 'FormularioProfessor',
+          component: FormularioProfessor,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente de Cadastro' },
+            { nome: 'Professor' },
+            { nome: 'Análise e Desenvolvimento de Sistemas' },
+            { nome: '4º ADS' },
+          {nome:'Interação Humano/Computador'}]
           }
         }
       ]

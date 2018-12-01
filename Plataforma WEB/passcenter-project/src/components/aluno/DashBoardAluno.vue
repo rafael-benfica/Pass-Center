@@ -28,7 +28,7 @@
     </div></li>
     <li><router-link :to="{ name: 'MinhasDisciplinasAluno' }" class=" waves-effect"><i class="icone material-icons">view_comfy</i>Minhas Disciplinas</router-link></li>
     <li><router-link :to="{ name: 'MeusDadosAluno' }" class=" waves-effect"><i class="icone material-icons">account_circle</i>Meus dados</router-link></li>
-    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">chrome_reader_mode</i>Histórico Completo</a></li>
+    <li><router-link :to="{ name: 'HistoricoCompletoAluno' }" class=" waves-effect"><i class="icone material-icons">chrome_reader_mode</i>Histórico Completo</router-link></li>
     <li class="center-align botao-sair"><router-link :to="{ name: 'Login' }" class="waves-effect waves-light btn red darken-4">Sair</router-link></li>
   </ul>
 
