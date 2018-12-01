@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="API_PassCenter.Models.Classes.Enderecos">
+    <Position X="4.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAQAAAAAAAAAAAIAAAEAAAAAAAAAhACAIAAABAA=</HashCode>
+      <FileName>Models\Classes\Enderecos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Eventos">
+    <Position X="10" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AADAAAAAAAAQABAAAAIAAAAAAAAAAAIAAAAAAAAAACA=</HashCode>
+      <FileName>Models\Classes\Eventos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.HorariosEventos">
+    <Position X="12" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAIAAAAAAAAAIAAAAgAAIAAAA=</HashCode>
+      <FileName>Models\Classes\HorariosEventos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Identificadores">
+    <Position X="14" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAGAAAAACA=</HashCode>
+      <FileName>Models\Classes\Identificadores.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Instituicoes">
+    <Position X="18" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAEAACAIAAAAgAAAAAAgAgAAAAAgAAAA=</HashCode>
+      <FileName>Models\Classes\Instituicoes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Pagamentos">
+    <Position X="8" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAEAAAABAAAAAECAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Models\Classes\Pagamentos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Pessoas">
+    <Position X="6.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAQAAAoAAAAIAAIAAAABAAEAABAgAAAAAAgEAA=</HashCode>
+      <FileName>Models\Classes\Pessoas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Planos">
+    <Position X="12.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAgAQAAAABAAAAAAAAAAAAAAAEAQAAAAA=</HashCode>
+      <FileName>Models\Classes\Planos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Presencas">
+    <Position X="14" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAgAQAIAABACAAAAACA=</HashCode>
+      <FileName>Models\Classes\Presencas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Sessoes">
+    <Position X="16.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAACAAAAAAAAAAAAAAAAAAAAIAABAgCAAAACA=</HashCode>
+      <FileName>Models\Classes\Sessoes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.TiposEnderecos">
+    <Position X="4.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIABAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Models\Classes\TiposEnderecos.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Enderecos" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.TiposEventos">
+    <Position X="14.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Classes\TiposEventos .cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.TiposIdentificadores">
+    <Position X="12.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Models\Classes\TiposIdentificadores .cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.TiposInsercoes">
+    <Position X="16" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Models\Classes\TiposInsercoes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.TiposUsuarios">
+    <Position X="16.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAIAAAAA=</HashCode>
+      <FileName>Models\Classes\TiposUsuarios.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Totens">
+    <Position X="8.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAABAAAAAAAAAAAACAAAQAg=</HashCode>
+      <FileName>Models\Classes\Totens.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Turmas">
+    <Position X="10.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAAACAIAAAIAAAAAAAAQACAAAIAAAAAAIAAAAA=</HashCode>
+      <FileName>Models\Classes\Turmas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Usuarios">
+    <Position X="18" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAACDQABAAAAAAAgAAAAAAAAAIBgAAA=</HashCode>
+      <FileName>Models\Classes\Usuarios.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

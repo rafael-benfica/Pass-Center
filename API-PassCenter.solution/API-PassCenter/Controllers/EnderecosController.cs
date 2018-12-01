@@ -9,8 +9,8 @@ using System.Net.Http;
 using System.Web.Http;
 
 namespace API_PassCenter.Controllers {
-    public class EnderecoController : ApiController {
-        [HttpPost, Route("api/Endereco")]
+    public class EnderecosController : ApiController {
+        [HttpPost, Route("api/Enderecos")]
         // POST: api/Endereco
         public IHttpActionResult Endereco([FromBody]Enderecos endereco) {
 
@@ -29,7 +29,7 @@ namespace API_PassCenter.Controllers {
             end.End_pais = endereco.End_pais;
             end.Ten_codigo = endereco.Ten_codigo;
 
-            int retorno = EnderecoDB.Insert(end);
+            int retorno = EnderecosDB.Insert(end);
 
             if (retorno == -2) {
                 return BadRequest();
@@ -39,7 +39,7 @@ namespace API_PassCenter.Controllers {
 
         }
 
-        [HttpPost, Route("api/Endereco/TipoEndereco")]
+        [HttpPost, Route("api/Enderecos/TiposEndereco")]
         // POST: api/Endereco
         public IHttpActionResult TipoEndereco([FromBody]TiposEnderecos tipo_endereco) {
 
@@ -51,7 +51,7 @@ namespace API_PassCenter.Controllers {
 
             tem.Ten_titulo = tipo_endereco.Ten_titulo;
 
-            if (TipoEnderecoDB.Insert(tem) == 0) {
+            if (TiposEnderecoDB.Insert(tem) == 0) {
                 return Ok();
 
             } else {

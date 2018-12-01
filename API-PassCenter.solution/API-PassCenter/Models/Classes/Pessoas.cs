@@ -11,6 +11,7 @@ namespace API_PassCenter.Models.Classes {
         public int Pes_sexo { get; set; }
         public string Pes_matricula { get; set; }
         public string Pes_cpf { get; set; }
+        public string Pes_rg { get; set; }
         public string Pes_tel_residencial { get; set; }
         public string Pes_tel_celular { get; set; }
         public string Pes_info_adicionais { get; set; }

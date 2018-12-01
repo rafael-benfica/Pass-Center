@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 
 namespace API_PassCenter.Models.Persistencia {
-    public class TipoEnderecoDB {
+    public class TiposEnderecoDB {
         public static int Insert(TiposEnderecos ten) {
             int retorno = 0;
             try {

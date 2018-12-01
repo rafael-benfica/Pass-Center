@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace API_PassCenter.Controllers
 {
-    public class TokenController : ApiController
+    public class TokensController : ApiController
     {
         // POST: api/Token
         public IHttpActionResult Post([FromBody]User us)
