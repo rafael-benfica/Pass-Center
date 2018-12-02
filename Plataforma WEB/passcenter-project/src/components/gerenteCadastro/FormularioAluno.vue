@@ -99,8 +99,13 @@
           						<label for="comple">Complemento:</label>
         				</div>
 
-							<p>Informações Adicionais:</p>
-								<textarea></textarea>
+							
+								
+        							<div class="input-field col s12 m12 l12">
+          								<textarea id="textarea1" class="materialize-textarea"></textarea>
+          									<label for="textarea1">Informações Adicionais</label>
+        							</div>
+      							
 
 
 						
