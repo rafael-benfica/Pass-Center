@@ -72,7 +72,7 @@
                 }
             },
             logar(){
-                this.$http.post('https://localhost:51474/api/Tokens', {headers: { 'Access-Control-Allow-Origin' : '*' }, usu_login:this.login , usu_senha:this.senha}).then(response => {
+                this.$http.post('http://localhost:51474/api/Tokens', {usu_login:this.login , usu_senha:this.senha}).then(response => {
 
 					    // get status
 					    console.log(response.status);
