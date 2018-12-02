@@ -10,6 +10,11 @@ namespace API_PassCenter.Controllers
 {
     public class TokensController : ApiController
     {
+        /// <summary>
+        /// Retorna um token para consumo da API.
+        /// </summary>
+        /// <param name="br"></param>
+        /// <returns></returns>
         // POST: api/Token
         public IHttpActionResult Post([FromBody]User us)
         {

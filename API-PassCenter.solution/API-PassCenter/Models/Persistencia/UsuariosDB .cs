@@ -12,20 +12,21 @@ namespace API_PassCenter.Models.Persistencia {
             try {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "INSERT INTO usuarios(end_logradouro, end_numero, end_bairro, end_municipio, end_estado, end_complemento, end_pais, ten_codigo)" +
-                    " VALUES(?end_logradouro, ?end_numero, ?end_bairro, ?end_municipio, ?end_estado, ?end_complemento, ?end_pais, ?ten_codigo);" +
+                string sql = "INSERT INTO usuarios(usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo)" +
+                    " VALUES(?usu_login, ?usu_senha, ?usu_estado, ?usu_data_criacao, ?usu_data_desativacao, ?usu_primeiro_login, ?usu_redefinir_senha, ?pes_codigo, ?tus_codigo);" +
                     "SELECT LAST_INSERT_ID();";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
-                objCommand.Parameters.Add(Mapped.Parameter("?end_logradouro", usuarios.End_logradouro));
-                objCommand.Parameters.Add(Mapped.Parameter("?end_numero", usuarios.End_numero));
-                objCommand.Parameters.Add(Mapped.Parameter("?end_bairro", usuarios.End_bairro));
-                objCommand.Parameters.Add(Mapped.Parameter("?end_municipio", usuarios.End_municipio));
-                objCommand.Parameters.Add(Mapped.Parameter("?end_estado", usuarios.End_estado));
-                objCommand.Parameters.Add(Mapped.Parameter("?end_complemento", usuarios.End_complemento));
-                objCommand.Parameters.Add(Mapped.Parameter("?end_pais", usuarios.End_pais));
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_login", usuarios.Usu_login));
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_senha", usuarios.Usu_senha));
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_estado", usuarios.Usu_estado));
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_data_criacao", usuarios.Usu_data_criacao));
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_data_desativacao", usuarios.Usu_data_desativacao));
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_primeiro_login", usuarios.Usu_primeiro_login));
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_redefinir_senha", usuarios.Usu_redefinir_senha));
                 //FK
-                objCommand.Parameters.Add(Mapped.Parameter("?ten_codigo", usuarios.Ten_codigo.Ten_codigo));
+                objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo", usuarios.Pes_codigo.Pes_codigo));
+                objCommand.Parameters.Add(Mapped.Parameter("?tus_codigo", usuarios.Tus_codigo.Tus_codigo));
                 
                 retorno = Convert.ToInt32(objCommand.ExecuteScalar());
 

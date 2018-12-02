@@ -9,27 +9,25 @@ using System.Net.Http;
 using System.Web.Http;
 
 namespace API_PassCenter.Controllers {
-    public class EnderecosController : ApiController {
-        [HttpPost, Route("api/Enderecos")]
+    public class EventosController : ApiController {
+        [HttpPost, Route("api/Eventos")]
         // POST: api/Endereco
-        public IHttpActionResult Endereco([FromBody]Enderecos endereco) {
+        public IHttpActionResult Eventos([FromBody]Eventos eventos) {
 
             if (autenticar.autenticacao(Request, 5) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
-            Enderecos end = new Enderecos();
+            Eventos eve = new Eventos();
 
-            end.End_logradouro = endereco.End_logradouro;
-            end.End_numero = endereco.End_numero;
-            end.End_bairro = endereco.End_bairro;
-            end.End_municipio = endereco.End_municipio;
-            end.End_estado = endereco.End_estado;
-            end.End_complemento = endereco.End_complemento;
-            end.End_pais = endereco.End_pais;
-            end.Ten_codigo = endereco.Ten_codigo;
+            eve.Eve_nome = eventos.Eve_nome;
+            eve.Eve_sigla = eventos.Eve_sigla;
+            eve.Eve_descricao = eventos.Eve_descricao;
+            eve.Eve_estado = eventos.Eve_estado;
+            eve.Eve_operacao = eventos.Eve_operacao;
+            eve.Tev_codigo = eventos.Tev_codigo;
 
-            int retorno = EnderecosDB.Insert(end);
+            int retorno = EventosDB.Insert(eve);
 
             if (retorno == -2) {
                 return BadRequest();
@@ -39,19 +37,19 @@ namespace API_PassCenter.Controllers {
 
         }
 
-        [HttpPost, Route("api/Enderecos/TiposEndereco")]
+        [HttpPost, Route("api/Eventos/TiposEventos")]
         // POST: api/Endereco
-        public IHttpActionResult TiposEndereco([FromBody]TiposEnderecos tipo_endereco) {
+        public IHttpActionResult TiposEventos([FromBody]TiposEventos tipo_eventos) {
 
             if (autenticar.autenticacao(Request, 5) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
-            TiposEnderecos tem = new TiposEnderecos();
+            TiposEventos tev = new TiposEventos();
 
-            tem.Ten_titulo = tipo_endereco.Ten_titulo;
+            tev.Tev_titulo = tipo_eventos.Tev_titulo;
 
-            if (TiposEnderecoDB.Insert(tem) == 0) {
+            if (TiposEventosDB.Insert(tev) == 0) {
                 return Ok();
 
             } else {

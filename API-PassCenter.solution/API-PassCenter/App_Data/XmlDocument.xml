@@ -481,6 +481,13 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:API_PassCenter.Controllers.TokensController.Post(API_PassCenter.Models.PasetoToken.User)">
+            <summary>
+            Retorna um token para consumo da API.
+            </summary>
+            <param name="br"></param>
+            <returns></returns>
+        </member>
         <member name="T:API_PassCenter.Models.Mapped">
             <summary>
             Descrição resumida de Mapped
