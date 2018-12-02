@@ -43,7 +43,7 @@ namespace API_PassCenter.Controllers {
 
         [HttpPost, Route("api/Usuarios/TiposUsuarios")]
         // POST: api/Endereco
-        public IHttpActionResult TipoUsuarios([FromBody]TiposUsuarios tipos_usuarios) {
+        public IHttpActionResult TiposUsuarios([FromBody]TiposUsuarios tipos_usuarios) {
 
             if (autenticar.autenticacao(Request, 5) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
@@ -57,7 +57,7 @@ namespace API_PassCenter.Controllers {
                 return Ok();
 
             } else {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return BadRequest();
             }
         }
 

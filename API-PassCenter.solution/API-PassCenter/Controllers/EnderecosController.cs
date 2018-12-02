@@ -55,7 +55,7 @@ namespace API_PassCenter.Controllers {
                 return Ok();
 
             } else {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return BadRequest();
             }
         }
 
