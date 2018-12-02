@@ -9,12 +9,12 @@ using System.Net.Http;
 using System.Web.Http;
 
 namespace API_PassCenter.Controllers {
-    public class identificadoresController : ApiController {
+    public class IdentificadoresController : ApiController {
         [HttpPost, Route("api/Identificadores")]
         // POST: api/Endereco
         public IHttpActionResult Identificadores([FromBody]Identificadores identificadores) {
 
-            if (autenticar.autenticacao(Request, 5) == null) {
+            if (autenticar.autenticacao(Request, 1) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
@@ -39,7 +39,7 @@ namespace API_PassCenter.Controllers {
         // POST: api/Endereco
         public IHttpActionResult TiposIdentificadores([FromBody]TiposIdentificadores tipos_identificadores) {
 
-            if (autenticar.autenticacao(Request, 5) == null) {
+            if (autenticar.autenticacao(Request, 1) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 

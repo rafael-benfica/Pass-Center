@@ -15,7 +15,7 @@ namespace API_PassCenter.Controllers {
         // POST: api/Instituicoes
         public IHttpActionResult Post([FromBody]Turmas turmas) {
 
-            if (autenticar.autenticacao(Request, 5) == null) {
+            if (autenticar.autenticacao(Request, 1) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 

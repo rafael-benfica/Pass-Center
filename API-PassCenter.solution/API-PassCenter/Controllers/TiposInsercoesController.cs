@@ -9,30 +9,27 @@ using System.Net.Http;
 using System.Web.Http;
 
 namespace API_PassCenter.Controllers {
-    public class TotensController : ApiController {
-
-        [HttpPost, Route("api/Totens")]
-        // POST: api/Instituicoes
-        public IHttpActionResult Post([FromBody]Totens totens) {
+    public class TiposInsercoesController : ApiController {
+        [HttpPost, Route("api/TiposInsercoes")]
+        // POST: api/Endereco
+        public IHttpActionResult TiposInsercoes([FromBody]TiposInsercoes tiposInsercoes) {
 
             if (autenticar.autenticacao(Request, 1) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
-            Totens tot = new Totens();
+            TiposInsercoes tin = new TiposInsercoes();
 
-            tot.Tot_numero_serie = totens.Tot_numero_serie;
-            tot.Tot_estado = totens.Tot_estado;
-            tot.Tot_operacao = totens.Tot_operacao;
-            tot.Ins_codigo = totens.Ins_codigo;
+            tin.Tin_titulo = tiposInsercoes.Tin_titulo;
 
-            int retorno = TotensDB.Insert(tot);
+            int retorno = TiposInsercoesDB.Insert(tin);
 
             if (retorno == -2) {
                 return BadRequest();
             } else {
-                return Ok(retorno);
+                return Ok();
             }
+
         }
     }
 }

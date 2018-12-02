@@ -5,7 +5,7 @@ using System.Web;
 
 namespace API_PassCenter.Models.Classes {
     public class TiposInsercoes {
-        public int Tis_codigo { get; set; }
-        public string Tis_titulo { get; set; }
+        public int Tin_codigo { get; set; }
+        public string Tin_titulo { get; set; }
     }
 }

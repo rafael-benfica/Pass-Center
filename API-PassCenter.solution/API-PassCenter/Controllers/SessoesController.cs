@@ -9,30 +9,32 @@ using System.Net.Http;
 using System.Web.Http;
 
 namespace API_PassCenter.Controllers {
-    public class TotensController : ApiController {
-
-        [HttpPost, Route("api/Totens")]
-        // POST: api/Instituicoes
-        public IHttpActionResult Post([FromBody]Totens totens) {
+    public class SessoesController : ApiController {
+        [HttpPost, Route("api/Sessoes")]
+        // POST: api/Endereco
+        public IHttpActionResult Sessoes([FromBody]Sessoes sessoes) {
 
             if (autenticar.autenticacao(Request, 1) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
-            Totens tot = new Totens();
+            Sessoes ses = new Sessoes();
 
-            tot.Tot_numero_serie = totens.Tot_numero_serie;
-            tot.Tot_estado = totens.Tot_estado;
-            tot.Tot_operacao = totens.Tot_operacao;
-            tot.Ins_codigo = totens.Ins_codigo;
+            ses.Ses_horario_inicio = sessoes.Ses_horario_inicio;
+            ses.Ses_horario_fim = sessoes.Ses_horario_fim;
+            ses.Tot_codigo = sessoes.Tot_codigo;
+            ses.Eve_codigo = sessoes.Eve_codigo;
+            ses.Hev_codigo = sessoes.Hev_codigo;
+            ses.Tin_codigo = sessoes.Tin_codigo;
 
-            int retorno = TotensDB.Insert(tot);
+            int retorno = SessoesDB.Insert(ses);
 
             if (retorno == -2) {
                 return BadRequest();
             } else {
                 return Ok(retorno);
             }
+
         }
     }
 }

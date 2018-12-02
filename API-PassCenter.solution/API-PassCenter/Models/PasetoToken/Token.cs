@@ -24,7 +24,7 @@ namespace API_PassCenter.Models.PasetoToken {
                 AdditionalClaims = new Dictionary<string, object> {
                     ["instituicao"] = new object[] { 0 },
                     ["turma"] = new object[] { 2 },
-                    ["tipo_usuario"] = new object[] { 5 },
+                    ["tipo_usuario"] = new object[] { 1 },
                     ["usuario_codigo"] = new object[] { 3 }
                 },
             };

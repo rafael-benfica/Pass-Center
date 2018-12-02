@@ -14,7 +14,7 @@ namespace API_PassCenter.Controllers {
         // POST: api/Endereco
         public IHttpActionResult Endereco([FromBody]Enderecos endereco) {
 
-            if (autenticar.autenticacao(Request, 5) == null) {
+            if (autenticar.autenticacao(Request, 1) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
@@ -43,7 +43,7 @@ namespace API_PassCenter.Controllers {
         // POST: api/Endereco
         public IHttpActionResult TiposEndereco([FromBody]TiposEnderecos tipos_endereco) {
 
-            if (autenticar.autenticacao(Request, 5) == null) {
+            if (autenticar.autenticacao(Request, 1) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
