@@ -31,7 +31,7 @@ namespace API_PassCenter.Controllers {
             usu.Tus_codigo = usuarios.Tus_codigo;
 
 
-            int retorno = EnderecosDB.Insert(end);
+            int retorno = UsusariosDB.Insert(usu);
 
             if (retorno == -2) {
                 return BadRequest();
