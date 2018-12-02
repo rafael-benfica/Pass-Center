@@ -2,30 +2,32 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Web;
 
 namespace API_PassCenter.Models.PasetoToken {
     public static class Token {
-        public static string GerarToken() {
+        public static string GerarToken(DataSet info) {
 
             byte[] _publicKey = HexToBytes(ConfigurationManager.AppSettings["chavePublica"]);
             byte[] _privateKey = HexToBytes(ConfigurationManager.AppSettings["chavePrivada"]);
 
             var date = DateTime.UtcNow;
 
+
+
             var claims = new PasetoInstance {
                 Issuer = "http://api.passcenter.com.br",
                 Subject = "Token de autenticacao",
                 Audience = "http://passcenter.com.br",
-                Expiration = date.AddMinutes(10),
-                NotBefore = date.AddMinutes(-10),
+                Expiration = date.AddMinutes(30),
+                NotBefore = date.AddMinutes(-30),
                 IssuedAt = date,
                 AdditionalClaims = new Dictionary<string, object> {
-                    ["instituicao"] = new object[] { 0 },
-                    ["turma"] = new object[] { 2 },
-                    ["tipo_usuario"] = new object[] { 1 },
-                    ["usuario_codigo"] = new object[] { 3 }
+                    ["usu_codigo"] = new object[] { Convert.ToInt32(info.Tables[0].Rows[0]["usu_codigo"]) },
+                    ["ins_codigo"] = new object[] { Convert.ToInt32(info.Tables[0].Rows[0]["ins_codigo"]) },
+                    ["tus_codigo"] = new object[] { Convert.ToInt32(info.Tables[0].Rows[0]["tus_codigo"]) }
                 },
             };
 
@@ -44,10 +46,9 @@ namespace API_PassCenter.Models.PasetoToken {
 
             Indentificacao ident = new Indentificacao();
 
-            ident.Institiuicao = converteObjStr(tokenDescodificado.AdditionalClaims["instituicao"]);
-            ident.Turma = converteObjStr(tokenDescodificado.AdditionalClaims["turma"]);
-            ident.tipo = Convert.ToInt32(converteObjStr(tokenDescodificado.AdditionalClaims["tipo_usuario"]));
-            ident.usuario = converteObjStr(tokenDescodificado.AdditionalClaims["usuario_codigo"]);
+            ident.Usu_codigo = converteObjStr(tokenDescodificado.AdditionalClaims["usu_codigo"]);
+            ident.Ins_codigo = converteObjStr(tokenDescodificado.AdditionalClaims["ins_codigo"]);
+            ident.Tus_codigo = Convert.ToInt32(converteObjStr(tokenDescodificado.AdditionalClaims["tus_codigo"]));
 
             return ident;
         }

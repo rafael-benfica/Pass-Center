@@ -5,10 +5,8 @@ using System.Web;
 
 namespace API_PassCenter.Models.PasetoToken {
     public class Indentificacao {
-
-        public string Institiuicao { get; set; }
-        public string Turma { get; set; }
-        public int tipo { get; set; }
-        public string usuario { get; set; }
+        public string Usu_codigo { get; set; }
+        public string Ins_codigo { get; set; }
+        public int Tus_codigo { get; set; }
     }
 }

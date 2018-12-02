@@ -229,9 +229,10 @@
     <Compile Include="Models\Classes\Usuarios.cs" />
     <Compile Include="Models\PasetoToken\autenticar.cs" />
     <Compile Include="Models\PasetoToken\Indentificacao.cs" />
-    <Compile Include="Models\PasetoToken\UserToken.cs" />
+    <Compile Include="Models\PasetoToken\LoginCredenciais.cs" />
     <Compile Include="Models\Mapped.cs" />
     <Compile Include="Models\PasetoToken\Token.cs" />
+    <Compile Include="Models\PersistenciaAuxliar\LoginCredenciaisDB.cs" />
     <Compile Include="Models\Persistencia\PlanosDB.cs" />
     <Compile Include="Models\Persistencia\PresencasDB.cs" />
     <Compile Include="Models\Persistencia\PagamentosDB.cs" />
@@ -250,7 +251,6 @@
     <Compile Include="Models\Persistencia\EnderecosDB.cs" />
     <Compile Include="Models\Persistencia\TiposUsuariosDB .cs" />
     <Compile Include="Models\Persistencia\TiposEnderecoDB.cs" />
-    <Compile Include="Models\Persistencia\UserDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -14,7 +14,7 @@ namespace API_PassCenter.Models.PasetoToken {
             try {
                 Indentificacao credenciais = Token.ValidarToken(token);
 
-                if (credenciais.tipo <= tipo) {
+                if (credenciais.Tus_codigo <= tipo) {
                     return credenciais;
                 }
                 return null;

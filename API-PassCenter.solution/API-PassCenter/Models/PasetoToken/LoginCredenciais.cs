@@ -4,10 +4,9 @@ using System.Linq;
 using System.Web;
 
 namespace API_PassCenter.Models.PasetoToken {
-    public class User {
-
-        public string login { get; set; }
-        public string senha { get; set; }
+    public class LoginCredenciais {
+        public string usu_login { get; set; }
+        public string usu_senha { get; set; }
 
     }
 }
