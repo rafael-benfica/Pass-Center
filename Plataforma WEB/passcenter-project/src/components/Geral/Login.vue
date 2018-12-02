@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="card-content">
-                            <button class="waves-effect waves-light btn-large" @click="vai()">Entrar</button>
+                            <button class="waves-effect waves-light btn-large" @click="logar()">Entrar</button>
                         </div>
                     </form>
                     
@@ -70,6 +70,26 @@
                 }else if(this.login=="adm@fatec.com"){
                     this.$router.push("administrador");
                 }
+            },
+            logar(){
+                this.$http.post('https://localhost:51474/api/Tokens', {headers: { 'Access-Control-Allow-Origin' : '*' }, usu_login:this.login , usu_senha:this.senha}).then(response => {
+
+					    // get status
+					    console.log(response.status);
+
+					    // get status text
+					    console.log(response.statusText);
+
+					    // get 'Expires' header
+					    console.log(response.headers.get('Expires'));
+					    console.log(response.body);
+
+					    // get body data
+					    console.log(response.body);
+
+					}, response => {
+					    console.log(response.status);
+					});
             }
         },
     }
