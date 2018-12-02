@@ -191,7 +191,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\identificadoresController.cs" />
     <Compile Include="Controllers\EventosController.cs" />
+    <Compile Include="Controllers\TotensController.cs" />
+    <Compile Include="Controllers\TurmasController .cs" />
     <Compile Include="Controllers\UsuariosController .cs" />
     <Compile Include="Controllers\EnderecosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -224,6 +227,8 @@
     <Compile Include="Models\PasetoToken\UserToken.cs" />
     <Compile Include="Models\Mapped.cs" />
     <Compile Include="Models\PasetoToken\Token.cs" />
+    <Compile Include="Models\Persistencia\TotensDB.cs" />
+    <Compile Include="Models\Persistencia\TurmasDB.cs" />
     <Compile Include="Models\Persistencia\InstituicoesDB.cs" />
     <Compile Include="Models\Persistencia\TiposEventosDB.cs" />
     <Compile Include="Models\Persistencia\UsuariosDB .cs" />

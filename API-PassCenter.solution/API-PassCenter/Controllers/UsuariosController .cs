@@ -43,7 +43,7 @@ namespace API_PassCenter.Controllers {
 
         [HttpPost, Route("api/Usuarios/TiposUsuarios")]
         // POST: api/Endereco
-        public IHttpActionResult TipoUsuarios([FromBody]TiposUsuarios tipo_usuarios) {
+        public IHttpActionResult TipoUsuarios([FromBody]TiposUsuarios tipos_usuarios) {
 
             if (autenticar.autenticacao(Request, 5) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
@@ -51,7 +51,7 @@ namespace API_PassCenter.Controllers {
 
             TiposUsuarios tus = new TiposUsuarios();
 
-            tus.Tus_titulo = tipo_usuarios.Tus_titulo;
+            tus.Tus_titulo = tipos_usuarios.Tus_titulo;
 
             if (TiposUsuariosDB.Insert(tus) == 0) {
                 return Ok();
