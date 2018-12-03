@@ -69,9 +69,9 @@
                         }else if(dados[1]==4){
                             this.$router.push("professor");
                         }else if(dados[1]==3){
-                            this.$router.push("gerenteGeral");
-                        }else if(dados[1]==2){
                             this.$router.push("gerenteCadastro");
+                        }else if(dados[1]==2){
+                            this.$router.push("gerenteGeral");                       
                         }else if(dados[1]==1){
                             this.$router.push("administrador");
                         }
