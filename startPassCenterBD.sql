@@ -1,3 +1,4 @@
+use passcenter;
 
 INSERT INTO tipos_usuarios (`tus_titulo`) VALUES ('administrador');
 
