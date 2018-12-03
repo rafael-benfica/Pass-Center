@@ -18,13 +18,13 @@
                         <div class="formulario">
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="email" v-model="login" type="email" class="validate">
+                                    <input id="email" type="email" class="validate" v-model="login">
                                     <label for="email">Email</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="password" v-model="senha" type="password" class="validate">
+                                    <input id="password" type="password" class="validate" v-model="senha">
                                     <label for="password">Senha</label>
                                 </div>
                             </div>
@@ -59,9 +59,10 @@
         },
         methods: {
             logar(){
-                this.$http.post(this.$store.state.rootAPI+'/Tokens', {usu_login:this.login , usu_senha:this.senha}).then(response => {
+                this.$http.post('Tokens', {usu_login:this.login , usu_senha:this.senha}).then(response => {
                         var dados = response.body;
                         this.$store.commit('INSERIRTOKEN',dados[0]);
+                        this.$store.commit('CARREGARTOKEN');
 
                         if(dados[1]==5){
                             this.$router.push("aluno");
@@ -76,7 +77,7 @@
                         }
 
 				}, response => {
-				    console.log(response.status);
+				    console.log("ERRO! Código de resposta (HTTP) do servidor: " + response.status);
 				});
             }
         },

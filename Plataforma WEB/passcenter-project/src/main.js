@@ -7,6 +7,7 @@ import store from './assets/js/store/store.js'
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
+Vue.http.options.root = 'http://localhost:51474/api';
 
 Vue.config.productionTip = false
 

@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`enderecos` (
   `end_numero` VARCHAR(10) NOT NULL,
   `end_bairro` VARCHAR(50) NOT NULL,
   `end_municipio` VARCHAR(50) NOT NULL,
+  `end_cep` INT NOT NULL,
   `end_estado` VARCHAR(50) NOT NULL,
   `end_complemento` VARCHAR(50) NULL,
   `end_pais` VARCHAR(50) NOT NULL,

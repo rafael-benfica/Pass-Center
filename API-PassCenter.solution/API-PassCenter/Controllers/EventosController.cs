@@ -14,7 +14,7 @@ namespace API_PassCenter.Controllers {
         // POST: api/Endereco
         public IHttpActionResult Eventos([FromBody]Eventos eventos) {
 
-            if (autenticar.autenticacao(Request, 1) == null) {
+            if (autenticar.autenticacao(Request, 3) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
@@ -41,7 +41,7 @@ namespace API_PassCenter.Controllers {
         // POST: api/Endereco
         public IHttpActionResult TiposEventos([FromBody]TiposEventos tipo_eventos) {
 
-            if (autenticar.autenticacao(Request, 1) == null) {
+            if (autenticar.autenticacao(Request, 3) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
@@ -61,7 +61,7 @@ namespace API_PassCenter.Controllers {
         // POST: api/Endereco
         public IHttpActionResult HorariosEventos([FromBody]HorariosEventos horario_eventos) {
 
-            if (autenticar.autenticacao(Request, 1) == null) {
+            if (autenticar.autenticacao(Request, 3) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 

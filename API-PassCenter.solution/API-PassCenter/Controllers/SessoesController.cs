@@ -14,7 +14,7 @@ namespace API_PassCenter.Controllers {
         // POST: api/Endereco
         public IHttpActionResult Sessoes([FromBody]Sessoes sessoes) {
 
-            if (autenticar.autenticacao(Request, 1) == null) {
+            if (autenticar.autenticacao(Request, 4) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 

@@ -23,8 +23,8 @@
        <!-- <img src="./assets/02.jpg"> -->
       </div>
       <a href="#user"><img class="circle" src="./../../assets/img/01.jpg"></a>
-      <a href="#name"><span class="white-text name">Nome do Usuário</span></a>
-      <a href="#email"><span class="white-text email">ID #9999999</span></a>
+      <a href="#name"><span class="white-text name">{{ nome }}</span></a>
+      <a href="#email"><span class="white-text email">ID #{{ matricula }}</span></a>
     </div></li>
     <li><a class=" waves-effect" href="#!"><i class="icone material-icons">assignment</i>Minhas Disciplinas</a></li>
     <li><a class=" waves-effect" href="#!"><i class="icone material-icons">account_circle</i>Meus dados</a></li>

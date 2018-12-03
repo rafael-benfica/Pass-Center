@@ -6,25 +6,25 @@
             </div>
             <div class="row">
                 <div class="input-field col s12 m6">
-                    <input id="nome" type="text" class="validate">
+                    <input id="nome" type="text" class="validate" v-model="nome">
                     <label for="nome">Nome</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input id="sobrenome" type="text" class="validate">
+                    <input id="sobrenome" type="text" class="validate" v-model="sobrenome">
                     <label for="sobrenome">Sobrenome</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m4">
-                    <input id="cpf" type="text" class="validate">
+                    <input id="cpf" type="text" class="validate" v-model="CPF">
                     <label for="cpf">CPF</label>
                 </div>
                 <div class="input-field col s12 m4">
-                    <input id="rg" type="text" class="validate">
+                    <input id="rg" type="text" class="validate" v-model="RG">
                     <label for="rg">RG</label>
                 </div>
                 <div class="input-field col s12 m4">
-                    <select>
+                    <select v-model="sexo">
                         <option value="1">Masculino</option>
                         <option value="2">Feminino</option>
                         <option value="3">Outros</option>
@@ -34,39 +34,39 @@
             </div>
             <div class="row">
                 <div class="input-field col s12 m4">
-                    <input id="rua" type="text" class="validate">
+                    <input id="rua" type="text" class="validate" v-model="rua">
                     <label for="rua">Rua</label>
                 </div>
                 <div class="input-field col s12 m4">
-                    <input id="numero" type="text" class="validate">
+                    <input id="numero" type="text" class="validate" v-model="numero">
                     <label for="numero">Número</label>
                 </div>
                 <div class="input-field col s12 m4">
-                    <input id="bairro" type="text" class="validate">
+                    <input id="bairro" type="text" class="validate"  v-model="bairro">
                     <label for="bairro">Bairro</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m4">
-                    <input id="cep" type="text" class="validate">
+                    <input id="cep" type="text" class="validate" v-model="CEP">
                     <label for="cep">CEP</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input id="municipio" type="text" class="validate">
+                    <input id="municipio" type="text" class="validate" v-model="municipio">
                     <label for="municipio">Município</label>
                 </div>
                 <div class="input-field col s12 m2">
-                    <input id="estado" type="text" class="validate">
+                    <input id="estado" type="text" class="validate" v-model="estado">
                     <label for="estado">Estado</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6">
-                    <input id="email" type="email" class="validate">
+                    <input id="email" type="email" class="validate" v-model="email">
                     <label for="email">Email</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input id="password" type="password" class="validate">
+                    <input id="password" type="password" class="validate" v-model="senha">
                     <label for="password">Senha</label>
                 </div>
             </div>
@@ -82,12 +82,46 @@
 <script>
     export default {
         nome: 'MeusDados',
+        data() {
+            return {            
+                nome: "",           
+                sobrenome: "",
+                CPF: "",
+                RG: "",
+                sexo: "",
+                rua: "",
+                numero: "",
+                bairro: "",
+                CEP: "",
+                municipio: "",
+                estado: "",
+                email: "",
+                senha:""
+            }
+        },
 
         mounted (){
             $(document).ready(function() {
                 M.updateTextFields();
                 $('select').formSelect();
             });
+
+            var dados = this.$store.state.meusDados.Table[0];
+
+                this.nome = dados.pes_nome;         
+                this.sobrenome = dados.pes_sobrenomes;
+                this.CPF = dados.pes_cpf;
+                this.RG = dados.pes_rg;
+                this.sexo = dados.pes_sexo;
+                this.rua = dados.end_logradouro;
+                this.numero = dados.end_numero;
+                this.bairro = dados.end_bairro;
+                this.CEP = dados.end_cep;
+                this.municipio = dados.end_municipio;
+                this.estado = dados.end_estado;
+                this.email = dados.usu_login;
+                this.senha = dados.usu_senha;
+
         },
 
         methods: {

@@ -14,7 +14,7 @@ namespace API_PassCenter.Controllers {
         // POST: api/Endereco
         public IHttpActionResult Usuarios([FromBody]Usuarios usuarios) {
 
-            if (autenticar.autenticacao(Request, 1) == null) {
+            if (autenticar.autenticacao(Request, 3) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
@@ -41,11 +41,30 @@ namespace API_PassCenter.Controllers {
 
         }
 
+        [HttpPut, Route("api/Usuarios")]
+        // POST: api/Instituicoes
+        public IHttpActionResult Put([FromBody]Usuarios usuarios) {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
+
+            if (credenciais == null) {
+                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+            }
+
+            usuarios.Usu_codigo = Convert.ToInt32(credenciais.Usu_codigo);
+
+            if (UsusariosDB.Update(usuarios) == -2) {
+                return BadRequest();
+            } else {
+                return Ok();
+            }
+        }
+
         [HttpPost, Route("api/Usuarios/TiposUsuarios")]
         // POST: api/Endereco
         public IHttpActionResult TiposUsuarios([FromBody]TiposUsuarios tipos_usuarios) {
 
-            if (autenticar.autenticacao(Request, 1) == null) {
+            if (autenticar.autenticacao(Request, 3) == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
