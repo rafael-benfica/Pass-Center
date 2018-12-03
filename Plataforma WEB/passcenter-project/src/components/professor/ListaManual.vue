@@ -2,22 +2,22 @@
     <div>
         <div class="row area-exibicao">
             <div class="col s12 m4 l4 espacamento" v-for="item in 3" :key="item.id">
-                <!-- {{ item }} -->
+            <router-link :to="{ name: 'ListaManual2' }" class=" waves-effect"> 
+                <a class="waves-effect waves-light">
                 <div class="card">
                     <div class="card-content">
-                       <router-link :to="{ name: 'ListaManual2' }" class=" waves-effect"> <a class="waves-effect waves-light">
-
-                             <span class="card-title cardDisciplina">Interação Humano Computador</span>
-                        </a>
-                        </router-link>
+                         <span class="card-title cardDisciplina">Interação Humano Computador</span>
+                    </div>
+                </div>
+                </a>
+            </router-link>
                         
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Modal Structure -->
         
-    </div>
+        
+   
 </template>
 
 <script>

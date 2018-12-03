@@ -101,7 +101,7 @@
                 estado: "",
                 email: "",
                 senha:"",
-                infoadd:""
+                infoadd: ""
             }
         },
 
