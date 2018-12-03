@@ -19,11 +19,11 @@
                 <div class="modal-content">
                 
                     
-                    <h4 class="col s10 m12 l12">Histórico</h4>
+                    <h4 class="col s10 m12 l12 historico">Histórico</h4>
                     
               
                         <div class="row">
-                            <div class="col s4 m1 l1" v-for="item in 12" :key="item.id">
+                            <div class="data col s4 m1 l1" v-for="item in 24" :key="item.id">
                                 <div class="waves-effect waves-teal btn-large botaoDatas">22/11</div>
                             </div>
                         </div>
