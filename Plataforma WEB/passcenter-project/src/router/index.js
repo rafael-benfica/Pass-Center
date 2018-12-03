@@ -24,7 +24,7 @@ import ListaManual2 from '@/components/professor/ListaManual2.vue'
 import ListaManual3 from '@/components/professor/ListaManual3.vue'
 
 //Cadastro
-import GerenteCadastroProfessor from '@/components/gerenteCadastro/GerenteCadastroProfessor.vue'
+import GerenteCadastroProfessores from '@/components/gerenteCadastro/GerenteCadastroProfessores.vue'
 import GerenteCadastroTurma from '@/components/gerenteCadastro/GerenteCadastroTurma.vue'
 import GerenteCadastroMateria from '@/components/gerenteCadastro/GerenteCadastroMateria.vue'
 import FormularioAluno from '@/components/gerenteCadastro/FormularioAluno.vue'
@@ -133,9 +133,9 @@ export default new Router({
           }
         },
         {
-          path: 'GerenteCadastroProfessor',
-          name: 'GerenteCadastroProfessor',
-          component: GerenteCadastroProfessor,
+          path: 'Professores',
+          name: 'Professores',
+          component: GerenteCadastroProfessores,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
             { nome: 'Professor' }]
