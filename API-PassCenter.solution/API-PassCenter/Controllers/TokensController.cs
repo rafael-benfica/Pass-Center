@@ -26,9 +26,10 @@ namespace API_PassCenter.Controllers
             if (retorno.Tables[0].Rows.Count == 0) {
                 return Content(HttpStatusCode.Unauthorized, "Combinação de login e senha inválidos!");
             } else {
-                return Ok(Token.GerarToken(retorno));
+                //return Ok(Token.GerarToken(retorno));
+                return Ok(new string[] { Token.GerarToken(retorno) , retorno.Tables[0].Rows[0]["usu_codigo"].ToString() });
             }
-            
+
 
         }
 

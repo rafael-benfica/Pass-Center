@@ -58,38 +58,26 @@
             }
         },
         methods: {
-            vai() {
-                if(this.login=="aluno@fatec.com"){
-                    this.$router.push("aluno");
-                }else if(this.login=="prof@fatec.com"){
-                    this.$router.push("professor");
-                }else if(this.login=="gg@fatec.com"){
-                    this.$router.push("gerenteGeral");
-                }else if(this.login=="gc@fatec.com"){
-                    this.$router.push("gerenteCadastro");
-                }else if(this.login=="adm@fatec.com"){
-                    this.$router.push("administrador");
-                }
-            },
             logar(){
-                this.$http.post('http://localhost:51474/api/Tokens', {usu_login:this.login , usu_senha:this.senha}).then(response => {
+                this.$http.post(this.$store.state.rootAPI+'/Tokens', {usu_login:this.login , usu_senha:this.senha}).then(response => {
+                        var dados = response.body;
+                        this.$store.commit('INSERIRTOKEN',dados[0]);
 
-					    // get status
-					    console.log(response.status);
+                        if(dados[1]==5){
+                            this.$router.push("aluno");
+                        }else if(dados[1]==4){
+                            this.$router.push("professor");
+                        }else if(dados[1]==3){
+                            this.$router.push("gerenteGeral");
+                        }else if(dados[1]==2){
+                            this.$router.push("gerenteCadastro");
+                        }else if(dados[1]==1){
+                            this.$router.push("administrador");
+                        }
 
-					    // get status text
-					    console.log(response.statusText);
-
-					    // get 'Expires' header
-					    console.log(response.headers.get('Expires'));
-					    console.log(response.body);
-
-					    // get body data
-					    console.log(response.body);
-
-					}, response => {
-					    console.log(response.status);
-					});
+				}, response => {
+				    console.log(response.status);
+				});
             }
         },
     }
