@@ -1,6 +1,6 @@
 <template>
     <div class="row area-exibicao">
-        <form class="col s12 card data2">
+        <form class="col s12 card data2" onsubmit="return false">
             <div class="row topo">
                 <div class="col s12 m12 l12">
 
