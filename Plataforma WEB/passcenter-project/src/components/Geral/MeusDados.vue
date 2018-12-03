@@ -69,6 +69,10 @@
                     <input id="password" type="password" class="validate" v-model="senha">
                     <label for="password">Senha</label>
                 </div>
+                <div class="input-field col s12 m12">
+                    <textarea id="infoadd" class="materialize-textarea"></textarea>
+                     <label for="infoadd">Informações Adicionais</label>
+                </div>
             </div>
             <div class="row">
                 <div class="col s12">
