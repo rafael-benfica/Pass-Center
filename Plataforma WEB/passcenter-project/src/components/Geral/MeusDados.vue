@@ -70,7 +70,7 @@
                     <label for="password">Senha</label>
                 </div>
                 <div class="input-field col s12 m12">
-                    <textarea id="infoadd" class="materialize-textarea"></textarea>
+                    <textarea id="infoadd" class="materialize-textarea" v-model="infoadd"></textarea>
                      <label for="infoadd">Informações Adicionais</label>
                 </div>
             </div>
@@ -100,7 +100,8 @@
                 municipio: "",
                 estado: "",
                 email: "",
-                senha:""
+                senha:"",
+                infoadd:""
             }
         },
 
@@ -125,6 +126,7 @@
                 this.estado = dados.end_estado;
                 this.email = dados.usu_login;
                 this.senha = dados.usu_senha;
+                this.infoadd = pes_info_adicionais;
 
         },
 

@@ -19,6 +19,8 @@ import HistoricoCompletoDisciplinas from '@/components/aluno/HistoricoCompletoDi
 
 //Professor
 import MinhasDisciplinas from '@/components/professor/MinhasDisciplinas.vue'
+import ListaManual from '@/components/professor/ListaManual.vue'
+import ListaManual2 from '@/components/professor/ListaManual2.vue'
 
 //Cadastro
 import GerenteCadastroProfessor from '@/components/gerenteCadastro/GerenteCadastroProfessor.vue'
@@ -213,7 +215,7 @@ export default new Router({
             breadcrumbs: [{ nome: 'Professor' },
             { nome: 'Minhas Disciplinas' }]
           }
-        },
+        }, 
         {
           path: 'meusdados',
           name: 'MeusDadosProfessor',
@@ -221,6 +223,24 @@ export default new Router({
           meta: {
             breadcrumbs: [{ nome: 'Professor' },
             { nome: 'Meus Dados' }]
+          }
+        },
+        {
+          path: 'ListaManual',
+          name: 'ListaManual',
+          component: ListaManual,
+          meta: {
+            breadcrumbs: [{ nome: 'Professor' },
+              { nome: 'Lista de Presença Manual' }]
+          }
+        },
+        {
+          path: 'ListaManual2',
+          name: 'ListaManual2',
+          component: ListaManual2,
+          meta: {
+            breadcrumbs: [{ nome: 'Professor' },
+            { nome: 'Lista de Presença Manual > Interação Humano/Computador' }]
           }
         }
       ]
