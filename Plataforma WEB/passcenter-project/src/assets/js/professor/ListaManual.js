@@ -14,7 +14,9 @@ export default {
         $(document).ready(function () {
             $('.timepicker').timepicker();
         });
-    },
+    }
+
+   
 }
 
 

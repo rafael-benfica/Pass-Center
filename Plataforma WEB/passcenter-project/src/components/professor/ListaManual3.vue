@@ -48,31 +48,13 @@
                         </tbody>
                     </table>
                         <div class="col s12 m12 l12 historico data">
-                            <button class="waves-effect waves-light btn modal-trigger botaoSalvar" href="#modal1" type="submit" name="action">Salvar</button>               
+                            <button class="btn waves-effect waves-light" @click="confirmação()">Salvar</button>               
                          <router-link :to="{ name: 'ListaManual2' }" class=" waves-effect">             
                              <button class="btn waves-effect waves-light" type="submit" name="action">Cancelar</button>
                          </router-link>
 	
                         </div>
-                        <div id="modal1" class="modal modalzao">
-			                 <div class="modal-content">
-                                  <h2 class="modalex">Você tem Certeza?</h2>
-                             </div>
-                    
-		                    <div class="modal-footer row col s12 m12 l12 ">
-					
-
-						
-						        <a href="#!" class="col s12 m5 l5 modal-close waves-effect waves-teal btn red">Cancelar</a>
-					
-						        <p class="col s12 m2 l2"></p>
-					
-						        <a href="#!" class="col s12 m5 l5 modal-close waves-effect waves-teal btn green">Confirmar</a>
-						
-					
-					
-			                </div>
-                         </div>
+                        
             
 	            </div>
             </div>
@@ -84,12 +66,42 @@
 	export default {
 		name: "ListaManual3",
 
-		mounted: function () {
-			$(document).ready(function () {
-				$('.modal').modal();
-			});
-		},
-		
+		 methods: {
+        confirmação() {
+            const swalWithBootstrapButtons = swal.mixin({
+                confirmButtonClass: 'btn green sepraracaoBotoes',
+                cancelButtonClass: 'btn red sepraracaoBotoes',
+                buttonsStyling: false,
+            })
+
+            swalWithBootstrapButtons({
+                title: 'Você tem certeza?',
+                text: "Você não poderá reverter essa ação!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, faça!',
+                cancelButtonText: 'Não, cancele!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    swalWithBootstrapButtons(
+                        'Alterado!',
+                        'As alterações foram salvas.',
+                        'success'
+                    )
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons(
+                        'Cancelado!',
+                        'Alterações descartadas!',
+                        'error'
+                    )
+                }
+            })
+        }
+    },
 	}
 
 </script>
