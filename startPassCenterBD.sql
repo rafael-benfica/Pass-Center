@@ -1,6 +1,10 @@
 use passcenter;
 
-INSERT INTO tipos_usuarios (`tus_titulo`) VALUES ('administrador');
+INSERT INTO tipos_usuarios (`tus_titulo`) VALUES ('Administrador');
+
+INSERT INTO tipos_usuarios (`tus_titulo`) VALUES ('Gerente Geral');
+
+INSERT INTO tipos_usuarios (`tus_titulo`) VALUES ('Gerente Cadastro');
 
 INSERT INTO tipos_usuarios (`tus_titulo`) VALUES ('aluno');
 

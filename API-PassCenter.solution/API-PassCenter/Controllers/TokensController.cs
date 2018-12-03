@@ -27,7 +27,7 @@ namespace API_PassCenter.Controllers
                 return Content(HttpStatusCode.Unauthorized, "Combinação de login e senha inválidos!");
             } else {
                 //return Ok(Token.GerarToken(retorno));
-                return Ok(new string[] { Token.GerarToken(retorno) , retorno.Tables[0].Rows[0]["usu_codigo"].ToString() });
+                return Ok(new string[] { Token.GerarToken(retorno) , retorno.Tables[0].Rows[0]["tus_codigo"].ToString() });
             }
 
 
