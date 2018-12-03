@@ -29,7 +29,7 @@
     <li><a class=" waves-effect" href="#!"><i class="icone material-icons">person</i>Alunos</a></li>
 
 
-    <li><router-link :to="{ name: 'GerenteCadastroProfessor' }" class=" waves-effect"><i class="icone material-icons">supervisor_account</i>Professores</router-link></li>
+    <li><router-link :to="{ name: 'Professores' }" class=" waves-effect"><i class="icone material-icons">supervisor_account</i>Professores</router-link></li>
 
 
     <li><router-link :to="{ name: 'MeusDadosGerenteCadastro' }" class=" waves-effect"><i class="icone material-icons">account_circle</i>Meus Dados</router-link></li>

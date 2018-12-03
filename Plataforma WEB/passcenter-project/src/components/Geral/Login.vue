@@ -9,7 +9,7 @@
         
     <div class="container">
         <div class="row">
-            <div class="col offset-m4 m4 s12 ajuste">
+            <div class="col offset-m3 m6 s12 ajuste">
                 <div class="card">
                     <div class="row">
                         <h1 class="login">Login</h1>
