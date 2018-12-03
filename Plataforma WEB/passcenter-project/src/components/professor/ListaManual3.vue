@@ -54,22 +54,24 @@
                          </router-link>
 	
                         </div>
-                        <div id="modal1" class="modal">
+                        <div id="modal1" class="modal modalzao">
 			                 <div class="modal-content">
                                   <h2 class="modalex">Você tem Certeza?</h2>
                              </div>
                     
 		                    <div class="modal-footer row col s12 m12 l12 ">
-                                    
-                                <div class="modalex">
-                                    <a href="#!" class="col s12 m3 l3 modal-close waves-effect waves-teal btn red">Cancelar</a>
 					
-					            	<p class="col s12 m3 l3"></p>
+
+						
+						        <a href="#!" class="col s12 m5 l5 modal-close waves-effect waves-teal btn red">Cancelar</a>
 					
-					            	<a href="#!" class="col s12 m3 l3 modal-close waves-effect waves-teal btn green">Confirmar</a>
-                                </div>
-                                    
-		    	            </div>
+						        <p class="col s12 m2 l2"></p>
+					
+						        <a href="#!" class="col s12 m5 l5 modal-close waves-effect waves-teal btn green">Confirmar</a>
+						
+					
+					
+			                </div>
                          </div>
             
 	            </div>
