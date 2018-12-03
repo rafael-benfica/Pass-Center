@@ -93,7 +93,7 @@ namespace API_PassCenter.Models.Persistencia {
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_tel_celular", pessoas.Pes_tel_celular));
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_info_adicionais", pessoas.Pes_info_adicionais));
 
-                //where
+                //WHERE
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo", pessoas.Pes_codigo));
 
                 objCommand.ExecuteNonQuery(); // utilizado quando cdigo não tem retorno, como seria o caso do SELECT
