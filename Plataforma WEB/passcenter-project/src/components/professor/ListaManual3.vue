@@ -76,7 +76,6 @@
 
             swalWithBootstrapButtons({
                 title: 'Você tem certeza?',
-                text: "Você não poderá reverter essa ação!",
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Sim, faça!',

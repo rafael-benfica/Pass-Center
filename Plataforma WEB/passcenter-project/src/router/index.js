@@ -8,6 +8,14 @@ import GerenteCadastro from '@/components/gerenteCadastro/DashBoardGerenteCadast
 import GerenteGeral from '@/components/gerenteGeral/DashBoardGerenteGeral.vue'
 import Professor from '@/components/professor/DashBoardProfessor.vue'
 
+//Gerente Geral
+import AlunoGeral from '@/components/gerenteGeral/AlunoGeral.vue'
+import DisciplinasGeral from '@/components/gerenteGeral/DisciplinasGeral.vue'
+import Financeiro from '@/components/gerenteGeral/Financeiro.vue'
+import ProfessoresGeral from '@/components/gerenteGeral/ProfessoresGeral.vue'
+import Totens from '@/components/gerenteGeral/Totens.vue'
+import TurmasGeral from '@/components/gerenteGeral/TurmasGeral.vue'
+
 //Geral
 import Login from '@/components/geral/Login.vue'
 import MeusDados from '@/components/geral/MeusDados.vue'
@@ -198,6 +206,60 @@ export default new Router({
           meta: {
             breadcrumbs: [{ nome: 'Gerente Geral' },
             { nome: 'Meus Dados' }]
+          }
+        },
+        {
+          path: 'AlunoGeral',
+          name: 'AlunoGeral',
+          component: AlunoGeral,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+              { nome: 'Aluno' }]
+          }
+        },
+        {
+          path: 'DisciplinasGeral',
+          name: 'DisciplinasGeral',
+          component: DisciplinasGeral,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+              { nome: 'Disciplinas' }]
+          }
+        },
+        {
+          path: 'Financeiro',
+          name: 'Financeiro',
+          component: Financeiro,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+              { nome: 'Financeiro' }]
+          }
+        },
+        {
+          path: 'ProfessoresGeral',
+          name: 'ProfessoresGeral',
+          component: ProfessoresGeral,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+              { nome: 'Professores' }]
+          }
+        },
+        {
+          path: 'Totens',
+          name: 'Totens',
+          component: Totens,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+              { nome: 'Totens' }]
+          }
+        },
+        {
+          path: 'TurmasGeral',
+          name: 'TurmasGeral',
+          component: TurmasGeral,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+              { nome: 'Turmas' }]
           }
         }
       ]
