@@ -16,10 +16,10 @@
         <!-- Modal Structure -->
         <div id="modal1" class="modal bottom-sheet">
             <div class="modal-content">
-                <h4>Histórico de Faltas</h4>
+                <h4 class="col s10 m12 l12 historico">Histórico de Faltas</h4>
                 <p>Esses são os dias que você faltou:</p>
                 <div class="row">
-                    <div class="col s1 m1 l1" v-for="item in 2" :key="item.id">
+                    <div class="col s4 m1 l1" v-for="item in 24" :key="item.id">
                         <div class="waves-effect waves-teal btn-large botaoDatas">22/11</div>
                     </div>
                 </div>
