@@ -67,7 +67,7 @@
         				</div>
 
 						<div class="input-field col s12 m4 l4">
-          						<input id="sobrenome" type="text" class="validate" v-model="sobrenome">
+          						<input id="sobrenome" type="text" class="validate">
           						<label for="sobrenome">Sobrenome:</label>
         				</div>
 
@@ -198,7 +198,6 @@
             return { 
                 matricula: "",        
                 nome : "",           
-                sobrenome : "",
                 datanas: "",
                 CPF : "",
                 RG : "",
