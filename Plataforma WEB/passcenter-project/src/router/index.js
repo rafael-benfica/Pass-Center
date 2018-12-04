@@ -35,6 +35,7 @@ import ListaManual3 from '@/components/professor/ListaManual3.vue'
 import GerenteCadastroProfessores from '@/components/gerenteCadastro/GerenteCadastroProfessores.vue'
 import GerenteCadastroTurma from '@/components/gerenteCadastro/GerenteCadastroTurma.vue'
 import GerenteCadastroMateria from '@/components/gerenteCadastro/GerenteCadastroMateria.vue'
+import AlunosGerenteCadastro from '@/components/gerenteCadastro/AlunosGerenteCadastro.vue'
 import FormularioAluno from '@/components/gerenteCadastro/FormularioAluno.vue'
 
 //Administrador
@@ -239,12 +240,21 @@ export default new Router({
           component: FormularioAluno,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-            { nome: 'Aluno' },
+            { nome: 'Disciplina' },
             { nome: 'Análise e Desenvolvimento de Sistemas' },
            ]
           }
-        }
-       
+        },
+        {
+          path: 'AlunosGerenteCadastro',
+          name: 'AlunosGerenteCadastro',
+          component: AlunosGerenteCadastro,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente de Cadastro' },
+            { nome: 'Alunos' },
+           ]
+          }
+        },
       ]
     },
 

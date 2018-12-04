@@ -26,8 +26,7 @@
       <a href="#name"><span class="white-text name">{{ nome }}</span></a>
       <a href="#email"><span class="white-text email">ID #{{ matricula }}</span></a>
     </div></li>
-    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">person</i>Alunos</a></li>
-
+    <li><router-link :to="{ name: 'AlunosGerenteCadastro' }" class=" waves-effect"><i class="icone material-icons">person</i>Alunos</router-link></li>
 
     <li><router-link :to="{ name: 'Professores' }" class=" waves-effect"><i class="icone material-icons">supervisor_account</i>Professores</router-link></li>
 
