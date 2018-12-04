@@ -99,6 +99,16 @@
                 </div>
             </div>
             <div class="row">
+                <div class="input-field col s12 m6">
+                    <input id="tel_residencial" type="text" class="validate" v-model="tel_residencial">
+                    <label for="tel_residencial">Telefone Residencial:</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <input id="tel_celular" type="text" class="validate" v-model="tel_celular">
+                    <label for="tel_celular">Telefone Celular:</label>
+                </div>
+            </div>
+            <div class="row">
                 <div class="input-field col s12 m12">
                     <textarea id="infoadd" class="materialize-textarea" v-model="infoadd"></textarea>
                      <label for="infoadd">Informações Adicionais</label>
@@ -131,15 +141,16 @@
                 estado : "",
                 email : "",
                 senha : "",
+                tel_residencial: "",
+                tel_celular : "",
                 infoadd : "",
             }
         },
 
         mounted (){
-            
             this.$http.get('Pessoas').then(response => {
                 var dados = response.body[0];
-                console.log(dados.pes_sexo);
+
                 this.nome = dados.pes_nome;
                 this.sobrenome = dados.pes_sobrenomes;
                 this.CPF = dados.pes_cpf;
@@ -153,6 +164,8 @@
                 this.estado = dados.end_estado;
                 this.email = dados.usu_login;
                 this.senha = dados.usu_senha;
+                this.tel_residencial = dados.pes_tel_residencial;
+                this.tel_celular = dados.pes_tel_celular;
                 this.infoadd = dados.pes_info_adicionais;
 
                 $(document).ready(function() {
