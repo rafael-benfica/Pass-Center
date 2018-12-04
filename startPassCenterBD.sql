@@ -30,7 +30,7 @@ INSERT INTO pessoas (pes_nome, pes_sobrenomes, pes_cpf, pes_rg, pes_matricula, p
 VALUES ('Filipe', 'Márcio Ferreira', '240.436.648-34', '48.085.566-3', '1802010', '1', '(11) 2511-5724', '(11) 98403-6407', '','2', '1');
 
 INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo) 
-VALUES ('felipe', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '1', '1');
+VALUES ('adm', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '1', '1');
 
 
 -- Inserindo Gerente Geral
@@ -41,7 +41,7 @@ INSERT INTO pessoas (pes_nome, pes_sobrenomes, pes_cpf, pes_rg, pes_matricula, p
 VALUES ('Nicole', 'Bruna Aline Freitas', '309.127.538-89', '33.609.202-7', '1802020', '2', '(11) 2706-6469', '(11) 98193-4069', '','3', '1');
 
 INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo) 
-VALUES ('nicole', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '2', '2');
+VALUES ('geral', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '2', '2');
 
 
 -- Inserindo Gerente Cadastro
@@ -52,7 +52,7 @@ INSERT INTO pessoas (pes_nome, pes_sobrenomes, pes_cpf, pes_rg, pes_matricula, p
 VALUES ('Yuri', 'Felipe Castro', '536.525.748-00', '14.648.632-8', '1802030', '1', '(11) 2545-4040', '(11) 99272-4760', '','4', '1');
 
 INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo) 
-VALUES ('yuri', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '3', '3');
+VALUES ('cadastro', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '3', '3');
 
 
 -- Inserindo Auditor
@@ -63,7 +63,7 @@ INSERT INTO pessoas (pes_nome, pes_sobrenomes, pes_cpf, pes_rg, pes_matricula, p
 VALUES ('Bruna', 'Benedita Alessandra Drumond', '730.056.198-50', '26.499.183-7', '1802040', '2', '(12) 2630-2701', '(12) 99159-8474', '','5', '1');
 
 INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo) 
-VALUES ('bruna', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '4', '4');
+VALUES ('auditor', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '4', '4');
 
 
 -- Inserindo Aluno
@@ -74,4 +74,4 @@ INSERT INTO pessoas (pes_nome, pes_sobrenomes, pes_cpf, pes_rg, pes_matricula, p
 VALUES ('Diego', 'Daniel Cardoso', '313.172.158-85', '15.498.605-7', '1802050', '1', '(11) 2840-1247', '(11) 99614-1502', '','6', '1');
 
 INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo) 
-VALUES ('Diego', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '5', '5');
+VALUES ('aluno', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '5', '5');
