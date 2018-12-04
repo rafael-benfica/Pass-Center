@@ -56,8 +56,36 @@
                     <label for="municipio">Município</label>
                 </div>
                 <div class="input-field col s12 m2">
-                    <input id="estado" type="text" class="validate" v-model="estado">
-                    <label for="estado">Estado</label>
+                    <select v-model="estado">
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                    <label>Estado:</label>
                 </div>
             </div>
             <div class="row">
@@ -89,33 +117,30 @@
     export default {
         nome: 'MeusDados',
         data() {
-            return {            
-                nome: "",           
-                sobrenome: "",
-                CPF: "",
-                RG: "",
-                sexo: "",
-                rua: "",
-                numero: "",
-                bairro: "",
-                CEP: "",
-                municipio: "",
-                estado: "",
-                email: "",
-                senha:"",
-                infoadd:""
+            return {         
+                nome : "",           
+                sobrenome : "",
+                CPF : "",
+                RG : "",
+                sexo : "",
+                rua : "",
+                numero : "",
+                bairro : "",
+                CEP : "",
+                municipio : "",
+                estado : "",
+                email : "",
+                senha : "",
+                infoadd : "",
             }
         },
 
         mounted (){
-            $(document).ready(function() {
-                M.updateTextFields();
-                $('select').formSelect();
-            });
-
-            var dados = this.$store.state.meusDados.Table[0];
-
-                this.nome = dados.pes_nome;         
+            
+            this.$http.get('Pessoas').then(response => {
+                var dados = response.body[0];
+                console.log(dados.pes_sexo);
+                this.nome = dados.pes_nome;
                 this.sobrenome = dados.pes_sobrenomes;
                 this.CPF = dados.pes_cpf;
                 this.RG = dados.pes_rg;
@@ -128,9 +153,17 @@
                 this.estado = dados.end_estado;
                 this.email = dados.usu_login;
                 this.senha = dados.usu_senha;
-                this.infoadd = pes_info_adicionais;
+                this.infoadd = dados.pes_info_adicionais;
 
+                $(document).ready(function() {
+                    M.updateTextFields();
+                    $('select').formSelect();
+                }) 
+            }, response => {
+                console.log("ERRO! Código de resposta (HTTP) do servidor: " + response.status);
+            });
         },
+
 
         methods: {
             confirmação() {
@@ -169,7 +202,6 @@
             }
         },
     }
-    
     
 </script>
 

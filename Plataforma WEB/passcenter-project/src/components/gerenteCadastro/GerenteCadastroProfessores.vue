@@ -5,7 +5,7 @@
                 <a class="modal-trigger" href="#modal">
                     <div class="card">
                         <div class="card-content">
-                            <span class="card-title cardDisciplina">Cristóvão</span>
+                            <span class="card-title cardDisciplina">{{ item }} Cristóvão</span>
                         </div>
                     </div>
                 </a>
@@ -74,7 +74,8 @@
         				<label for="bairrio">Bairro:</label>
         			</div>
 
-					<div class="input-field col s12 m3 l3">      						<input id="estado" type="text" class="validate">
+					<div class="input-field col s12 m3 l3">      						
+						<input id="estado" type="text" class="validate">
     					<label for="estado">Estado:</label>
         			</div>
 

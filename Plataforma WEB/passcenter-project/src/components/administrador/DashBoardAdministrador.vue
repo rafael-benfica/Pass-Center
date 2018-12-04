@@ -26,8 +26,14 @@
       <a href="#name"><span class="white-text name">{{ nome }}</span></a>
       <a href="#email"><span class="white-text email">ID #{{ matricula }}</span></a>
     </div></li>
-    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">assignment</i>Minhas Disciplinas</a></li>
-    <li><a class=" waves-effect" href="#!"><i class="icone material-icons">account_circle</i>Meus dados</a></li>
+        <li><router-link :to="{ name: 'AlunoADM' }" class=" waves-effect"><i class="icone material-icons">person</i>Alunos</router-link></li>
+        <li><router-link :to="{ name: 'ProfessoresADM' }" class=" waves-effect"><i class="icone material-icons">supervisor_account</i>Professores</router-link></li>
+        <li><router-link :to="{ name: 'TurmasADM' }" class=" waves-effect"><i class="icone material-icons">folder_shared</i>Turmas</router-link></li>
+        <li><router-link :to="{ name: 'DisciplinasADM' }" class=" waves-effect"><i class="icone material-icons">book</i>Disciplinas</router-link></li>
+        <li><router-link :to="{ name: 'TotensADM' }" class=" waves-effect"><i class="icone material-icons">perm_device_information</i>Totens</router-link></li>
+        <li><router-link :to="{ name: 'MeusDadosAdministrador' }" class=" waves-effect"><i class="icone material-icons">account_circle</i>Meus dados</router-link></li>
+        <li><router-link :to="{ name: 'FinanceiroADM' }" class=" waves-effect"><i class="icone material-icons">attach_money</i>Financeiro</router-link></li>
+        <li><router-link :to="{ name: 'InstituicoesADM' }" class=" waves-effect"><i class="icone material-icons">domain</i>Instituições</router-link></li>
         <li class="center-align botao-sair"><router-link :to="{ name: 'Login' }" class="waves-effect waves-light btn red darken-4">Sair</router-link></li>
   </ul>
 
