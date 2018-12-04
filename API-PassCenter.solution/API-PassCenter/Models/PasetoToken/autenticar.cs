@@ -8,10 +8,11 @@ using System.Web;
 namespace API_PassCenter.Models.PasetoToken {
     public class autenticar {
         public static Indentificacao autenticacao(HttpRequestMessage re, int tipo) {
-            var headers = re.Headers;
-            string token = headers.Authorization.ToString().Replace("Bearer ","");
-
+          
             try {
+                var headers = re.Headers;
+                string token = headers.Authorization.ToString().Replace("Bearer ", "");
+
                 Indentificacao credenciais = Token.ValidarToken(token);
 
                 if (credenciais.Tus_codigo <= tipo) {

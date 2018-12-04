@@ -78,7 +78,9 @@
 
 				}, response => {
 				    console.log("ERRO! Código de resposta (HTTP) do servidor: " + response.status);
-				});
+                });
+
+                
             }
         },
     }
