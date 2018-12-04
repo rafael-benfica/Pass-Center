@@ -71,6 +71,7 @@ namespace API_PassCenter.Models.Persistencia {
 
         }
 
+
         public static int Update(Pessoas pessoas) {
             int retorno = 0;
             try {
