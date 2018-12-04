@@ -32,11 +32,10 @@ import ListaManual2 from '@/components/professor/ListaManual2.vue'
 import ListaManual3 from '@/components/professor/ListaManual3.vue'
 
 //Cadastro
-import GerenteCadastroProfessores from '@/components/gerenteCadastro/GerenteCadastroProfessores.vue'
-import GerenteCadastroTurma from '@/components/gerenteCadastro/GerenteCadastroTurma.vue'
-import GerenteCadastroMateria from '@/components/gerenteCadastro/GerenteCadastroMateria.vue'
-import AlunosGerenteCadastro from '@/components/gerenteCadastro/AlunosGerenteCadastro.vue'
-import FormularioAluno from '@/components/gerenteCadastro/FormularioAluno.vue'
+import GerenteCadastroProfessores from '@/components/gerenteGeral/ProfessoresGeral.vue'
+import GerenteCadastroTurma from '@/components/gerenteGeral/TurmasGeral.vue'
+import GerenteCadastroMateria from '@/components/gerenteGeral/DisciplinasGeral.vue'
+import FormularioAluno from '@/components/gerenteGeral/AlunoGeral.vue'
 
 //Administrador
 import  AlunoADM from '@/components/administrador/AlunoADM.vue'
@@ -205,12 +204,12 @@ export default new Router({
           }
         },
         {
-          path: 'Professores',
-          name: 'Professores',
+          path: 'GerenteCadastroProfessores',
+          name: 'GerenteCadastroProfessores',
           component: GerenteCadastroProfessores,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-            { nome: 'Professor' }]
+            { nome: 'Professores' }]
           }
         },
         {
@@ -219,8 +218,8 @@ export default new Router({
           component: GerenteCadastroTurma,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-            { nome: 'Professor' },
-              {nome:'Análise e Desenvolvimento de Sistemas'}]
+            
+              {nome:'Turmas'}]
           }
         },
         {
@@ -229,9 +228,8 @@ export default new Router({
           component: GerenteCadastroMateria,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-            { nome: 'Professor' },
-            { nome: 'Análise e Desenvolvimento de Sistemas' },
-              { nome:'4º ADS'}]
+            
+              { nome:'Disciplinas'}]
           }
         },
         {
@@ -240,21 +238,12 @@ export default new Router({
           component: FormularioAluno,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-            { nome: 'Disciplina' },
-            { nome: 'Análise e Desenvolvimento de Sistemas' },
-           ]
-          }
-        },
-        {
-          path: 'AlunosGerenteCadastro',
-          name: 'AlunosGerenteCadastro',
-          component: AlunosGerenteCadastro,
-          meta: {
-            breadcrumbs: [{ nome: 'Gerente de Cadastro' },
+            
             { nome: 'Alunos' },
            ]
           }
-        },
+        }
+        
       ]
     },
 
