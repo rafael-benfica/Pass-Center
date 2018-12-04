@@ -18,7 +18,6 @@ export default {
         
         this.$http.get('Pessoas').then(response => {
             var dados = response.body[0];
-            this.$store.commit('INSERIRMEUSDADOS',dados);
 
             this.nome = dados.pes_nome + " " + dados.pes_sobrenomes;
             this.matricula = dados.pes_matricula;

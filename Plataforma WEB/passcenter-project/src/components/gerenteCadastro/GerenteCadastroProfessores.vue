@@ -5,7 +5,7 @@
                 <a class="modal-trigger" href="#modal">
                     <div class="card">
                         <div class="card-content">
-                            <span class="card-title cardDisciplina">{{ item }} Cristóvão</span>
+                            <span class="card-title cardDisciplina">{{ item }}º Cristóvão</span>
                         </div>
                     </div>
                 </a>
