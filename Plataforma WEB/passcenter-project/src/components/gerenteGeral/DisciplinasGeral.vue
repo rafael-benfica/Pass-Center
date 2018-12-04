@@ -9,10 +9,18 @@
                 </div>
             </div>
         </div>
-
-            <a class="col s12 m12 l12 centro waves-effect waves-light btn modal-trigger botaoVerMais" href="#modal2">Adicionar Disciplinas</a>
-
-                        <div id="modal2" class="modal">
+			<div class="row col s12 m12 l12 espacamento">
+				<p class="col s12 m4 l4"></p>
+                <a class="col s12 m4 l4 modal-trigger" href="#modal2">
+                    <div class="card">
+                        <div class="card-content">
+                            <span><i class="icone material-icons">add_circle_outline</i></span>
+                        </div>
+                    </div>
+                </a>
+				<p class="col s12 m4 l4"></p>
+            </div>
+                        <div id="modal2" class="modal margem">
 			<div class="modal-content">
 				<h4 class="centro">Cadastro Disciplina</h4>
 				<hr>
