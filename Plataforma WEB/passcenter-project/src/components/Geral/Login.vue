@@ -18,13 +18,13 @@
                         <div class="formulario">
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="email" type="email" class="validate" v-model="login">
+                                    <input id="email" type="email" class="validate" autocomplete="username email" v-model="login">
                                     <label for="email">Email</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="password" type="password" class="validate" v-model="senha">
+                                    <input id="password" type="password" class="validate" autocomplete="current-password" v-model="senha">
                                     <label for="password">Senha</label>
                                 </div>
                             </div>

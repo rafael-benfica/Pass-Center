@@ -10,7 +10,7 @@
                     <label for="nome">Nome</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input id="sobrenome" type="text" class="validate" v-model="sobrenome">
+                    <input id="sobrenome" type="text" class="validate" v-model="sobrenomes">
                     <label for="sobrenome">Sobrenome</label>
                 </div>
             </div>
@@ -34,7 +34,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12 m4">
-                    <input id="rua" type="text" class="validate" v-model="rua">
+                    <input id="rua" type="text" class="validate" v-model="logradouro">
                     <label for="rua">Rua</label>
                 </div>
                 <div class="input-field col s12 m4">
@@ -90,11 +90,11 @@
             </div>
             <div class="row">
                 <div class="input-field col s12 m6">
-                    <input id="email" type="email" class="validate" v-model="email">
+                    <input id="email" type="email" class="validate" v-model="login">
                     <label for="email">Email</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input id="password" type="password" class="validate" v-model="senha">
+                    <input id="password" type="password" class="validate" autocomplete="no" v-model="senha">
                     <label for="password">Senha</label>
                 </div>
             </div>
@@ -129,17 +129,18 @@
         data() {
             return {         
                 nome : "",           
-                sobrenome : "",
+                sobrenomes : "",
                 CPF : "",
                 RG : "",
                 sexo : "",
-                rua : "",
+                logradouro : "",
                 numero : "",
                 bairro : "",
                 CEP : "",
                 municipio : "",
                 estado : "",
-                email : "",
+                complemento : "",
+                login : "",
                 senha : "",
                 tel_residencial: "",
                 tel_celular : "",
@@ -152,17 +153,18 @@
                 var dados = response.body[0];
 
                 this.nome = dados.pes_nome;
-                this.sobrenome = dados.pes_sobrenomes;
+                this.sobrenomes = dados.pes_sobrenomes;
                 this.CPF = dados.pes_cpf;
                 this.RG = dados.pes_rg;
                 this.sexo = dados.pes_sexo;
-                this.rua = dados.end_logradouro;
+                this.logradouro = dados.end_logradouro;
                 this.numero = dados.end_numero;
                 this.bairro = dados.end_bairro;
                 this.CEP = dados.end_cep;
                 this.municipio = dados.end_municipio;
                 this.estado = dados.end_estado;
-                this.email = dados.usu_login;
+                this.complemento = dados.end_complemento;
+                this.login = dados.usu_login;
                 this.senha = dados.usu_senha;
                 this.tel_residencial = dados.pes_tel_residencial;
                 this.tel_celular = dados.pes_tel_celular;
@@ -196,18 +198,67 @@
                 reverseButtons: true
                 }).then((result) => {
                 if (result.value) {
-                    swalWithBootstrapButtons(
-                    'Alterado!',
-                    'As alterações foram salvas.',
-                    'success'
-                    )
+                   
+                    const dodosPessoais = {
+                        pes_nome : this.nome,
+                        pes_sobrenomes : this.sobrenomes,
+                        pes_cpf : this.CPF,
+                        pes_rg : this.RG,
+                        pes_sexo : this.sexo,
+                        pes_tel_residencial : this.tel_residencial,
+                        pes_tel_celular : this.tel_celular,
+                        pes_info_adicionais: this.infoadd
+                    }
+                    
+                    var dodosEndereco = {
+                        end_logradouro : this.logradouro, 
+                        end_numero : this.numero, 
+                        end_bairro : this.bairro, 
+                        end_municipio : this.municipio,
+                        end_cep : this.CEP,
+                        end_estado : this.estado,  
+                        end_complemento : this.complemento 
+                    }
+
+                    var dodosUsuario = {
+                        usu_login : this.login, 
+                        usu_senha : this.senha, 
+                    }
+
+                    this.$http.put('Pessoas', dodosPessoais).then(response => {
+                        this.$http.put('Enderecos', dodosEndereco).then(response => {
+                            this.$http.put('Usuarios', dodosUsuario).then(response => {
+                                swalWithBootstrapButtons(
+                                    'Alterado!',
+                                    'As alterações foram salvas.',
+                                    'success'
+                                )
+                            }, response => {
+                                erro("Dados do Usuário", response.status);
+                            });
+                        }, response => {
+                            erro("Endereço", response.status);
+                        });
+                    }, response => {
+                        erro("Dados Pessoais", response.status);
+                    });
+
+                    function erro(msg, code) {
+                        swalWithBootstrapButtons(
+                            'Ops!',
+                            'Algo deu errado! Alterações não realizadas! Entre em contato o Administrador!',
+                            'error'
+                        )
+                        console.log("ERRO ao atualizar "+msg+"! Código de resposta (HTTP) do servidor: " + code)
+                    }
+
                 } else if (
                     // Read more about handling dismissals
                     result.dismiss === swal.DismissReason.cancel
                 ) {
                     swalWithBootstrapButtons(
                     'Cancelado!',
-                    'Alterações descartadas!',
+                    'Alterações não enviadas!',
                     'error'
                     )
                 }

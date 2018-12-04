@@ -39,6 +39,25 @@ namespace API_PassCenter.Controllers {
 
         }
 
+        [HttpPut, Route("api/Enderecos")]
+        // PUT: api/Instituicoes
+        public IHttpActionResult Put([FromBody]Enderecos endereco) {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
+
+            if (credenciais == null) {
+                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+            }
+
+            endereco.End_codigo = Convert.ToInt32(credenciais.End_codigo);
+
+            if (EnderecosDB.Update(endereco) == -2) {
+                return BadRequest();
+            } else {
+                return Ok();
+            }
+        }
+
         [HttpPost, Route("api/Enderecos/TiposEndereco")]
         // POST: api/Endereco
         public IHttpActionResult TiposEndereco([FromBody]TiposEnderecos tipos_endereco) {
@@ -59,5 +78,6 @@ namespace API_PassCenter.Controllers {
             }
         }
 
+        
     }
 }

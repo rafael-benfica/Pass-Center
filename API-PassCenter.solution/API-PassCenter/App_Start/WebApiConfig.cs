@@ -23,6 +23,7 @@ namespace API_PassCenter {
                 defaults: new { id = RouteParameter.Optional }
             );
 
+
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Formatters.JsonFormatter.Indent = true;
 

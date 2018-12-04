@@ -27,6 +27,7 @@ namespace API_PassCenter.Models.PasetoToken {
                 AdditionalClaims = new Dictionary<string, object> {
                     ["usu_codigo"] = new object[] { Convert.ToInt32(info.Tables[0].Rows[0]["usu_codigo"]) },
                     ["pes_codigo"] = new object[] { Convert.ToInt32(info.Tables[0].Rows[0]["pes_codigo"]) },
+                    ["end_codigo"] = new object[] { Convert.ToInt32(info.Tables[0].Rows[0]["end_codigo"]) },
                     ["ins_codigo"] = new object[] { Convert.ToInt32(info.Tables[0].Rows[0]["ins_codigo"]) },
                     ["tus_codigo"] = new object[] { Convert.ToInt32(info.Tables[0].Rows[0]["tus_codigo"]) }
                 },
@@ -49,6 +50,7 @@ namespace API_PassCenter.Models.PasetoToken {
 
             ident.Usu_codigo = converteObjStr(tokenDescodificado.AdditionalClaims["usu_codigo"]);
             ident.Pes_codigo = converteObjStr(tokenDescodificado.AdditionalClaims["pes_codigo"]);
+            ident.End_codigo = converteObjStr(tokenDescodificado.AdditionalClaims["end_codigo"]);
             ident.Ins_codigo = converteObjStr(tokenDescodificado.AdditionalClaims["ins_codigo"]);
             ident.Tus_codigo = Convert.ToInt32(converteObjStr(tokenDescodificado.AdditionalClaims["tus_codigo"]));
 

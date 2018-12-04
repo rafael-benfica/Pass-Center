@@ -77,9 +77,9 @@ namespace API_PassCenter.Models.Persistencia {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
                 string sql = "UPDATE pessoas SET pes_nome = ?pes_nome, pes_sobrenomes = ?pes_sobrenomes," +
-                    " pes_cpf = ?pes_cpf, pes_rg = ?pes_rg, pes_matricula = ?pes_matricula, pes_sexo = ?pes_sexo," +
+                    " pes_cpf = ?pes_cpf, pes_rg = ?pes_rg, pes_sexo = ?pes_sexo," +
                     " pes_tel_residencial = ?pes_tel_residencial, pes_tel_celular = ?pes_tel_celular," +
-                    " pes_info_adicionais = ?pes_info_adicionais  WHERE (pes_codigo = ?pes_codigo)";
+                    " pes_info_adicionais = ?pes_info_adicionais WHERE (pes_codigo = ?pes_codigo)";
                 
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
@@ -87,7 +87,6 @@ namespace API_PassCenter.Models.Persistencia {
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_sobrenomes", pessoas.Pes_sobrenomes));
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_cpf", pessoas.Pes_cpf));
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_rg", pessoas.Pes_rg));
-                objCommand.Parameters.Add(Mapped.Parameter("?pes_matricula", pessoas.Pes_matricula));
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_sexo", pessoas.Pes_sexo));
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_tel_residencial", pessoas.Pes_tel_residencial));
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_tel_celular", pessoas.Pes_tel_celular));

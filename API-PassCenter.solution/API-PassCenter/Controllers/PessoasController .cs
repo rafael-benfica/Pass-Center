@@ -43,7 +43,7 @@ namespace API_PassCenter.Controllers {
         }
 
         [HttpGet, Route("api/Pessoas")]
-        // POST: api/Instituicoes
+        // GET: api/Instituicoes
         public IHttpActionResult Get() {
 
             Indentificacao credenciais = autenticar.autenticacao(Request, 5);
@@ -56,7 +56,7 @@ namespace API_PassCenter.Controllers {
         }
 
         [HttpPut, Route("api/Pessoas")]
-        // POST: api/Instituicoes
+        // PUT: api/Instituicoes
         public IHttpActionResult Put([FromBody]Pessoas pessoas) {
 
             Indentificacao credenciais = autenticar.autenticacao(Request, 5);

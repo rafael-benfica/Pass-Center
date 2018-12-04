@@ -44,11 +44,34 @@ namespace API_PassCenter.Models.Persistencia {
             try {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "UPDATE pessoas SET usu_login = ?usu_login, usu_senha = ?usu_senha,"+
-                    " usu_estado = ?usu_estado, usu_data_criacao = ?usu_data_criacao"+
-                    "usu_data_desativacao = ?usu_data_desativacao, usu_primeiro_login = ?usu_primeiro_login"+
-                    "usu_redefinir_senha = ?usu_redefinir_senha"+
+                string sql = "UPDATE usuarios SET usu_login = ?usu_login, usu_senha = ?usu_senha "+
                     "WHERE usu_codigo = ?usu_codigo";
+                objConexao = Mapped.Connection();
+                objCommand = Mapped.Command(sql, objConexao);
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_login", usuarios.Usu_login));
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_senha", usuarios.Usu_senha));
+                //WHERE
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_codigo", usuarios.Usu_codigo));
+
+                objCommand.ExecuteNonQuery(); // utilizado quando cdigo não tem retorno, como seria o caso do SELECT
+
+                objConexao.Close();
+                objCommand.Dispose();
+                objConexao.Dispose();
+            } catch (Exception e) {
+                retorno = -2;
+            }
+            return retorno;
+        }
+        public static int UpdateBackup(Usuarios usuarios) {
+            int retorno = 0;
+            try {
+                IDbConnection objConexao; // Abre a conexao
+                IDbCommand objCommand; // Cria o comando
+                string sql = "UPDATE usuarios SET usu_login = ?usu_login, usu_senha = ?usu_senha, " +
+                    "usu_estado = ?usu_estado, usu_data_criacao = ?usu_data_criacao, " +
+                    "usu_data_desativacao = ?usu_data_desativacao, usu_primeiro_login = ?usu_primeiro_login, " +
+                    "usu_redefinir_senha = ?usu_redefinir_senha WHERE usu_codigo = ?usu_codigo";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
                 objCommand.Parameters.Add(Mapped.Parameter("?usu_login", usuarios.Usu_login));
