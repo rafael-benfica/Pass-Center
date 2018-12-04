@@ -166,8 +166,20 @@
         data() {
             return { 
                 professores: [],
+                matricula: "",
+                nome: "",
+                sobrenomes : "",
+                datanas: "",
+                CPF: "",
+                RG: "",
+                rua: "",
+                num: "",
+                bairro: "",
                 estado: "",
-                sobrenomes : ""
+                cidade: "",
+                CEP: "",
+                comple: "",
+                infoadd: ""
             }
         },
 
