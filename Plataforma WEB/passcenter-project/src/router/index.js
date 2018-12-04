@@ -37,6 +37,15 @@ import GerenteCadastroTurma from '@/components/gerenteCadastro/GerenteCadastroTu
 import GerenteCadastroMateria from '@/components/gerenteCadastro/GerenteCadastroMateria.vue'
 import FormularioAluno from '@/components/gerenteCadastro/FormularioAluno.vue'
 
+//Administrador
+import  AlunoADM from '@/components/administrador/AlunoADM.vue'
+import DisciplinasADM from '@/components/administrador/DisciplinasADM.vue'
+import FinanceiroADM from '@/components/administrador/FinanceiroADM.vue'
+import InstituicoesADM from '@/components/administrador/InstituicoesADM.vue'
+import ProfessoresADM from '@/components/administrador/ProfessoresADM.vue'
+import TotensADM from '@/components/administrador/TotensADM.vue'
+import TurmasADM from '@/components/administrador/TurmasADM.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -52,21 +61,75 @@ export default new Router({
       component: Administrador,
       children:[
         {
-          path: '',
-          name: 'MinhasDisciplinas',
-          component: MinhasDisciplinas,
+          path: 'AlunoADM',
+          name: 'AlunoADM',
+          component: AlunoADM,
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
-            { nome: 'Minhas Disciplinas' }]
+              { nome: 'Alunos' }]
             }
         },
         {
-          path: '',
+          path: 'DisciplinasADM',
+          name: 'DisciplinasADM',
+          component: DisciplinasADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+              { nome: 'Disciplinas' }]
+          }
+        },
+        {
+          path: 'MeusDados',
           name: 'MeusDadosAdministrador',
           component: MeusDados,
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
             { nome: 'Meus Dados' }]
+          }
+        },
+        {
+          path: 'FinanceiroADM',
+          name: 'FinanceiroADM',
+          component: FinanceiroADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+              { nome: 'Financeiro' }]
+          }
+        },
+        {
+          path: 'InstituicoesADM',
+          name: 'InstituicoesADM',
+          component: InstituicoesADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+              { nome: 'Instituições' }]
+          }
+        },
+        {
+          path: 'ProfessoresADM',
+          name: 'ProfessoresADM',
+          component: ProfessoresADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+              { nome: 'Professores' }]
+          }
+        },
+        {
+          path: 'TotensADM',
+          name: 'TotensADM',
+          component: TotensADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+              { nome: 'Totens' }]
+          }
+        },
+        {
+          path: 'TurmasADM',
+          name: 'TurmasADM',
+          component: TurmasADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+              { nome: 'Turmas' }]
           }
         }
       ]
