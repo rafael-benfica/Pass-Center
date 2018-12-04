@@ -34,21 +34,28 @@
 				<h4 class="centro">Cadastro Professor</h4>
 				<hr>
 					<div class="row col s12 m12 l12">
-       					 <div class="input-field col s12 m4 l4">
+       					 <div class="input-field col s12 m3 l3">
           						<input id="matricula" type="text" class="validate" v-model="matricula">
           						<label for="matricula">Matrícula:</label>
         				</div>
 
-						<div class="input-field col s12 m4 l4">
+						<div class="input-field col s12 m3 l3">
           						<input id="nome" type="text" class="validate" v-model="nome">
           						<label for="nome">Nome:</label>
         				</div>
 
-						<div class="input-field col s12 m4 l4">
+						<div class="input-field col s12 m3 l3">
           						<input id="sobrenome" type="text" class="validate" v-model="sobrenomes">
           						<label for="sobrenome">Sobrenome:</label>
         				</div>
-
+                        <div class="input-field col s12 m3 l3">
+                            <select v-model="sexo">
+                                <option value="1">Masculino</option>
+                                <option value="2">Feminino</option>
+                                <option value="3">Outros</option>
+                            </select>
+                            <label>Sexo:</label>
+                        </div>
 						<div class="input-field col s12 m4 l4">
           						<input id="datanas" type="text" class="validate" v-model="datanas">
           						<label for="datanas">Data de Nascimento:</label>
@@ -169,6 +176,7 @@
                 matricula: "",
                 nome: "",
                 sobrenomes : "",
+                sexo: "",
                 datanas: "",
                 CPF: "",
                 RG: "",
