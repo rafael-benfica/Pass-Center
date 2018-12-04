@@ -231,8 +231,8 @@
 							usu_senha : this.senha, 
 						}
 
-						this.$http.put('Pessoas', dodosPessoais).then(response => {
-							this.$http.put('Enderecos', dodosEndereco).then(response => {
+						this.$http.put('Pessoas/MeusDados', dodosPessoais).then(response => {
+							this.$http.put('Enderecos/MeusDados', dodosEndereco).then(response => {
 								this.$http.put('Usuarios/MeusDados', dodosUsuario).then(response => {
 									swalWithBootstrapButtons(
 										'Alterado!',

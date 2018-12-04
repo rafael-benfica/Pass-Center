@@ -286,7 +286,7 @@
                             <div class="modal-footer row col s12 m12 l12 ">
                                 <a href="#!" class="col s12 m4 l4 modal-close waves-effect waves-teal btn red">Cancelar</a>
                                 <p class="col s12 m4 l4"></p>
-                                <a class="col s12 m4 l4 waves-effect waves-teal btn green" @click="">Confirmar</a>
+                                <a class="col s12 m4 l4 waves-effect waves-teal btn green" >Confirmar</a>
                             </div>
                         </div>
 
@@ -305,6 +305,8 @@
         data() {
             return { 
                 professores: [],
+                pessoa_codigo : "",
+                endereco_codigo : "",
                 usuario_codigo : "",
                 matricula : "",
                 nome : "",           
@@ -346,6 +348,8 @@
                 var dados = this.professores[index];
 
                 this.usuario_codigo = dados.usu_codigo;
+                this.pessoa_codigo = dados.pes_codigo;
+                this.endereco_codigo = dados.end_codigo;
                 this.nome = dados.pes_nome;
                 this.sobrenomes = dados.pes_sobrenomes;
                 this.CPF = dados.pes_cpf;
@@ -417,6 +421,7 @@
 					if (result.value) {
 						
 						const dodosPessoais = {
+							pes_codigo : this.pessoa_codigo,
 							pes_nome : this.nome,
 							pes_sobrenomes : this.sobrenomes,
 							pes_cpf : this.CPF,
@@ -428,6 +433,7 @@
 						}
 						
 						var dodosEndereco = {
+							end_codigo : this.endereco_codigo, 
 							end_logradouro : this.logradouro, 
 							end_numero : this.numero, 
 							end_bairro : this.bairro, 
@@ -438,7 +444,7 @@
 						}
 
 						var dodosUsuario = {
-							usu_login : this.login, 
+							usu_codigo : this.usuario_codigo, 
 							usu_login : this.login, 
 							usu_senha : this.senha, 
 						}
