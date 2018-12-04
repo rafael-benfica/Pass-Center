@@ -15,18 +15,16 @@ export default {
         $(document).ready(function () {
             $('.sidenav').sidenav();
         });
-
+        
         this.$http.get('Pessoas').then(response => {
-
-            this.$store.commit('INSERIRMEUSDADOS',response.body);
-            var dados = this.$store.state.meusDados.Table[0];
+            var dados = response.body[0];
+            this.$store.commit('INSERIRMEUSDADOS',dados);
 
             this.nome = dados.pes_nome + " " + dados.pes_sobrenomes;
             this.matricula = dados.pes_matricula;
-
-          }, response => {
+        }, response => {
             console.log("ERRO! Código de resposta (HTTP) do servidor: " + response.status);
-          });
+        });
     },
   
     watch:{

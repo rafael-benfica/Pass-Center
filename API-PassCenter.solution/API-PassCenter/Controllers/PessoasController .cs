@@ -52,7 +52,7 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
-            return Ok(PessoasDB.SelectID(Convert.ToInt32(credenciais.Pes_codigo)));
+            return Ok(PessoasDB.SelectID(Convert.ToInt32(credenciais.Pes_codigo)).Tables[0]);
         }
 
         [HttpPut, Route("api/Pessoas")]
