@@ -49,6 +49,23 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
+            if (EnderecosDB.Update(endereco) == -2) {
+                return BadRequest();
+            } else {
+                return Ok();
+            }
+        }
+
+        [HttpPut, Route("api/Enderecos/MeusDados")]
+        // PUT: api/Instituicoes
+        public IHttpActionResult PutMeusDados([FromBody]Enderecos endereco) {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
+
+            if (credenciais == null) {
+                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+            }
+
             endereco.End_codigo = Convert.ToInt32(credenciais.End_codigo);
 
             if (EnderecosDB.Update(endereco) == -2) {

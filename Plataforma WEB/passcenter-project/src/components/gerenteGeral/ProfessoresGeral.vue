@@ -17,119 +17,268 @@
                                  </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(item, index) in professores" :key="item.id" @click="teste(index)">
+                            <tr v-for="(item, index) in professores" :key="item.id" @click="verDados(index)">
                                 <td>{{ item.pes_nome +" "+ item.pes_sobrenomes }}</td>
-                                <td>{{ item.pes_matricula }}</td>
+                                <td>{{ "#"+item.pes_matricula }}</td>
                                 <td>{{ item.pes_tel_residencial  }}</td>
                                 <td>{{ item.pes_tel_celular }}</td>
-                                <td><a class="waves-effect waves-light btn modal-trigger" href="#modal2">ver</a></td>
+                                <td><a class="waves-effect waves-light btn modal-trigger" href="#modalVer">ver</a></td>
                             </tr> 
                         </tbody>
                     </table>
                 
-                        <a class="col s12 m12 l12 centro waves-effect waves-light btn modal-trigger botaoVerMais" href="#modal2">Adicionar Professores</a>
+                        <a class="col s12 m12 l12 centro waves-effect waves-light btn modal-trigger botaoVerMais" href="#modalAdd" @click="addDados()">Adicionar Professores</a>
 
-                        <div id="modal2" class="modal">
+                        <div id="modalVer" class="modal">
+                            <div class="modal-content">
+                                <h4 class="centro">Professor</h4>
+                                <hr>
+                                <div class="row col s12 m12 l12">
+                                    <div class="row">
+                                        <div class="input-field col s12 m6">
+                                            <input id="nome" type="text" class="validate" v-model="nome">
+                                            <label for="nome">Nome</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <input id="sobrenome" type="text" class="validate" v-model="sobrenomes">
+                                            <label for="sobrenome">Sobrenome</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 m4">
+                                            <input id="cpf" type="text" class="validate" v-model="CPF">
+                                            <label for="cpf">CPF</label>
+                                        </div>
+                                        <div class="input-field col s12 m4">
+                                            <input id="rg" type="text" class="validate" v-model="RG">
+                                            <label for="rg">RG</label>
+                                        </div>
+                                        <div class="input-field col s12 m4">
+                                            <select v-model="sexo">
+                                                <option value="1">Masculino</option>
+                                                <option value="2">Feminino</option>
+                                                <option value="3">Outros</option>
+                                            </select>
+                                            <label>Sexo:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 m4">
+                                            <input id="rua" type="text" class="validate" v-model="logradouro">
+                                            <label for="rua">Rua</label>
+                                        </div>
+                                        <div class="input-field col s12 m4">
+                                            <input id="numero" type="text" class="validate" v-model="numero">
+                                            <label for="numero">Número</label>
+                                        </div>
+                                        <div class="input-field col s12 m4">
+                                            <input id="bairro" type="text" class="validate"  v-model="bairro">
+                                            <label for="bairro">Bairro</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 m4">
+                                            <input id="cep" type="text" class="validate" v-model="CEP">
+                                            <label for="cep">CEP</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <input id="municipio" type="text" class="validate" v-model="municipio">
+                                            <label for="municipio">Município</label>
+                                        </div>
+                                        <div class="input-field col s12 m2">
+                                            <select v-model="estado">
+                                                <option value="AC">Acre</option>
+                                                <option value="AL">Alagoas</option>
+                                                <option value="AP">Amapá</option>
+                                                <option value="AM">Amazonas</option>
+                                                <option value="BA">Bahia</option>
+                                                <option value="CE">Ceará</option>
+                                                <option value="DF">Distrito Federal</option>
+                                                <option value="ES">Espírito Santo</option>
+                                                <option value="GO">Goiás</option>
+                                                <option value="MA">Maranhão</option>
+                                                <option value="MT">Mato Grosso</option>
+                                                <option value="MS">Mato Grosso do Sul</option>
+                                                <option value="MG">Minas Gerais</option>
+                                                <option value="PA">Pará</option>
+                                                <option value="PB">Paraíba</option>
+                                                <option value="PR">Paraná</option>
+                                                <option value="PE">Pernambuco</option>
+                                                <option value="PI">Piauí</option>
+                                                <option value="RJ">Rio de Janeiro</option>
+                                                <option value="RN">Rio Grande do Norte</option>
+                                                <option value="RS">Rio Grande do Sul</option>
+                                                <option value="RO">Rondônia</option>
+                                                <option value="RR">Roraima</option>
+                                                <option value="SC">Santa Catarina</option>
+                                                <option value="SP">São Paulo</option>
+                                                <option value="SE">Sergipe</option>
+                                                <option value="TO">Tocantins</option>
+                                            </select>
+                                            <label>Estado:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 m6">
+                                            <input id="email" type="email" class="validate" v-model="login">
+                                            <label for="email">Email</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <input id="password" type="password" class="validate" autocomplete="no" v-model="senha">
+                                            <label for="password">Senha</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 m6">
+                                            <input id="tel_residencial" type="text" class="validate" v-model="tel_residencial">
+                                            <label for="tel_residencial">Telefone Residencial:</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <input id="tel_celular" type="text" class="validate" v-model="tel_celular">
+                                            <label for="tel_celular">Telefone Celular:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 m12">
+                                            <textarea id="infoadd" class="materialize-textarea" v-model="infoadd"></textarea>
+                                            <label for="infoadd">Informações Adicionais</label>
+                                        </div>
+                                    </div>
+                                                
+                                </div>
+                    
+                                <div class="modal-footer row col s12 m12 l12 ">
+                                    <a href="#!" class="col s12 m4 l4 modal-close waves-effect waves-teal btn red">Fechar</a>
+                                    <p class="col s12 m4 l4"></p>
+                                    <a class="col s12 m4 l4 waves-effect waves-teal btn green" @click="confirmacaoUpdate()">Salvar</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="modalAdd" class="modal">
                             <div class="modal-content">
                                 <h4 class="centro">Cadastro Professor</h4>
                                 <hr>
                                 <div class="row col s12 m12 l12">
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="matricula" type="text" class="validate" v-model="matricula">
-                                        <label for="matricula">Matrícula:</label>
+                                    <div class="row">
+                                        <div class="input-field col s12 m2">
+                                            <input id="matriculaModalAdd" type="text" class="validate" v-model="matricula">
+                                            <label for="matriculalAdd">Matrícula</label>
+                                        </div>
+                                        <div class="input-field col s12 m4">
+                                            <input id="nomeModalAdd" type="text" class="validate" v-model="nome">
+                                            <label for="nomeModalAdd">Nome</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <input id="sobrenomeModalAdd" type="text" class="validate" v-model="sobrenomes">
+                                            <label for="sobrenomeModalAdd">Sobrenome</label>
+                                        </div>
                                     </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="nome" type="text" class="validate" v-model="nome">
-                                        <label for="nome">Nome:</label>
+                                    <div class="row">
+                                        <div class="input-field col s12 m4">
+                                            <input id="cpfModalAdd" type="text" class="validate" v-model="CPF">
+                                            <label for="cpfModalAdd">CPF</label>
+                                        </div>
+                                        <div class="input-field col s12 m4">
+                                            <input id="rgModalAdd" type="text" class="validate" v-model="RG">
+                                            <label for="rgModalAdd">RG</label>
+                                        </div>
+                                        <div class="input-field col s12 m4">
+                                            <select v-model="sexo">
+                                                <option value="" disabled>Selecione um sexo</option>
+                                                <option value="1">Masculino</option>
+                                                <option value="2">Feminino</option>
+                                                <option value="3">Outros</option>
+                                            </select>
+                                            <label>Sexo:</label>
+                                        </div>
                                     </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="sobrenome" type="text" class="validate" v-model="sobrenomes">
-                                        <label for="sobrenome">Sobrenome:</label>
+                                    <div class="row">
+                                         <div class="input-field col s12 m3">
+                                            <input id="bairroModalAdd" type="text" class="validate"  v-model="bairro">
+                                            <label for="bairroModalAdd">Bairro</label>
+                                        </div>
+                                        <div class="input-field col s12 m5">
+                                            <input id="ruaModalAdd" type="text" class="validate" v-model="logradouro">
+                                            <label for="ruaModalAdd">Rua</label>
+                                        </div>
+                                        <div class="input-field col s12 m2">
+                                            <input id="numeroModalAdd" type="text" class="validate" v-model="numero">
+                                            <label for="numeroModalAdd">Número</label>
+                                        </div>
+                                        <div class="input-field col s12 m2">
+                                            <input id="cepModalAdd" type="text" class="validate" v-model="CEP">
+                                            <label for="cepModalAdd">CEP</label>
+                                        </div>
                                     </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="datanas" type="text" class="validate" v-model="datanas">
-                                        <label for="datanas">Data de Nascimento:</label>
+                                    <div class="row">
+                                        <div class="input-field col s12 m5">
+                                            <input id="municipioModalAdd" type="text" class="validate" v-model="municipio">
+                                            <label for="municipioModalAdd">Município</label>
+                                        </div>
+                                        <div class="input-field col s12 m3">
+                                            <select v-model="estado">
+                                                <option value="" disabled>Selecione um estado</option>
+                                                <option value="AC">Acre</option>
+                                                <option value="AL">Alagoas</option>
+                                                <option value="AP">Amapá</option>
+                                                <option value="AM">Amazonas</option>
+                                                <option value="BA">Bahia</option>
+                                                <option value="CE">Ceará</option>
+                                                <option value="DF">Distrito Federal</option>
+                                                <option value="ES">Espírito Santo</option>
+                                                <option value="GO">Goiás</option>
+                                                <option value="MA">Maranhão</option>
+                                                <option value="MT">Mato Grosso</option>
+                                                <option value="MS">Mato Grosso do Sul</option>
+                                                <option value="MG">Minas Gerais</option>
+                                                <option value="PA">Pará</option>
+                                                <option value="PB">Paraíba</option>
+                                                <option value="PR">Paraná</option>
+                                                <option value="PE">Pernambuco</option>
+                                                <option value="PI">Piauí</option>
+                                                <option value="RJ">Rio de Janeiro</option>
+                                                <option value="RN">Rio Grande do Norte</option>
+                                                <option value="RS">Rio Grande do Sul</option>
+                                                <option value="RO">Rondônia</option>
+                                                <option value="RR">Roraima</option>
+                                                <option value="SC">Santa Catarina</option>
+                                                <option value="SP">São Paulo</option>
+                                                <option value="SE">Sergipe</option>
+                                                <option value="TO">Tocantins</option>
+                                            </select>
+                                            <label>Estado:</label>
+                                        </div>
+                                        <div class="input-field col s12 m4">
+                                            <input id="ComplementoModalAdd" type="text" class="validate" v-model="complemento">
+                                            <label for="ComplementoModalAdd">Complemento</label>
+                                        </div>
                                     </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="cpf" type="text" class="validate" v-model="CPF">
-                                        <label for="cpf">CPF:</label>
+                                    <div class="row">
+                                        <div class="input-field col s12 m6">
+                                            <input id="emailModalAdd" type="email" class="validate" v-model="login">
+                                            <label for="emailModalAdd">Email</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <input id="passwordModalAdd" type="password" class="validate" autocomplete="no" v-model="senha">
+                                            <label for="passwordModalAdd">Senha</label>
+                                        </div>
                                     </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="rg" type="text" class="validate" v-model="RG">
-                                        <label for="rg">RG:</label>
+                                    <div class="row">
+                                        <div class="input-field col s12 m6">
+                                            <input id="tel_residencialModalAdd" type="text" class="validate" v-model="tel_residencial">
+                                            <label for="tel_residencialModalAdd">Telefone Residencial:</label>
+                                        </div>
+                                        <div class="input-field col s12 m6">
+                                            <input id="tel_celularModalAdd" type="text" class="validate" v-model="tel_celular">
+                                            <label for="tel_celularModalAdd">Telefone Celular:</label>
+                                        </div>
                                     </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="rua" type="text" class="validate" v-model="rua">
-                                        <label for="rua">Rua:</label>
-                                    </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="num" type="text" class="validate" v-model="num">
-                                        <label for="num">Número:</label>
-                                    </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="bairro" type="text" class="validate" v-model="bairro">
-                                        <label for="bairrio">Bairro:</label>
-                                    </div>
-
-                                     <div class="input-field col s12 m3 l3">
-                                        <select v-model="estado">
-                                            <option value="AC">Acre</option>
-                                            <option value="AL">Alagoas</option>
-                                            <option value="AP">Amapá</option>
-                                            <option value="AM">Amazonas</option>
-                                            <option value="BA">Bahia</option>
-                                            <option value="CE">Ceará</option>
-                                            <option value="DF">Distrito Federal</option>
-                                            <option value="ES">Espírito Santo</option>
-                                            <option value="GO">Goiás</option>
-                                            <option value="MA">Maranhão</option>
-                                            <option value="MT">Mato Grosso</option>
-                                            <option value="MS">Mato Grosso do Sul</option>
-                                            <option value="MG">Minas Gerais</option>
-                                            <option value="PA">Pará</option>
-                                            <option value="PB">Paraíba</option>
-                                            <option value="PR">Paraná</option>
-                                            <option value="PE">Pernambuco</option>
-                                            <option value="PI">Piauí</option>
-                                            <option value="RJ">Rio de Janeiro</option>
-                                            <option value="RN">Rio Grande do Norte</option>
-                                            <option value="RS">Rio Grande do Sul</option>
-                                            <option value="RO">Rondônia</option>
-                                            <option value="RR">Roraima</option>
-                                            <option value="SC">Santa Catarina</option>
-                                            <option value="SP">São Paulo</option>
-                                            <option value="SE">Sergipe</option>
-                                            <option value="TO">Tocantins</option>
-                                        </select>
-                                        <label>Estado:</label>
-                                    </div>
-
-                                    <div class="input-field col s12 m3 l3">
-                                        <input id="cidade" type="text" class="validate" v-model="cidade">
-                                        <label for="cidade">Cidade:</label>
-                                    </div>
-
-                                    <div class="input-field col s12 m3 l3">
-                                        <input id="cep" type="text" class="validate" v-model="CEP">
-                                        <label for="cep">CEP:</label>
-                                    </div>
-
-                                    <div class="input-field col s12 m3 l3">
-                                        <input id="comple" type="text" class="validate" v-model="comple">
-                                        <label for="comple">Complemento:</label>
-                                    </div>
-
-                                     <div class="input-field col s12 m12 l12">
-                                        <textarea id="textarea1" class="materialize-textarea" v-model="infoadd"></textarea>
-                                        <label for="textarea1">Informações Adicionais:</label>
+                                    <div class="row">
+                                        <div class="input-field col s12 m12">
+                                            <textarea id="infoaddModalAdd" class="materialize-textarea" v-model="infoadd"></textarea>
+                                            <label for="infoaddModalAdd">Informações Adicionais</label>
+                                        </div>
                                     </div>
                                                 
                                 </div>
@@ -137,9 +286,12 @@
                             <div class="modal-footer row col s12 m12 l12 ">
                                 <a href="#!" class="col s12 m4 l4 modal-close waves-effect waves-teal btn red">Cancelar</a>
                                 <p class="col s12 m4 l4"></p>
-                                <a href="#!" class="col s12 m4 l4 modal-close waves-effect waves-teal btn green">Confirmar</a>
+                                <a class="col s12 m4 l4 waves-effect waves-teal btn green" @click="">Confirmar</a>
                             </div>
                         </div>
+
+                       
+                        
                     </div>
 	            </div>
             </div>
@@ -153,20 +305,25 @@
         data() {
             return { 
                 professores: [],
-                matricula: "",
-                nome: "",
+                usuario_codigo : "",
+                matricula : "",
+                nome : "",           
                 sobrenomes : "",
-                datanas: "",
-                CPF: "",
-                RG: "",
-                rua: "",
-                num: "",
-                bairro: "",
-                estado: "",
-                cidade: "",
-                CEP: "",
-                comple: "",
-                infoadd: ""
+                CPF : "",
+                RG : "",
+                sexo : "",
+                logradouro : "",
+                numero : "",
+                bairro : "",
+                CEP : "",
+                municipio : "",
+                estado : "",
+                complemento : "",
+                login : "",
+                senha : "",
+                tel_residencial: "",
+                tel_celular : "",
+                infoadd : "",
             }
         },
 
@@ -184,14 +341,146 @@
 
 		},
 		methods: {
-            teste(oi){
-                    console.log(this.professores[oi]);
-                    this.sobrenomes = this.professores[oi].pes_sobrenomes;
-                    $(document).ready(function () {
-               
-                M.updateTextFields();
-                $('select').formSelect();
-            });
+            verDados(index){
+                console.log(this.professores[index]);
+                var dados = this.professores[index];
+
+                this.usuario_codigo = dados.usu_codigo;
+                this.nome = dados.pes_nome;
+                this.sobrenomes = dados.pes_sobrenomes;
+                this.CPF = dados.pes_cpf;
+                this.RG = dados.pes_rg;
+                this.sexo = dados.pes_sexo;
+                this.logradouro = dados.end_logradouro;
+                this.numero = dados.end_numero;
+                this.bairro = dados.end_bairro;
+                this.CEP = dados.end_cep;
+                this.municipio = dados.end_municipio;
+                this.estado = dados.end_estado;
+                this.complemento = dados.end_complemento;
+                this.login = dados.usu_login;
+                this.senha = dados.usu_senha;
+                this.tel_residencial = dados.pes_tel_residencial;
+                this.tel_celular = dados.pes_tel_celular;
+                this.infoadd = dados.pes_info_adicionais;
+
+
+                $(document).ready(function () {              
+                    M.updateTextFields();
+                    $('select').formSelect();
+                });
+            },
+
+            addDados(){
+                this.matricula = "";
+                this.nome = "";
+                this.sobrenomes = "";
+                this.CPF = "";
+                this.RG = "";
+                this.sexo = "";
+                this.logradouro= "";
+                this.numero = "";
+                this.bairro = "";
+                this.CEP = "";
+                this.municipio = "";
+                this.estado = "";
+                this.complemento = "";
+                this.login = "";
+                this.senha = "";
+                this.tel_residencial = "";
+                this.tel_celular = "";
+                this.infoadd = "";
+
+
+                $(document).ready(function () {              
+                    M.updateTextFields();
+                    $('select').formSelect();
+                });
+            },
+
+            confirmacaoUpdate() {
+				const swalWithBootstrapButtons = swal.mixin({
+					confirmButtonClass: 'btn green sepraracaoBotoes',
+					cancelButtonClass: 'btn red sepraracaoBotoes',
+					buttonsStyling: false,
+				})
+
+				swalWithBootstrapButtons({
+					title: 'Você tem certeza?',
+					text: "Você não poderá reverter essa ação!",
+					type: 'warning',
+					showCancelButton: true,
+					confirmButtonText: 'Sim, faça!',
+					cancelButtonText: 'Não, cancele!',
+					reverseButtons: true
+				}).then((result) => {
+					if (result.value) {
+						
+						const dodosPessoais = {
+							pes_nome : this.nome,
+							pes_sobrenomes : this.sobrenomes,
+							pes_cpf : this.CPF,
+							pes_rg : this.RG,
+							pes_sexo : this.sexo,
+							pes_tel_residencial : this.tel_residencial,
+							pes_tel_celular : this.tel_celular,
+							pes_info_adicionais: this.infoadd
+						}
+						
+						var dodosEndereco = {
+							end_logradouro : this.logradouro, 
+							end_numero : this.numero, 
+							end_bairro : this.bairro, 
+							end_municipio : this.municipio,
+							end_cep : this.CEP,
+							end_estado : this.estado,  
+							end_complemento : this.complemento 
+						}
+
+						var dodosUsuario = {
+							usu_login : this.login, 
+							usu_login : this.login, 
+							usu_senha : this.senha, 
+						}
+
+						this.$http.put('Pessoas', dodosPessoais).then(response => {
+							this.$http.put('Enderecos', dodosEndereco).then(response => {
+								this.$http.put('Usuarios', dodosUsuario).then(response => {
+									swalWithBootstrapButtons(
+										'Alterado!',
+										'As alterações foram salvas.',
+										'success'
+										)
+								}, response => {
+									erro("Dados do Usuário", response.status);
+								});
+							}, response => {
+								erro("Endereço", response.status);
+							});
+						}, response => {
+							erro("Dados Pessoais", response.status);
+						});
+
+						function erro(msg, code) {
+							swalWithBootstrapButtons(
+								'Ops!',
+								'Algo deu errado! Alterações não realizadas! Entre em contato o Administrador!',
+								'error'
+								)
+							console.log("ERRO ao atualizar "+msg+"! Código de resposta (HTTP) do servidor: " + code)
+						}
+
+					} else if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.cancel
+                    ) {
+						swalWithBootstrapButtons(
+							'Cancelado!',
+							'Alterações não enviadas!',
+							'error'
+							)
+					}
+				})
             }
         }
 	}

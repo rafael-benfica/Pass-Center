@@ -76,6 +76,7 @@ namespace API_PassCenter.Models.Persistencia {
             objConexao = Mapped.Connection();
 
             string sql = "select * from usuarios inner join pessoas using (pes_codigo)" +
+                "inner join enderecos using (end_codigo)" +
                 "where tus_codigo = ?tus_codigo and  ins_codigo = ?ins_codigo";
             objCommand = Mapped.Command(sql, objConexao);
 

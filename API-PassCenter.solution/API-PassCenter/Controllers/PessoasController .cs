@@ -65,6 +65,23 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
+            if (PessoasDB.Update(pessoas) == -2) {
+                return BadRequest();
+            } else {
+                return Ok();
+            }
+        }
+
+        [HttpPut, Route("api/Pessoas/MeusDados")]
+        // PUT: api/Instituicoes
+        public IHttpActionResult PutMeusDados([FromBody]Pessoas pessoas) {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
+
+            if (credenciais == null) {
+                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+            }
+
             pessoas.Pes_codigo = Convert.ToInt32(credenciais.Pes_codigo);
 
             if (PessoasDB.Update(pessoas) == -2) {
