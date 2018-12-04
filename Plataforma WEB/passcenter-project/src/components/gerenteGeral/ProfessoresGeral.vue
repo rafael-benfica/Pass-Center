@@ -286,7 +286,7 @@
                             <div class="modal-footer row col s12 m12 l12 ">
                                 <a href="#!" class="col s12 m4 l4 modal-close waves-effect waves-teal btn red">Cancelar</a>
                                 <p class="col s12 m4 l4"></p>
-                                <a class="col s12 m4 l4 waves-effect waves-teal btn green" @click="">Confirmar</a>
+                                <a class="col s12 m4 l4 waves-effect waves-teal btn green" @click="confirmacaoUpdate">Confirmar</a>
                             </div>
                         </div>
 
