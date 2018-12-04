@@ -56,48 +56,55 @@
 				<h4 class="centro">Cadastro Aluno</h4>
 				<hr>
 					<div class="row col s12 m12 l12">
-       					 <div class="input-field col s12 m4 l4">
-          						<input id="matricula" type="text" class="validate">
+       					 <div class="input-field col s12 m3 l3">
+          						<input id="matricula" type="text" class="validate" v-model="matricula">
           						<label for="matricula">Matrícula:</label>
         				</div>
 
-						<div class="input-field col s12 m4 l4">
-          						<input id="nome" type="text" class="validate">
+						<div class="input-field col s12 m3 l3">
+          						<input id="nome" type="text" class="validate" v-model="nome">
           						<label for="nome">Nome:</label>
         				</div>
 
-						<div class="input-field col s12 m4 l4">
-          						<input id="sobrenome" type="text" class="validate">
+						<div class="input-field col s12 m3 l3">
+          						<input id="sobrenome" type="text" class="validate" v-model="sobrenome">
           						<label for="sobrenome">Sobrenome:</label>
         				</div>
-
+                        <div class="input-field col s12 m3 l3">
+                            <select v-model="sexo">
+                                <option value="1">Masculino</option>
+                                <option value="2">Feminino</option>
+                                <option value="3">Outros</option>
+                            </select>
+                            <label>Sexo:</label>
+                        </div>
 						<div class="input-field col s12 m4 l4">
-          						<input id="datanas" type="text" class="validate">
+          						<input id="datanas" type="text" class="validate" v-model="datanas">
           						<label for="datanas">Data de Nascimento:</label>
         				</div>
 
 						<div class="input-field col s12 m4 l4">
-          						<input id="cpf" type="text" class="validate">
+          						<input id="cpf" type="text" class="validate" v-model="CPF">
           						<label for="cpf">CPF:</label>
         				</div>
 
 						<div class="input-field col s12 m4 l4">
-          						<input id="rg" type="text" class="validate">
+          						<input id="rg" type="text" class="validate" v-model="RG">
           						<label for="rg">RG:</label>
         				</div>
 
 						<div class="input-field col s12 m4 l4">
-          						<input id="rua" type="text" class="validate">
+          						<input id="rua" type="text" class="validate" v-model="rua">
           						<label for="rua">Rua:</label>
         				</div>
 
 						<div class="input-field col s12 m4 l4">
-          						<input id="num" type="text" class="validate">
+          						<input id="num" type="text" class="validate" v-model="num">
           						<label for="num">Número:</label>
         				</div>
 
 						<div class="input-field col s12 m4 l4">
-          						<input id="bairro" type="text" class="validate">
+          						<input id="bairro" type="text" class="validate" v-model="bairro">
           						<label for="bairrio">Bairro:</label>
         				</div>
 
@@ -135,24 +142,24 @@
                 </div>
 
 						<div class="input-field col s12 m3 l3">
-          						<input id="cidade" type="text" class="validate">
+          						<input id="cidade" type="text" class="validate" v-model="cidade">
           						<label for="cidade">Cidade:</label>
         				</div>
 
 						<div class="input-field col s12 m3 l3">
-          						<input id="cep" type="text" class="validate">
+          						<input id="cep" type="text" class="validate" v-model="CEP">
           						<label for="cep">CEP:</label>
         				</div>
 
 						<div class="input-field col s12 m3 l3">
-          						<input id="comple" type="text" class="validate">
+          						<input id="comple" type="text" class="validate" v-model="comple">
           						<label for="comple">Complemento:</label>
         				</div>
 
 							
 								
         							<div class="input-field col s12 m12 l12">
-          								<textarea id="textarea1" class="materialize-textarea"></textarea>
+          								<textarea id="textarea1" class="materialize-textarea" v-model="infoadd"></textarea>
           									<label for="textarea1">Informações Adicionais:</label>
         							</div>
       							
