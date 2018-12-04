@@ -10,42 +10,20 @@
                         <thead class="centro">
                                  <tr>
                                     <th>Nome do Professor</th>
-                                    <th>Telefone do Professor</th>
                                     <th>Matrícula do Professor</th>
-                                    <th>Endereço do Professor</th>
+                                    <th>Telefone Residencial do Professor</th>
+                                    <th>Telefone Celular do Professor</th>
+                                    <th></th>
                                  </tr>
                         </thead>
                         <tbody>
-                                 <tr>
-                                    <td>Asdf</td>
-                                    <td>(12)9999-9999</td>
-                                    <td><a>77777</a></td>
-                                    <td>Rua Imaginaria</td>
-                                 </tr> 
-                                 <tr>
-                                    <td>Asdf</td>
-                                    <td>(12)9999-9999</td>
-                                    <td><a>77778</a></td>
-                                    <td>Rua Imaginaria</td>
-                                </tr>
-                                 <tr>
-                                    <td>Asdf</td>
-                                    <td>(12)9999-9999</td>
-                                    <td><a>77779</a></td>
-                                    <td>Rua Imaginaria</td>
-                                 </tr>
-                                 <tr>
-                                    <td>Asdf</td>
-                                    <td>(12)9999-9999</td>
-                                    <td><a>77780</a></td>
-                                    <td>Rua Imaginaria</td>
-                                 </tr>
-                                 <tr>
-                                    <td>Asdf</td>
-                                    <td>(12)9999-9999</td>
-                                    <td><a >77781</a></td>
-                                    <td>Rua Imaginaria</td>
-                                 </tr> 
+                            <tr v-for="(item, index) in professores" :key="item.id" @click="teste(index)">
+                                <td>{{ item.pes_nome +" "+ item.pes_sobrenomes }}</td>
+                                <td>{{ item.pes_matricula }}</td>
+                                <td>{{ item.pes_tel_residencial  }}</td>
+                                <td>{{ item.pes_tel_celular }}</td>
+                                <td><a class="waves-effect waves-light btn modal-trigger" href="#modal2">ver</a></td>
+                            </tr> 
                         </tbody>
                     </table>
                 
@@ -67,7 +45,7 @@
         				</div>
 
 						<div class="input-field col s12 m4 l4">
-          						<input id="sobrenome" type="text" class="validate">
+          						<input id="sobrenome" type="text" class="validate" v-model="sobrenomes">
           						<label for="sobrenome">Sobrenome:</label>
         				</div>
 
@@ -135,44 +113,38 @@
                 </div>
 
 						<div class="input-field col s12 m3 l3">
-          						<input id="cidade" type="text" class="validate">
-          						<label for="cidade">Cidade:</label>
+          					<input id="cidade" type="text" class="validate">
+          					<label for="cidade">Cidade:</label>
         				</div>
 
 						<div class="input-field col s12 m3 l3">
-          						<input id="cep" type="text" class="validate">
-          						<label for="cep">CEP:</label>
+          					<input id="cep" type="text" class="validate" v>
+          					<label for="cep">CEP:</label>
         				</div>
 
 						<div class="input-field col s12 m3 l3">
-          						<input id="comple" type="text" class="validate">
-          						<label for="comple">Complemento:</label>
+          					<input id="comple" type="text" class="validate">
+          					<label for="comple">Complemento:</label>
         				</div>
 
 							
 								
-        							<div class="input-field col s12 m12 l12">
-          								<textarea id="textarea1" class="materialize-textarea"></textarea>
-          									<label for="textarea1">Informações Adicionais:</label>
-        							</div>
-      							
-
-
-						
+        				<div class="input-field col s12 m12 l12">
+          					<textarea id="textarea1" class="materialize-textarea"></textarea>
+          					<label for="textarea1">Informações Adicionais:</label>
+        				</div>
+  
 
 					</div>
 	
 		            	<div class="modal-footer row col s12 m12 l12 ">
 					
-
-						
 						    <a href="#!" class="col s12 m4 l4 modal-close waves-effect waves-teal btn red">Cancelar</a>
 					
 					    	<p class="col s12 m4 l4"></p>
 					
 					    	<a href="#!" class="col s12 m4 l4 modal-close waves-effect waves-teal btn green">Confirmar</a>
 						
-					
 					
 			            </div>
 		        	</div>
@@ -187,14 +159,39 @@
 
 <script>
 	export default {
-		name: "AlunoGeral",
+		name: "Professores",
+        data() {
+            return { 
+                professores: [],
+                estado: "",
+                sobrenomes : ""
+            }
+        },
 
 		mounted: function () {
 			$(document).ready(function () {
-				$('.modal').modal();
-			});
+                $('.modal').modal();
+               
+            });
+            this.$http.get('Usuarios/porTipo').then(response => {
+                this.professores = response.body;
+
+            }, response => {
+                console.log("ERRO! Código de resposta (HTTP) do servidor: " + response.status);
+            });
+
 		},
-		
+		methods: {
+            teste(oi){
+                    console.log(this.professores[oi]);
+                    this.sobrenomes = this.professores[oi].pes_sobrenomes;
+                    $(document).ready(function () {
+               
+                M.updateTextFields();
+                $('select').formSelect();
+            });
+            }
+        }
 	}
 
 </script>

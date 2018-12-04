@@ -42,7 +42,7 @@ namespace API_PassCenter.Controllers {
         }
 
         [HttpPut, Route("api/Usuarios")]
-        // POST: api/Instituicoes
+        // PUT: api/Instituicoes
         public IHttpActionResult Put([FromBody]Usuarios usuarios) {
 
             Indentificacao credenciais = autenticar.autenticacao(Request, 5);
@@ -58,6 +58,19 @@ namespace API_PassCenter.Controllers {
             } else {
                 return Ok();
             }
+        }
+
+        [HttpGet, Route("api/Usuarios/porTipo")]
+        // GET: api/Instituicoes
+        public IHttpActionResult selectPorTipo() {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 2);
+
+            if (credenciais == null) {
+                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+            }
+
+            return Ok(UsusariosDB.SelectByType(4 ,Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
         }
 
         [HttpPost, Route("api/Usuarios/TiposUsuarios")]
