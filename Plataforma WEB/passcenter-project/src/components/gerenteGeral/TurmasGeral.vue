@@ -1,5 +1,6 @@
 <template>
     <div>
+        <form onsubmit="return false">
         <div class="row area-exibicao">
             <div class="col s12 m4 l4 espacamento" v-for="item in 6" :key="item.id">
             <div class="modal-trigger" href="#modal">
@@ -16,23 +17,21 @@
 			<div class="modal-content">
 				<h3 class="centro">Engenharia de Softwares</h3>
                 <h4>Professor Claudemir</h4>
+                <div class="chips chips-autocomplete"></div>
 
 				
 					</div>
 	
 		            	<div class="modal-footer row col s12 m12 l12 ">
+						    <a href="#!" class="col s12 m4 l4 modal-close waves-effect waves-teal btn red">Cancelar</a>
 					
-                            <p class="col s12 m4 l4"></p>
-						
-						    <a href="#!" class="col s12 m4 l4 modal-close waves-effect waves-teal btn">Fechar</a>
+						    <p class="col s12 m4 l4"></p>
 					
-					    	<p class="col s12 m4 l4"></p>
-						
-					
-					
-			            </div>
-		    </div>
+						    <a href="#!" class="col s12 m4 l4 modal-close waves-effect waves-teal btn green" @click="confirmação()">Confirmar</a>
+		            	</div>
+		            </div>
                 </div>
+                </form>
         </div>
 			
     
@@ -44,9 +43,59 @@
 
 		mounted: function () {
 			$(document).ready(function () {
-				$('.modal').modal();
+                $('.modal').modal();
+                 $('.chips').chips();
+ 
+  
+                $('.chips-autocomplete').chips({
+                autocompleteOptions: {
+                data: {
+                    'Apple': null,
+                    'Microsoft': null,
+                    'Google': null
+                         },
+                        limit: Infinity,
+                        minLength: 1
+                    }
+                });
 			});
-		},
+        },
+        methods: {
+        confirmação() {
+            const swalWithBootstrapButtons = swal.mixin({
+                confirmButtonClass: 'btn green sepraracaoBotoes',
+                cancelButtonClass: 'btn red sepraracaoBotoes',
+                buttonsStyling: false,
+            })
+
+            swalWithBootstrapButtons({
+                title: 'Você tem certeza?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, faça!',
+                cancelButtonText: 'Não, cancele!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    swalWithBootstrapButtons(
+                        'Alterado!',
+                        'As alterações foram salvas.',
+                        'success'
+                    )
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons(
+                        'Cancelado!',
+                        'Alterações descartadas!',
+                        'error'
+                    )
+                }
+            })
+        }
+    }
+        
 		
 	}
 
