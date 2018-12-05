@@ -172,11 +172,18 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`eventos` (
   `eve_estado` TINYINT NOT NULL,
   `eve_operacao` TINYINT NOT NULL,
   `tev_codigo` INT NOT NULL,
+  `ins_codigo` INT NOT NULL,
   PRIMARY KEY (`eve_codigo`),
   INDEX `fk_eventos_tipo_eventos1_idx` (`tev_codigo` ASC) VISIBLE,
+  INDEX `fk_eventos_instituicoes1_idx` (`ins_codigo` ASC) VISIBLE,
   CONSTRAINT `fk_eventos_tipo_eventos1`
     FOREIGN KEY (`tev_codigo`)
     REFERENCES `PassCenter`.`tipos_eventos` (`tev_codigo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_eventos_instituicoes1`
+    FOREIGN KEY (`ins_codigo`)
+    REFERENCES `PassCenter`.`instituicoes` (`ins_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

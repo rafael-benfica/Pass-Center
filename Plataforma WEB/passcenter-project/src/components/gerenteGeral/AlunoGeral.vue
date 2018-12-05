@@ -4,20 +4,20 @@
             <div class="row topo">
                 <div class="col s12 m12 l12">
                     
-                    <h3 class="col s12 m12 l12 centro">Lista de Professores</h3>
+                    <h3 class="col s12 m12 l12 centro">Lista de Alunos</h3>
                     
                     <table>
                         <thead class="centro">
                                  <tr>
-                                    <th>Nome do Professor</th>
-                                    <th>Matrícula do Professor</th>
-                                    <th>Telefone Residencial do Professor</th>
-                                    <th>Telefone Celular do Professor</th>
+                                    <th>Nome do Aluno</th>
+                                    <th>Matrícula do do Aluno</th>
+                                    <th>Telefone Residencial do Aluno</th>
+                                    <th>Telefone Celular do aluno</th>
                                     <th></th>
                                  </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(item, index) in professores" :key="item.id" @click="verDados(index)">
+                            <tr v-for="(item, index) in alunos" :key="item.id" @click="verDados(index)">
                                 <td>{{ item.pes_nome +" "+ item.pes_sobrenomes }}</td>
                                 <td>{{ "#"+item.pes_matricula }}</td>
                                 <td>{{ item.pes_tel_residencial  }}</td>
@@ -27,7 +27,7 @@
                         </tbody>
                     </table>
                 
-                        <a class="col s12 m12 l12 centro waves-effect waves-light btn modal-trigger botaoVerMais" href="#modalAdd" @click="addDados()">Adicionar Professores</a>
+                        <a class="col s12 m12 l12 centro waves-effect waves-light btn modal-trigger botaoVerMais" href="#modalAdd" @click="addDados()">Adicionar alunos</a>
 
                         <div id="modalVer" class="modal">
                             <div class="modal-content">
@@ -312,7 +312,7 @@
 		name: "Alunos",
         data() {
             return { 
-                professores: [],
+                alunos: [],
                 pessoa_codigo : "",
                 endereco_codigo : "",
                 usuario_codigo : "",
@@ -348,15 +348,15 @@
 		},
 		methods: {
             carregarDados(){
-                this.$http.get('Usuarios/porTipo').then(response => {
-                    this.professores = response.body;
+                this.$http.get('Usuarios/porTipo', {params: {tipo: 5}}).then(response => {
+                    this.alunos = response.body;
                 }, response => {
                     console.log("ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " + response.status);
                 });
             },
 
             verDados(index){
-                var dados = this.professores[index];
+                var dados = this.alunos[index];
 
                 this.usuario_codigo = dados.usu_codigo;
                 this.pessoa_codigo = dados.pes_codigo;
@@ -438,7 +438,7 @@
 							pes_codigo : this.pessoa_codigo,
 							pes_nome : this.nome,
                             pes_sobrenomes : this.sobrenomes,
-                            sobrenomes : this.data_nascimento,                            
+                            pes_data_nascimento : this.data_nascimento,                            
 							pes_cpf : this.CPF,
 							pes_rg : this.RG,
 							pes_sexo : this.sexo,

@@ -37,6 +37,19 @@ namespace API_PassCenter.Controllers {
 
         }
 
+        [HttpGet, Route("api/Eventos")]
+        // GET: api/Instituicoes
+        public IHttpActionResult Get() {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
+
+            if (credenciais == null) {
+                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+            }
+
+            return Ok(PessoasDB.SelectID(Convert.ToInt32(credenciais.Pes_codigo)).Tables[0]);
+        }
+
         [HttpPost, Route("api/Eventos/TiposEventos")]
         // POST: api/Endereco
         public IHttpActionResult TiposEventos([FromBody]TiposEventos tipo_eventos) {

@@ -80,7 +80,7 @@ namespace API_PassCenter.Controllers {
 
         [HttpGet, Route("api/Usuarios/porTipo")]
         // GET: api/Instituicoes
-        public IHttpActionResult selectPorTipo() {
+        public IHttpActionResult selectPorTipo(int tipo) {
 
             Indentificacao credenciais = autenticar.autenticacao(Request, 3);
 
@@ -88,7 +88,7 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
-            return Ok(UsusariosDB.SelectByType(4 ,Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
+            return Ok(UsusariosDB.SelectByType(tipo, Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
         }
 
         [HttpPost, Route("api/Usuarios/TiposUsuarios")]

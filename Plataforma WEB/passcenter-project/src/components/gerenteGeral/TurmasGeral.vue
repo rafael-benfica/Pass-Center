@@ -1,64 +1,74 @@
 <template>
     <div>
-        <form onsubmit="return false">
+        
         <div class="row area-exibicao">
             <div class="col s12 m4 l4 espacamento" v-for="item in 6" :key="item.id">
-            <div class="modal-trigger" href="#modal">
-                <div class="card">
-                    <div class="card-content">
-                        <h2 class="card-title cardDisciplina">Engenharia de Softwares {{ item }}</h2>
-                        <h3 class="card-title cardDisciplina">Professor:</h3>
-                         <p class="cardTurmaCarga">Claudemir</p><br />
+                <div class="modal-trigger" href="#modal">
+                    <div class="card">
+                        <div class="card-content">
+                            <h2 class="card-title cardDisciplina">Engenharia de Softwares {{ item }}</h2>
+                            <h3 class="card-title cardDisciplina">Professor:</h3>
+                            <p class="cardTurmaCarga">Claudemir</p><br />
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
-            <div id="modal" class="modal margem">
-			<div class="modal-content">
-				<h3 class="centro">Engenharia de Softwares</h3>
-                <h4>Professor Claudemir</h4>
-                <div class="chips chips-autocomplete"></div>
 
-				
-					</div>
-	
-		            	<div class="modal-footer row col s12 m12 l12 ">
-						    <a href="#!" class="col s12 m4 l4 modal-close waves-effect waves-teal btn red">Cancelar</a>
-					
-						    <p class="col s12 m4 l4"></p>
-					
-						    <a href="#!" class="col s12 m4 l4 modal-close waves-effect waves-teal btn green" @click="confirmação()">Confirmar</a>
-		            	</div>
-		            </div>
+            <div id="modal" class="modal margem">
+                <div class="modal-content">
+                    <h3 class="centro">Engenharia de Softwares</h3>
+                    <h4>Professor Claudemir</h4>
+
+                    <table>
+                        <thead class="centro">
+                                 <tr>
+                                    <th>Nome do Aluno</th>
+                                    <th>Matrícula do do Aluno</th>
+                                    <th></th>
+                                 </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item, index) in alunos" :key="item.id" @click="verDados(index)">
+                                <td>{{ item.pes_nome +" "+ item.pes_sobrenomes }}</td>
+                                <td>{{ "#"+item.pes_matricula }}</td>
+                                <td><a class="waves-effect waves-light btn red modal-trigger" href="#modalVer">Remover</a></td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+                    <a class="col s12 m12 l12 centro waves-effect waves-light btn modal-trigger botaoVerMais" href="#modalAdd" @click="addDados()">Adicionar alunos</a>
+                    
+                    <div class="modal-footer row col s12 m12 l12 ">
+                        <a href="#!" class="col s12 m4 l4 modal-close waves-effect waves-teal btn red">Fechar</a>
+                    </div>
                 </div>
-                </form>
+            </div>
         </div>
+    </div>
 			
-    
 </template>
 
 <script>
 	export default {
 		name: "TurmasGeral",
+        data() {    
+            return {
+                alunos:[]
+            }
+        },
+		mounted() {
+            this.$http.get('Usuarios/porTipo', {params: {tipo: 5}}).then(response => {
+                    this.alunos = response.body;
+            }, response => {
+                    console.log("ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " + response.status);
+            });
 
-		mounted: function () {
+
 			$(document).ready(function () {
                 $('.modal').modal();
-                 $('.chips').chips();
- 
-  
-                $('.chips-autocomplete').chips({
-                autocompleteOptions: {
-                data: {
-                    'Apple': null,
-                    'Microsoft': null,
-                    'Google': null
-                         },
-                        limit: Infinity,
-                        minLength: 1
-                    }
-                });
-			});
+            });
+        
         },
         methods: {
         confirmação() {

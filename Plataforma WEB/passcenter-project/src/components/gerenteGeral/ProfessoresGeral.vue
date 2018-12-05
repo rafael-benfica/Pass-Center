@@ -348,7 +348,7 @@
 		},
 		methods: {
             carregarDados(){
-                this.$http.get('Usuarios/porTipo').then(response => {
+                this.$http.get('Usuarios/porTipo', {params: {tipo: 4}}).then(response => {
                     this.professores = response.body;
                 }, response => {
                     console.log("ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " + response.status);
@@ -438,7 +438,7 @@
 							pes_codigo : this.pessoa_codigo,
 							pes_nome : this.nome,
                             pes_sobrenomes : this.sobrenomes,
-                            sobrenomes : this.data_nascimento,                            
+                            pes_data_nascimento: this.data_nascimento,                            
 							pes_cpf : this.CPF,
 							pes_rg : this.RG,
 							pes_sexo : this.sexo,

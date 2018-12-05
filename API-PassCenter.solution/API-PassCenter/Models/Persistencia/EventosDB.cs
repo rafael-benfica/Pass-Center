@@ -12,8 +12,8 @@ namespace API_PassCenter.Models.Persistencia {
             try {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "INSERT INTO eventos(eve_nome, eve_sigla, eve_descricao, eve_estado, eve_operacao, tev_codigo)" +
-                    " VALUES(?eve_nome, ?eve_sigla, ?eve_descricao, ?eve_estado, ?eve_operacao, ?tev_codigo);" +
+                string sql = "INSERT INTO eventos(eve_nome, eve_sigla, eve_descricao, eve_estado, eve_operacao, tev_codigo, ins_codigo)" +
+                    " VALUES(?eve_nome, ?eve_sigla, ?eve_descricao, ?eve_estado, ?eve_operacao, ?tev_codigo, ?ins_codigo);" +
                     "SELECT LAST_INSERT_ID();";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
@@ -24,7 +24,8 @@ namespace API_PassCenter.Models.Persistencia {
                 objCommand.Parameters.Add(Mapped.Parameter("?eve_operacao", eventos.Eve_operacao));
                 //FK
                 objCommand.Parameters.Add(Mapped.Parameter("?tev_codigo", eventos.Tev_codigo.Tev_codigo));
-                
+                objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", eventos.Ins_codigo.Ins_codigo));
+
                 retorno = Convert.ToInt32(objCommand.ExecuteScalar());
 
                 objConexao.Close();
@@ -34,6 +35,36 @@ namespace API_PassCenter.Models.Persistencia {
                 retorno = -2;
             }
             return retorno;
+        }
+
+        public static DataSet Select(int instituicao, int tipo) {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "select * from eventos " +
+                "where ins_codigo = ?ins_codigo and tev_codigo = ?tev_codigo";
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", instituicao));
+            objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", tipo));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
         }
     }
 }
