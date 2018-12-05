@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`pessoas` (
   `pes_codigo` INT NOT NULL AUTO_INCREMENT,
   `pes_nome` VARCHAR(30) NOT NULL,
   `pes_sobrenomes` VARCHAR(120) NOT NULL,
+  `pes_data_nascimento` DATETIME NOT NULL,
   `pes_cpf` VARCHAR(50) NOT NULL,
   `pes_rg` VARCHAR(50) NOT NULL,
   `pes_matricula` VARCHAR(45) NOT NULL,
@@ -179,41 +180,57 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `PassCenter`.`envento_auditor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `PassCenter`.`envento_auditor` (
+  `eau_codigo` INT NOT NULL,
+  `eau_periodo_identificacao` VARCHAR(45) NOT NULL,
+  `eau_estado` TINYINT NOT NULL,
+  `eau_data_abertura` DATETIME NOT NULL,
+  `eau_data_fechamento` DATETIME NULL,
+  `pessoas_pes_codigo` INT NULL,
+  `eventos_eve_codigo` INT NOT NULL,
+  `instituicoes_ins_codigo` INT NOT NULL,
+  PRIMARY KEY (`eau_codigo`),
+  INDEX `fk_envento_auditor_pessoas1_idx` (`pessoas_pes_codigo` ASC) VISIBLE,
+  INDEX `fk_envento_auditor_eventos1_idx` (`eventos_eve_codigo` ASC) VISIBLE,
+  INDEX `fk_envento_auditor_instituicoes1_idx` (`instituicoes_ins_codigo` ASC) VISIBLE,
+  CONSTRAINT `fk_envento_auditor_pessoas1`
+    FOREIGN KEY (`pessoas_pes_codigo`)
+    REFERENCES `PassCenter`.`pessoas` (`pes_codigo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_envento_auditor_eventos1`
+    FOREIGN KEY (`eventos_eve_codigo`)
+    REFERENCES `PassCenter`.`eventos` (`eve_codigo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_envento_auditor_instituicoes1`
+    FOREIGN KEY (`instituicoes_ins_codigo`)
+    REFERENCES `PassCenter`.`instituicoes` (`ins_codigo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `PassCenter`.`turmas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `PassCenter`.`turmas` (
   `tur_codigo` INT NOT NULL AUTO_INCREMENT,
-  `tur_periodo_identificacao` VARCHAR(45) NOT NULL,
-  `tur_data_abertura` DATETIME NOT NULL,
-  `tur_date_fechamento` DATETIME NULL,
-  `tur_estado` TINYINT NOT NULL,
-  `ins_codigo` INT NOT NULL,
-  `eve_codigo` INT NOT NULL,
-  `usu_codigo_participante` INT NOT NULL,
-  `pes_codigo_auditor` INT NULL,
+  `usu_codigo` INT NOT NULL,
+  `eau_codigo` INT NOT NULL,
   PRIMARY KEY (`tur_codigo`),
-  INDEX `fk_turmas_instituicaos1_idx` (`ins_codigo` ASC) VISIBLE,
-  INDEX `fk_turmas_eventos1_idx` (`eve_codigo` ASC) VISIBLE,
-  INDEX `fk_turmas_usuarios1_idx` (`usu_codigo_participante` ASC) VISIBLE,
-  INDEX `fk_turmas_pessoas1_idx` (`pes_codigo_auditor` ASC) VISIBLE,
-  CONSTRAINT `fk_turmas_instituicaos1`
-    FOREIGN KEY (`ins_codigo`)
-    REFERENCES `PassCenter`.`instituicoes` (`ins_codigo`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_turmas_eventos1`
-    FOREIGN KEY (`eve_codigo`)
-    REFERENCES `PassCenter`.`eventos` (`eve_codigo`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_turmas_usuarios1_idx` (`usu_codigo` ASC) VISIBLE,
+  INDEX `fk_turmas_envento_auditor1_idx` (`eau_codigo` ASC) VISIBLE,
   CONSTRAINT `fk_turmas_usuarios1`
-    FOREIGN KEY (`usu_codigo_participante`)
+    FOREIGN KEY (`usu_codigo`)
     REFERENCES `PassCenter`.`usuarios` (`usu_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_turmas_pessoas1`
-    FOREIGN KEY (`pes_codigo_auditor`)
-    REFERENCES `PassCenter`.`pessoas` (`pes_codigo`)
+  CONSTRAINT `fk_turmas_envento_auditor1`
+    FOREIGN KEY (`eau_codigo`)
+    REFERENCES `PassCenter`.`envento_auditor` (`eau_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
