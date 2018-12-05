@@ -25,6 +25,7 @@ namespace API_PassCenter.Controllers {
 
             pes.Pes_nome = pessoas.Pes_nome;
             pes.Pes_sobrenomes = pessoas.Pes_sobrenomes;
+            pes.Pes_data_nascimento = pessoas.Pes_data_nascimento;
             pes.Pes_cpf = pessoas.Pes_cpf;
             pes.Pes_rg = pessoas.Pes_rg;
             pes.Pes_matricula = pessoas.Pes_matricula;

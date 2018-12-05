@@ -94,6 +94,9 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`pessoas` (
   PRIMARY KEY (`pes_codigo`),
   INDEX `fk_pessoas_enderecos1_idx` (`end_codigo` ASC) VISIBLE,
   INDEX `fk_pessoas_instituicoes1_idx` (`ins_codigo` ASC) VISIBLE,
+  UNIQUE INDEX `pes_cpf_UNIQUE` (`pes_cpf` ASC) VISIBLE,
+  UNIQUE INDEX `pes_rg_UNIQUE` (`pes_rg` ASC) VISIBLE,
+  UNIQUE INDEX `pes_matricula_UNIQUE` (`pes_matricula` ASC) VISIBLE,
   CONSTRAINT `fk_pessoas_enderecos1`
     FOREIGN KEY (`end_codigo`)
     REFERENCES `PassCenter`.`enderecos` (`end_codigo`)

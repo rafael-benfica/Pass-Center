@@ -5,7 +5,7 @@
 				<span class="card-title">Meus Dados</span>
 			</div>
 			<div class="row">
-				<div class="input-field col s12 m6">
+				<div class="input-field col s12 m4">
 					<input id="nome" type="text" class="validate" v-model="nome">
 					<label for="nome">Nome</label>
 				</div>
@@ -13,6 +13,10 @@
 					<input id="sobrenome" type="text" class="validate" v-model="sobrenomes">
 					<label for="sobrenome">Sobrenome</label>
 				</div>
+				<div class="input-field col s12 m2">
+                    <input id="data_nascimento" type="text" class="validate" v-model="data_nascimento">
+                    <label for="data_nascimento">Data de Nascimento</label>
+                </div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12 m4">
@@ -136,6 +140,7 @@
 			return {         
 				nome : "",           
 				sobrenomes : "",
+				data_nascimento: "",
 				CPF : "",
 				RG : "",
 				sexo : "",
@@ -160,6 +165,7 @@
 
 				this.nome = dados.pes_nome;
 				this.sobrenomes = dados.pes_sobrenomes;
+				this.data_nascimento = dados.pes_data_nascimento.replace("T00:00:00",""),
 				this.CPF = dados.pes_cpf;
 				this.RG = dados.pes_rg;
 				this.sexo = dados.pes_sexo;
@@ -208,6 +214,7 @@
 						const dodosPessoais = {
 							pes_nome : this.nome,
 							pes_sobrenomes : this.sobrenomes,
+                            pes_data_nascimento : this.data_nascimento,
 							pes_cpf : this.CPF,
 							pes_rg : this.RG,
 							pes_sexo : this.sexo,

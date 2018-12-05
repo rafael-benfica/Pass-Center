@@ -12,13 +12,14 @@ namespace API_PassCenter.Models.Persistencia {
             try {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "INSERT INTO pessoas(pes_nome, pes_sobrenomes, pes_cpf, pes_rg, pes_matricula, pes_sexo, pes_tel_residencial, pes_tel_celular, pes_info_adicionais, end_codigo, ins_codigo)" +
-                    " VALUES(?pes_nome, ?pes_sobrenomes, ?pes_cpf, ?pes_rg, ?pes_matricula, ?pes_sexo, ?pes_tel_residencial, ?pes_tel_celular, ?pes_info_adicionais, ?end_codigo, ?ins_codigo);" +
+                string sql = "INSERT INTO pessoas(pes_nome, pes_sobrenomes, pes_data_nascimento, pes_cpf, pes_rg, pes_matricula, pes_sexo, pes_tel_residencial, pes_tel_celular, pes_info_adicionais, end_codigo, ins_codigo)" +
+                    " VALUES(?pes_nome, ?pes_sobrenomes, ?pes_data_nascimento, ?pes_cpf, ?pes_rg, ?pes_matricula, ?pes_sexo, ?pes_tel_residencial, ?pes_tel_celular, ?pes_info_adicionais, ?end_codigo, ?ins_codigo);" +
                     "SELECT LAST_INSERT_ID();";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_nome", pessoas.Pes_nome));
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_sobrenomes", pessoas.Pes_sobrenomes));
+                objCommand.Parameters.Add(Mapped.Parameter("?pes_data_nascimento", pessoas.Pes_data_nascimento));
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_cpf", pessoas.Pes_cpf));
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_rg", pessoas.Pes_rg));
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_matricula", pessoas.Pes_matricula));
@@ -78,7 +79,7 @@ namespace API_PassCenter.Models.Persistencia {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
                 string sql = "UPDATE pessoas SET pes_nome = ?pes_nome, pes_sobrenomes = ?pes_sobrenomes," +
-                    " pes_cpf = ?pes_cpf, pes_rg = ?pes_rg, pes_sexo = ?pes_sexo," +
+                    " pes_data_nascimento = ?pes_data_nascimento, pes_cpf = ?pes_cpf, pes_rg = ?pes_rg, pes_sexo = ?pes_sexo," +
                     " pes_tel_residencial = ?pes_tel_residencial, pes_tel_celular = ?pes_tel_celular," +
                     " pes_info_adicionais = ?pes_info_adicionais WHERE (pes_codigo = ?pes_codigo)";
                 
@@ -86,6 +87,7 @@ namespace API_PassCenter.Models.Persistencia {
                 objCommand = Mapped.Command(sql, objConexao);
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_nome", pessoas.Pes_nome));
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_sobrenomes", pessoas.Pes_sobrenomes));
+                objCommand.Parameters.Add(Mapped.Parameter("?pes_data_nascimento", pessoas.Pes_data_nascimento));
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_cpf", pessoas.Pes_cpf));
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_rg", pessoas.Pes_rg));
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_sexo", pessoas.Pes_sexo));

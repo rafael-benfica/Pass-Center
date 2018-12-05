@@ -35,13 +35,17 @@
                                 <hr>
                                 <div class="row col s12 m12 l12">
                                     <div class="row">
-                                        <div class="input-field col s12 m6">
+                                        <div class="input-field col s12 m4">
                                             <input id="nome" type="text" class="validate" v-model="nome">
                                             <label for="nome">Nome</label>
                                         </div>
                                         <div class="input-field col s12 m6">
                                             <input id="sobrenome" type="text" class="validate" v-model="sobrenomes">
                                             <label for="sobrenome">Sobrenome</label>
+                                        </div>
+                                        <div class="input-field col s12 m2">
+                                            <input id="data_nascimento" type="text" class="validate" v-model="data_nascimento">
+                                            <label for="data_nascimento">Data de Nascimento</label>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -175,15 +179,19 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="input-field col s12 m4">
+                                        <div class="input-field col s12 m3">
+                                            <input id="data_nascimentoModalAdd" type="text" class="datepicker validate" v-model="data_nascimento">
+                                            <label for="data_nascimentoModalAdd">Data de Nascimento</label>
+                                        </div>  
+                                        <div class="input-field col s12 m3">
                                             <input id="cpfModalAdd" type="text" class="validate" v-model="CPF">
                                             <label for="cpfModalAdd">CPF</label>
                                         </div>
-                                        <div class="input-field col s12 m4">
+                                        <div class="input-field col s12 m3">
                                             <input id="rgModalAdd" type="text" class="validate" v-model="RG">
                                             <label for="rgModalAdd">RG</label>
                                         </div>
-                                        <div class="input-field col s12 m4">
+                                        <div class="input-field col s12 m3">
                                             <select v-model="sexo">
                                                 <option value="" disabled>Selecione um sexo</option>
                                                 <option value="1">Masculino</option>
@@ -311,6 +319,7 @@
                 matricula : "",
                 nome : "",           
                 sobrenomes : "",
+                data_nascimento : "",
                 CPF : "",
                 RG : "",
                 sexo : "",
@@ -329,10 +338,9 @@
             }
         },
 
-		mounted: function () {
+		mounted() {
 			$(document).ready(function () {
                 $('.modal').modal();
-               
             });
 
             this.carregarDados();
@@ -342,14 +350,12 @@
             carregarDados(){
                 this.$http.get('Usuarios/porTipo').then(response => {
                     this.professores = response.body;
-
                 }, response => {
-                    console.log("ERRO! Código de resposta (HTTP) do servidor: " + response.status);
+                    console.log("ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " + response.status);
                 });
             },
 
             verDados(index){
-                console.log(this.professores[index]);
                 var dados = this.professores[index];
 
                 this.usuario_codigo = dados.usu_codigo;
@@ -357,6 +363,7 @@
                 this.endereco_codigo = dados.end_codigo;
                 this.nome = dados.pes_nome;
                 this.sobrenomes = dados.pes_sobrenomes;
+                this.data_nascimento = dados.pes_data_nascimento.replace("T00:00:00","");
                 this.CPF = dados.pes_cpf;
                 this.RG = dados.pes_rg;
                 this.sexo = dados.pes_sexo;
@@ -377,6 +384,7 @@
                 $(document).ready(function () {              
                     M.updateTextFields();
                     $('select').formSelect();
+                    $('.datepicker').datepicker();
                 });
             },
 
@@ -384,6 +392,7 @@
                 this.matricula = "";
                 this.nome = "";
                 this.sobrenomes = "";
+                this.data_nascimento = "";
                 this.CPF = "";
                 this.RG = "";
                 this.sexo = "";
@@ -428,7 +437,8 @@
 						const dodosPessoais = {
 							pes_codigo : this.pessoa_codigo,
 							pes_nome : this.nome,
-							pes_sobrenomes : this.sobrenomes,
+                            pes_sobrenomes : this.sobrenomes,
+                            sobrenomes : this.data_nascimento,                            
 							pes_cpf : this.CPF,
 							pes_rg : this.RG,
 							pes_sexo : this.sexo,
@@ -464,24 +474,14 @@
 										'success'
 										)
 								}, response => {
-									erro("Dados do Usuário", response.status);
+									this.erro("Dados do Usuário", response.status);
 								});
 							}, response => {
-								erro("Endereço", response.status);
+								this.erro("Endereço", response.status);
 							});
 						}, response => {
-							erro("Dados Pessoais", response.status);
+							this.erro("Dados Pessoais", response.status);
 						});
-
-						function erro(msg, code) {
-                            this.carregarDados();
-							swalWithBootstrapButtons(
-								'Ops!',
-								'Algo deu errado! Alterações não realizadas! Entre em contato o Administrador!',
-								'error'
-								)
-							console.log("ERRO ao atualizar "+msg+"! Código de resposta (HTTP) do servidor: " + code)
-						}
 
 					} else if (
                     // Read more about handling dismissals
@@ -493,7 +493,7 @@
 							'Alterações não enviadas!',
 							'error'
 							)
-                    }
+					}
                     
                 })
             },
@@ -537,6 +537,7 @@
                                 pes_matricula : this.matricula,                            
                                 pes_nome : this.nome,
                                 pes_sobrenomes : this.sobrenomes,
+                                pes_data_nascimento : this.data_nascimento,
                                 pes_cpf : this.CPF,
                                 pes_rg : this.RG,
                                 pes_sexo : this.sexo,
@@ -570,39 +571,40 @@
 										'success'
 										)
 								}, response => {
-									erro("Dados do Usuário", response.status);
+									this.erro("Dados do Usuário", response.status);
 								});
 							}, response => {
-								erro("Dados Pessoais", response.status);
+								this.erro("Dados Pessoais", response.status);
 							});
 						}, response => {
-							erro("Endereço", response.status);
+							this.erro("Endereço", response.status);
 						});
-
-						function erro(msg, code) {
-                            this.carregarDados();
-							swalWithBootstrapButtons(
-								'Oops!',
-								'Algo deu errado! Os dados não foram salvos! Entre em contato o Administrador!',
-								'error'
-								)
-							console.log("ERRO ao atualizar "+msg+"! Código de resposta (HTTP) do servidor: " + code)
-						}
 
 					} else if (
                     // Read more about handling dismissals
                     result.dismiss === swal.DismissReason.cancel
                     ) {
-                        this.carregarDados();
+                        this.carregarDados(),
 						swalWithBootstrapButtons(
 							'Okay!',
 							'Revise/altere o que for necessário ;)',
 							'info'
-							)
+						)
 					}
+                })
+            },
+
+            erro(msg, code) {
+				swal({
+					title: 'Oops!',
+					text: 'Algo deu errado! Os dados não foram salvos!',
+					type: 'error'
                 }),
-                this.carregarDados();
-            }
+                    
+                console.log("ERRO ao atualizar "+msg+"! Código de resposta (HTTP) do servidor: " + code),
+                
+                this.carregarDados()
+			}
         }
 	}
 

@@ -8,6 +8,7 @@ namespace API_PassCenter.Models.Classes {
         public int Pes_codigo { get; set; }
         public string Pes_nome { get; set; }
         public string Pes_sobrenomes { get; set; }
+        public DateTime Pes_data_nascimento { get; set; }
         public int Pes_sexo { get; set; }
         public string Pes_matricula { get; set; }
         public string Pes_cpf { get; set; }
