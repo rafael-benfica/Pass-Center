@@ -22,11 +22,10 @@ namespace API_PassCenter.Controllers {
 
             usu.Usu_login = usuarios.Usu_login;
             usu.Usu_senha = usuarios.Usu_senha;
-            usu.Usu_estado = usuarios.Usu_estado;
-            usu.Usu_data_criacao = usuarios.Usu_data_criacao;
-            usu.Usu_data_desativacao = usuarios.Usu_data_desativacao;
-            usu.Usu_primeiro_login = usuarios.Usu_primeiro_login;
-            usu.Usu_redefinir_senha = usuarios.Usu_redefinir_senha;
+            usu.Usu_estado = true;
+            usu.Usu_data_criacao = DateTime.UtcNow; ;
+            usu.Usu_primeiro_login = true;
+            usu.Usu_redefinir_senha = false;
             usu.Pes_codigo = usuarios.Pes_codigo;
             usu.Tus_codigo = usuarios.Tus_codigo;
 
@@ -45,16 +44,18 @@ namespace API_PassCenter.Controllers {
         // PUT: api/Instituicoes
         public IHttpActionResult Put([FromBody]Usuarios usuarios) {
 
-            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
+            Indentificacao credenciais = autenticar.autenticacao(Request,5);
 
             if (credenciais == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
-            if (UsusariosDB.Update(usuarios) == -2) {
+            int retorno = UsusariosDB.Update(usuarios);
+           
+            if (retorno == -2) {
                 return BadRequest();
             } else {
-                return Ok();
+                return Ok(retorno);
             }
         }
 
@@ -81,7 +82,7 @@ namespace API_PassCenter.Controllers {
         // GET: api/Instituicoes
         public IHttpActionResult selectPorTipo() {
 
-            Indentificacao credenciais = autenticar.autenticacao(Request, 2);
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
 
             if (credenciais == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;

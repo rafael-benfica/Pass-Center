@@ -286,7 +286,7 @@
                             <div class="modal-footer row col s12 m12 l12 ">
                                 <a href="#!" class="col s12 m4 l4 modal-close waves-effect waves-teal btn red">Cancelar</a>
                                 <p class="col s12 m4 l4"></p>
-                                <a class="col s12 m4 l4 waves-effect waves-teal btn green" >Confirmar</a>
+                                <a class="col s12 m4 l4 waves-effect waves-teal btn green" @click="confirmacaoCriar()">Confirmar</a>
                             </div>
                         </div>
 
@@ -465,6 +465,109 @@
 							});
 						}, response => {
 							erro("Dados Pessoais", response.status);
+						});
+
+						function erro(msg, code) {
+							swalWithBootstrapButtons(
+								'Ops!',
+								'Algo deu errado! Alterações não realizadas! Entre em contato o Administrador!',
+								'error'
+								)
+							console.log("ERRO ao atualizar "+msg+"! Código de resposta (HTTP) do servidor: " + code)
+						}
+
+					} else if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.cancel
+                    ) {
+						swalWithBootstrapButtons(
+							'Cancelado!',
+							'Alterações não enviadas!',
+							'error'
+							)
+					}
+				})
+            },
+
+            confirmacaoCriar() {
+				const swalWithBootstrapButtons = swal.mixin({
+					confirmButtonClass: 'btn green sepraracaoBotoes',
+					cancelButtonClass: 'btn red sepraracaoBotoes',
+					buttonsStyling: false,
+				})
+
+				swalWithBootstrapButtons({
+					title: 'Você tem certeza?',
+					text: "Você não poderá reverter essa ação!",
+					type: 'warning',
+					showCancelButton: true,
+					confirmButtonText: 'Sim, faça!',
+					cancelButtonText: 'Não, cancele!',
+					reverseButtons: true
+				}).then((result) => {
+					if (result.value) {
+					
+						
+						var dodosEndereco = {
+							end_codigo : this.endereco_codigo, 
+							end_logradouro : this.logradouro, 
+							end_numero : this.numero, 
+							end_bairro : this.bairro, 
+							end_municipio : this.municipio,
+							end_cep : this.CEP,
+							end_estado : this.estado,  
+                            end_complemento : this.complemento, 
+                            end_pais : "BR",
+                            ten_codigo : {
+                                ten_codigo : "2"
+                            }
+						}
+
+						this.$http.post('Enderecos', dodosEndereco).then(response => {
+
+                            const dodosPessoais = {
+                                pes_matricula : this.matricula,                            
+                                pes_nome : this.nome,
+                                pes_sobrenomes : this.sobrenomes,
+                                pes_cpf : this.CPF,
+                                pes_rg : this.RG,
+                                pes_sexo : this.sexo,
+                                pes_tel_residencial : this.tel_residencial,
+                                pes_tel_celular : this.tel_celular,
+                                pes_info_adicionais: this.infoadd,
+                                end_codigo : {
+                                    end_codigo : response.body
+                                }
+                            }
+
+							this.$http.post('Pessoas', dodosPessoais).then(response => {
+                                
+                                var dodosUsuario = {
+                                    usu_codigo : this.usuario_codigo, 
+                                    usu_login : this.login, 
+                                    usu_senha : this.senha, 
+                                    pes_codigo : {
+                                        pes_codigo : response.body
+                                    },
+                                    tus_codigo : {
+                                        tus_codigo : 4
+                                    }
+                                }
+                                
+                                this.$http.post('Usuarios', dodosUsuario).then(response => {
+									swalWithBootstrapButtons(
+										'Alterado!',
+										'As alterações foram salvas.',
+										'success'
+										)
+								}, response => {
+									erro("Dados do Usuário", response.status);
+								});
+							}, response => {
+								erro("Dados Pessoais", response.status);
+							});
+						}, response => {
+							erro("Endereço", response.status);
 						});
 
 						function erro(msg, code) {

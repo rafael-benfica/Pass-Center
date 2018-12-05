@@ -12,8 +12,8 @@ namespace API_PassCenter.Models.Persistencia {
             try {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "INSERT INTO enderecos(end_logradouro, end_numero, end_bairro, end_municipio, end_estado, end_complemento, end_pais, ten_codigo)" +
-                    " VALUES(?end_logradouro, ?end_numero, ?end_bairro, ?end_municipio, ?end_estado, ?end_complemento, ?end_pais, ?ten_codigo);" +
+                string sql = "INSERT INTO enderecos(end_logradouro, end_numero, end_bairro, end_municipio, end_cep, end_estado, end_complemento, end_pais, ten_codigo)" +
+                    " VALUES(?end_logradouro, ?end_numero, ?end_bairro, ?end_municipio, ?end_cep, ?end_estado, ?end_complemento, ?end_pais, ?ten_codigo);" +
                     "SELECT LAST_INSERT_ID();";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
@@ -21,6 +21,7 @@ namespace API_PassCenter.Models.Persistencia {
                 objCommand.Parameters.Add(Mapped.Parameter("?end_numero", enderecos.End_numero));
                 objCommand.Parameters.Add(Mapped.Parameter("?end_bairro", enderecos.End_bairro));
                 objCommand.Parameters.Add(Mapped.Parameter("?end_municipio", enderecos.End_municipio));
+                objCommand.Parameters.Add(Mapped.Parameter("?end_cep", enderecos.End_cep));
                 objCommand.Parameters.Add(Mapped.Parameter("?end_estado", enderecos.End_estado));
                 objCommand.Parameters.Add(Mapped.Parameter("?end_complemento", enderecos.End_complemento));
                 objCommand.Parameters.Add(Mapped.Parameter("?end_pais", enderecos.End_pais));

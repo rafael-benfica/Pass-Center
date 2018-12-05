@@ -56,6 +56,8 @@ export default new Router({
       name: 'Login',
       component: Login
     },
+
+    //Administrador
     {
       path: '/administrador',
       component: Administrador,
@@ -135,52 +137,87 @@ export default new Router({
       ]
     },
 
-
+    //Gerente Geral
     {
-      path: '/aluno',
-      component: Aluno,
-      children:[
+      path: '/gerentegeral',
+      component: GerenteGeral,
+      children: [
         {
-          path: '',
-          name: 'MinhasDisciplinasAluno',
-          component: MinhasDisciplinasAluno,
+          path: 'MinhasDisciplinas3',
+          name: 'MinhasDisciplinas3',
+          component: MinhasDisciplinas,
           meta: {
-            breadcrumbs: [{ nome: 'Aluno' },
+            breadcrumbs: [{ nome: 'Gerente Geral' },
             { nome: 'Minhas Disciplinas' }]
           }
         },
         {
-          path: 'meusdados',
-          name: 'MeusDadosAluno',
+          path: '',
+          name: 'MeusDadosGerenteGeral',
           component: MeusDados,
           meta: {
-            breadcrumbs: [{ nome: 'Aluno' },
+            breadcrumbs: [{ nome: 'Gerente Geral' },
             { nome: 'Meus Dados' }]
           }
         },
         {
-          path: 'HistoricoCompletoAluno',
-          name: 'HistoricoCompletoAluno',
-          component: HistoricoCompletoAluno,
+          path: 'AlunoGeral',
+          name: 'AlunoGeral',
+          component: AlunoGeral,
           meta: {
-            breadcrumbs: [{ nome: 'Aluno' },
-              { nome: 'Histórico Completo' }]
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+            { nome: 'Aluno' }]
           }
         },
         {
-          path: 'HistoricoCompletoDisciplinas',
-          name: 'HistoricoCompletoDisciplinas',
-          component: HistoricoCompletoDisciplinas,
+          path: 'DisciplinasGeral',
+          name: 'DisciplinasGeral',
+          component: DisciplinasGeral,
           meta: {
-            breadcrumbs: [{ nome: 'Aluno' },
-            { nome: 'Histórico Completo' },
-              { nome: 'Disciplinas 20XX' }]
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+            { nome: 'Disciplinas' }]
+          }
+        },
+        {
+          path: 'Financeiro',
+          name: 'Financeiro',
+          component: Financeiro,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+            { nome: 'Financeiro' }]
+          }
+        },
+        {
+          path: 'ProfessoresGeral',
+          name: 'ProfessoresGeral',
+          component: ProfessoresGeral,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+            { nome: 'Professores' }]
+          }
+        },
+        {
+          path: 'Totens',
+          name: 'Totens',
+          component: Totens,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+            { nome: 'Totens' }]
+          }
+        },
+        {
+          path: 'TurmasGeral',
+          name: 'TurmasGeral',
+          component: TurmasGeral,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+            { nome: 'Turmas' }]
           }
         }
       ]
     },
 
-
+    //Gerente Cadastro
     {
       path: '/gerentecadastro',
       component: GerenteCadastro,
@@ -206,7 +243,7 @@ export default new Router({
         {
           path: 'GerenteCadastroProfessores',
           name: 'GerenteCadastroProfessores',
-          component: GerenteCadastroProfessores,
+          component: ProfessoresGeral,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
             { nome: 'Professores' }]
@@ -247,87 +284,7 @@ export default new Router({
       ]
     },
 
-
-    {
-      path: '/gerentegeral',
-      component: GerenteGeral,
-      children:[
-        {
-          path: 'MinhasDisciplinas3',
-          name: 'MinhasDisciplinas3',
-          component: MinhasDisciplinas,
-          meta: {
-            breadcrumbs: [{ nome: 'Gerente Geral' },
-            { nome: 'Minhas Disciplinas' }]
-          }
-        },
-        {
-          path: '',
-          name: 'MeusDadosGerenteGeral',
-          component: MeusDados,
-          meta: {
-            breadcrumbs: [{ nome: 'Gerente Geral' },
-            { nome: 'Meus Dados' }]
-          }
-        },
-        {
-          path: 'AlunoGeral',
-          name: 'AlunoGeral',
-          component: AlunoGeral,
-          meta: {
-            breadcrumbs: [{ nome: 'Gerente Geral' },
-              { nome: 'Aluno' }]
-          }
-        },
-        {
-          path: 'DisciplinasGeral',
-          name: 'DisciplinasGeral',
-          component: DisciplinasGeral,
-          meta: {
-            breadcrumbs: [{ nome: 'Gerente Geral' },
-              { nome: 'Disciplinas' }]
-          }
-        },
-        {
-          path: 'Financeiro',
-          name: 'Financeiro',
-          component: Financeiro,
-          meta: {
-            breadcrumbs: [{ nome: 'Gerente Geral' },
-              { nome: 'Financeiro' }]
-          }
-        },
-        {
-          path: 'ProfessoresGeral',
-          name: 'ProfessoresGeral',
-          component: ProfessoresGeral,
-          meta: {
-            breadcrumbs: [{ nome: 'Gerente Geral' },
-              { nome: 'Professores' }]
-          }
-        },
-        {
-          path: 'Totens',
-          name: 'Totens',
-          component: Totens,
-          meta: {
-            breadcrumbs: [{ nome: 'Gerente Geral' },
-              { nome: 'Totens' }]
-          }
-        },
-        {
-          path: 'TurmasGeral',
-          name: 'TurmasGeral',
-          component: TurmasGeral,
-          meta: {
-            breadcrumbs: [{ nome: 'Gerente Geral' },
-              { nome: 'Turmas' }]
-          }
-        }
-      ]
-    },
-
-    
+    //Professor
     {
       path: '/professor',
       component: Professor,
@@ -375,6 +332,51 @@ export default new Router({
           meta: {
             breadcrumbs: [{ nome: 'Professor' },
             { nome: 'Lista de Presença Manual > Interação Humano/Computador' }]
+          }
+        }
+      ]
+    },
+
+    //Aluno
+    {
+      path: '/aluno',
+      component: Aluno,
+      children: [
+        {
+          path: '',
+          name: 'MinhasDisciplinasAluno',
+          component: MinhasDisciplinasAluno,
+          meta: {
+            breadcrumbs: [{ nome: 'Aluno' },
+            { nome: 'Minhas Disciplinas' }]
+          }
+        },
+        {
+          path: 'meusdados',
+          name: 'MeusDadosAluno',
+          component: MeusDados,
+          meta: {
+            breadcrumbs: [{ nome: 'Aluno' },
+            { nome: 'Meus Dados' }]
+          }
+        },
+        {
+          path: 'HistoricoCompletoAluno',
+          name: 'HistoricoCompletoAluno',
+          component: HistoricoCompletoAluno,
+          meta: {
+            breadcrumbs: [{ nome: 'Aluno' },
+            { nome: 'Histórico Completo' }]
+          }
+        },
+        {
+          path: 'HistoricoCompletoDisciplinas',
+          name: 'HistoricoCompletoDisciplinas',
+          component: HistoricoCompletoDisciplinas,
+          meta: {
+            breadcrumbs: [{ nome: 'Aluno' },
+            { nome: 'Histórico Completo' },
+            { nome: 'Disciplinas 20XX' }]
           }
         }
       ]

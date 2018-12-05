@@ -10,6 +10,7 @@ namespace API_PassCenter.Models.Classes {
         public string End_numero { get; set; }
         public string End_bairro { get; set; }
         public string End_municipio { get; set; }
+        public string End_cep { get; set; }
         public string End_estado { get; set; }
         public string End_complemento { get; set; }
         public string End_pais { get; set; }

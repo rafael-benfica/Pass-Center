@@ -12,8 +12,8 @@ namespace API_PassCenter.Models.Persistencia {
             try {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "INSERT INTO usuarios(usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo)" +
-                    " VALUES(?usu_login, ?usu_senha, ?usu_estado, ?usu_data_criacao, ?usu_data_desativacao, ?usu_primeiro_login, ?usu_redefinir_senha, ?pes_codigo, ?tus_codigo);" +
+                string sql = "INSERT INTO usuarios(usu_login, usu_senha, usu_estado, usu_data_criacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo)" +
+                    " VALUES(?usu_login, ?usu_senha, ?usu_estado, ?usu_data_criacao, ?usu_primeiro_login, ?usu_redefinir_senha, ?pes_codigo, ?tus_codigo);" +
                     "SELECT LAST_INSERT_ID();";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
@@ -21,7 +21,6 @@ namespace API_PassCenter.Models.Persistencia {
                 objCommand.Parameters.Add(Mapped.Parameter("?usu_senha", usuarios.Usu_senha));
                 objCommand.Parameters.Add(Mapped.Parameter("?usu_estado", usuarios.Usu_estado));
                 objCommand.Parameters.Add(Mapped.Parameter("?usu_data_criacao", usuarios.Usu_data_criacao));
-                objCommand.Parameters.Add(Mapped.Parameter("?usu_data_desativacao", usuarios.Usu_data_desativacao));
                 objCommand.Parameters.Add(Mapped.Parameter("?usu_primeiro_login", usuarios.Usu_primeiro_login));
                 objCommand.Parameters.Add(Mapped.Parameter("?usu_redefinir_senha", usuarios.Usu_redefinir_senha));
                 //FK

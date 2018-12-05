@@ -15,7 +15,9 @@ namespace API_PassCenter.Controllers {
         // POST: api/Instituicoes
         public IHttpActionResult Post([FromBody]Pessoas pessoas) {
 
-            if (autenticar.autenticacao(Request, 3) == null) {
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
@@ -31,7 +33,11 @@ namespace API_PassCenter.Controllers {
             pes.Pes_tel_celular = pessoas.Pes_tel_celular;
             pes.Pes_info_adicionais = pessoas.Pes_info_adicionais;
             pes.End_codigo = pessoas.End_codigo;
-            pes.Ins_codigo = pessoas.Ins_codigo;
+
+            Instituicoes ins = new Instituicoes();
+            ins.Ins_codigo = Convert.ToInt32(credenciais.Ins_codigo);
+
+            pes.Ins_codigo = ins;
 
             int retorno = PessoasDB.Insert(pes);
 

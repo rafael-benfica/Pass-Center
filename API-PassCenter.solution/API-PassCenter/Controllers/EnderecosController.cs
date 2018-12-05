@@ -24,6 +24,7 @@ namespace API_PassCenter.Controllers {
             end.End_numero = endereco.End_numero;
             end.End_bairro = endereco.End_bairro;
             end.End_municipio = endereco.End_municipio;
+            end.End_cep = endereco.End_cep;
             end.End_estado = endereco.End_estado;
             end.End_complemento = endereco.End_complemento;
             end.End_pais = endereco.End_pais;
