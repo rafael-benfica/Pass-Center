@@ -21,14 +21,8 @@ namespace API_PassCenter.Controllers {
 
             Turmas tur = new Turmas();
 
-            tur.Tur_periodo_identificacao = turmas.Tur_periodo_identificacao;
-            tur.Tur_data_abertura = turmas.Tur_data_abertura;
-            tur.Tur_date_fechamento = turmas.Tur_date_fechamento;
-            tur.Tur_estado = turmas.Tur_estado;
-            tur.Ins_codigo = turmas.Ins_codigo;
-            tur.Eve_codigo = turmas.Eve_codigo;
-            tur.Usu_codigo_participante = turmas.Usu_codigo_participante;
-            tur.Pes_codigo_auditor = turmas.Pes_codigo_auditor;
+            tur.Usu_codigo = turmas.Usu_codigo;
+            tur.Eau_codigo = turmas.Eau_codigo;
 
             int retorno = TurmasDB.Insert(tur);
 

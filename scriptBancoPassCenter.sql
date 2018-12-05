@@ -190,33 +190,33 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PassCenter`.`envento_auditor`
+-- Table `PassCenter`.`enventos_auditores`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PassCenter`.`envento_auditor` (
-  `eau_codigo` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `PassCenter`.`enventos_auditores` (
+  `eau_codigo` INT NOT NULL AUTO_INCREMENT,
   `eau_periodo_identificacao` VARCHAR(45) NOT NULL,
   `eau_estado` TINYINT NOT NULL,
   `eau_data_abertura` DATETIME NOT NULL,
   `eau_data_fechamento` DATETIME NULL,
-  `pessoas_pes_codigo` INT NULL,
-  `eventos_eve_codigo` INT NOT NULL,
-  `instituicoes_ins_codigo` INT NOT NULL,
+  `pes_codigo` INT NULL,
+  `eve_codigo` INT NOT NULL,
+  `ins_codigo` INT NOT NULL,
   PRIMARY KEY (`eau_codigo`),
-  INDEX `fk_envento_auditor_pessoas1_idx` (`pessoas_pes_codigo` ASC) VISIBLE,
-  INDEX `fk_envento_auditor_eventos1_idx` (`eventos_eve_codigo` ASC) VISIBLE,
-  INDEX `fk_envento_auditor_instituicoes1_idx` (`instituicoes_ins_codigo` ASC) VISIBLE,
+  INDEX `fk_envento_auditor_pessoas1_idx` (`pes_codigo` ASC) VISIBLE,
+  INDEX `fk_envento_auditor_eventos1_idx` (`eve_codigo` ASC) VISIBLE,
+  INDEX `fk_envento_auditor_instituicoes1_idx` (`ins_codigo` ASC) VISIBLE,
   CONSTRAINT `fk_envento_auditor_pessoas1`
-    FOREIGN KEY (`pessoas_pes_codigo`)
+    FOREIGN KEY (`pes_codigo`)
     REFERENCES `PassCenter`.`pessoas` (`pes_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_envento_auditor_eventos1`
-    FOREIGN KEY (`eventos_eve_codigo`)
+    FOREIGN KEY (`eve_codigo`)
     REFERENCES `PassCenter`.`eventos` (`eve_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_envento_auditor_instituicoes1`
-    FOREIGN KEY (`instituicoes_ins_codigo`)
+    FOREIGN KEY (`ins_codigo`)
     REFERENCES `PassCenter`.`instituicoes` (`ins_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -240,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`turmas` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_turmas_envento_auditor1`
     FOREIGN KEY (`eau_codigo`)
-    REFERENCES `PassCenter`.`envento_auditor` (`eau_codigo`)
+    REFERENCES `PassCenter`.`enventos_auditores` (`eau_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

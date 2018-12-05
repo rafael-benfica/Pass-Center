@@ -75,3 +75,8 @@ VALUES ('Diego', 'Daniel Cardoso', '1996-11-07','313.172.158-85', '15.498.605-7'
 
 INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo) 
 VALUES ('aluno', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '5', '5');
+
+-- Inserindo Tipos de Eventos
+INSERT INTO tipos_eventos (`tev_titulo`) VALUES ('Disciplina');
+INSERT INTO tipos_eventos (`tev_titulo`) VALUES ('Evento');
+

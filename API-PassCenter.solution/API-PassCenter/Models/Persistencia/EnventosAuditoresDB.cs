@@ -6,25 +6,24 @@ using System.Linq;
 using System.Web;
 
 namespace API_PassCenter.Models.Persistencia {
-    public class EventosDB {
-        public static int Insert(Eventos eventos) {
+    public class EnventosAuditoresDB {
+        public static int Insert(EnventosAuditores eau) {
             int retorno = 0;
             try {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "INSERT INTO eventos(eve_nome, eve_sigla, eve_descricao, eve_estado, eve_operacao, tev_codigo, ins_codigo)" +
-                    " VALUES(?eve_nome, ?eve_sigla, ?eve_descricao, ?eve_estado, ?eve_operacao, ?tev_codigo, ?ins_codigo);" +
+                string sql = "INSERT INTO enventos_auditores (eau_periodo_identificacao, eau_estado, eau_data_abertura, pes_codigo_auditor, eve_codigo, ins_codigo)" +
+                    " VALUES(?eau_periodo_identificacao, ?eau_estado, ?eau_data_abertura, ?pes_codigo_auditor, ?eve_codigo, ?ins_codigo);" +
                     "SELECT LAST_INSERT_ID();";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
-                objCommand.Parameters.Add(Mapped.Parameter("?eve_nome", eventos.Eve_nome));
-                objCommand.Parameters.Add(Mapped.Parameter("?eve_sigla", eventos.Eve_sigla));
-                objCommand.Parameters.Add(Mapped.Parameter("?eve_descricao", eventos.Eve_descricao));
-                objCommand.Parameters.Add(Mapped.Parameter("?eve_estado", eventos.Eve_estado));
-                objCommand.Parameters.Add(Mapped.Parameter("?eve_operacao", eventos.Eve_operacao));
+                objCommand.Parameters.Add(Mapped.Parameter("?eau_periodo_identificacao", eau.Eau_periodo_identificacao));
+                objCommand.Parameters.Add(Mapped.Parameter("?eau_estado", eau.Eau_estado));
+                objCommand.Parameters.Add(Mapped.Parameter("?eau_data_abertura", eau.Eau_date_fechamento));
                 //FK
-                objCommand.Parameters.Add(Mapped.Parameter("?tev_codigo", eventos.Tev_codigo.Tev_codigo));
-                objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", eventos.Ins_codigo.Ins_codigo));
+                objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo_auditor", eau.Pes_codigo.Pes_codigo));
+                objCommand.Parameters.Add(Mapped.Parameter("?eve_codigo", eau.Eve_codigo.Eve_codigo));
+                objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", eau.Ins_codigo.Ins_codigo));
 
                 retorno = Convert.ToInt32(objCommand.ExecuteScalar());
 
@@ -37,7 +36,7 @@ namespace API_PassCenter.Models.Persistencia {
             return retorno;
         }
 
-        public static DataSet Select(int instituicao, int tipo) {
+        public static DataSet Select(int instituicao) {
             //Imagine um DataSet como umamatriz de dados;
 
             DataSet ds = new DataSet();
@@ -48,12 +47,13 @@ namespace API_PassCenter.Models.Persistencia {
 
             objConexao = Mapped.Connection();
 
-            string sql = "select * from eventos " +
-                "where ins_codigo = ?ins_codigo and tev_codigo = ?tev_codigo";
+            string sql = "select * from enventos_auditores " +
+                "inner join pessoas using (pes_codigo) " +
+                "inner join eventos using (eve_codigo) " +
+                "where ins_codigo = ?ins_codigo";
             objCommand = Mapped.Command(sql, objConexao);
 
             objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", instituicao));
-            objCommand.Parameters.Add(Mapped.Parameter("?tev_codigo", tipo));
 
             objDataAdapter = Mapped.Adapter(objCommand);
 

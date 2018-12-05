@@ -205,6 +205,7 @@
     <Compile Include="Controllers\IdentificadoresController.cs" />
     <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\TotensController.cs" />
+    <Compile Include="Controllers\EnventosAuditoresController.cs" />
     <Compile Include="Controllers\TurmasController .cs" />
     <Compile Include="Controllers\UsuariosController .cs" />
     <Compile Include="Controllers\EnderecosController.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="Models\Classes\TiposUsuarios.cs" />
     <Compile Include="Models\Classes\TiposEnderecos.cs" />
     <Compile Include="Models\Classes\Totens.cs" />
+    <Compile Include="Models\Classes\EnventosAuditores.cs" />
     <Compile Include="Models\Classes\Turmas.cs" />
     <Compile Include="Models\Classes\Usuarios.cs" />
     <Compile Include="Models\PasetoToken\autenticar.cs" />
@@ -248,6 +250,7 @@
     <Compile Include="Models\Persistencia\TiposEventosDB.cs" />
     <Compile Include="Models\Persistencia\TiposIdentificadoresDB.cs" />
     <Compile Include="Models\Persistencia\TotensDB.cs" />
+    <Compile Include="Models\Persistencia\EnventosAuditoresDB.cs" />
     <Compile Include="Models\Persistencia\TurmasDB.cs" />
     <Compile Include="Models\Persistencia\InstituicoesDB.cs" />
     <Compile Include="Models\Persistencia\TiposInsercoesDB.cs" />

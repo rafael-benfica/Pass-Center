@@ -2,13 +2,13 @@
     <div>
         
         <div class="row area-exibicao">
-            <div class="col s12 m4 l4 espacamento" v-for="item in 6" :key="item.id">
+            <div class="col s12 m4 l4 espacamento" v-for="item in enventosAuditores" :key="item.id">
                 <div class="modal-trigger" href="#modal">
                     <div class="card">
                         <div class="card-content">
-                            <h2 class="card-title cardDisciplina">Engenharia de Softwares {{ item }}</h2>
+                            <h2 class="card-title cardDisciplina">{{ item.eve_nome }}</h2>
                             <h3 class="card-title cardDisciplina">Professor:</h3>
-                            <p class="cardTurmaCarga">Claudemir</p><br />
+                            <p class="cardTurmaCarga">{{ item.pes_nome }}</p><br />
                         </div>
                     </div>
                 </div>
@@ -54,10 +54,19 @@
 		name: "TurmasGeral",
         data() {    
             return {
-                alunos:[]
+                alunos:[],
+                enventosAuditores: [],
+                evento_auditor:[]
             }
         },
 		mounted() {
+
+            this.$http.get('EnventosAuditores').then(response => {
+                    this.enventosAuditores = response.body;
+            }, response => {
+                    console.log("ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " + response.status);
+            });
+
             this.$http.get('Usuarios/porTipo', {params: {tipo: 5}}).then(response => {
                     this.alunos = response.body;
             }, response => {

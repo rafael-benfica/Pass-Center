@@ -12,6 +12,6 @@ namespace API_PassCenter.Models.Classes {
         public bool Eve_estado { get; set; }
         public bool Eve_operacao { get; set; }
         public TiposEventos Tev_codigo { get; set; }
-        public TiposEventos Iev_codigo { get; set; }
+        public Instituicoes Ins_codigo { get; set; }
     }
 }

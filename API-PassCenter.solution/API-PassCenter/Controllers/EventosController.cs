@@ -14,7 +14,9 @@ namespace API_PassCenter.Controllers {
         // POST: api/Endereco
         public IHttpActionResult Eventos([FromBody]Eventos eventos) {
 
-            if (autenticar.autenticacao(Request, 3) == null) {
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null) {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
@@ -23,9 +25,14 @@ namespace API_PassCenter.Controllers {
             eve.Eve_nome = eventos.Eve_nome;
             eve.Eve_sigla = eventos.Eve_sigla;
             eve.Eve_descricao = eventos.Eve_descricao;
-            eve.Eve_estado = eventos.Eve_estado;
-            eve.Eve_operacao = eventos.Eve_operacao;
+            eve.Eve_estado = true;
+            eve.Eve_operacao = false;
             eve.Tev_codigo = eventos.Tev_codigo;
+
+            Instituicoes ins = new Instituicoes();
+            ins.Ins_codigo = Convert.ToInt32(credenciais.Ins_codigo);
+
+            eve.Ins_codigo = ins;
 
             int retorno = EventosDB.Insert(eve);
 
@@ -39,7 +46,7 @@ namespace API_PassCenter.Controllers {
 
         [HttpGet, Route("api/Eventos")]
         // GET: api/Instituicoes
-        public IHttpActionResult Get() {
+        public IHttpActionResult Get(int tipo) {
 
             Indentificacao credenciais = autenticar.autenticacao(Request, 5);
 
@@ -47,7 +54,7 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
-            return Ok(PessoasDB.SelectID(Convert.ToInt32(credenciais.Pes_codigo)).Tables[0]);
+            return Ok(EventosDB.Select(Convert.ToInt32(credenciais.Ins_codigo), tipo).Tables[0]);
         }
 
         [HttpPost, Route("api/Eventos/TiposEventos")]

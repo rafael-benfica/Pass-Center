@@ -8,6 +8,7 @@ select * from usuarios;
 select * from tipos_eventos;
 select * from eventos;
 select * from turmas;
+select * from enventos_auditores;
 select * from totens;
 select * from tipos_identificadores;
 select * from identificadores;
