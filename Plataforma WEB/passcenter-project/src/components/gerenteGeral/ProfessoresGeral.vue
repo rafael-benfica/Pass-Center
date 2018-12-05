@@ -334,15 +334,20 @@
                 $('.modal').modal();
                
             });
-            this.$http.get('Usuarios/porTipo').then(response => {
-                this.professores = response.body;
 
-            }, response => {
-                console.log("ERRO! Código de resposta (HTTP) do servidor: " + response.status);
-            });
+            this.carregarDados();
 
 		},
 		methods: {
+            carregarDados(){
+                this.$http.get('Usuarios/porTipo').then(response => {
+                    this.professores = response.body;
+
+                }, response => {
+                    console.log("ERRO! Código de resposta (HTTP) do servidor: " + response.status);
+                });
+            },
+
             verDados(index){
                 console.log(this.professores[index]);
                 var dados = this.professores[index];
@@ -452,6 +457,7 @@
 						this.$http.put('Pessoas', dodosPessoais).then(response => {
 							this.$http.put('Enderecos', dodosEndereco).then(response => {
 								this.$http.put('Usuarios', dodosUsuario).then(response => {
+                                    this.carregarDados();
 									swalWithBootstrapButtons(
 										'Alterado!',
 										'As alterações foram salvas.',
@@ -468,6 +474,7 @@
 						});
 
 						function erro(msg, code) {
+                            this.carregarDados();
 							swalWithBootstrapButtons(
 								'Ops!',
 								'Algo deu errado! Alterações não realizadas! Entre em contato o Administrador!',
@@ -480,13 +487,15 @@
                     // Read more about handling dismissals
                     result.dismiss === swal.DismissReason.cancel
                     ) {
+                        this.carregarDados();
 						swalWithBootstrapButtons(
 							'Cancelado!',
 							'Alterações não enviadas!',
 							'error'
 							)
-					}
-				})
+                    }
+                    
+                })
             },
 
             confirmacaoCriar() {
@@ -497,11 +506,10 @@
 				})
 
 				swalWithBootstrapButtons({
-					title: 'Você tem certeza?',
-					text: "Você não poderá reverter essa ação!",
+					title: 'Todos os dados estão corretos?',
 					type: 'warning',
 					showCancelButton: true,
-					confirmButtonText: 'Sim, faça!',
+					confirmButtonText: 'Sim, Crie!',
 					cancelButtonText: 'Não, cancele!',
 					reverseButtons: true
 				}).then((result) => {
@@ -555,9 +563,10 @@
                                 }
                                 
                                 this.$http.post('Usuarios', dodosUsuario).then(response => {
+                                    this.carregarDados();
 									swalWithBootstrapButtons(
-										'Alterado!',
-										'As alterações foram salvas.',
+										'Salvo!',
+										'Todas as informações foram salvas.',
 										'success'
 										)
 								}, response => {
@@ -571,9 +580,10 @@
 						});
 
 						function erro(msg, code) {
+                            this.carregarDados();
 							swalWithBootstrapButtons(
-								'Ops!',
-								'Algo deu errado! Alterações não realizadas! Entre em contato o Administrador!',
+								'Oops!',
+								'Algo deu errado! Os dados não foram salvos! Entre em contato o Administrador!',
 								'error'
 								)
 							console.log("ERRO ao atualizar "+msg+"! Código de resposta (HTTP) do servidor: " + code)
@@ -583,13 +593,15 @@
                     // Read more about handling dismissals
                     result.dismiss === swal.DismissReason.cancel
                     ) {
+                        this.carregarDados();
 						swalWithBootstrapButtons(
-							'Cancelado!',
-							'Alterações não enviadas!',
-							'error'
+							'Okay!',
+							'Revise/altere o que for necessário ;)',
+							'info'
 							)
 					}
-				})
+                }),
+                this.carregarDados();
             }
         }
 	}
