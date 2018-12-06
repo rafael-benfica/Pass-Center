@@ -18,6 +18,7 @@ import TurmasGeral from '@/components/gerenteGeral/TurmasGeral.vue'
 
 //Geral
 import Login from '@/components/geral/Login.vue'
+import Home from '@/components/geral/Home.vue'
 import MeusDados from '@/components/geral/MeusDados.vue'
 
 // Aluno
@@ -53,6 +54,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/login',
       name: 'Login',
       component: Login
     },
