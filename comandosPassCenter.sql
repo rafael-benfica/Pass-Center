@@ -21,6 +21,8 @@ select * from pagamentos;
 
 -- selects com Inner Join
 
+select * from enventos_auditores inner join pessoas using (pes_codigo) inner join eventos using (eve_codigo) WHERE pessoas.ins_codigo = 1;
+
 select usu_codigo, pes_codigo, ins_codigo, tus_codigo from usuarios as a inner join pessoas using (pes_codigo)
 inner join tipos_usuarios using (tus_codigo)
 where a.usu_login = "cunha" and a.usu_senha = "oi";

@@ -2,13 +2,13 @@
     <div>
         
         <div class="row area-exibicao">
-            <div class="col s12 m4 l4 espacamento" v-for="item in enventosAuditores" :key="item.id">
-                <div class="modal-trigger" href="#modal">
+            <div class="col s12 m4 l4 espacamento" v-for="(item, index) in enventosAuditores" :key="item.id">
+                <div class="modal-trigger" href="#modal" @click="verDados(index)">
                     <div class="card">
                         <div class="card-content">
-                            <h2 class="card-title cardDisciplina">{{ item.eve_nome }}</h2>
-                            <h3 class="card-title cardDisciplina">Professor:</h3>
-                            <p class="cardTurmaCarga">{{ item.pes_nome }}</p><br />
+                            <h1 class="card-title cardDisciplina">{{ item.eve_nome }}</h1>
+                            <h3 class="card-title cardDisciplina">Professor(a):</h3>
+                            <h4 class="cardTurmaCarga">{{ item.pes_nome }}</h4><br />
                         </div>
                     </div>
                 </div>
@@ -16,8 +16,8 @@
 
             <div id="modal" class="modal margem">
                 <div class="modal-content">
-                    <h3 class="centro">Engenharia de Softwares</h3>
-                    <h4>Professor Claudemir</h4>
+                    <h3 class="centro">{{nomeDisciplina}}</h3>
+                    <h4>{{ nomeAuditor }}</h4>
 
                     <table>
                         <thead class="centro">
@@ -28,7 +28,7 @@
                                  </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(item, index) in alunos" :key="item.id" @click="verDados(index)">
+                            <tr v-for="item in alunos" :key="item.id">
                                 <td>{{ item.pes_nome +" "+ item.pes_sobrenomes }}</td>
                                 <td>{{ "#"+item.pes_matricula }}</td>
                                 <td><a class="waves-effect waves-light btn red modal-trigger" href="#modalVer">Remover</a></td>
@@ -56,7 +56,9 @@
             return {
                 alunos:[],
                 enventosAuditores: [],
-                evento_auditor:[]
+                evento_auditor:[],
+                nomeDisciplina: "",
+                nomeAuditor: ""
             }
         },
 		mounted() {
@@ -80,8 +82,13 @@
         
         },
         methods: {
-        confirmação() {
-            const swalWithBootstrapButtons = swal.mixin({
+            verDados(index){
+                 var dados = this.enventosAuditores[index];
+                this.nomeDisciplina = dados.eve_nome;
+                this.nomeAuditor = dados.pes_nome;
+            },
+            confirmação() {
+                const swalWithBootstrapButtons = swal.mixin({
                 confirmButtonClass: 'btn green sepraracaoBotoes',
                 cancelButtonClass: 'btn red sepraracaoBotoes',
                 buttonsStyling: false,

@@ -50,7 +50,7 @@ namespace API_PassCenter.Models.Persistencia {
             string sql = "select * from enventos_auditores " +
                 "inner join pessoas using (pes_codigo) " +
                 "inner join eventos using (eve_codigo) " +
-                "where ins_codigo = ?ins_codigo";
+                "where pessoas.ins_codigo = ?ins_codigo";
             objCommand = Mapped.Command(sql, objConexao);
 
             objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", instituicao));

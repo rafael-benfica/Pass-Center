@@ -80,3 +80,10 @@ VALUES ('aluno', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '
 INSERT INTO tipos_eventos (`tev_titulo`) VALUES ('Disciplina');
 INSERT INTO tipos_eventos (`tev_titulo`) VALUES ('Evento');
 
+-- Inserir Evento
+INSERT INTO eventos (eve_nome, eve_sigla, eve_descricao, eve_estado, eve_operacao, tev_codigo, ins_codigo) VALUES ('Matemática 1', 'Mat01', 'Aprender a Somar e Subtrair', '1', '0', '1', '1');
+
+INSERT INTO enventos_auditores (eau_periodo_identificacao, eau_estado, eau_data_abertura, pes_codigo, eve_codigo, ins_codigo) VALUES ('2018/01', '1', '2018-12-06', '4', '1', '1');
+
+
+
