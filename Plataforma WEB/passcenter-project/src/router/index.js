@@ -158,7 +158,7 @@ export default new Router({
           }
         },
         {
-          path: '',
+          path: 'MeusDadosGerenteGeral',
           name: 'MeusDadosGerenteGeral',
           component: MeusDados,
           meta: {
@@ -238,7 +238,7 @@ export default new Router({
           }
         },
         {
-          path: '/',
+          path: 'MeusDadosGerenteCadastro',
           name: 'MeusDadosGerenteCadastro',
           component: MeusDados,
           meta: {
@@ -296,7 +296,7 @@ export default new Router({
       component: Professor,
       children:[
         {
-          path: '',
+          path: 'MinhasDisciplinasProfessor',
           name: 'MinhasDisciplinasProfessor',
           component: MinhasDisciplinas,
           meta: {
@@ -349,7 +349,7 @@ export default new Router({
       component: Aluno,
       children: [
         {
-          path: '',
+          path: 'MinhasDisciplinasAluno',
           name: 'MinhasDisciplinasAluno',
           component: MinhasDisciplinasAluno,
           meta: {

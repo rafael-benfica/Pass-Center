@@ -135,8 +135,9 @@
 
 <style scoped>
 
-#base{
-    color:white; 
+.row{
+    color:white;
+    margin-bottom: 0;
 }
 
 nav{
