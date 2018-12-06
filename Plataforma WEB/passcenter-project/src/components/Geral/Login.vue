@@ -2,7 +2,7 @@
     <div>
         <div class="grey lighten-3 menu-superior">  
             <a href="#" class="center-align">
-                <img src="./../../assets/img/logo.png">
+                <router-link :to="{ name: 'Home' }"><img src="./../../assets/img/logo.png"></router-link>
             </a>
         </div>
 
