@@ -46,4 +46,4 @@
     }
 </script>
 
-<style src="./../../assets/css/aluno/MinhasDisciplinasAluno.css" scoped></style>
+<style src="./../../assets/css/gerenteGeral/GeralGerenteGeral.css" scoped></style>

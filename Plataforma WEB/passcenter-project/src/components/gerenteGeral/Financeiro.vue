@@ -63,6 +63,6 @@
 
 
 
-<style src="./../../assets/css/professor/MinhasDisciplinas.css" scoped></style>
+<style src="./../../assets/css/gerenteGeral/Financeiro.css" scoped></style>
 <style src="./../../assets/css/gerenteGeral/tables.css" scoped></style>
    

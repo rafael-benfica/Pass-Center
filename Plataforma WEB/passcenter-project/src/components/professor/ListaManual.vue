@@ -32,4 +32,4 @@
     }
 </script>
 
-<style src="./../../assets/css/aluno/MinhasDisciplinasAluno.css" scoped></style>
+<style src="./../../assets/css/professor/GeralProfessores.css" scoped></style>

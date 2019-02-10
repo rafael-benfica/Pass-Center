@@ -39,7 +39,7 @@ import GerenteCadastroMateria from '@/components/gerenteGeral/DisciplinasGeral.v
 import FormularioAluno from '@/components/gerenteGeral/AlunoGeral.vue'
 
 //Administrador
-import  AlunoADM from '@/components/gerenteGeral/AlunoGeral.vue'
+import AlunoADM from '@/components/gerenteGeral/AlunoGeral.vue'
 import DisciplinasADM from '@/components/gerenteGeral/DisciplinasGeral.vue'
 import FinanceiroADM from '@/components/gerenteGeral/Financeiro.vue'
 import InstituicoesADM from '@/components/administrador/InstituicoesADM.vue'

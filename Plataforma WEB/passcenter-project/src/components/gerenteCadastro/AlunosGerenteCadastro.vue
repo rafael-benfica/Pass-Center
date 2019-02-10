@@ -302,6 +302,6 @@
     }
 </script>
 
-<style src="./../../assets/css/professor/MinhasDisciplinas.css" scoped></style>
-<style src="./../../assets/css/gerenteGeral/tables.css" scoped></style>
+<style src="./../../assets/css/gerenteCadastro/AlunosCadastro.css" scoped></style>
+<style src="./../../assets/css/gerenteCadastro/tables.css" scoped></style>
    
