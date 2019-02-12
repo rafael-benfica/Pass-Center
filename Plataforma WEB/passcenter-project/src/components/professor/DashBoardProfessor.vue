@@ -29,7 +29,7 @@
     <li><router-link :to="{ name: 'MinhasDisciplinasProfessor' }" class=" waves-effect"><i class="icone material-icons">view_comfy</i>Minhas Disciplinas</router-link></li>
     <li><router-link :to="{ name: 'MeusDadosProfessor' }" class=" waves-effect"><i class="icone material-icons">account_circle</i>Meus Dados</router-link></li>
     <li><router-link :to="{ name: 'ListaManual' }" class=" waves-effect"><i class="icone material-icons">rate_review</i>Lista de Presença Manual</router-link></li>   
-        <li class="center-align botao-sair"><router-link :to="{ name: 'Login' }" class="waves-effect waves-light btn red darken-4">Sair</router-link></li>
+        <li class="center-align botao-sair" @click="logout()"><router-link :to="{ name: 'Login' }" class="waves-effect waves-light btn red darken-4">Sair</router-link></li>
         
   </ul>
 

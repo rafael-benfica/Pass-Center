@@ -57,30 +57,59 @@
                 senha:""
             }
         },
+        mounted: function () {
+                if(this.getCookie("Token") != ""){
+                    this.encaminhar(this.getCookie("TipoUser"));
+                }
+
+        },
         methods: {
+            getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for(var i = 0; i <ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            },
+
             logar(){
                 this.$http.post('Tokens', {usu_login:this.login , usu_senha:this.senha}).then(response => {
                         var dados = response.body;
                         this.$store.commit('INSERIRTOKEN',dados[0]);
+                        this.$store.commit('INSERIRTIPOUSER',dados[1]);
                         this.$store.commit('CARREGARTOKEN');
 
-                        if(dados[1]==5){
-                            this.$router.push("aluno");
-                        }else if(dados[1]==4){
-                            this.$router.push("professor");
-                        }else if(dados[1]==3){
-                            this.$router.push("gerenteCadastro");
-                        }else if(dados[1]==2){
-                            this.$router.push("gerenteGeral");                       
-                        }else if(dados[1]==1){
-                            this.$router.push("administrador");
-                        }
+                        document.cookie = "Token="+dados[0];
+                        document.cookie = "TipoUser="+dados[1];
+                        console.log("ola")
+
+                        this.encaminhar(dados[1]);
 
 				}, response => {
 				    console.log("ERRO! Código de resposta (HTTP) do servidor: " + response.status);
                 });
+            },
 
-                
+            encaminhar(dados){
+                if(dados==5){
+                    this.$router.push("aluno");       
+                }else if(dados==4){
+                    this.$router.push("professor");
+                }else if(dados==3){
+                    this.$router.push("gerenteCadastro");
+                }else if(dados==2){
+                    this.$router.push("gerenteGeral");                       
+                }else if(dados==1){
+                    this.$router.push("administrador");
+                }
             }
         },
     }

@@ -31,7 +31,7 @@
 
                         <div id="modalVer" class="modal">
                             <div class="modal-content">
-                                <h4 class="centro">Professor</h4>
+                                <h4 class="centro">Alunos</h4>
                                 <hr>
                                 <div class="row col s12 m12 l12">
                                     <div class="row">
@@ -161,7 +161,7 @@
 
                         <div id="modalAdd" class="modal">
                             <div class="modal-content">
-                                <h4 class="centro">Cadastro Professor</h4>
+                                <h4 class="centro">Cadastro Alunos</h4>
                                 <hr>
                                 <div class="row col s12 m12 l12">
                                     <div class="row">
