@@ -33,7 +33,7 @@
     <li><router-link :to="{ name: 'Totens' }" class=" waves-effect"><i class="icone material-icons">perm_device_information</i>Totens</router-link></li>
     <li><router-link :to="{ name: 'MeusDadosGerenteGeral' }" class=" waves-effect"><i class="icone material-icons">account_circle</i>Meus dados</router-link></li>
     <li><router-link :to="{ name: 'Financeiro' }" class=" waves-effect"><i class="icone material-icons">attach_money</i>Financeiro</router-link></li>
-    <li class="center-align botao-sair"><router-link :to="{ name: 'Login' }" class="waves-effect waves-light btn red darken-4">Sair</router-link></li>
+   <li class="center-align botao-sair" @click="logout()"><router-link :to="{ name: 'Login' }" class="waves-effect waves-light btn red darken-4">Sair</router-link></li>
   </ul>
 
   <a href="#" data-target="slide-out" class="sidenav-trigger show-on-small "><i class="material-icons gatilho-mobile">menu</i></a>

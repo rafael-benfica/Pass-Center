@@ -33,6 +33,9 @@ export default {
     },
   
     methods: {
+        logout(){
+            this.$store.commit('LOGOUT');
+        },
         atualizarListaBreadcrumbs(){
             this.breadcrumbsLista = this.$route.meta.breadcrumbs
         },
