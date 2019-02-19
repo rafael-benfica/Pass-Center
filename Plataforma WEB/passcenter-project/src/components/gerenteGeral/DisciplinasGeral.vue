@@ -25,7 +25,7 @@
 		<div id="modal" class="modal margem">
 			<div class="modal-content">
 				<h4 class="centro">Cadastro Disciplina</h4>
-				<hr>
+				<hr />
 
 				<div class="row col s12 m12 l12">
 					<div class="input-field col s12 m6 l6">

@@ -21,7 +21,7 @@ export default {
             this.nome = dados.pes_nome + " " + dados.pes_sobrenomes;
             this.matricula = dados.pes_matricula;
         }, response => {
-            console.log("ERRO! Código de resposta (HTTP) do servidor: " + response.status);
+            console.log("ERRO Cabecalho! Código de resposta (HTTP) do servidor: " + response.status);
         });
     },
   

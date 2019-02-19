@@ -87,8 +87,12 @@
                         this.$store.commit('INSERIRTIPOUSER',dados[1]);
                         this.$store.commit('CARREGARTOKEN');
 
-                        document.cookie = "Token="+dados[0];
-                        document.cookie = "TipoUser="+dados[1];
+                        var d = new Date();
+                        d.setTime(d.getTime() + (30*60*1000));
+                        var expires = "expires="+ d.toUTCString();
+
+                        document.cookie = "Token="+dados[0] + ";" + expires + "; path=/";
+                        document.cookie = "TipoUser="+dados[1] + ";" + expires + "; path=/";
                         console.log("ola")
 
                         this.encaminhar(dados[1]);

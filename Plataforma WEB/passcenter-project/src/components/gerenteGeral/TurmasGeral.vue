@@ -13,7 +13,20 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col s12 m3 l3 espacamento">
+                <a class="modal-trigger" href="#modalAdd" @click="addDados()">
+                    <div class="card">
+                        <div class="card-content">
+                            <br/>
+                            <br/>
+							<h5 class=" cardDisciplina">Adicionar</h5>
+							<h3 class=" cardDisciplina"><i class="material-icons icone-card">add_circle_outline</i></h3>
+                            <br/>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
             <div id="modal" class="modal margem">
                 <div class="modal-content">
                     <h3 class="centro">{{nomeDisciplina}}</h3>
@@ -45,6 +58,43 @@
                 </div>
             </div>
         </div>
+
+        <div id="modalAdd" class="modal margem">
+            <div class="modal-content">
+				<h4 class="centro">Cadastro de Turma</h4>
+				<hr />
+
+                <div class="row">
+                    <div class="col s12 m6 l6">
+                        <div class="col s10 m10 l10 input-field">
+                            <input id="disciplina" type="text" class="validate" v-model="disciplina">
+                            <label for="disciplina">Buscar Disciplina:</label>
+                        </div>
+                        <div class="col s2 m2 l2">
+                            <a class="btn-floating btn-large waves-effect waves-light iconeBG"><i class="material-icons icone">search</i></a>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l6">
+                        <div class="col s10 m10 l10 input-field">
+                            <input id="professor" type="text" class="validate" v-model="professor">
+                            <label for="professor">Buscar Professor:</label>
+                        </div>
+                        <div class="col s2 m2 l2">
+                            <a class="btn-floating btn-large waves-effect waves-light iconeBG"><i class="material-icons icone">search</i></a>
+                        </div>
+                    </div>
+                </div>
+
+				
+
+				<div class="modal-footer row col s12 m12 l12 ">
+					<a class="col s12 m4 l4 modal-close waves-effect waves-teal btn red">Cancelar</a>
+					<p class="col s12 m4 l4"></p>
+					<a class="col s12 m4 l4 waves-effect waves-teal btn green" @click="confirmacaoCriar()">Confirmar</a>
+				</div>
+			</div>
+		</div>
+       
     </div>
 			
 </template>
@@ -54,6 +104,8 @@
 		name: "TurmasGeral",
         data() {    
             return {
+                professor: "",
+                disciplina: "",
                 alunos:[],
                 enventosAuditores: [],
                 evento_auditor:[],
@@ -128,4 +180,4 @@
 </script>
 
 
-<style src="./../../assets/css/gerenteGeral/GeralGerenteGeral.css" scoped></style>
+<style src="./../../assets/css/gerenteGeral/GeralGerenteTurmas.css" scoped></style>

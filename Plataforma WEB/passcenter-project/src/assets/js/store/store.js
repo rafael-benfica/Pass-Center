@@ -10,9 +10,11 @@ const state = {
 
 const mutations = {
     INSERIRTOKEN (state, payload) {
+      //alert(payload);
       state.token = payload
     },
     INSERIRTIPOUSER (state, payload) {
+      //alert(payload);
       state.tipoUser = payload
     },
 
@@ -23,6 +25,7 @@ const mutations = {
     LOGOUT (state) {
       document.cookie = "Token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = "TipoUser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      console.log("sair");
     }
 }
 

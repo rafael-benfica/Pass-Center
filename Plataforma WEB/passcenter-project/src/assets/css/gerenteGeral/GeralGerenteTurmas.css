@@ -1,0 +1,49 @@
+
+.espacamento{
+    padding-top: 20px;
+}
+
+.area-exibicao{
+    width: 88%;
+}
+
+.cardDisciplina{
+    font-weight: 700 !important;
+}
+
+.cardTurmaCarga{
+    font-weight: 600 !important;
+}
+
+.cardFaltasPresencas{
+    font-weight: 400 !important;
+}
+.card-content, .modal-content{
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+.botaoVerMais{
+    margin-top: 1rem;
+}
+.botaoDatas{
+    margin-top: 1rem;
+    pointer-events: none;
+    cursor: default;
+}
+.margem{
+    margin-top: 100px;
+}
+.iconeBG{
+    margin-top: 1rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    line-height: 3.5rem !important;
+
+}
+.icone{
+    line-height: 0rem !important;
+}
+
+.icone-card{
+    font-size: 3.8rem
+}

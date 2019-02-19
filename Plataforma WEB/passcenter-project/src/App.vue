@@ -5,12 +5,12 @@
 <script>
 export default {
     name: 'app',
-    mounted: function () {
+    beforeMount: function () {
         this.$store.commit('INSERIRTOKEN',this.getCookie("Token"));
         this.$store.commit('INSERIRTIPOUSER',this.getCookie("TipoUser"));
         this.$store.commit('CARREGARTOKEN');
+        console.log(this.getCookie("Token"));
     },
-
     methods: {
         getCookie(cname) {
             var name = cname + "=";
