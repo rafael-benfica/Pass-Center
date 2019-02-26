@@ -54,7 +54,6 @@ VALUES ('Yuri', 'Felipe Castro', '1996-08-06', '536.525.748-00', '14.648.632-8',
 INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo) 
 VALUES ('cadastro', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '3', '3');
 
-
 -- Inserindo Auditor
 INSERT INTO enderecos(end_logradouro, end_numero, end_bairro, end_municipio, end_cep, end_estado, end_complemento, end_pais, ten_codigo)
 VALUES('Rua Fábio Tullio de Mattos', '481', 'Jardim Maria Amélia', 'Jacareí', '12318280', 'SP', '', 'Brasil', '2');

@@ -66,5 +66,36 @@ namespace API_PassCenter.Models.Persistencia {
             return ds;
 
         }
+
+        public static DataSet SelectNome(string nome, int instituicao)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "select * from eventos " +
+                "where  and ins_codigo = ?ins_codigo";
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?tev_codigo", nome));
+            objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", instituicao));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
     }
 }

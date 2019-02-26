@@ -72,6 +72,37 @@ namespace API_PassCenter.Models.Persistencia {
 
         }
 
+        public static DataSet SelectProfessoresNome(string nome, int instituicao)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "select pes_codigo, pes_nome, pes_sobrenomes, pes_matricula from pessoas " +
+                "where pes_nome = ?pes_nome and ins_codigo = ?ins_codigo;";
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?pes_nome", nome));
+            objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", instituicao));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
+
 
         public static int Update(Pessoas pessoas) {
             int retorno = 0;
