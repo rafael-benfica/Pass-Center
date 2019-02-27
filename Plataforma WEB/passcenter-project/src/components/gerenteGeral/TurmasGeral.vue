@@ -39,7 +39,7 @@
           <div class="row">
             <div class="col s12 m6 l6">
               <div class="col s10 m10 l10 input-field">
-                <input id="disciplina" type="text" class="validate" v-model="disciplinaBusca">
+                <input id="disciplina" type="text" class="validate" v-model="disciplinaBusca" >
                 <label for="disciplina">Buscar Disciplina:</label>
               </div>
               <div class="col s2 m2 l2">

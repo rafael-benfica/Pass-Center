@@ -84,8 +84,8 @@ namespace API_PassCenter.Models.Persistencia {
 
             objConexao = Mapped.Connection();
 
-            string sql = "select pes_codigo, pes_nome, pes_sobrenomes, pes_matricula from pessoas " +
-                "where pes_nome = ?pes_nome and ins_codigo = ?ins_codigo;";
+            string sql = "select pes_codigo, pes_nome, pes_sobrenomes, pes_matricula from pessoas inner join usuarios using(pes_codigo) " +
+                "where pes_nome like ?pes_nome and tus_codigo = 4 and ins_codigo = ?ins_codigo;";
             objCommand = Mapped.Command(sql, objConexao);
 
             objCommand.Parameters.Add(Mapped.Parameter("?pes_nome", nome));
