@@ -6,10 +6,17 @@
 export default {
   name: "app",
   beforeMount: function() {
+
+    if(this.getCookie("Token") != ""){
+
+    
     this.$store.commit("INSERIRTOKEN", this.getCookie("Token"));
     this.$store.commit("INSERIRTIPOUSER", this.getCookie("TipoUser"));
     this.$store.commit("CARREGARTOKEN");
     console.log(this.getCookie("Token"));
+    } else {
+      this.$router.push("/Login");
+    }
   },
   methods: {
     getCookie(cname) {

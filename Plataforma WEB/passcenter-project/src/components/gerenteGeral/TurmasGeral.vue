@@ -39,8 +39,8 @@
           <div class="row">
             <div class="col s12 m6 l6">
               <div class="col s10 m10 l10 input-field">
-                <input id="disciplina" type="text" class="validate" v-model="disciplinaBusca" >
-                <label for="disciplina">Buscar Disciplina:</label>
+                <input id="disciplina" placeholder="Entre com o nome da Disciplina" type="text" class="validate" v-model="disciplinaBusca" >
+                <label for="disciplina" class="active">Buscar Disciplina:</label>
               </div>
               <div class="col s2 m2 l2">
                 <a
@@ -53,8 +53,8 @@
             </div>
             <div class="col s12 m6 l6">
               <div class="col s10 m10 l10 input-field">
-                <input id="professor" type="text" class="validate" v-model="professorBusca">
-                <label for="professor">Buscar Professor:</label>
+                <input id="professor" placeholder="Entre com o nome do Professor" type="text" class="validate" v-model="professorBusca">
+                <label for="professor" class="active">Buscar Professor:</label>
               </div>
               <div class="col s2 m2 l2">
                 <a class="btn-floating btn-large waves-effect waves-light iconeBG modal-trigger" href="#modalBuscaProfessor" @click="buscarProfessores()">

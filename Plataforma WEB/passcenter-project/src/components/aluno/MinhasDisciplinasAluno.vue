@@ -7,7 +7,7 @@
                     <div class="card-content">
                         <span class="card-title cardDisciplina">Interação Humano Computador</span>
                         <p class="cardTurmaCarga">4º ADS - 40h</p>
-                        <p class="cardFaltasPresencas">23 prenseças em 25 aulas</p>
+                        <p class="cardFaltasPresencas">23 presenças em 25 aulas</p>
                         <a class="waves-effect waves-light btn modal-trigger botaoVerMais" href="#modal1">Ver mais</a>
                     </div>
                 </div>
