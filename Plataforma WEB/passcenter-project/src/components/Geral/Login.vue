@@ -15,7 +15,7 @@
             <div class="row">
               <h1 class="login">Login</h1>
             </div>
-            <form onsubmit="return false">
+            <form id="login" onsubmit="return false">
               <div class="formulario">
                 <div class="row">
                   <div class="input-field col s12">
@@ -25,6 +25,7 @@
                       class="validate"
                       autocomplete="username email"
                       v-model="login"
+                      required
                     >
                     <label for="email">Email</label>
                   </div>
@@ -37,6 +38,7 @@
                       class="validate"
                       autocomplete="current-password"
                       v-model="senha"
+                      required
                     >
                     <label for="password">Senha</label>
                   </div>
@@ -67,11 +69,13 @@ export default {
       senha: ""
     };
   },
+  
   mounted: function() {
     if (this.getCookie("Token") != "") {
       this.encaminhar(this.getCookie("TipoUser"));
     }
   },
+
   methods: {
     getCookie(cname) {
       var name = cname + "=";
@@ -90,32 +94,44 @@ export default {
     },
 
     logar() {
-      this.$http
-        .post("Tokens", { usu_login: this.login, usu_senha: this.senha })
-        .then(
-          response => {
-            var dados = response.body;
-            this.$store.commit("INSERIRTOKEN", dados[0]);
-            this.$store.commit("INSERIRTIPOUSER", dados[1]);
-            this.$store.commit("CARREGARTOKEN");
+      var sha512 = require("js-sha512");
 
-            var d = new Date();
-            d.setTime(d.getTime() + 30 * 60 * 1000);
-            var expires = "expires=" + d.toUTCString();
+      var form = document.getElementById("login");
+      var isValidForm = form.checkValidity();
 
-            document.cookie = "Token=" + dados[0] + ";" + expires + "; path=/";
-            document.cookie =
-              "TipoUser=" + dados[1] + ";" + expires + "; path=/";
-            console.log("ola");
+      if (isValidForm) {
+        this.$http
+          .post("Tokens", {
+            usu_login: this.login,
+            usu_senha: sha512(this.senha)
+          })
+          .then(
+            response => {
+              var dados = response.body;
+              this.$store.commit("INSERIRTOKEN", dados[0]);
+              this.$store.commit("INSERIRTIPOUSER", dados[1]);
+              this.$store.commit("CARREGARTOKEN");
 
-            this.encaminhar(dados[1]);
-          },
-          response => {
-            console.log(
-              "ERRO! Código de resposta (HTTP) do servidor: " + response.status
-            );
-          }
-        );
+              var d = new Date();
+              d.setTime(d.getTime() + 30 * 60 * 1000);
+              var expires = "expires=" + d.toUTCString();
+
+              document.cookie =
+                "Token=" + dados[0] + ";" + expires + "; path=/";
+              document.cookie =
+                "TipoUser=" + dados[1] + ";" + expires + "; path=/";
+              console.log("ola");
+
+              this.encaminhar(dados[1]);
+            },
+            response => {
+              console.log(
+                "ERRO! Código de resposta (HTTP) do servidor: " +
+                  response.status
+              );
+            }
+          );
+      }
     },
 
     encaminhar(dados) {

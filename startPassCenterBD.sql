@@ -30,7 +30,7 @@ INSERT INTO pessoas (pes_nome, pes_sobrenomes, pes_data_nascimento, pes_cpf, pes
 VALUES ('Filipe', 'Márcio Ferreira', '1996-02-01', '240.436.648-34', '48.085.566-3', '1802010', '1', '(11) 2511-5724', '(11) 98403-6407', '','2', '1');
 
 INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo) 
-VALUES ('adm', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '1', '1');
+VALUES ('adm@teste.com', '5d68217d0c3ddfc029f1f8f2e61a80a8256342f27893ff0fe55da861e75325d6f7c805a26cae587f01aee7980700e8f06422c233a0e2a8e9bf26aad0c39e00c6', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '1', '1');
 
 
 -- Inserindo Gerente Geral
@@ -41,7 +41,7 @@ INSERT INTO pessoas (pes_nome, pes_sobrenomes, pes_data_nascimento, pes_cpf, pes
 VALUES ('Nicole', 'Bruna Aline Freitas', '1996-08-26', '309.127.538-89', '33.609.202-7', '1802020', '2', '(11) 2706-6469', '(11) 98193-4069', '','3', '1');
 
 INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo) 
-VALUES ('geral', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '2', '2');
+VALUES ('geral@teste.com', '5d68217d0c3ddfc029f1f8f2e61a80a8256342f27893ff0fe55da861e75325d6f7c805a26cae587f01aee7980700e8f06422c233a0e2a8e9bf26aad0c39e00c6', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '2', '2');
 
 
 -- Inserindo Gerente Cadastro
@@ -52,7 +52,7 @@ INSERT INTO pessoas (pes_nome, pes_sobrenomes, pes_data_nascimento, pes_cpf, pes
 VALUES ('Yuri', 'Felipe Castro', '1996-08-06', '536.525.748-00', '14.648.632-8', '1802030', '1', '(11) 2545-4040', '(11) 99272-4760', '','4', '1');
 
 INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo) 
-VALUES ('cadastro', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '3', '3');
+VALUES ('cadastro@teste.com', '5d68217d0c3ddfc029f1f8f2e61a80a8256342f27893ff0fe55da861e75325d6f7c805a26cae587f01aee7980700e8f06422c233a0e2a8e9bf26aad0c39e00c6', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '3', '3');
 
 -- Inserindo Auditor
 INSERT INTO enderecos(end_logradouro, end_numero, end_bairro, end_municipio, end_cep, end_estado, end_complemento, end_pais, ten_codigo)
@@ -62,7 +62,7 @@ INSERT INTO pessoas (pes_nome, pes_sobrenomes, pes_data_nascimento, pes_cpf, pes
 VALUES ('Bruna', 'Benedita Alessandra Drumond', '1996-01-08','730.056.198-50', '26.499.183-7', '1802040', '2', '(12) 2630-2701', '(12) 99159-8474', '','5', '1');
 
 INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo) 
-VALUES ('auditor', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '4', '4');
+VALUES ('auditor@teste.com', '5d68217d0c3ddfc029f1f8f2e61a80a8256342f27893ff0fe55da861e75325d6f7c805a26cae587f01aee7980700e8f06422c233a0e2a8e9bf26aad0c39e00c6', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '4', '4');
 
 
 -- Inserindo Aluno
@@ -73,7 +73,7 @@ INSERT INTO pessoas (pes_nome, pes_sobrenomes, pes_data_nascimento, pes_cpf, pes
 VALUES ('Diego', 'Daniel Cardoso', '1996-11-07','313.172.158-85', '15.498.605-7', '1802050', '1', '(11) 2840-1247', '(11) 99614-1502', '','6', '1');
 
 INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo) 
-VALUES ('aluno', 'oi', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '5', '5');
+VALUES ('aluno@teste.com', '5d68217d0c3ddfc029f1f8f2e61a80a8256342f27893ff0fe55da861e75325d6f7c805a26cae587f01aee7980700e8f06422c233a0e2a8e9bf26aad0c39e00c6', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '5', '5');
 
 -- Inserindo Tipos de Eventos
 INSERT INTO tipos_eventos (`tev_titulo`) VALUES ('Disciplina');
