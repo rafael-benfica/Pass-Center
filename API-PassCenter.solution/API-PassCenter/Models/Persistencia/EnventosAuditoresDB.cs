@@ -7,7 +7,7 @@ using System.Web;
 
 namespace API_PassCenter.Models.Persistencia {
     public class EnventosAuditoresDB {
-        public static int Insert(EnventosAuditores eau) {
+        public static int Insert(EventosAuditores eau) {
             int retorno = 0;
             try {
                 IDbConnection objConexao; // Abre a conexao

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 namespace API_PassCenter.Models.Classes {
-    public class EnventosAuditores {
+    public class EventosAuditores {
         public int Eau_codigo { get; set; }
         public string Eau_periodo_identificacao { get; set; }
         public DateTime Eau_data_abertura { get; set; }

@@ -126,7 +126,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `PassCenter`.`usuarios` (
   `usu_codigo` INT NOT NULL AUTO_INCREMENT,
   `usu_login` VARCHAR(50) NOT NULL,
-  `usu_senha` VARCHAR(50) NOT NULL,
+  `usu_senha` TEXT NOT NULL,
   `usu_estado` TINYINT NOT NULL,
   `usu_data_criacao` DATETIME NOT NULL,
   `usu_data_desativacao` DATETIME NULL,
@@ -337,22 +337,17 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`sessoes` (
   `ses_horario_inicio` DATETIME NOT NULL,
   `ses_horario_fim` DATETIME NULL,
   `tot_codigo` INT NULL,
-  `eve_codigo` INT NOT NULL,
   `hev_codigo` INT NOT NULL,
   `tin_codigo` INT NOT NULL,
+  `eau_codigo` INT NOT NULL,
   PRIMARY KEY (`ses_codigo`),
   INDEX `fk_sessoes_totens1_idx` (`tot_codigo` ASC) VISIBLE,
-  INDEX `fk_sessoes_evento1_idx` (`eve_codigo` ASC) VISIBLE,
   INDEX `fk_sessoes_horarios_eventos1_idx` (`hev_codigo` ASC) VISIBLE,
   INDEX `fk_sessoes_tipos_insercoes1_idx` (`tin_codigo` ASC) VISIBLE,
+  INDEX `fk_sessoes_enventos_auditores1_idx` (`eau_codigo` ASC) VISIBLE,
   CONSTRAINT `fk_sessoes_totens1`
     FOREIGN KEY (`tot_codigo`)
     REFERENCES `PassCenter`.`totens` (`tot_codigo`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_sessoes_evento1`
-    FOREIGN KEY (`eve_codigo`)
-    REFERENCES `PassCenter`.`eventos` (`eve_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_sessoes_horarios_eventos1`
@@ -363,6 +358,11 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`sessoes` (
   CONSTRAINT `fk_sessoes_tipos_insercoes1`
     FOREIGN KEY (`tin_codigo`)
     REFERENCES `PassCenter`.`tipos_insercoes` (`tin_codigo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_sessoes_enventos_auditores1`
+    FOREIGN KEY (`eau_codigo`)
+    REFERENCES `PassCenter`.`enventos_auditores` (`eau_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

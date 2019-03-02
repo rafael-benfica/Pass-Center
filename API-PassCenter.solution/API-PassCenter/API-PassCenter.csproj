@@ -232,7 +232,7 @@
     <Compile Include="Models\Classes\TiposUsuarios.cs" />
     <Compile Include="Models\Classes\TiposEnderecos.cs" />
     <Compile Include="Models\Classes\Totens.cs" />
-    <Compile Include="Models\Classes\EnventosAuditores.cs" />
+    <Compile Include="Models\Classes\EventosAuditores.cs" />
     <Compile Include="Models\Classes\Turmas.cs" />
     <Compile Include="Models\Classes\Usuarios.cs" />
     <Compile Include="Models\PasetoToken\autenticar.cs" />

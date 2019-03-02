@@ -23,7 +23,7 @@ namespace API_PassCenter.Controllers {
             ses.Ses_horario_inicio = sessoes.Ses_horario_inicio;
             ses.Ses_horario_fim = sessoes.Ses_horario_fim;
             ses.Tot_codigo = sessoes.Tot_codigo;
-            ses.Eve_codigo = sessoes.Eve_codigo;
+            ses.Eau_codigo = sessoes.Eau_codigo;
             ses.Hev_codigo = sessoes.Hev_codigo;
             ses.Tin_codigo = sessoes.Tin_codigo;
 

@@ -13,7 +13,7 @@ namespace API_PassCenter.Controllers {
 
         [HttpPost, Route("api/EnventosAuditores")]
         // POST: api/Instituicoes
-        public IHttpActionResult Post([FromBody]EnventosAuditores enventosAuditores) {
+        public IHttpActionResult Post([FromBody]EventosAuditores enventosAuditores) {
 
             Indentificacao credenciais = autenticar.autenticacao(Request, 3);
 
@@ -21,7 +21,7 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
-            EnventosAuditores eau = new EnventosAuditores();
+            EventosAuditores eau = new EventosAuditores();
 
             eau.Eau_periodo_identificacao = enventosAuditores.Eau_periodo_identificacao;
             eau.Eau_data_abertura = enventosAuditores.Eau_data_abertura;
