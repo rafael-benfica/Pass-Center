@@ -139,5 +139,37 @@ namespace API_PassCenter.Models.Persistencia {
             }
             return retorno;
         }
+
+        public static DataSet SelectByTypeAndName(string nome, int tipo, int instituicao)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "select usu_codigo, pes_matricula, concat(pes_nome, ' ', pes_sobrenomes) as nomes_concatenados from pessoas inner join usuarios using (pes_codigo) " +
+                "where concat(pes_nome, ' ', pes_sobrenomes) like ?pes_nome and tus_codigo = ?tus_codigo and  ins_codigo = ?ins_codigo";
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?pes_nome", nome));
+            objCommand.Parameters.Add(Mapped.Parameter("?tus_codigo", tipo));
+            objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", instituicao));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
     }
 }

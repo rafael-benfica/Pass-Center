@@ -3,7 +3,7 @@
     <div class="row area-exibicao">
       <div
         class="col s12 m4 l4 espacamento"
-        v-for="(item, index) in enventosAuditores"
+        v-for="(item, index) in eventos_auditores"
         :key="item.id"
       >
         <div class="modal-trigger" href="#modalEdit" @click="verDados(index)">
@@ -59,7 +59,9 @@
                     href="#modalBuscaDisciplina"
                     @click="buscarDisciplinas()"
                   >
-                    <button class="transparent"><i class="material-icons icone">search</i></button>
+                    <button class="transparent">
+                      <i class="material-icons icone">search</i>
+                    </button>
                   </a>
                 </div>
               </div>
@@ -82,7 +84,9 @@
                     href="#modalBuscaProfessor"
                     @click="buscarProfessores()"
                   >
-                    <button class="transparent"><i class="material-icons icone">search</i></button>
+                    <button class="transparent">
+                      <i class="material-icons icone">search</i>
+                    </button>
                   </a>
                 </div>
               </div>
@@ -160,6 +164,63 @@
         </div>
       </div>
 
+      <!-- Modal Busca Alunso -->
+      <div id="modalBuscaAlunos" class="modal margem">
+        <div class="modal-content">
+          <h3>Busca de Alunos</h3>
+          <hr>
+
+          <div class="row">
+            <form onsubmit="return false">
+              <div class="col s12 m12 l12">
+                <div class="col s10 m10 l10 input-field">
+                  <input
+                    id="disciplina"
+                    placeholder="Entre com o nome do Aluno"
+                    type="text"
+                    class="validate"
+                    v-model="alunoBusca"
+                  >
+                  <label for="disciplina" class="active">Buscar ALuno:</label>
+                </div>
+                <div class="col s2 m2 l2">
+                  <a
+                    class="btn-floating btn-large waves-effect waves-light iconeBG"
+                    @click="buscarAlunos()"
+                  >
+                    <button class="transparent">
+                      <i class="material-icons icone">search</i>
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <table>
+            <thead class="centro">
+              <tr>
+                <th>Nome</th>
+                <th>Matricula</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(item, index) in alunos"
+                :key="item.id"
+                @click="confirmacaoAdicionarAluno(index)"
+              >
+                <td>{{ item.nomes_concatenados }}</td>
+                <td>{{ item.pes_matricula }}</td>
+                <td>
+                  <a class="waves-effect waves-light btn modal-close">Selecionar</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <!-- Modal Edit -->
       <div id="modalEdit" class="modal margem">
         <div class="modal-content">
@@ -175,8 +236,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in alunos" :key="item.id">
-                <td>{{ item.pes_nome +" "+ item.pes_sobrenomes }}</td>
+              <tr v-for="item in alunosMatriculados" :key="item.id">
+                <td>{{ item.nomes_concatenados }}</td>
                 <td>{{ "#"+item.pes_matricula }}</td>
                 <td>
                   <a class="waves-effect waves-light btn red modal-trigger" href="#modalVer">Remover</a>
@@ -186,8 +247,8 @@
           </table>
 
           <a
-            class="col s12 m12 l12 centro waves-effect waves-light btn botaoVerMais"
-            @click="addDados()"
+            class="col s12 m12 l12 centro waves-effect waves-light btn botaoVerMais modal-trigger"
+            href="#modalBuscaAlunos"
           >Adicionar alunos</a>
 
           <div class="modal-footer row col s12 m12 l12">
@@ -207,32 +268,28 @@ export default {
       //Campos de Busca
       professorBusca: "",
       disciplinaBusca: "",
+      alunoBusca: "",
+
+      //Capturando Primary Keys
+      pes_codigo: "",
+      eve_codigo: "",
 
       //Retorno das Buscas
+      eventos_auditores: [],
       professores: [],
       disciplinas: [],
+      alunos: [],
 
       //Edição das Turmas
-      alunos: [],
-      enventosAuditores: [],
-      evento_auditor: [],
       nomeDisciplina: "",
-      nomeAuditor: ""
+      nomeAuditor: "",
+      idEAU: 0,
+      alunosMatriculados: []
     };
   },
 
   mounted() {
-    this.$http.get("EnventosAuditores").then(
-      response => {
-        this.enventosAuditores = response.body;
-      },
-      response => {
-        console.log(
-          "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-            response.status
-        );
-      }
-    );
+    this.listarEventosAuditores();
 
     $(document).ready(function() {
       $(".modal").modal();
@@ -240,10 +297,10 @@ export default {
   },
 
   methods: {
-    listarAlunos() {
-      this.$http.get("Usuarios/porTipo", { params: { tipo: 5 } }).then(
+    listarEventosAuditores() {
+      this.$http.get("EventosAuditores").then(
         response => {
-          this.alunos = response.body;
+          this.eventos_auditores = response.body;
         },
         response => {
           console.log(
@@ -255,9 +312,26 @@ export default {
     },
 
     verDados(index) {
-      var dados = this.enventosAuditores[index];
+      var dados = this.eventos_auditores[index];
       this.nomeDisciplina = dados.eve_nome;
       this.nomeAuditor = dados.pes_nome;
+      this.idEAU = dados.eau_codigo;
+
+      this.listarAlunosMatriculados();
+    },
+
+    listarAlunosMatriculados() {
+      this.$http.get("Turmas/EAU", { params: { eau: this.idEAU } }).then(
+        response => {
+          this.alunosMatriculados = response.body;
+        },
+        response => {
+          console.log(
+            "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+              response.status
+          );
+        }
+      );
     },
 
     buscarProfessores() {
@@ -294,6 +368,25 @@ export default {
         );
     },
 
+    buscarAlunos() {
+      this.$http
+        .get("Pessoas/PorTipoNome", {
+          params: { nome: this.alunoBusca, tipo: 5 }
+        })
+        .then(
+          response => {
+            this.alunos = response.body;
+            console.log(response.body);
+          },
+          response => {
+            console.log(
+              "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+                response.status
+            );
+          }
+        );
+    },
+
     buscarProfessoresAtribuir(index) {
       this.professorBusca =
         this.professores[index].pes_matricula +
@@ -301,6 +394,7 @@ export default {
         this.professores[index].pes_nome +
         " " +
         this.professores[index].pes_sobrenomes;
+      this.pes_codigo = this.professores[index].pes_codigo;
     },
 
     buscarDisciplinasAtribuir(index) {
@@ -308,6 +402,59 @@ export default {
         this.disciplinas[index].eve_sigla +
         " | " +
         this.disciplinas[index].eve_nome;
+      this.eve_codigo = this.disciplinas[index].eve_codigo;
+    },
+
+    confirmacaoAdicionarAluno(index) {
+      const swalWithBootstrapButtons = swal.mixin({
+        confirmButtonClass: "btn green sepraracaoBotoes",
+        cancelButtonClass: "btn red sepraracaoBotoes",
+        buttonsStyling: false
+      });
+
+      swalWithBootstrapButtons({
+        title: "Você tem certeza?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sim, faça!",
+        cancelButtonText: "Não, cancele!",
+        reverseButtons: true
+      }).then(result => {
+        if (result.value) {
+          var dodosEventoAuditor = {
+            Eau_codigo: {
+              Eau_codigo: this.idEAU
+            },
+            Usu_codigo: {
+              usu_codigo: this.alunos[index].usu_codigo
+            }
+          };
+
+          this.$http.post("Turmas", dodosEventoAuditor).then(
+            response => {
+              swalWithBootstrapButtons(
+                "Feito!",
+                "Aluno(a) adicionado(a) na Turma!",
+                "success"
+              );
+              this.listarAlunosMatriculados(),
+              this.alunos = []; 
+            },
+            response => {
+              this.erro("Dados Evento", response.status);
+            }
+          );
+        } else if (
+          // Read more about handling dismissals
+          result.dismiss === swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons(
+            "Okay!",
+            "Revise/altere o que for necessário ;)",
+            "info"
+          );
+        }
+      });
     },
 
     confirmacaoCriar() {
@@ -326,22 +473,54 @@ export default {
         reverseButtons: true
       }).then(result => {
         if (result.value) {
-          swalWithBootstrapButtons(
-            "Turma Criada!",
-            "A Turma foi criada com sucesso! Não esqueça de adicionar os alunos.",
-            "success"
+          var dodosEventoAuditor = {
+            Eve_codigo: {
+              Eve_codigo: this.eve_codigo
+            },
+            Pes_codigo: {
+              Pes_codigo: this.pes_codigo
+            }
+          };
+
+          this.$http.post("EventosAuditores", dodosEventoAuditor).then(
+            response => {
+              swalWithBootstrapButtons(
+                "Turma Criada!",
+                "A Turma foi criada com sucesso! Não esqueça de adicionar os alunos.",
+                "success"
+              );
+              this.listarEventosAuditores();
+              (this.professores = []), (this.disciplinas = []);
+            },
+            response => {
+              this.erro("Dados Evento", response.status);
+            }
           );
         } else if (
           // Read more about handling dismissals
           result.dismiss === swal.DismissReason.cancel
         ) {
           swalWithBootstrapButtons(
-            "Cancelado!",
-            "A truma não foi criada!",
-            "error"
+            "Okay!",
+            "Revise/altere o que for necessário ;)",
+            "info"
           );
         }
       });
+    },
+
+    erro(msg, code) {
+      swal({
+        title: "Oops!",
+        text: "Algo deu errado! Os dados não foram salvos!",
+        type: "error"
+      }),
+        console.log(
+          "ERRO ao atualizar " +
+            msg +
+            "! Código de resposta (HTTP) do servidor: " +
+            code
+        );
     }
   }
 };

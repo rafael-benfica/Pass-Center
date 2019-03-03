@@ -113,6 +113,19 @@ namespace API_PassCenter.Controllers {
             }
         }
 
+        [HttpGet, Route("api/Pessoas/PorTipoNome")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetByTypeAndName(string nome, int tipo)
+        {
 
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+            }
+
+            return Ok(PessoasDB.SelectByTypeAndName(("%" + nome + "%"), tipo, Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
+        }
     }
 }

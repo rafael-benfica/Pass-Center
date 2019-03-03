@@ -205,7 +205,7 @@
     <Compile Include="Controllers\IdentificadoresController.cs" />
     <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\TotensController.cs" />
-    <Compile Include="Controllers\EnventosAuditoresController.cs" />
+    <Compile Include="Controllers\EventosAuditoresController.cs" />
     <Compile Include="Controllers\TurmasController .cs" />
     <Compile Include="Controllers\UsuariosController .cs" />
     <Compile Include="Controllers\EnderecosController.cs" />

@@ -9,9 +9,9 @@ using System.Net.Http;
 using System.Web.Http;
 
 namespace API_PassCenter.Controllers {
-    public class EnventosAuditoresController : ApiController {
+    public class EventosAuditoresController : ApiController {
 
-        [HttpPost, Route("api/EnventosAuditores")]
+        [HttpPost, Route("api/EventosAuditores")]
         // POST: api/Instituicoes
         public IHttpActionResult Post([FromBody]EventosAuditores enventosAuditores) {
 
@@ -21,10 +21,12 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
             }
 
+            var date = DateTime.Now;
+
             EventosAuditores eau = new EventosAuditores();
 
-            eau.Eau_periodo_identificacao = enventosAuditores.Eau_periodo_identificacao;
-            eau.Eau_data_abertura = enventosAuditores.Eau_data_abertura;
+            eau.Eau_periodo_identificacao = date.Year.ToString();
+            eau.Eau_data_abertura = date;
             eau.Eau_estado = true;
 
             Instituicoes ins = new Instituicoes();
@@ -43,14 +45,14 @@ namespace API_PassCenter.Controllers {
             }
         }
 
-        [HttpGet, Route("api/EnventosAuditores")]
+        [HttpGet, Route("api/EventosAuditores")]
         // GET: api/Instituicoes
         public IHttpActionResult Get() {
 
-            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
 
             if (credenciais == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!");
             }
 
             return Ok(EnventosAuditoresDB.Select(Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);

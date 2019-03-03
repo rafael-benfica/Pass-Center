@@ -12,14 +12,14 @@ namespace API_PassCenter.Models.Persistencia {
             try {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "INSERT INTO turmas(usu_codigo_participante, eau_codigo)" +
-                    " VALUES(?tur_periodo_identificacao, ?eau_codigo);" +
+                string sql = "INSERT INTO turmas(usu_codigo, eau_codigo)" +
+                    " VALUES(?usu_codigo, ?eau_codigo);" +
                     "SELECT LAST_INSERT_ID();";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
                 //FK
-                objCommand.Parameters.Add(Mapped.Parameter("?usu_codigo_participante", turmas.Usu_codigo.Usu_codigo));
-                objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo_auditor", turmas.Eau_codigo.Eau_codigo));
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_codigo", turmas.Usu_codigo.Usu_codigo));
+                objCommand.Parameters.Add(Mapped.Parameter("?eau_codigo", turmas.Eau_codigo.Eau_codigo));
 
                 retorno = Convert.ToInt32(objCommand.ExecuteScalar());
 
@@ -30,6 +30,38 @@ namespace API_PassCenter.Models.Persistencia {
                 retorno = -2;
             }
             return retorno;
+        }
+
+        public static DataSet SelectEAU(int id)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "select pes_codigo, concat(pes_nome, ' ', pes_sobrenomes) as 'nomes_concatenados', pes_matricula from turmas " +
+                "inner join usuarios using (usu_codigo) "+
+                "inner join pessoas using (pes_codigo) where eau_codigo = ?eau_codigo;";
+
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?eau_codigo", id));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
         }
     }
 }
