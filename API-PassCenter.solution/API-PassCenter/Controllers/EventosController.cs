@@ -118,5 +118,20 @@ namespace API_PassCenter.Controllers {
 
         }
 
+        [HttpGet, Route("api/Eventos/BuscarNomes")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetEventosNomes(string nome)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+            }
+
+            return Ok(EventosDB.SelectDisciolinasNome(("%" + nome + "%"), Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
+        }
+
     }
 }

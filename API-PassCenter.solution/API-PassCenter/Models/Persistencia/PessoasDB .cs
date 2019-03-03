@@ -42,6 +42,7 @@ namespace API_PassCenter.Models.Persistencia {
             }
             return retorno;
         }
+
         public static DataSet SelectID(int id) {
             //Imagine um DataSet como umamatriz de dados;
 
@@ -102,7 +103,6 @@ namespace API_PassCenter.Models.Persistencia {
             return ds;
 
         }
-
 
         public static int Update(Pessoas pessoas) {
             int retorno = 0;

@@ -1,7 +1,11 @@
 <template>
   <div>
     <div class="row area-exibicao">
-      <div class="col s12 m4 l4 espacamento" v-for="(item, index) in enventosAuditores" :key="item.id">
+      <div
+        class="col s12 m4 l4 espacamento"
+        v-for="(item, index) in enventosAuditores"
+        :key="item.id"
+      >
         <div class="modal-trigger" href="#modalEdit" @click="verDados(index)">
           <div class="card">
             <div class="card-content">
@@ -37,31 +41,52 @@
           <h4 class="centro">Cadastro de Turma</h4>
           <hr>
           <div class="row">
-            <div class="col s12 m6 l6">
-              <div class="col s10 m10 l10 input-field">
-                <input id="disciplina" placeholder="Entre com o nome da Disciplina" type="text" class="validate" v-model="disciplinaBusca" >
-                <label for="disciplina" class="active">Buscar Disciplina:</label>
+            <form onsubmit="return false">
+              <div class="col s12 m6 l6">
+                <div class="col s10 m10 l10 input-field">
+                  <input
+                    id="disciplina"
+                    placeholder="Entre com o nome da Disciplina"
+                    type="text"
+                    class="validate"
+                    v-model="disciplinaBusca"
+                  >
+                  <label for="disciplina" class="active">Buscar Disciplina:</label>
+                </div>
+                <div class="col s2 m2 l2">
+                  <a
+                    class="btn-floating btn-large waves-effect waves-light iconeBG modal-trigger"
+                    href="#modalBuscaDisciplina"
+                    @click="buscarDisciplinas()"
+                  >
+                    <button class="transparent"><i class="material-icons icone">search</i></button>
+                  </a>
+                </div>
               </div>
-              <div class="col s2 m2 l2">
-                <a
-                  class="btn-floating btn-large waves-effect waves-light iconeBG modal-trigger"
-                  href="#modalBuscaDisciplina"
-                >
-                  <i class="material-icons icone">search</i>
-                </a>
+            </form>
+            <form onsubmit="return false">
+              <div class="col s12 m6 l6">
+                <div class="col s10 m10 l10 input-field">
+                  <input
+                    id="professor"
+                    placeholder="Entre com o nome do Professor"
+                    type="text"
+                    class="validate"
+                    v-model="professorBusca"
+                  >
+                  <label for="professor" class="active">Buscar Professor:</label>
+                </div>
+                <div class="col s2 m2 l2">
+                  <a
+                    class="btn-floating btn-large waves-effect waves-light iconeBG modal-trigger"
+                    href="#modalBuscaProfessor"
+                    @click="buscarProfessores()"
+                  >
+                    <button class="transparent"><i class="material-icons icone">search</i></button>
+                  </a>
+                </div>
               </div>
-            </div>
-            <div class="col s12 m6 l6">
-              <div class="col s10 m10 l10 input-field">
-                <input id="professor" placeholder="Entre com o nome do Professor" type="text" class="validate" v-model="professorBusca">
-                <label for="professor" class="active">Buscar Professor:</label>
-              </div>
-              <div class="col s2 m2 l2">
-                <a class="btn-floating btn-large waves-effect waves-light iconeBG modal-trigger" href="#modalBuscaProfessor" @click="buscarProfessores()">
-                  <i class="material-icons icone">search</i>
-                </a>
-              </div>
-            </div>
+            </form>
           </div>
 
           <div class="modal-footer row col s12 m12 l12">
@@ -78,7 +103,7 @@
       <!-- Modal Busca Disciplina -->
       <div id="modalBuscaDisciplina" class="modal margem">
         <div class="modal-content">
-          <h3>Busca de Disciplina</h3>
+          <h3>Busca de Disciplinas</h3>
           <hr>
           <table>
             <thead class="centro">
@@ -89,11 +114,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in disciplinas" :key="item.id" @click="verDados(index)">
-                <td>{{ item.tur_sigla }}</td>
-                <td>{{ item.tur_nome }}</td>
+              <tr
+                v-for="(item, index) in disciplinas"
+                :key="item.id"
+                @click="buscarDisciplinasAtribuir(index)"
+              >
+                <td>{{ item.eve_sigla }}</td>
+                <td>{{ item.eve_nome }}</td>
                 <td>
-                  <a class="waves-effect waves-light btn modal-trigger" href="#modalVer">Selecionar</a>
+                  <a class="waves-effect waves-light btn modal-close">Selecionar</a>
                 </td>
               </tr>
             </tbody>
@@ -115,7 +144,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in professores" :key="item.id" @click="buscarProfessoresAtribuir(index)">
+              <tr
+                v-for="(item, index) in professores"
+                :key="item.id"
+                @click="buscarProfessoresAtribuir(index)"
+              >
                 <td>{{ item.pes_nome + " " + item.pes_sobrenomes }}</td>
                 <td>{{ item.pes_matricula }}</td>
                 <td>
@@ -152,7 +185,10 @@
             </tbody>
           </table>
 
-          <a class="col s12 m12 l12 centro waves-effect waves-light btn botaoVerMais" @click="addDados()">Adicionar alunos</a>
+          <a
+            class="col s12 m12 l12 centro waves-effect waves-light btn botaoVerMais"
+            @click="addDados()"
+          >Adicionar alunos</a>
 
           <div class="modal-footer row col s12 m12 l12">
             <a href="#!" class="col s12 m4 l4 modal-close waves-effect waves-teal btn red">Fechar</a>
@@ -168,10 +204,15 @@ export default {
   name: "TurmasGeral",
   data() {
     return {
+      //Campos de Busca
       professorBusca: "",
       disciplinaBusca: "",
+
+      //Retorno das Buscas
       professores: [],
       disciplinas: [],
+
+      //Edição das Turmas
       alunos: [],
       enventosAuditores: [],
       evento_auditor: [],
@@ -179,6 +220,7 @@ export default {
       nomeAuditor: ""
     };
   },
+
   mounted() {
     this.$http.get("EnventosAuditores").then(
       response => {
@@ -196,9 +238,9 @@ export default {
       $(".modal").modal();
     });
   },
-  methods: {
 
-    listarAlunos(){
+  methods: {
+    listarAlunos() {
       this.$http.get("Usuarios/porTipo", { params: { tipo: 5 } }).then(
         response => {
           this.alunos = response.body;
@@ -219,27 +261,56 @@ export default {
     },
 
     buscarProfessores() {
-      this.$http.get("Pessoas/Professores", { params: { nome: this.professorBusca } }).then(
-        response => {
-          this.professores = response.body;
-          console.log(response.body);
-        },
-        response => {
-          console.log(
-            "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-              response.status
-          );
-        }
-      );
+      this.$http
+        .get("Pessoas/Professores", { params: { nome: this.professorBusca } })
+        .then(
+          response => {
+            this.professores = response.body;
+            console.log(response.body);
+          },
+          response => {
+            console.log(
+              "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+                response.status
+            );
+          }
+        );
+    },
+
+    buscarDisciplinas() {
+      this.$http
+        .get("Eventos/BuscarNomes", { params: { nome: this.disciplinaBusca } })
+        .then(
+          response => {
+            this.disciplinas = response.body;
+            console.log(response.body);
+          },
+          response => {
+            console.log(
+              "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+                response.status
+            );
+          }
+        );
     },
 
     buscarProfessoresAtribuir(index) {
-      this.professorBusca = this.professores[index].pes_nome + " " + this.professores[index].pes_sobrenomes;
-      console.log("oi");
+      this.professorBusca =
+        this.professores[index].pes_matricula +
+        " | " +
+        this.professores[index].pes_nome +
+        " " +
+        this.professores[index].pes_sobrenomes;
     },
 
+    buscarDisciplinasAtribuir(index) {
+      this.disciplinaBusca =
+        this.disciplinas[index].eve_sigla +
+        " | " +
+        this.disciplinas[index].eve_nome;
+    },
 
-    confirmação() {
+    confirmacaoCriar() {
       const swalWithBootstrapButtons = swal.mixin({
         confirmButtonClass: "btn green sepraracaoBotoes",
         cancelButtonClass: "btn red sepraracaoBotoes",
@@ -256,8 +327,8 @@ export default {
       }).then(result => {
         if (result.value) {
           swalWithBootstrapButtons(
-            "Alterado!",
-            "As alterações foram salvas.",
+            "Turma Criada!",
+            "A Turma foi criada com sucesso! Não esqueça de adicionar os alunos.",
             "success"
           );
         } else if (
@@ -266,7 +337,7 @@ export default {
         ) {
           swalWithBootstrapButtons(
             "Cancelado!",
-            "Alterações descartadas!",
+            "A truma não foi criada!",
             "error"
           );
         }

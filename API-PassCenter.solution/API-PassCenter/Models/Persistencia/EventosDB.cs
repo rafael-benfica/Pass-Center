@@ -97,5 +97,36 @@ namespace API_PassCenter.Models.Persistencia {
             return ds;
 
         }
+
+        public static DataSet SelectDisciolinasNome(string nome, int instituicao)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "select eve_codigo, eve_nome, eve_sigla from eventos where eve_nome like ?eve_nome and ins_codigo = 1 and tev_codigo = 1;";
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?eve_nome", nome));
+            objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", instituicao));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
+
     }
 }
