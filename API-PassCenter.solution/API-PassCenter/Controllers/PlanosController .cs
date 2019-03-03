@@ -15,7 +15,7 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult Planos([FromBody]Planos planos) {
 
             if (autenticar.autenticacao(Request, 1) == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             Planos pla = new Planos();

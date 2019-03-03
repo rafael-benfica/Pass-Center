@@ -16,7 +16,7 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult Post([FromBody]Instituicoes instituicoes) {
 
             if (autenticar.autenticacao(Request, 2) == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             Instituicoes ins = new Instituicoes();

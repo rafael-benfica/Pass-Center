@@ -16,9 +16,9 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult Post([FromBody]Totens totens) {
 
             if (autenticar.autenticacao(Request, 1) == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
-
+            
             Totens tot = new Totens();
 
             tot.Tot_numero_serie = totens.Tot_numero_serie;

@@ -16,7 +16,7 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult Post([FromBody]Turmas turmas) {
 
             if (autenticar.autenticacao(Request, 3) == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             Turmas tur = new Turmas();
@@ -42,7 +42,7 @@ namespace API_PassCenter.Controllers {
 
             if (credenciais == null)
             {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             return Ok(TurmasDB.SelectEAU(eau).Tables[0]);

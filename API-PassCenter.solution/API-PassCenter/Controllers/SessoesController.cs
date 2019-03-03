@@ -15,7 +15,7 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult Sessoes([FromBody]Sessoes sessoes) {
 
             if (autenticar.autenticacao(Request, 4) == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             Sessoes ses = new Sessoes();

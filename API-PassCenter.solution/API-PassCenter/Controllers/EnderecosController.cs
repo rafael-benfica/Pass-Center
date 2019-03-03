@@ -15,7 +15,7 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult Endereco([FromBody]Enderecos endereco) {
 
             if (autenticar.autenticacao(Request, 3) == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             Enderecos end = new Enderecos();
@@ -47,7 +47,7 @@ namespace API_PassCenter.Controllers {
             Indentificacao credenciais = autenticar.autenticacao(Request, 5);
 
             if (credenciais == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             if (EnderecosDB.Update(endereco) == -2) {
@@ -64,7 +64,7 @@ namespace API_PassCenter.Controllers {
             Indentificacao credenciais = autenticar.autenticacao(Request, 5);
 
             if (credenciais == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             endereco.End_codigo = Convert.ToInt32(credenciais.End_codigo);
@@ -81,7 +81,7 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult TiposEndereco([FromBody]TiposEnderecos tipos_endereco) {
 
             if (autenticar.autenticacao(Request, 3) == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             TiposEnderecos tem = new TiposEnderecos();

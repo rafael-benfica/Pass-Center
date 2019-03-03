@@ -15,7 +15,7 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult Usuarios([FromBody]Usuarios usuarios) {
 
             if (autenticar.autenticacao(Request, 3) == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             Usuarios usu = new Usuarios();
@@ -47,7 +47,7 @@ namespace API_PassCenter.Controllers {
             Indentificacao credenciais = autenticar.autenticacao(Request,5);
 
             if (credenciais == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             int retorno = UsusariosDB.Update(usuarios);
@@ -66,7 +66,7 @@ namespace API_PassCenter.Controllers {
             Indentificacao credenciais = autenticar.autenticacao(Request, 5);
 
             if (credenciais == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             usuarios.Usu_codigo = Convert.ToInt32(credenciais.Usu_codigo);
@@ -85,7 +85,7 @@ namespace API_PassCenter.Controllers {
             Indentificacao credenciais = autenticar.autenticacao(Request, 3);
 
             if (credenciais == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             return Ok(UsusariosDB.SelectByType(tipo, Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
@@ -96,7 +96,7 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult TiposUsuarios([FromBody]TiposUsuarios tipos_usuarios) {
 
             if (autenticar.autenticacao(Request, 3) == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             TiposUsuarios tus = new TiposUsuarios();

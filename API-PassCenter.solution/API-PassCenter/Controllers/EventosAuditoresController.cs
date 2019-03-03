@@ -18,7 +18,7 @@ namespace API_PassCenter.Controllers {
             Indentificacao credenciais = autenticar.autenticacao(Request, 3);
 
             if (credenciais == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             var date = DateTime.Now;
@@ -52,7 +52,7 @@ namespace API_PassCenter.Controllers {
             Indentificacao credenciais = autenticar.autenticacao(Request, 3);
 
             if (credenciais == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!");
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             return Ok(EnventosAuditoresDB.Select(Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);

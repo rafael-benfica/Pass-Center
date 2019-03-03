@@ -15,7 +15,7 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult Pagamentos([FromBody]Pagamentos pagamentos) {
 
             if (autenticar.autenticacao(Request, 2) == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             Pagamentos pag = new Pagamentos();

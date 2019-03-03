@@ -17,7 +17,7 @@ namespace API_PassCenter.Controllers {
             Indentificacao credenciais = autenticar.autenticacao(Request, 3);
 
             if (credenciais == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             Eventos eve = new Eventos();
@@ -51,7 +51,7 @@ namespace API_PassCenter.Controllers {
             Indentificacao credenciais = autenticar.autenticacao(Request, 5);
 
             if (credenciais == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             return Ok(EventosDB.Select(Convert.ToInt32(credenciais.Ins_codigo), tipo).Tables[0]);
@@ -62,7 +62,7 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult TiposEventos([FromBody]TiposEventos tipo_eventos) {
 
             if (autenticar.autenticacao(Request, 3) == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             TiposEventos tev = new TiposEventos();
@@ -82,7 +82,7 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult HorariosEventos([FromBody]HorariosEventos horario_eventos) {
 
             if (autenticar.autenticacao(Request, 3) == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             HorariosEventos hev = new HorariosEventos();
@@ -112,7 +112,7 @@ namespace API_PassCenter.Controllers {
 
             if (credenciais == null)
             {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             return Ok(EventosDB.SelectDisciplinasNome(("%" + nome + "%"), Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);

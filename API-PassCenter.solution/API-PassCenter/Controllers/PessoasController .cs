@@ -18,7 +18,7 @@ namespace API_PassCenter.Controllers {
             Indentificacao credenciais = autenticar.autenticacao(Request, 3);
 
             if (credenciais == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             Pessoas pes = new Pessoas();
@@ -56,7 +56,7 @@ namespace API_PassCenter.Controllers {
             Indentificacao credenciais = autenticar.autenticacao(Request, 5);
 
             if (credenciais == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             return Ok(PessoasDB.SelectID(Convert.ToInt32(credenciais.Pes_codigo)).Tables[0]);
@@ -71,7 +71,7 @@ namespace API_PassCenter.Controllers {
 
             if (credenciais == null)
             {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             return Ok(PessoasDB.SelectProfessoresNome(("%"+nome+"%"), Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
@@ -84,7 +84,7 @@ namespace API_PassCenter.Controllers {
             Indentificacao credenciais = autenticar.autenticacao(Request, 5);
 
             if (credenciais == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             if (PessoasDB.Update(pessoas) == -2) {
@@ -101,7 +101,7 @@ namespace API_PassCenter.Controllers {
             Indentificacao credenciais = autenticar.autenticacao(Request, 5);
 
             if (credenciais == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             pessoas.Pes_codigo = Convert.ToInt32(credenciais.Pes_codigo);
@@ -122,7 +122,7 @@ namespace API_PassCenter.Controllers {
 
             if (credenciais == null)
             {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             return Ok(PessoasDB.SelectByTypeAndName(("%" + nome + "%"), tipo, Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);

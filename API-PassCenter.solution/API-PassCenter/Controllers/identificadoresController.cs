@@ -15,7 +15,7 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult Identificadores([FromBody]Identificadores identificadores) {
 
             if (autenticar.autenticacao(Request, 3) == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             Identificadores ide = new Identificadores();
@@ -40,7 +40,7 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult TiposIdentificadores([FromBody]TiposIdentificadores tipos_identificadores) {
 
             if (autenticar.autenticacao(Request, 3) == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             TiposIdentificadores tid = new TiposIdentificadores();
@@ -51,7 +51,7 @@ namespace API_PassCenter.Controllers {
                 return Ok();
 
             } else {
-                return BadRequest(); return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return BadRequest(); return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
         }
 

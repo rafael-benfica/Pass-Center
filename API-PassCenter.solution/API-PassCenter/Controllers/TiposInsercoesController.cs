@@ -15,7 +15,7 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult TiposInsercoes([FromBody]TiposInsercoes tiposInsercoes) {
 
             if (autenticar.autenticacao(Request, 1) == null) {
-                return Content(HttpStatusCode.Forbidden, "Credenciais Invalidas!"); ;
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             TiposInsercoes tin = new TiposInsercoes();
