@@ -14,7 +14,12 @@
           <label for="sobrenome">Sobrenome</label>
         </div>
         <div class="input-field col s12 m2">
-          <input id="data_nascimento" type="text" class="validate" v-model="data_nascimento">
+          <input
+            id="data_nascimento"
+            type="text"
+            class="datepicker"
+            v-model="data_nascimento"
+          >
           <label for="data_nascimento">Data de Nascimento</label>
         </div>
       </div>
@@ -99,23 +104,17 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12 m6">
-          <input id="email" type="email" class="validate" v-model="login">
-          <label for="email">Email</label>
-        </div>
-        <div class="input-field col s12 m6">
-          <input id="password" type="password" class="validate" autocomplete="no" v-model="senha">
-          <label for="password">Senha</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12 m6">
+        <div class="input-field col s12 m4">
           <input id="tel_residencial" type="text" class="validate" v-model="tel_residencial">
           <label for="tel_residencial">Telefone Residencial:</label>
         </div>
-        <div class="input-field col s12 m6">
+        <div class="input-field col s12 m4">
           <input id="tel_celular" type="text" class="validate" v-model="tel_celular">
           <label for="tel_celular">Telefone Celular:</label>
+        </div>
+        <div class="input-field col s12 m4">
+          <input id="email" type="email" class="validate" v-model="login">
+          <label for="email">Email</label>
         </div>
       </div>
       <div class="row">
@@ -125,11 +124,68 @@
         </div>
       </div>
       <div class="row">
-        <div class="col s12">
-          <a class="waves-effect waves-teal btn" @click="confirmacao()">Alterar Dados</a>
+        <div class="col s12 m6">
+          <a class="waves-effect waves-teal btn" @click="confirmacao()">Salvar Alterações</a>
+        </div>
+        <div class="col s12 m6">
+          <a
+            class="waves-effect waves-light btn grey darken-3 modal-trigger"
+            href="#modalAlterarSenha"
+          >Alterar Senha</a>
         </div>
       </div>
     </form>
+
+    <div id="modalAlterarSenha" class="modal">
+      <div class="modal-content">
+        <h4>Senha</h4>
+        <p>Altarar senha de login</p>
+        <form onsubmit="return false">
+          <div class="row">
+            <div class="input-field col s12 m4 push-m4">
+              <input
+                id="senha_atual"
+                type="password"
+                :class="classAtual"
+                v-model="senha_atual"
+                required
+              >
+              <label for="senha_atual">Senha Atual:</label>
+              <span class="helper-text" data-error="A senha atual não coincide!"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 m4 push-m4">
+              <input id="senha_nova" type="password" class="validate" v-model="senha_nova" required>
+              <label for="senha_nova">Nova Senha:</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 m4 push-m4">
+              <input
+                id="senha_conf"
+                type="password"
+                :class="classConf"
+                v-model="senha_conf"
+                required
+              >
+              <label for="senha_conf">Confirme Nova Senha:</label>
+              <span class="helper-text" data-error="As senhas não coincidem!"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 m4 push-m4">
+              <div class="input-field col s12 m6">
+                <a class="modal-close waves-effect waves-teal btn red accent-4">Cancelar</a>
+              </div>
+              <div class="input-field col s12 m6">
+                <a class="modal-close waves-effect waves-teal btn green">Salvar</a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -155,22 +211,31 @@ export default {
       senha: "",
       tel_residencial: "",
       tel_celular: "",
-      infoadd: ""
+      infoadd: "",
+
+      //Alterar Senha
+      senha_atual: "",
+      senha_conf: "",
+      senha_nova: "",
+
+      classAtual: "validate",
+      classConf: "validate"
     };
   },
 
   mounted() {
+    $(document).ready(function() {
+      $(".modal").modal();
+    });
+
     this.$http.get("Pessoas").then(
       response => {
         var dados = response.body[0];
 
         this.nome = dados.pes_nome;
         this.sobrenomes = dados.pes_sobrenomes;
-        (this.data_nascimento = dados.pes_data_nascimento.replace(
-          "T00:00:00",
-          ""
-        )),
-          (this.CPF = dados.pes_cpf);
+        this.data_nascimento = this.recebeData(dados.pes_data_nascimento);
+        this.CPF = dados.pes_cpf;
         this.RG = dados.pes_rg;
         this.sexo = dados.pes_sexo;
         this.logradouro = dados.end_logradouro;
@@ -190,6 +255,72 @@ export default {
           M.updateTextFields();
           $("select").formSelect();
         });
+
+        var ano = new Date().getFullYear();
+
+        var array = dados.pes_data_nascimento
+          .replace("T00:00:00", "")
+          .split("-")
+          .reverse();
+
+        $(".datepicker").datepicker({
+          format: "dd/mm/yyyy",
+          yearRange: [ano - 100, ano],
+          maxDate: new Date(),
+          defaultDate: new Date([array[1], array[0], array[2]]),
+          setDefaultDate: true,
+          i18n: {
+            months: [
+              "Janeiro",
+              "Fevereiro",
+              "Março",
+              "Abril",
+              "Maio",
+              "Junho",
+              "Julho",
+              "Agosto",
+              "Setembro",
+              "Outubro",
+              "Novembro",
+              "Dezembro"
+            ],
+            monthsShort: [
+              "Jan",
+              "Fev",
+              "Mar",
+              "Abr",
+              "Mai",
+              "Jun",
+              "Jul",
+              "Ago",
+              "Set",
+              "Out",
+              "Nov",
+              "Dez"
+            ],
+            weekdays: [
+              "Domingo",
+              "Segunda",
+              "Terça",
+              "Quarta",
+              "Quinta",
+              "Sexta",
+              "Sabádo"
+            ],
+            weekdaysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+            weekdaysAbbrev: ["D", "S", "T", "Q", "Q", "S", "S"],
+            today: "Hoje",
+            clear: "Limpar",
+            close: "Pronto",
+            labelMonthNext: "Próximo mês",
+            labelMonthPrev: "Mês anterior",
+            labelMonthSelect: "Selecione um mês",
+            labelYearSelect: "Selecione um ano",
+            selectMonths: true,
+            cancel: "Cancelar",
+            clear: "Limpar"
+          }
+        });
       },
       response => {
         console.log(
@@ -198,8 +329,41 @@ export default {
       }
     );
   },
+  watch: {
+    senha_atual(value) {
+      var sha512 = require("js-sha512");
+      if (sha512(this.senha_atual) != this.senha) {
+        this.classAtual = "invalid";
+      } else {
+        this.classAtual = "valid";
+      }
+    },
+    senha_conf(value) {
+      if (this.senha_nova != this.senha_conf) {
+        this.classConf = "invalid";
+      } else {
+        this.classConf = "valid";
+      }
+    }
+  },
 
   methods: {
+    recebeData(data) {
+      var array = data
+        .replace("T00:00:00", "")
+        .split("-")
+        .reverse();
+      return array[0] + "/" + array[1] + "/" + array[2];
+    },
+
+    enviaData() {
+      var data = $("#data_nascimento")
+        .val()
+        .split("/")
+        .reverse();
+      return data[0] + "-" + data[1] + "-" + data[2];
+    },
+
     confirmacao() {
       const swalWithBootstrapButtons = swal.mixin({
         confirmButtonClass: "btn green sepraracaoBotoes",
@@ -220,7 +384,7 @@ export default {
           const dodosPessoais = {
             pes_nome: this.nome,
             pes_sobrenomes: this.sobrenomes,
-            pes_data_nascimento: this.data_nascimento,
+            pes_data_nascimento: this.enviaData(),
             pes_cpf: this.CPF,
             pes_rg: this.RG,
             pes_sexo: this.sexo,

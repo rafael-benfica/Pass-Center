@@ -6,16 +6,19 @@
 export default {
   name: "app",
   beforeMount: function() {
-
-    if(this.getCookie("Token") != ""){
-
-    
-    this.$store.commit("INSERIRTOKEN", this.getCookie("Token"));
-    this.$store.commit("INSERIRTIPOUSER", this.getCookie("TipoUser"));
-    this.$store.commit("CARREGARTOKEN");
-    console.log(this.getCookie("Token"));
+    if (this.getCookie("Token") != "") {
+      this.$store.commit("INSERIRTOKEN", this.getCookie("Token"));
+      this.$store.commit("INSERIRTIPOUSER", this.getCookie("TipoUser"));
+      this.$store.commit("CARREGARTOKEN");
+      console.log(this.getCookie("Token"));
     } else {
-      this.$router.push("/Login");
+
+      var local = this.$route.path;
+
+      if (local != "/" && local != "/Login") {
+        this.$router.push("/Login");
+      }
+        
     }
   },
   methods: {
