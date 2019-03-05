@@ -14,12 +14,7 @@
           <label for="sobrenome">Sobrenome</label>
         </div>
         <div class="input-field col s12 m2">
-          <input
-            id="data_nascimento"
-            type="text"
-            class="datepicker"
-            v-model="data_nascimento"
-          >
+          <input id="data_nascimento" type="text" class="datepicker" v-model="data_nascimento">
           <label for="data_nascimento">Data de Nascimento</label>
         </div>
       </div>
@@ -140,46 +135,62 @@
       <div class="modal-content">
         <h4>Senha</h4>
         <p>Altarar senha de login</p>
-        <form onsubmit="return false">
-          <div class="row">
+        <form id="atualizarSenha" onsubmit="return false">
+          <div class="row" v-if="pedeSenhaAtual">
             <div class="input-field col s12 m4 push-m4">
               <input
                 id="senha_atual"
                 type="password"
                 :class="classAtual"
                 v-model="senha_atual"
+                autocomplete="current-password"
                 required
               >
               <label for="senha_atual">Senha Atual:</label>
               <span class="helper-text" data-error="A senha atual não coincide!"/>
             </div>
           </div>
-          <div class="row">
-            <div class="input-field col s12 m4 push-m4">
-              <input id="senha_nova" type="password" class="validate" v-model="senha_nova" required>
-              <label for="senha_nova">Nova Senha:</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12 m4 push-m4">
-              <input
-                id="senha_conf"
-                type="password"
-                :class="classConf"
-                v-model="senha_conf"
-                required
-              >
-              <label for="senha_conf">Confirme Nova Senha:</label>
-              <span class="helper-text" data-error="As senhas não coincidem!"/>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12 m4 push-m4">
-              <div class="input-field col s12 m6">
-                <a class="modal-close waves-effect waves-teal btn red accent-4">Cancelar</a>
+          <div v-if="pedeNovaSenha">
+            <div class="row">
+              <div class="input-field col s12 m4 push-m4">
+                <input
+                  id="senha_nova"
+                  type="password"
+                  :class="classNova"
+                  v-model="senha_nova"
+                  autocomplete="new-password"
+                  required
+                >
+                <label for="senha_nova">Nova Senha:</label>
+                <span class="helper-text" data-error="A Nova senha é igual a Senha Atual!"/>
               </div>
-              <div class="input-field col s12 m6">
-                <a class="modal-close waves-effect waves-teal btn green">Salvar</a>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m4 push-m4">
+                <input
+                  id="senha_conf"
+                  type="password"
+                  :class="classConf"
+                  v-model="senha_conf"
+                  autocomplete="confirm-new-password"
+                  required
+                >
+                <label for="senha_conf">Confirme Nova Senha:</label>
+                <span class="helper-text" data-error="As senhas não coincidem!"/>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12 m4 push-m4">
+                <div class="input-field col s12 m6">
+                  <a
+                    class="modal-close waves-effect waves-teal btn red accent-4"
+                    @click="resetTorcaSenha()"
+                  >Cancelar</a>
+                </div>
+                <div class="input-field col s12 m6">
+                  <a class="waves-effect waves-teal btn green" @click="confirmacaoSenha()">Salvar</a>
+                </div>
               </div>
             </div>
           </div>
@@ -214,20 +225,20 @@ export default {
       infoadd: "",
 
       //Alterar Senha
+      pedeSenhaAtual: true,
+      pedeNovaSenha: false,
       senha_atual: "",
       senha_conf: "",
       senha_nova: "",
+      msgErro: "",
 
       classAtual: "validate",
+      classNova: "validate",
       classConf: "validate"
     };
   },
 
   mounted() {
-    $(document).ready(function() {
-      $(".modal").modal();
-    });
-
     this.$http.get("Pessoas").then(
       response => {
         var dados = response.body[0];
@@ -252,6 +263,8 @@ export default {
         this.infoadd = dados.pes_info_adicionais;
 
         $(document).ready(function() {
+          $(".modal").modal();
+
           M.updateTextFields();
           $("select").formSelect();
         });
@@ -332,14 +345,35 @@ export default {
   watch: {
     senha_atual(value) {
       var sha512 = require("js-sha512");
-      if (sha512(this.senha_atual) != this.senha) {
+      if (this.senha_atual == "") {
+        this.classAtual = "validate";
+      } else if (sha512(this.senha_atual) != this.senha) {
         this.classAtual = "invalid";
       } else {
         this.classAtual = "valid";
+        this.pedeSenhaAtual = false;
+        this.pedeNovaSenha = true;
+      }
+    },
+    senha_nova(value) {
+      if (this.senha_nova != this.senha_conf) {
+        this.classConf = "invalid";
+      } else {
+        this.classConf = "valid";
+      }
+
+      if (this.senha_nova == "") {
+        this.classNova = "validate";
+      } else if (this.senha_nova == this.senha_atual) {
+        this.classNova = "invalid";
+      } else {
+        this.classNova = "valid";
       }
     },
     senha_conf(value) {
-      if (this.senha_nova != this.senha_conf) {
+      if (this.senha_conf == "") {
+        this.classConf = "validate";
+      } else if (this.senha_nova != this.senha_conf) {
         this.classConf = "invalid";
       } else {
         this.classConf = "valid";
@@ -348,6 +382,45 @@ export default {
   },
 
   methods: {
+    getDados() {
+      this.$http.get("Pessoas").then(
+        response => {
+          var dados = response.body[0];
+
+          this.nome = dados.pes_nome;
+          this.sobrenomes = dados.pes_sobrenomes;
+          this.data_nascimento = this.recebeData(dados.pes_data_nascimento);
+          this.CPF = dados.pes_cpf;
+          this.RG = dados.pes_rg;
+          this.sexo = dados.pes_sexo;
+          this.logradouro = dados.end_logradouro;
+          this.numero = dados.end_numero;
+          this.bairro = dados.end_bairro;
+          this.CEP = dados.end_cep;
+          this.municipio = dados.end_municipio;
+          this.estado = dados.end_estado;
+          this.complemento = dados.end_complemento;
+          this.login = dados.usu_login;
+          this.senha = dados.usu_senha;
+          this.tel_residencial = dados.pes_tel_residencial;
+          this.tel_celular = dados.pes_tel_celular;
+          this.infoadd = dados.pes_info_adicionais;
+        },
+        response => {
+          console.log(
+            "ERRO! Código de resposta (HTTP) do servidor: " + response.status
+          );
+        }
+      );
+    },
+
+    resetTorcaSenha() {
+      this.pedeSenhaAtual = true;
+      this.pedeNovaSenha = false;
+      this.senha_atual = "";
+      this.senha_conf = "";
+      this.senha_nova = "";
+    },
     recebeData(data) {
       var array = data
         .replace("T00:00:00", "")
@@ -381,7 +454,7 @@ export default {
         reverseButtons: true
       }).then(result => {
         if (result.value) {
-          const dodosPessoais = {
+          var dodosPessoais = {
             pes_nome: this.nome,
             pes_sobrenomes: this.sobrenomes,
             pes_data_nascimento: this.enviaData(),
@@ -404,15 +477,14 @@ export default {
           };
 
           var dodosUsuario = {
-            usu_login: this.login,
-            usu_senha: this.senha
+            usu_login: this.login
           };
 
           this.$http.put("Pessoas/MeusDados", dodosPessoais).then(
             response => {
               this.$http.put("Enderecos/MeusDados", dodosEndereco).then(
                 response => {
-                  this.$http.put("Usuarios/MeusDados", dodosUsuario).then(
+                  this.$http.put("Usuarios", dodosUsuario).then(
                     response => {
                       swalWithBootstrapButtons(
                         "Alterado!",
@@ -459,6 +531,79 @@ export default {
           );
         }
       });
+    },
+
+    confirmacaoSenha() {
+      var form = document.getElementById("atualizarSenha");
+      var isValidForm = form.checkValidity();
+
+      if (isValidForm) {
+        const swalWithBootstrapButtons = swal.mixin({
+          confirmButtonClass: "btn green sepraracaoBotoes",
+          cancelButtonClass: "btn red sepraracaoBotoes",
+          buttonsStyling: false
+        });
+
+        swalWithBootstrapButtons({
+          title: "Você tem certeza?",
+          text: "Você não poderá reverter essa ação!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Sim, faça!",
+          cancelButtonText: "Não, cancele!",
+          reverseButtons: true
+        }).then(result => {
+          if (result.value) {
+            var sha512 = require("js-sha512");
+
+            var senhas = {
+              senhaAtual: this.senha,
+              senhaNova: sha512(this.senha_conf)
+            };
+
+            this.$http.put("Usuarios/Senha", senhas).then(
+              response => {
+                this.resetTorcaSenha();
+                this.getDados();
+                $(document).ready(function() {
+                  $("#modalAlterarSenha").modal("close");
+                });
+                swalWithBootstrapButtons(
+                  "Alterado!",
+                  "A sua senha foi alterada com sucesso!",
+                  "success"
+                );
+              },
+              response => {
+                erro("Dados do Usuário", response.status);
+              }
+            );
+
+            function erro(msg, code) {
+              swalWithBootstrapButtons(
+                "Ops!",
+                "Algo deu errado! Alterações não realizadas! Entre em contato o Administrador!",
+                "error"
+              );
+              console.log(
+                "ERRO ao atualizar " +
+                  msg +
+                  "! Código de resposta (HTTP) do servidor: " +
+                  code
+              );
+            }
+          } else if (
+            // Read more about handling dismissals
+            result.dismiss === swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons(
+              "Cancelado!",
+              "Alterações não enviadas!",
+              "error"
+            );
+          }
+        });
+      }
     }
   }
 };

@@ -241,6 +241,7 @@
     <Compile Include="Models\Mapped.cs" />
     <Compile Include="Models\PasetoToken\Token.cs" />
     <Compile Include="Models\PersistenciaAuxliar\LoginCredenciaisDB.cs" />
+    <Compile Include="Models\ClassesAuxiliares\Senhas.cs" />
     <Compile Include="Models\Persistencia\PlanosDB.cs" />
     <Compile Include="Models\Persistencia\PresencasDB.cs" />
     <Compile Include="Models\Persistencia\PagamentosDB.cs" />

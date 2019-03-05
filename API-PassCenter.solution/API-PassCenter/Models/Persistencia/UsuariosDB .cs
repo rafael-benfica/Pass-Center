@@ -38,17 +38,18 @@ namespace API_PassCenter.Models.Persistencia {
             return retorno;
         }
 
-        public static int Update(Usuarios usuarios) {
+        public static int Update(Usuarios usuarios)
+        {
             int retorno = 0;
-            try {
+            try
+            {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "UPDATE usuarios SET usu_login = ?usu_login, usu_senha = ?usu_senha "+
+                string sql = "UPDATE usuarios SET usu_login = ?usu_login" +
                     "WHERE usu_codigo = ?usu_codigo";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
                 objCommand.Parameters.Add(Mapped.Parameter("?usu_login", usuarios.Usu_login));
-                objCommand.Parameters.Add(Mapped.Parameter("?usu_senha", usuarios.Usu_senha));
                 //WHERE
                 objCommand.Parameters.Add(Mapped.Parameter("?usu_codigo", usuarios.Usu_codigo));
 
@@ -57,7 +58,37 @@ namespace API_PassCenter.Models.Persistencia {
                 objConexao.Close();
                 objCommand.Dispose();
                 objConexao.Dispose();
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
+                retorno = -2;
+            }
+            return retorno;
+        }
+
+        public static int UpdateSenha(int Usu_codigo, string Usu_senha)
+        {
+            int retorno = 0;
+            try
+            {
+                IDbConnection objConexao; // Abre a conexao
+                IDbCommand objCommand; // Cria o comando
+                string sql = "UPDATE usuarios SET usu_senha = ?usu_senha " +
+                    "WHERE usu_codigo = ?usu_codigo";
+                objConexao = Mapped.Connection();
+                objCommand = Mapped.Command(sql, objConexao);
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_senha", Usu_senha));
+                //WHERE
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_codigo", Usu_codigo));
+
+                objCommand.ExecuteNonQuery(); // utilizado quando cdigo não tem retorno, como seria o caso do SELECT
+
+                objConexao.Close();
+                objCommand.Dispose();
+                objConexao.Dispose();
+            }
+            catch (Exception e)
+            {
                 retorno = -2;
             }
             return retorno;
