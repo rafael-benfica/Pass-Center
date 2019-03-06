@@ -597,9 +597,9 @@ export default {
             result.dismiss === swal.DismissReason.cancel
           ) {
             swalWithBootstrapButtons(
-              "Cancelado!",
-              "Alterações não enviadas!",
-              "error"
+              "Okay!",
+              "Revise/altere o que for necessário ;)",
+              "info"
             );
           }
         });
