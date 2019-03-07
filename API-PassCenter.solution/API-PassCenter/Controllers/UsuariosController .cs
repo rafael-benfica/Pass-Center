@@ -119,9 +119,9 @@ namespace API_PassCenter.Controllers
 
         }
 
-        [HttpPut, Route("api/Usuarios")]
+        [HttpPut, Route("api/Usuarios/MeusDados")]
         // PUT: Atualiza os dados do usuario (Token)
-        public IHttpActionResult Put([FromBody]Usuarios usuarios)
+        public IHttpActionResult PutMeusDados([FromBody]Usuarios usuarios)
         {
 
             Indentificacao credenciais = autenticar.autenticacao(Request, 5);
@@ -140,6 +140,31 @@ namespace API_PassCenter.Controllers
             else
             {
                 return Ok();
+            }
+        }
+
+
+        // PUT: Atualiza os dados de um usuario especifico.
+        [HttpPut, Route("api/Usuarios")]
+        public IHttpActionResult Put([FromBody]Usuarios usuarios)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            int retorno = UsusariosDB.Update(usuarios);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(retorno);
             }
         }
 

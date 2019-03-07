@@ -263,9 +263,10 @@ export default {
         this.infoadd = dados.pes_info_adicionais;
 
         $(document).ready(function() {
+          M.updateTextFields();
+
           $(".modal").modal();
 
-          M.updateTextFields();
           $("select").formSelect();
         });
 
@@ -276,12 +277,17 @@ export default {
           .split("-")
           .reverse();
 
+        var self = this;
+
         $(".datepicker").datepicker({
           format: "dd/mm/yyyy",
           yearRange: [ano - 100, ano],
           maxDate: new Date(),
           defaultDate: new Date([array[1], array[0], array[2]]),
           setDefaultDate: true,
+          onClose: function(params) {
+            self.atualizaData();
+          },
           i18n: {
             months: [
               "Janeiro",
@@ -421,6 +427,12 @@ export default {
       this.senha_conf = "";
       this.senha_nova = "";
     },
+
+    atualizaData() {
+      var data = $("#data_nascimento").val();
+      this.data_nascimento = data;
+    },
+    
     recebeData(data) {
       var array = data
         .replace("T00:00:00", "")
@@ -430,8 +442,7 @@ export default {
     },
 
     enviaData() {
-      var data = $("#data_nascimento")
-        .val()
+      var data = this.data_nascimento
         .split("/")
         .reverse();
       return data[0] + "-" + data[1] + "-" + data[2];
@@ -484,7 +495,7 @@ export default {
             response => {
               this.$http.put("Enderecos/MeusDados", dodosEndereco).then(
                 response => {
-                  this.$http.put("Usuarios", dodosUsuario).then(
+                  this.$http.put("Usuarios/MeusDados", dodosUsuario).then(
                     response => {
                       swalWithBootstrapButtons(
                         "Alterado!",
