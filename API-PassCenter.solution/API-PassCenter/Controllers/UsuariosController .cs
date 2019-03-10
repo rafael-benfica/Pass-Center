@@ -113,7 +113,7 @@ namespace API_PassCenter.Controllers
         public IHttpActionResult PutUserSenha([FromBody]Senhas senhas)
         {
 
-            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
+            Indentificacao credenciais = autenticar.autenticacao(Request, 6);
 
             if (credenciais == null)
             {
@@ -177,7 +177,6 @@ namespace API_PassCenter.Controllers
                 return Ok();
             }
         }
-
 
         // PUT: Atualiza o Login de um usuario especifico.
         [HttpPut, Route("api/Usuarios")]

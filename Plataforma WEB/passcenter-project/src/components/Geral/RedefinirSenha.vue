@@ -15,7 +15,7 @@
             <div class="row">
               <h1 class="login">Redefinir Senha</h1>
             </div>
-            <form onsubmit="return false">
+            <form id="atualizarSenha" onsubmit="return false">
               <div class="formulario">
                 <div class="row">
                   <div class="input-field col s12">
@@ -28,6 +28,7 @@
                       required
                     >
                     <label for="senha_nova">Nova Senha:</label>
+                    <span class="helper-text" :data-error="msg_erro"/>
                   </div>
                 </div>
                 <div class="row">
@@ -47,7 +48,7 @@
               </div>
 
               <div class="card-content">
-                <button class="waves-effect waves-light btn-large" @click="logar()">Entrar</button>
+                <button class="waves-effect waves-light btn-large" @click="trocarSenha()">Redefinir Senha</button>
               </div>
             </form>
           </div>
@@ -59,18 +60,35 @@
 
 <script>
 export default {
-  name: "Login",
+  name: "RedefinirSenha",
   data() {
     return {
+      senha: "",
       senha_conf: "",
       senha_nova: "",
+      msg_erro: "",
 
-      classNova: "validate",
-      classConf: "validate"
+      classNova: "",
+      classConf: ""
     };
   },
-   watch: {
+  mounted() {
+    this.$http.get("Pessoas").then(
+      response => {
+        this.senha = response.body[0].usu_senha;
+      },
+      response => {
+        console.log(
+          "ERRO! Código de resposta (HTTP) do servidor: " + response.status
+        );
+      }
+    );
+  },
+
+  watch: {
     senha_nova(value) {
+      var sha512 = require("js-sha512");
+
       if (this.senha_nova != this.senha_conf) {
         this.classConf = "invalid";
       } else {
@@ -79,6 +97,12 @@ export default {
 
       if (this.senha_nova == "") {
         this.classNova = "validate";
+        this.msg_erro = "Campo obrigatório";
+      } else if (sha512(this.senha_nova) == this.senha) {
+        this.classNova = "invalid";
+        this.msg_erro = "A Nova senha não pode ser igual a Senha Atual!";
+      } else {
+        this.classNova = "valid";
       }
     },
     senha_conf(value) {
@@ -91,34 +115,79 @@ export default {
       }
     }
   },
-  methods: {
-    logar() {
-      this.$http
-        .post("Tokens", { usu_login: this.login, usu_senha: this.senha })
-        .then(
-          response => {
-            var dados = response.body;
-            this.$store.commit("INSERIRTOKEN", dados[0]);
-            this.$store.commit("CARREGARTOKEN");
 
-            if (dados[1] == 5) {
-              this.$router.push("aluno");
-            } else if (dados[1] == 4) {
-              this.$router.push("professor");
-            } else if (dados[1] == 3) {
-              this.$router.push("gerenteCadastro");
-            } else if (dados[1] == 2) {
-              this.$router.push("gerenteGeral");
-            } else if (dados[1] == 1) {
-              this.$router.push("administrador");
+  methods: {
+    trocarSenha() {
+      var form = document.getElementById("atualizarSenha");
+      var isValidForm = form.checkValidity();
+
+      if (isValidForm) {
+        const swalWithBootstrapButtons = swal.mixin({
+          confirmButtonClass: "btn green sepraracaoBotoes",
+          cancelButtonClass: "btn red sepraracaoBotoes",
+          buttonsStyling: false
+        });
+
+        swalWithBootstrapButtons({
+          title: "Você tem certeza?",
+          text: "Após redefinir a senha, você será levado para a página de login!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Sim, faça!",
+          cancelButtonText: "Não, cancele!",
+          reverseButtons: true
+        }).then(result => {
+          if (result.value) {
+            var sha512 = require("js-sha512");
+
+            var senhas = {
+              senhaAtual: this.senha,
+              senhaNova: sha512(this.senha_conf)
+            };
+
+            this.$http.put("Usuarios/Senha", senhas).then(
+              response => {
+                $(document).ready(function() {
+                  $("#modalAlterarSenha").modal("close");
+                });
+                swalWithBootstrapButtons(
+                  "Alterado!",
+                  "A sua senha foi alterada com sucesso!",
+                  "success"
+                );
+                this.$store.commit('LOGOUT');
+                this.$router.push("/Login");
+              },
+              response => {
+                erro("Dados do Usuário", response.status);
+              }
+            );
+
+            function erro(msg, code) {
+              swalWithBootstrapButtons(
+                "Ops!",
+                "Algo deu errado! Alterações não realizadas! Entre em contato o Administrador!",
+                "error"
+              );
+              console.log(
+                "ERRO ao atualizar " +
+                  msg +
+                  "! Código de resposta (HTTP) do servidor: " +
+                  code
+              );
             }
-          },
-          response => {
-            console.log(
-              "ERRO! Código de resposta (HTTP) do servidor: " + response.status
+          } else if (
+            // Read more about handling dismissals
+            result.dismiss === swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons(
+              "Okay!",
+              "Revise/altere o que for necessário ;)",
+              "info"
             );
           }
-        );
+        });
+      }
     }
   }
 };

@@ -73,8 +73,8 @@ namespace API_PassCenter.Models.Persistencia {
             {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "UPDATE usuarios SET usu_senha = ?usu_senha " +
-                    "WHERE usu_codigo = ?usu_codigo";
+                string sql = "UPDATE usuarios SET usu_senha = ?usu_senha, usu_redefinir_senha = '0' " +
+                    "WHERE usu_codigo = ?usu_codigo;";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
                 objCommand.Parameters.Add(Mapped.Parameter("?usu_senha", Usu_senha));
