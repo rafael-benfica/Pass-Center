@@ -132,7 +132,7 @@ namespace API_PassCenter.Controllers
                 }
                 else
                 {
-                    int retorno = UsusariosDB.UpdateSenha(user, senhas.senhaNova);
+                    int retorno = UsusariosDB.UpdateRedefinirSenha(user, senhas.senhaNova);
 
                     if (retorno == -2)
                     {
