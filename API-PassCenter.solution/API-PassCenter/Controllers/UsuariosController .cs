@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.Http;
 
 namespace API_PassCenter.Controllers
@@ -26,7 +29,6 @@ namespace API_PassCenter.Controllers
             Usuarios usu = new Usuarios();
 
             usu.Usu_login = usuarios.Usu_login;
-            usu.Usu_senha = usuarios.Usu_senha;
             usu.Usu_estado = true;
             usu.Usu_data_criacao = DateTime.UtcNow; ;
             usu.Usu_primeiro_login = true;
@@ -34,6 +36,12 @@ namespace API_PassCenter.Controllers
             usu.Pes_codigo = usuarios.Pes_codigo;
             usu.Tus_codigo = usuarios.Tus_codigo;
 
+            string senha = GeraSenha();
+
+            SHA512 sha512 = SHA512Managed.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(senha);
+            byte[] hash = sha512.ComputeHash(bytes);
+            usu.Usu_senha = GetStringFromHash(hash);
 
             int retorno = UsusariosDB.Insert(usu);
 
@@ -43,6 +51,33 @@ namespace API_PassCenter.Controllers
             }
             else
             {
+
+                System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                client.Credentials = new System.Net.NetworkCredential("nao.responder.passcenter@gmail.com", "fatec2019");
+                MailMessage mail = new MailMessage();
+                mail.Sender = new System.Net.Mail.MailAddress(usu.Usu_login, "Pass Center");
+                mail.From = new MailAddress("nao.responder.passcenter@gmail.com", "Pass Center - Não Responder");
+                mail.To.Add(new MailAddress(usu.Usu_login, "Você"));
+                mail.Subject = "Pass Center";
+                mail.Body = "Olá, é um prazer te conhecer!<br/>Bom, para começar, aqui está a sua senha: " + senha + "<br/><br/>Se precisar de alguma ajuda, entre em contato com a gente!<br/>Um grande abraço da Equipe Pass Center =D";
+                mail.IsBodyHtml = true;
+                mail.Priority = MailPriority.High;
+                try
+                {
+                    client.Send(mail);
+                }
+                catch (System.Exception erro)
+                {
+                    return BadRequest();
+                    //trata erro
+                }
+                finally
+                {
+                    mail = null;
+                }
+
                 return Ok(retorno);
             }
 
@@ -73,7 +108,7 @@ namespace API_PassCenter.Controllers
             }
         }
 
-        // PUT: Atualiza Dados de um usuario.
+        // PUT: Atualiza a Senha de um usuario. (Token)
         [HttpPut, Route("api/Usuarios/Senha")]
         public IHttpActionResult PutUserSenha([FromBody]Senhas senhas)
         {
@@ -120,7 +155,7 @@ namespace API_PassCenter.Controllers
         }
 
         [HttpPut, Route("api/Usuarios/MeusDados")]
-        // PUT: Atualiza os dados do usuario (Token)
+        // PUT: Atualiza o Login de um usuario (Token)
         public IHttpActionResult PutMeusDados([FromBody]Usuarios usuarios)
         {
 
@@ -144,7 +179,7 @@ namespace API_PassCenter.Controllers
         }
 
 
-        // PUT: Atualiza os dados de um usuario especifico.
+        // PUT: Atualiza o Login de um usuario especifico.
         [HttpPut, Route("api/Usuarios")]
         public IHttpActionResult Put([FromBody]Usuarios usuarios)
         {
@@ -168,6 +203,65 @@ namespace API_PassCenter.Controllers
             }
         }
 
+        // PUT: Atualiza a senha de um usuario especifico.
+        [HttpPut, Route("api/Usuarios/SolicitacaoSenha")]
+        public IHttpActionResult PutUserSenhaEspec([FromBody]Usuarios usuarios)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            string senha = GeraSenha();
+
+            SHA512 sha512 = SHA512Managed.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(senha);
+            byte[] hash = sha512.ComputeHash(bytes);
+
+            usuarios.Usu_senha = GetStringFromHash(hash);
+
+
+            int retorno = UsusariosDB.Update(usuarios);
+
+            if (retorno == -2)
+            {
+                System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                client.Credentials = new System.Net.NetworkCredential("nao.responder.passcenter@gmail.com", "fatec2019");
+                MailMessage mail = new MailMessage();
+                mail.Sender = new System.Net.Mail.MailAddress(usuarios.Usu_login, "Pass Center");
+                mail.From = new MailAddress("nao.responder.passcenter@gmail.com", "Pass Center - Não Responder");
+                mail.To.Add(new MailAddress(usuarios.Usu_login, "Você"));
+                mail.Subject = "Reposição de Senha - Pass Center";
+                mail.Body = "Olá,<br/>Bom, foi solicitada a reposição da senha de acesso, e aqui está a sua senha temporaria: " + senha + "<br/><br/>Se você não solicitou essa reposição, entre em contato com a gente imdiatamente!<br/>Um grande abraço da Equipe Pass Center =D";
+                mail.IsBodyHtml = true;
+                mail.Priority = MailPriority.High;
+                try
+                {
+                    client.Send(mail);
+                }
+                catch (System.Exception erro)
+                {
+                    return BadRequest();
+                    //trata erro
+                }
+                finally
+                {
+                    mail = null;
+                }
+
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(retorno);
+            }
+        }
+
         // GET: Retorna usuários por Tipo
         [HttpGet, Route("api/Usuarios/porTipo")]
         public IHttpActionResult selectPorTipo(int tipo)
@@ -183,6 +277,34 @@ namespace API_PassCenter.Controllers
             return Ok(UsusariosDB.SelectByType(tipo, Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
         }
 
+        private string GeraSenha()
+        {
+            var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@!*_#";
+            var random = new Random();
+            var result = new string(
+                Enumerable.Repeat(chars, 10)
+                          .Select(s => s[random.Next(s.Length)])
+                          .ToArray());
+            return result;
+        }
+        public static string GenerateSHA512String(string inputString)
+        {
+            SHA512 sha512 = SHA512Managed.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(inputString);
+            byte[] hash = sha512.ComputeHash(bytes);
+            return GetStringFromHash(hash);
+        }
+
+        private static string GetStringFromHash(byte[] hash)
+        {
+            StringBuilder result = new StringBuilder();
+
+            for (int i = 0; i < hash.Length; i++)
+            {
+                result.Append(hash[i].ToString("X2"));
+            }
+            return result.ToString().ToLower();
+        }
 
     }
 }

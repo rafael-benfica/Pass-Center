@@ -166,15 +166,18 @@
               </div>
 
               <div class="modal-footer row col s12 m12 l12">
-                <a
-                  href="#!"
-                  class="col s12 m4 l4 modal-close waves-effect waves-teal btn red"
-                >Fechar</a>
-                <p class="col s12 m4 l4"></p>
-                <a
-                  class="col s12 m4 l4 waves-effect waves-teal btn green"
-                  @click="confirmacaoUpdate()"
-                >Salvar</a>
+                <div class="col s12 m4 center-align">
+                  <a href="#!" class="modal-close waves-effect waves-teal btn red">Fechar</a>
+                </div>
+                <div class="col s12 m4 center-align">
+                  <a
+                    class="waves-effect waves-light btn grey darken-3 modal-trigger"
+                    href="#modalAlterarSenha"
+                  >Alterar Senha</a>
+                </div>
+                <div class="col s12 m4 center-align">
+                  <a class="waves-effect waves-teal btn green" @click="confirmacaoUpdate()">Salvar</a>
+                </div>
               </div>
             </div>
           </div>
@@ -451,77 +454,76 @@ export default {
         $("select").formSelect();
       });
 
-        var ano = new Date().getFullYear();
+      var ano = new Date().getFullYear();
 
-        var array = dados.pes_data_nascimento
-          .replace("T00:00:00", "")
-          .split("-")
-          .reverse();
+      var array = dados.pes_data_nascimento
+        .replace("T00:00:00", "")
+        .split("-")
+        .reverse();
 
-        var self = this;
+      var self = this;
 
-        $(".datepicker").datepicker({
-          format: "dd/mm/yyyy",
-          yearRange: [ano - 100, ano],
-          maxDate: new Date(),
-          defaultDate: new Date([array[1], array[0], array[2]]),
-          setDefaultDate: true,
-          onClose: function(params) {
-            self.atualizaDataVer();
-          },
-          i18n: {
-            months: [
-              "Janeiro",
-              "Fevereiro",
-              "Março",
-              "Abril",
-              "Maio",
-              "Junho",
-              "Julho",
-              "Agosto",
-              "Setembro",
-              "Outubro",
-              "Novembro",
-              "Dezembro"
-            ],
-            monthsShort: [
-              "Jan",
-              "Fev",
-              "Mar",
-              "Abr",
-              "Mai",
-              "Jun",
-              "Jul",
-              "Ago",
-              "Set",
-              "Out",
-              "Nov",
-              "Dez"
-            ],
-            weekdays: [
-              "Domingo",
-              "Segunda",
-              "Terça",
-              "Quarta",
-              "Quinta",
-              "Sexta",
-              "Sabádo"
-            ],
-            weekdaysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
-            weekdaysAbbrev: ["D", "S", "T", "Q", "Q", "S", "S"],
-            today: "Hoje",
-            clear: "Limpar",
-            close: "Pronto",
-            labelMonthNext: "Próximo mês",
-            labelMonthPrev: "Mês anterior",
-            labelMonthSelect: "Selecione um mês",
-            labelYearSelect: "Selecione um ano",
-            selectMonths: true,
-            cancel: "Cancelar",
-            clear: "Limpar"
-          }
-        });
-
+      $(".datepicker").datepicker({
+        format: "dd/mm/yyyy",
+        yearRange: [ano - 100, ano],
+        maxDate: new Date(),
+        defaultDate: new Date([array[1], array[0], array[2]]),
+        setDefaultDate: true,
+        onClose: function(params) {
+          self.atualizaDataVer();
+        },
+        i18n: {
+          months: [
+            "Janeiro",
+            "Fevereiro",
+            "Março",
+            "Abril",
+            "Maio",
+            "Junho",
+            "Julho",
+            "Agosto",
+            "Setembro",
+            "Outubro",
+            "Novembro",
+            "Dezembro"
+          ],
+          monthsShort: [
+            "Jan",
+            "Fev",
+            "Mar",
+            "Abr",
+            "Mai",
+            "Jun",
+            "Jul",
+            "Ago",
+            "Set",
+            "Out",
+            "Nov",
+            "Dez"
+          ],
+          weekdays: [
+            "Domingo",
+            "Segunda",
+            "Terça",
+            "Quarta",
+            "Quinta",
+            "Sexta",
+            "Sabádo"
+          ],
+          weekdaysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+          weekdaysAbbrev: ["D", "S", "T", "Q", "Q", "S", "S"],
+          today: "Hoje",
+          clear: "Limpar",
+          close: "Pronto",
+          labelMonthNext: "Próximo mês",
+          labelMonthPrev: "Mês anterior",
+          labelMonthSelect: "Selecione um mês",
+          labelYearSelect: "Selecione um ano",
+          selectMonths: true,
+          cancel: "Cancelar",
+          clear: "Limpar"
+        }
+      });
     },
 
     addDados() {
@@ -811,10 +813,7 @@ export default {
         type: "error"
       }),
         console.log(
-          "ERRO ao atualizar " +
-            msg +
-            "! Código de resposta (HTTP) do servidor: " +
-            code
+          "ERRO em " + msg + "! Código de resposta (HTTP) do servidor: " + code
         ),
         this.carregarDados();
     }
