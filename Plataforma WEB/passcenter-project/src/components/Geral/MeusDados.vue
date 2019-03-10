@@ -118,7 +118,7 @@
           <label for="infoadd">Informações Adicionais</label>
         </div>
       </div>
-      <div class="rows">
+      <div class="row">
         <div class="col s12 m6">
           <a class="waves-effect waves-teal btn" @click="confirmacao()">Salvar Alterações</a>
         </div>

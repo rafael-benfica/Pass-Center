@@ -25,6 +25,7 @@ import FormularioAluno from '@/components/gerentes/AlunosGeral.vue'
 //Geral
 import Login from '@/components/geral/Login.vue'
 import RedefinirSenha from '@/components/geral/RedefinirSenha.vue'
+import EsqueciMinhaSenha from '@/components/geral/EsqueciMinhaSenha.vue'
 import Home from '@/components/geral/Home.vue'
 import MeusDados from '@/components/geral/MeusDados.vue'
 
@@ -63,6 +64,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/EsqueciMinhaSenha',
+      name: 'EsqueciMinhaSenha',
+      component: EsqueciMinhaSenha
     },
     {
       path: '/RedefinirSenha',

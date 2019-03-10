@@ -51,7 +51,7 @@
             </form>
 
             <div class="card-action">
-              <a class="esqueciSenha" href="#">Esqueci minha senha</a>
+              <router-link :to="{ name: 'EsqueciMinhaSenha' }" class="esqueciSenha">Esqueci minha senha</router-link>
             </div>
           </div>
         </div>
