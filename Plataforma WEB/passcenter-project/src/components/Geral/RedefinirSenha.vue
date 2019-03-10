@@ -48,7 +48,10 @@
               </div>
 
               <div class="card-content">
-                <button class="waves-effect waves-light btn-large" @click="trocarSenha()">Redefinir Senha</button>
+                <button
+                  class="waves-effect waves-light btn-large"
+                  @click="trocarSenha()"
+                >Redefinir Senha</button>
               </div>
             </form>
           </div>
@@ -130,7 +133,8 @@ export default {
 
         swalWithBootstrapButtons({
           title: "Você tem certeza?",
-          text: "Após redefinir a senha, você será levado para a página de login!",
+          text:
+            "Após redefinir a senha, você será levado para a página de login!",
           type: "warning",
           showCancelButton: true,
           confirmButtonText: "Sim, faça!",
@@ -155,7 +159,7 @@ export default {
                   "A sua senha foi alterada com sucesso!",
                   "success"
                 );
-                this.$store.commit('LOGOUT');
+                this.$store.commit("LOGOUT");
                 this.$router.push("/Login");
               },
               response => {
@@ -188,6 +192,16 @@ export default {
           }
         });
       }
+    },
+    erro(msg, code) {
+      swal({
+        title: "Oops!",
+        text: "Algo deu errado! Entre em contato com os Administradores!",
+        type: "error"
+      }),
+        console.log(
+          "ERRO em " + msg + "! Código de resposta (HTTP) do servidor: " + code
+        )
     }
   }
 };

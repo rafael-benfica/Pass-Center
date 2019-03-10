@@ -94,6 +94,34 @@ namespace API_PassCenter.Models.Persistencia {
             return retorno;
         }
 
+        public static int UpdateEsqueciMnhaSenha(string Usu_login, string Usu_senha)
+        {
+            int retorno = 0;
+            try
+            {
+                IDbConnection objConexao; // Abre a conexao
+                IDbCommand objCommand; // Cria o comando
+                string sql = "UPDATE usuarios SET usu_senha = ?usu_senha, usu_redefinir_senha = '1' " +
+                    "WHERE usu_login = ?usu_login;";
+                objConexao = Mapped.Connection();
+                objCommand = Mapped.Command(sql, objConexao);
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_senha", Usu_senha));
+                //WHERE
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_login", Usu_login));
+
+                objCommand.ExecuteNonQuery(); // utilizado quando cdigo não tem retorno, como seria o caso do SELECT
+
+                objConexao.Close();
+                objCommand.Dispose();
+                objConexao.Dispose();
+            }
+            catch (Exception e)
+            {
+                retorno = -2;
+            }
+            return retorno;
+        }
+
         public static int UpdateRedefinirSenha(int Usu_codigo, string Usu_senha)
         {
             int retorno = 0;
@@ -121,8 +149,6 @@ namespace API_PassCenter.Models.Persistencia {
             }
             return retorno;
         }
-
-
 
         public static DataSet SelectByType(int tipo, int instituicao) {
             //Imagine um DataSet como umamatriz de dados;

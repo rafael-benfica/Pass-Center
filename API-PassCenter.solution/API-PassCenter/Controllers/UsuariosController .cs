@@ -108,7 +108,7 @@ namespace API_PassCenter.Controllers
             }
         }
 
-        // PUT: Atualiza a Senha de um usuario. (Token)
+        // PUT: Atualiza a Senha de um usuario (Token)
         [HttpPut, Route("api/Usuarios/Senha")]
         public IHttpActionResult PutUserSenha([FromBody]Senhas senhas)
         {
@@ -224,6 +224,58 @@ namespace API_PassCenter.Controllers
 
 
             int retorno = UsusariosDB.UpdateSenha(usuarios.Usu_codigo, usuarios.Usu_senha);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                client.Credentials = new System.Net.NetworkCredential("nao.responder.passcenter@gmail.com", "fatec2019");
+                MailMessage mail = new MailMessage();
+                mail.Sender = new System.Net.Mail.MailAddress(usuarios.Usu_login, "Pass Center");
+                mail.From = new MailAddress("nao.responder.passcenter@gmail.com", "Pass Center");
+                mail.To.Add(new MailAddress(usuarios.Usu_login, "Você"));
+                mail.Subject = "Reposição de Senha - Pass Center";
+                mail.Body = "Olá,<br/>Bom, foi solicitada a reposição da senha de acesso, e aqui está a sua senha temporaria: " + senha + "<br/><br/>Se você não solicitou essa reposição, entre em contato com a gente imdiatamente!<br/>Um grande abraço da Equipe Pass Center =D";
+                mail.IsBodyHtml = true;
+                mail.Priority = MailPriority.High;
+                try
+                {
+                    client.Send(mail);
+                }
+                catch (System.Exception erro)
+                {
+                    return BadRequest();
+                    //trata erro
+                }
+                finally
+                {
+                    mail = null;
+                }
+
+                return Ok(retorno);
+            }
+        }
+
+        // PUT: Atualiza a senha de um usuario especifico (Esqueci Minha Senha).
+        [HttpPut, Route("api/Usuarios/EsqueciMinhaSenha")]
+        public IHttpActionResult PutEsqueciMinhaSenha([FromBody]Usuarios usuarios)
+        {
+
+            string senha = GeraSenha();
+
+            SHA512 sha512 = SHA512Managed.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(senha);
+            byte[] hash = sha512.ComputeHash(bytes);
+
+            usuarios.Usu_senha = GetStringFromHash(hash);
+
+
+            int retorno = UsusariosDB.UpdateEsqueciMnhaSenha(usuarios.Usu_login, usuarios.Usu_senha);
 
             if (retorno == -2)
             {

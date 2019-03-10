@@ -15,7 +15,7 @@ export default {
 
       var local = this.$route.path;
 
-      if (local != "/" && local != "/Login") {
+      if (local != "/" && local != "/Login" && local != "/EsqueciMinhaSenha") {
         this.$router.push("/Login");
       }
         
