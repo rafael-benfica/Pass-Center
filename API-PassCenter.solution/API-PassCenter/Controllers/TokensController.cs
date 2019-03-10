@@ -26,8 +26,18 @@ namespace API_PassCenter.Controllers
             if (retorno.Tables[0].Rows.Count == 0) {
                 return Content(HttpStatusCode.Unauthorized, "Combinação de login e senha inválidos!");
             } else {
+                string tipoUser;
+
+                if (retorno.Tables[0].Rows[0]["usu_redefinir_senha"].ToString().Equals("1")){
+                    tipoUser = "6";
+                }
+                else
+                {
+                    tipoUser = retorno.Tables[0].Rows[0]["tus_codigo"].ToString();
+                }
+
                 //return Ok(Token.GerarToken(retorno));
-                return Ok(new string[] { Token.GerarToken(retorno) , retorno.Tables[0].Rows[0]["tus_codigo"].ToString() });
+                return Ok(new string[] { Token.GerarToken(retorno), tipoUser });
             }
 
 

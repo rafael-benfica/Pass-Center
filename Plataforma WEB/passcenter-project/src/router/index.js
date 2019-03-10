@@ -9,15 +9,22 @@ import GerenteGeral from '@/components/gerenteGeral/DashBoardGerenteGeral.vue'
 import Professor from '@/components/professor/DashBoardProfessor.vue'
 
 //Gerente Geral
-import AlunoGeral from '@/components/gerenteGeral/AlunoGeral.vue'
-import DisciplinasGeral from '@/components/gerenteGeral/DisciplinasGeral.vue'
+import AlunoGeral from '@/components/gerentes/AlunosGeral.vue'
+import DisciplinasGeral from '@/components/gerentes/DisciplinasGeral.vue'
 import Financeiro from '@/components/gerenteGeral/Financeiro.vue'
-import ProfessoresGeral from '@/components/gerenteGeral/ProfessoresGeral.vue'
+import ProfessoresGeral from '@/components/gerentes/ProfessoresGeral.vue'
 import Totens from '@/components/gerenteGeral/Totens.vue'
-import TurmasGeral from '@/components/gerenteGeral/TurmasGeral.vue'
+import TurmasGeral from '@/components/gerentes/TurmasGeral.vue'
+
+//Cadastro
+import GerenteCadastroProfessores from '@/components/gerentes/ProfessoresGeral.vue'
+import GerenteCadastroTurma from '@/components/gerentes/TurmasGeral.vue'
+import GerenteCadastroMateria from '@/components/gerentes/DisciplinasGeral.vue'
+import FormularioAluno from '@/components/gerentes/AlunosGeral.vue'
 
 //Geral
 import Login from '@/components/geral/Login.vue'
+import RedefinirSenha from '@/components/geral/RedefinirSenha.vue'
 import Home from '@/components/geral/Home.vue'
 import MeusDados from '@/components/geral/MeusDados.vue'
 
@@ -32,20 +39,15 @@ import ListaManual from '@/components/professor/ListaManual.vue'
 import ListaManual2 from '@/components/professor/ListaManual2.vue'
 import ListaManual3 from '@/components/professor/ListaManual3.vue'
 
-//Cadastro
-import GerenteCadastroProfessores from '@/components/gerenteGeral/ProfessoresGeral.vue'
-import GerenteCadastroTurma from '@/components/gerenteGeral/TurmasGeral.vue'
-import GerenteCadastroMateria from '@/components/gerenteGeral/DisciplinasGeral.vue'
-import FormularioAluno from '@/components/gerenteGeral/AlunoGeral.vue'
 
 //Administrador
-import AlunoADM from '@/components/gerenteGeral/AlunoGeral.vue'
-import DisciplinasADM from '@/components/gerenteGeral/DisciplinasGeral.vue'
+import AlunoADM from '@/components/gerentes/AlunosGeral.vue'
+import DisciplinasADM from '@/components/gerentes/DisciplinasGeral.vue'
 import FinanceiroADM from '@/components/gerenteGeral/Financeiro.vue'
 import InstituicoesADM from '@/components/administrador/InstituicoesADM.vue'
-import ProfessoresADM from '@/components/gerenteGeral/ProfessoresGeral.vue'
+import ProfessoresADM from '@/components/gerentes/ProfessoresGeral.vue'
 import TotensADM from '@/components/gerenteGeral/Totens.vue'
-import TurmasADM from '@/components/gerenteGeral/TurmasGeral.vue'
+import TurmasADM from '@/components/gerentes/TurmasGeral.vue'
 
 Vue.use(Router)
 
@@ -61,6 +63,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/RedefinirSenha',
+      name: 'RedefinirSenha',
+      component: RedefinirSenha
     },
 
     //Administrador

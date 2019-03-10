@@ -58,7 +58,7 @@ namespace API_PassCenter.Controllers
                 client.Credentials = new System.Net.NetworkCredential("nao.responder.passcenter@gmail.com", "fatec2019");
                 MailMessage mail = new MailMessage();
                 mail.Sender = new System.Net.Mail.MailAddress(usu.Usu_login, "Pass Center");
-                mail.From = new MailAddress("nao.responder.passcenter@gmail.com", "Pass Center - Não Responder");
+                mail.From = new MailAddress("nao.responder.passcenter@gmail.com", "Pass Center");
                 mail.To.Add(new MailAddress(usu.Usu_login, "Você"));
                 mail.Subject = "Pass Center";
                 mail.Body = "Olá, é um prazer te conhecer!<br/>Bom, para começar, aqui está a sua senha: " + senha + "<br/><br/>Se precisar de alguma ajuda, entre em contato com a gente!<br/>Um grande abraço da Equipe Pass Center =D";
@@ -224,9 +224,13 @@ namespace API_PassCenter.Controllers
             usuarios.Usu_senha = GetStringFromHash(hash);
 
 
-            int retorno = UsusariosDB.Update(usuarios);
+            int retorno = UsusariosDB.UpdateSenha(usuarios.Usu_codigo, usuarios.Usu_senha);
 
             if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
             {
                 System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
                 client.Host = "smtp.gmail.com";
@@ -234,7 +238,7 @@ namespace API_PassCenter.Controllers
                 client.Credentials = new System.Net.NetworkCredential("nao.responder.passcenter@gmail.com", "fatec2019");
                 MailMessage mail = new MailMessage();
                 mail.Sender = new System.Net.Mail.MailAddress(usuarios.Usu_login, "Pass Center");
-                mail.From = new MailAddress("nao.responder.passcenter@gmail.com", "Pass Center - Não Responder");
+                mail.From = new MailAddress("nao.responder.passcenter@gmail.com", "Pass Center");
                 mail.To.Add(new MailAddress(usuarios.Usu_login, "Você"));
                 mail.Subject = "Reposição de Senha - Pass Center";
                 mail.Body = "Olá,<br/>Bom, foi solicitada a reposição da senha de acesso, e aqui está a sua senha temporaria: " + senha + "<br/><br/>Se você não solicitou essa reposição, entre em contato com a gente imdiatamente!<br/>Um grande abraço da Equipe Pass Center =D";
@@ -254,10 +258,6 @@ namespace API_PassCenter.Controllers
                     mail = null;
                 }
 
-                return BadRequest();
-            }
-            else
-            {
                 return Ok(retorno);
             }
         }
@@ -279,13 +279,47 @@ namespace API_PassCenter.Controllers
 
         private string GeraSenha()
         {
-            var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@!*_#";
-            var random = new Random();
-            var result = new string(
-                Enumerable.Repeat(chars, 10)
-                          .Select(s => s[random.Next(s.Length)])
+            //Maiusculas
+            var charsMa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var randomMa = new Random();
+            var resultMa = new string(
+                Enumerable.Repeat(charsMa, 2)
+                          .Select(s => s[randomMa.Next(s.Length)])
                           .ToArray());
-            return result;
+
+            //Minusculas
+            var charsMi = "abcdefghijklmnopqrstuvwxyz";
+            var randomMi = new Random();
+            var resultMi = new string(
+                Enumerable.Repeat(charsMi, 2)
+                          .Select(s => s[randomMi.Next(s.Length)])
+                          .ToArray());
+
+            //Numeros
+            var charsNu = "0123456789";
+            var randomNu = new Random();
+            var resultNu = new string(
+                Enumerable.Repeat(charsNu, 2)
+                          .Select(s => s[randomNu.Next(s.Length)])
+                          .ToArray());
+
+            //Especiais
+            var charsES = "@!*_#";
+            var randomEs = new Random();
+            var resultES = new string(
+                Enumerable.Repeat(charsES, 2)
+                          .Select(s => s[randomEs.Next(s.Length)])
+                          .ToArray());
+
+            //Todos
+            var charsTo = charsMa+charsMi+charsNu+charsES;
+            var randomTo = new Random();
+            var resultTo = new string(
+                Enumerable.Repeat(charsTo, 2)
+                          .Select(s => s[randomTo.Next(s.Length)])
+                          .ToArray());
+
+            return resultMa + resultMi + resultNu + resultES + resultTo;
         }
         public static string GenerateSHA512String(string inputString)
         {

@@ -3,20 +3,20 @@
     <form class="col s12 card data2" onsubmit="return false">
       <div class="row topo">
         <div class="col s12 m12 l12">
-          <h3 class="col s12 m12 l12 centro">Lista de Professores</h3>
+          <h3 class="col s12 m12 l12 centro">Lista de alunos</h3>
 
           <table>
             <thead class="centro">
               <tr>
-                <th>Nome do Professor</th>
-                <th>Matrícula do Professor</th>
-                <th>Telefone Residencial do Professor</th>
-                <th>Telefone Celular do Professor</th>
+                <th>Nome do Aluno</th>
+                <th>Matrícula do do Aluno</th>
+                <th>Telefone Residencial do Aluno</th>
+                <th>Telefone Celular do aluno</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in professores" :key="item.id" @click="verDados(index)">
+              <tr v-for="(item, index) in alunos" :key="item.id" @click="verDados(index)">
                 <td>{{ item.pes_nome +" "+ item.pes_sobrenomes }}</td>
                 <td>{{ "#"+item.pes_matricula }}</td>
                 <td>{{ item.pes_tel_residencial }}</td>
@@ -32,11 +32,11 @@
             class="col s12 m12 l12 centro waves-effect waves-light btn modal-trigger botaoVerMais"
             href="#modalAdd"
             @click="addDados()"
-          >Adicionar Professores</a>
+          >Adicionar aluno</a>
 
           <div id="modalVer" class="modal">
             <div class="modal-content">
-              <h4 class="centro">Professor</h4>
+              <h4 class="centro">Aluno</h4>
               <hr>
               <div class="row col s12 m12 l12">
                 <div class="row">
@@ -173,6 +173,7 @@
                   <a
                     class="waves-effect waves-light btn grey darken-3 modal-trigger"
                     href="#modalAlterarSenha"
+                    @click="confirmacaoAlterarSenha()"
                   >Alterar Senha</a>
                 </div>
                 <div class="col s12 m4 center-align">
@@ -184,7 +185,7 @@
 
           <div id="modalAdd" class="modal">
             <div class="modal-content">
-              <h4 class="centro">Cadastro Professor</h4>
+              <h4 class="centro">Cadastrar Aluno</h4>
               <hr>
               <div class="row col s12 m12 l12">
                 <div class="row">
@@ -348,10 +349,10 @@
 
 <script>
 export default {
-  name: "Professores",
+  name: "alunos",
   data() {
     return {
-      professores: [],
+      alunos: [],
       pessoa_codigo: "",
       endereco_codigo: "",
       usuario_codigo: "",
@@ -388,9 +389,9 @@ export default {
   },
   methods: {
     carregarDados() {
-      this.$http.get("Usuarios/porTipo", { params: { tipo: 4 } }).then(
+      this.$http.get("Usuarios/porTipo", { params: { tipo: 5 } }).then(
         response => {
-          this.professores = response.body;
+          this.alunos = response.body;
         },
         response => {
           console.log(
@@ -425,7 +426,7 @@ export default {
     },
 
     verDados(index) {
-      var dados = this.professores[index];
+      var dados = this.alunos[index];
 
       this.usuario_codigo = dados.usu_codigo;
       this.pessoa_codigo = dados.pes_codigo;
@@ -765,7 +766,7 @@ export default {
                       pes_codigo: response.body
                     },
                     tus_codigo: {
-                      tus_codigo: 4
+                      tus_codigo: 5
                     }
                   };
 
@@ -806,10 +807,56 @@ export default {
       });
     },
 
+    confirmacaoAlterarSenha() {
+      const swalWithBootstrapButtons = swal.mixin({
+        confirmButtonClass: "btn green sepraracaoBotoes",
+        cancelButtonClass: "btn red sepraracaoBotoes",
+        buttonsStyling: false
+      });
+
+      swalWithBootstrapButtons({
+        title: "Você tem certeza?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sim, envie uma nova Senha!",
+        cancelButtonText: "Não, cancele!",
+        reverseButtons: true
+      }).then(result => {
+        if (result.value) {
+          var dodosUsuario = {
+            usu_codigo: this.usuario_codigo,
+            usu_login: this.login
+          };
+
+          this.$http.put("Usuarios/SolicitacaoSenha", dodosUsuario).then(
+            response => {
+              swalWithBootstrapButtons(
+                "Pronto!",
+                "Enviamos um e-mail com uma senha temporária!",
+                "success"
+              );
+            },
+            response => {
+              this.erro("Dados do Usuário", response.status);
+            }
+          );
+        } else if (
+          // Read more about handling dismissals
+          result.dismiss === swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons(
+            "Okay!",
+            "Revise/altere o que for necessário ;)",
+            "info"
+          );
+        }
+      });
+    },
+
     erro(msg, code) {
       swal({
         title: "Oops!",
-        text: "Algo deu errado! Os dados não foram salvos!",
+        text: "Algo deu errado! Entre em contato com os Administradores!",
         type: "error"
       }),
         console.log(

@@ -135,7 +135,9 @@ export default {
     },
 
     encaminhar(dados) {
-      if (dados == 5) {
+      if (dados == 6) {
+        this.$router.push("redefinirSenha");
+      } else if (dados == 5) {
         this.$router.push("aluno");
       } else if (dados == 4) {
         this.$router.push("professor");

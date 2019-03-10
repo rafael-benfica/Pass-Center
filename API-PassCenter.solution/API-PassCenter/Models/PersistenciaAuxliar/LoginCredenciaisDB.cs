@@ -20,10 +20,9 @@ namespace API_PassCenter.Models.Persistencia {
 
             objConexao = Mapped.Connection();
 
-            string sql = "select usu_codigo, pes_codigo, end_codigo, ins_codigo, tus_codigo from usuarios as a " +
+            string sql = "select usu_codigo, pes_codigo, end_codigo, ins_codigo, tus_codigo, usu_redefinir_senha from usuarios " +
                 "inner join pessoas using (pes_codigo) " +
-                "inner join tipos_usuarios using (tus_codigo) " +
-                "where a.usu_login = ?usu_login and a.usu_senha = ?usu_senha";
+                "where usu_login = ?usu_login and usu_senha = ?usu_senha";
 
             objCommand = Mapped.Command(sql, objConexao);
 
