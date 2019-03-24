@@ -171,8 +171,7 @@
                 </div>
                 <div class="col s12 m4 center-align">
                   <a
-                    class="waves-effect waves-light btn grey darken-3 modal-trigger"
-                    href="#modalAlterarSenha"
+                    class="waves-effect waves-light btn grey darken-3"
                     @click="confirmacaoAlterarSenha()"
                   >Alterar Senha</a>
                 </div>
@@ -823,29 +822,28 @@ export default {
         reverseButtons: true
       }).then(result => {
         if (result.value) {
-                  var dodosUsuario = {
-                    usu_codigo: this.usuario_codigo,
-                    usu_login: this.login
-                  };
+          var dodosUsuario = {
+            usu_codigo: this.usuario_codigo,
+            usu_login: this.login
+          };
 
-                  this.$http.put("Usuarios/SolicitacaoSenha", dodosUsuario).then(
-                    response => {
-                      swalWithBootstrapButtons(
-                        "Pronto!",
-                        "Enviamos um e-mail com uma senha temporária!",
-                        "success"
-                      );
-                    },
-                    response => {
-                      this.erro("Dados do Usuário", response.status);
-                    }
-                  );
-                
-       
+          this.$http.put("Usuarios/SolicitacaoSenha", dodosUsuario).then(
+            response => {
+              swalWithBootstrapButtons(
+                "Pronto!",
+                "Enviamos um e-mail com uma senha temporária!",
+                "success"
+              );
+            },
+            response => {
+              this.erro("Dados do Usuário", response.status);
+            }
+          );
         } else if (
           // Read more about handling dismissals
           result.dismiss === swal.DismissReason.cancel
         ) {
+          this.carregarDados(),
             swalWithBootstrapButtons(
               "Okay!",
               "Revise/altere o que for necessário ;)",

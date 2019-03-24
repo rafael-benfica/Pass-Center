@@ -1,6 +1,6 @@
 <template>
   <div class="row area-exibicao">
-    <form class="col s12 card">
+    <form id="atualizarSenha" class="col s12 card">
       <div class="row topo">
         <span class="card-title">Meus Dados</span>
       </div>

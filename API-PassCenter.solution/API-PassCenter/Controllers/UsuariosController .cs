@@ -332,7 +332,7 @@ namespace API_PassCenter.Controllers
         {
             //Maiusculas
             var charsMa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            var randomMa = new Random();
+            var randomMa = new Random(Guid.NewGuid().GetHashCode());
             var resultMa = new string(
                 Enumerable.Repeat(charsMa, 2)
                           .Select(s => s[randomMa.Next(s.Length)])
@@ -340,7 +340,7 @@ namespace API_PassCenter.Controllers
 
             //Minusculas
             var charsMi = "abcdefghijklmnopqrstuvwxyz";
-            var randomMi = new Random();
+            var randomMi = new Random(Guid.NewGuid().GetHashCode());
             var resultMi = new string(
                 Enumerable.Repeat(charsMi, 2)
                           .Select(s => s[randomMi.Next(s.Length)])
@@ -348,7 +348,7 @@ namespace API_PassCenter.Controllers
 
             //Numeros
             var charsNu = "0123456789";
-            var randomNu = new Random();
+            var randomNu = new Random(Guid.NewGuid().GetHashCode());
             var resultNu = new string(
                 Enumerable.Repeat(charsNu, 2)
                           .Select(s => s[randomNu.Next(s.Length)])
@@ -356,7 +356,7 @@ namespace API_PassCenter.Controllers
 
             //Especiais
             var charsES = "@!*_#";
-            var randomEs = new Random();
+            var randomEs = new Random(Guid.NewGuid().GetHashCode());
             var resultES = new string(
                 Enumerable.Repeat(charsES, 2)
                           .Select(s => s[randomEs.Next(s.Length)])
@@ -364,7 +364,7 @@ namespace API_PassCenter.Controllers
 
             //Todos
             var charsTo = charsMa+charsMi+charsNu+charsES;
-            var randomTo = new Random();
+            var randomTo = new Random(Guid.NewGuid().GetHashCode());
             var resultTo = new string(
                 Enumerable.Repeat(charsTo, 2)
                           .Select(s => s[randomTo.Next(s.Length)])

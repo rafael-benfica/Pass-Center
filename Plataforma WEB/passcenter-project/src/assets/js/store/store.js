@@ -19,13 +19,15 @@ const mutations = {
     },
 
     CARREGARTOKEN (state) {
-      Vue.http.headers.common['Authorization'] = state.token;  
+      Vue.http.headers.common['Authorization'] = state.token;
     },
 
     LOGOUT (state) {
       document.cookie = "Token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = "TipoUser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      console.log("sair");
+      Vue.http.headers.common['Authorization'] = "";
+      state.token = "";
+      state.tipoUser = 0;
     }
 }
 

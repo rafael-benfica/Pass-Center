@@ -171,8 +171,7 @@
                 </div>
                 <div class="col s12 m4 center-align">
                   <a
-                    class="waves-effect waves-light btn grey darken-3 modal-trigger"
-                    href="#modalAlterarSenha"
+                    class="waves-effect waves-light btn grey darken-3"
                     @click="confirmacaoAlterarSenha()"
                   >Alterar Senha</a>
                 </div>

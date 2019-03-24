@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from './../assets/js/store/store.js'
 
 //DashBoards
 import Administrador from '@/components/administrador/DashBoardAdministrador.vue'
@@ -50,9 +51,10 @@ import ProfessoresADM from '@/components/gerentes/ProfessoresGeral.vue'
 import TotensADM from '@/components/gerenteGeral/Totens.vue'
 import TurmasADM from '@/components/gerentes/TurmasGeral.vue'
 
+
 Vue.use(Router)
 
-export default new Router({
+const rotas = new Router({
   mode: 'history',
   routes: [
     {
@@ -73,22 +75,22 @@ export default new Router({
     {
       path: '/RedefinirSenha',
       name: 'RedefinirSenha',
-      component: RedefinirSenha
+      component: RedefinirSenha,
     },
 
     //Administrador
     {
       path: '/administrador',
       component: Administrador,
-      children:[
+      children: [
         {
           path: 'AlunoADM',
           name: 'AlunoADM',
           component: AlunoADM,
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
-              { nome: 'Alunos' }]
-            }
+            { nome: 'Alunos' }]
+          }
         },
         {
           path: 'DisciplinasADM',
@@ -96,7 +98,7 @@ export default new Router({
           component: DisciplinasADM,
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
-              { nome: 'Disciplinas' }]
+            { nome: 'Disciplinas' }]
           }
         },
         {
@@ -105,7 +107,7 @@ export default new Router({
           component: MeusDados,
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
-            { nome: 'Meus Dados' }]
+            { nome: 'Meus nivel' }]
           }
         },
         {
@@ -114,7 +116,7 @@ export default new Router({
           component: FinanceiroADM,
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
-              { nome: 'Financeiro' }]
+            { nome: 'Financeiro' }]
           }
         },
         {
@@ -123,7 +125,7 @@ export default new Router({
           component: InstituicoesADM,
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
-              { nome: 'Instituições' }]
+            { nome: 'Instituições' }]
           }
         },
         {
@@ -132,7 +134,7 @@ export default new Router({
           component: ProfessoresADM,
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
-              { nome: 'Professores' }]
+            { nome: 'Professores' }]
           }
         },
         {
@@ -141,7 +143,7 @@ export default new Router({
           component: TotensADM,
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
-              { nome: 'Totens' }]
+            { nome: 'Totens' }]
           }
         },
         {
@@ -150,7 +152,7 @@ export default new Router({
           component: TurmasADM,
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
-              { nome: 'Turmas' }]
+            { nome: 'Turmas' }]
           }
         }
       ]
@@ -176,7 +178,7 @@ export default new Router({
           component: MeusDados,
           meta: {
             breadcrumbs: [{ nome: 'Gerente Geral' },
-            { nome: 'Meus Dados' }]
+            { nome: 'Meus nivel' }]
           }
         },
         {
@@ -234,13 +236,14 @@ export default new Router({
           }
         }
       ]
+
     },
 
     //Gerente Cadastro
     {
       path: '/gerentecadastro',
       component: GerenteCadastro,
-      children:[
+      children: [
         {
           path: 'MinhasDisciplinas2',
           name: 'MinhasDisciplinas2',
@@ -256,7 +259,7 @@ export default new Router({
           component: MeusDados,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-            { nome: 'Meus Dados' }]
+            { nome: 'Meus nivel' }]
           }
         },
         {
@@ -274,8 +277,8 @@ export default new Router({
           component: GerenteCadastroTurma,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-            
-              {nome:'Turmas'}]
+
+            { nome: 'Turmas' }]
           }
         },
         {
@@ -284,8 +287,8 @@ export default new Router({
           component: GerenteCadastroMateria,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-            
-              { nome:'Disciplinas'}]
+
+            { nome: 'Disciplinas' }]
           }
         },
         {
@@ -294,20 +297,21 @@ export default new Router({
           component: FormularioAluno,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-            
+
             { nome: 'Alunos' },
-           ]
+            ]
           }
         }
-        
+
       ]
+
     },
 
     //Professor
     {
       path: '/professor',
       component: Professor,
-      children:[
+      children: [
         {
           path: 'MinhasDisciplinasProfessor',
           name: 'MinhasDisciplinasProfessor',
@@ -316,14 +320,14 @@ export default new Router({
             breadcrumbs: [{ nome: 'Professor' },
             { nome: 'Minhas Disciplinas' }]
           }
-        }, 
+        },
         {
-          path: 'meusdados',
+          path: 'MeusDados',
           name: 'MeusDadosProfessor',
           component: MeusDados,
           meta: {
             breadcrumbs: [{ nome: 'Professor' },
-            { nome: 'Meus Dados' }]
+            { nome: 'Meus nivel' }]
           }
         },
         {
@@ -332,7 +336,7 @@ export default new Router({
           component: ListaManual,
           meta: {
             breadcrumbs: [{ nome: 'Professor' },
-              { nome: 'Lista de Presença Manual' }]
+            { nome: 'Lista de Presença Manual' }]
           }
         },
         {
@@ -371,12 +375,12 @@ export default new Router({
           }
         },
         {
-          path: 'meusdados',
+          path: 'MeusDados',
           name: 'MeusDadosAluno',
           component: MeusDados,
           meta: {
             breadcrumbs: [{ nome: 'Aluno' },
-            { nome: 'Meus Dados' }]
+            { nome: 'Meus nivel' }]
           }
         },
         {
@@ -402,3 +406,98 @@ export default new Router({
     }
   ]
 })
+
+function encaminhar(nivel, destino) {
+  if (nivel == 6) {
+    if (destino == "/REDEFINIRSENHA") {
+      return true;
+    } else {
+      return "/redefinirSenha";
+    };
+  } else if (nivel == 5) {
+    if (destino == "/ALUNO") {
+      return true;
+    } else {
+      return "/aluno";
+    };
+  } else if (nivel == 4) {
+    if (destino == "/PROFESSOR") {
+      return true;
+    } else {
+      return "/professor";
+    };
+  } else if (nivel == 3) {
+    if (destino == "/GERENTECADASTRO") {
+      return true;
+    } else {
+      return "/gerenteCadastro";
+    };
+  } else if (nivel == 2) {
+    if (destino == "/GERENTEGERAL") {
+      return true;
+    } else {
+      return "/gerenteGeral";
+    };
+  } else if (nivel == 1) {
+    if (destino == "/ADMINISTRADOR") {
+      return true;
+    } else {
+      return "/administrador";
+    };
+  } else {
+    return true;
+  };
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "/";
+}
+
+rotas.beforeEach((to, from, next) => {
+  var dest = to.matched[0].path.toUpperCase();
+
+  if (dest != "/" && dest != "" && dest != "/LOGIN" && dest != "/ESQUECIMINHASENHA") {
+    if (getCookie("Token") != "/") {
+      store.commit("INSERIRTOKEN", getCookie("Token"));
+      store.commit("INSERIRTIPOUSER", getCookie("TipoUser"));
+      store.commit("CARREGARTOKEN");
+
+      next(encaminhar(parseInt(getCookie("TipoUser")), to.matched[0].path.toUpperCase()));
+    } else {
+
+      if(from.matched.length != 0){
+        var reme = from.matched[0].path.toUpperCase();
+        if (reme != "/" && reme != "" && reme != "/LOGIN" && reme != "/ESQUECIMINHASENHA") {
+          store.commit("LOGOUT");
+          swal({
+            title: "Tempo Esgotado!",
+            text:  "A sua sessão de 30 minutos esgotou! Por favor, faça login novamente.",
+            type: "info"
+          });
+        }
+      }
+      next("/Login");
+    }
+  } else {
+    
+    
+
+    next(true);
+  }
+
+
+})
+
+export default rotas;
