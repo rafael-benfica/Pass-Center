@@ -51,7 +51,64 @@
             </form>
 
             <div class="card-action">
-              <router-link :to="{ name: 'EsqueciMinhaSenha' }" class="esqueciSenha">Esqueci minha senha</router-link>
+              <router-link
+                :to="{ name: 'EsqueciMinhaSenha' }"
+                class="esqueciSenha"
+              >Esqueci minha senha</router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal1" class="modal">
+      <div>
+        <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-red">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-green">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
             </div>
           </div>
         </div>
@@ -69,7 +126,7 @@ export default {
       senha: ""
     };
   },
-  
+
   mounted: function() {
     if (this.getCookie("Token") != "") {
       this.encaminhar(this.getCookie("TipoUser"));
@@ -94,6 +151,10 @@ export default {
     },
 
     logar() {
+      var modal = document.querySelector(".modal");
+      var instance = M.Modal.init(modal, { dismissible: false });
+      instance.open();
+
       var sha512 = require("js-sha512");
 
       var form = document.getElementById("login");
@@ -121,10 +182,11 @@ export default {
               document.cookie =
                 "TipoUser=" + dados[1] + ";" + expires + "; path=/";
               console.log("ola");
-
+              instance.close();
               this.encaminhar(dados[1]);
             },
             response => {
+              instance.close();
               console.log(
                 "ERRO! Código de resposta (HTTP) do servidor: " +
                   response.status

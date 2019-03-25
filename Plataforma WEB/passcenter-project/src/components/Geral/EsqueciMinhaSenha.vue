@@ -40,6 +40,60 @@
         </div>
       </div>
     </div>
+
+    <div id="modal1" class="modal">
+      <div>
+        <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-red">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-green">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -53,6 +107,11 @@ export default {
   },
   methods: {
     redefinirSenha() {
+var modal = document.querySelector(".modal");
+      var instance = M.Modal.init(modal, { dismissible: false });
+      instance.open();
+
+
       var form = document.getElementById("redefinirSenha");
       var isValidForm = form.checkValidity();
 
@@ -63,6 +122,7 @@ export default {
 
         this.$http.put("Usuarios/EsqueciMinhaSenha", dodosUsuario).then(
           response => {
+            instance.close();
             swal(
               "Pronto!",
               "Enviamos um e-mail com uma senha temporária!",
@@ -72,6 +132,7 @@ export default {
             this.$router.push("/Login");
           },
           response => {
+            instance.close();
             this.erro("Dados do Usuário", response.status);
           }
         );
@@ -85,7 +146,7 @@ export default {
       }),
         console.log(
           "ERRO em " + msg + "! Código de resposta (HTTP) do servidor: " + code
-        )
+        );
     }
   }
 };
