@@ -62,56 +62,11 @@
     </div>
 
     <div id="modal1" class="modal">
-      <div>
-        <div class="preloader-wrapper big active">
-          <div class="spinner-layer spinner-blue">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
-
-          <div class="spinner-layer spinner-red">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
-
-          <div class="spinner-layer spinner-yellow">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
-
-          <div class="spinner-layer spinner-green">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
-        </div>
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
     </div>
   </div>
@@ -151,16 +106,16 @@ export default {
     },
 
     logar() {
-      var modal = document.querySelector(".modal");
-      var instance = M.Modal.init(modal, { dismissible: false });
-      instance.open();
-
       var sha512 = require("js-sha512");
 
       var form = document.getElementById("login");
       var isValidForm = form.checkValidity();
 
       if (isValidForm) {
+      var modal = document.querySelector(".modal");
+      var instance = M.Modal.init(modal, { dismissible: false });
+      instance.open();
+
         this.$http
           .post("Tokens", {
             usu_login: this.login,
