@@ -520,7 +520,7 @@ export default {
           labelMonthSelect: "Selecione um mês",
           labelYearSelect: "Selecione um ano",
           selectMonths: true,
-          cancel: "Cancelar",
+          cancel: "Fechar",
           clear: "Limpar"
         }
       });
@@ -613,7 +613,7 @@ export default {
           labelMonthSelect: "Selecione um mês",
           labelYearSelect: "Selecione um ano",
           selectMonths: true,
-          cancel: "Cancelar",
+          cancel: "Fechar",
           clear: "Limpar"
         }
       });
