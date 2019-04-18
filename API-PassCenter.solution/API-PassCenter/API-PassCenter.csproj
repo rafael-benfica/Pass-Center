@@ -217,6 +217,8 @@
     </Compile>
     <Compile Include="Models\Classes\Enderecos.cs" />
     <Compile Include="Models\Classes\Eventos.cs" />
+    <Compile Include="Models\Classes\EventosGrades.cs" />
+    <Compile Include="Models\Classes\Grades.cs" />
     <Compile Include="Models\Classes\HorariosEventos.cs" />
     <Compile Include="Models\Classes\Identificadores.cs" />
     <Compile Include="Models\Classes\Instituicoes.cs" />
@@ -239,6 +241,8 @@
     <Compile Include="Models\PasetoToken\Token.cs" />
     <Compile Include="Models\PersistenciaAuxliar\LoginCredenciaisDB.cs" />
     <Compile Include="Models\ClassesAuxiliares\Senhas.cs" />
+    <Compile Include="Models\Persistencia\EventosGrades.cs" />
+    <Compile Include="Models\Persistencia\GradesDB.cs" />
     <Compile Include="Models\Persistencia\PlanosDB.cs" />
     <Compile Include="Models\Persistencia\PresencasDB.cs" />
     <Compile Include="Models\Persistencia\PagamentosDB.cs" />
