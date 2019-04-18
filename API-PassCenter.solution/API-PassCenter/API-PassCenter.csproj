@@ -201,7 +201,6 @@
     <Compile Include="Controllers\PresencasController.cs" />
     <Compile Include="Controllers\PagamentosController.cs" />
     <Compile Include="Controllers\SessoesController.cs" />
-    <Compile Include="Controllers\TiposInsercoesController.cs" />
     <Compile Include="Controllers\IdentificadoresController.cs" />
     <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\TotensController.cs" />
@@ -226,11 +225,9 @@
     <Compile Include="Models\Classes\Planos.cs" />
     <Compile Include="Models\Classes\Presencas.cs" />
     <Compile Include="Models\Classes\Sessoes.cs" />
-    <Compile Include="Models\Classes\TiposInsercoes.cs" />
     <Compile Include="Models\Classes\TiposEventos .cs" />
     <Compile Include="Models\Classes\TiposIdentificadores .cs" />
     <Compile Include="Models\Classes\TiposUsuarios.cs" />
-    <Compile Include="Models\Classes\TiposEnderecos.cs" />
     <Compile Include="Models\Classes\Totens.cs" />
     <Compile Include="Models\Classes\EventosAuditores.cs" />
     <Compile Include="Models\Classes\Turmas.cs" />
@@ -254,13 +251,11 @@
     <Compile Include="Models\Persistencia\EnventosAuditoresDB.cs" />
     <Compile Include="Models\Persistencia\TurmasDB.cs" />
     <Compile Include="Models\Persistencia\InstituicoesDB.cs" />
-    <Compile Include="Models\Persistencia\TiposInsercoesDB.cs" />
     <Compile Include="Models\Persistencia\UsuariosDB .cs" />
     <Compile Include="Models\Persistencia\PessoasDB .cs" />
     <Compile Include="Models\Persistencia\EventosDB.cs" />
     <Compile Include="Models\Persistencia\EnderecosDB.cs" />
     <Compile Include="Models\Persistencia\TiposUsuariosDB .cs" />
-    <Compile Include="Models\Persistencia\TiposEnderecoDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

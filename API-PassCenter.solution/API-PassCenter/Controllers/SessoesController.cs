@@ -25,7 +25,7 @@ namespace API_PassCenter.Controllers {
             ses.Tot_codigo = sessoes.Tot_codigo;
             ses.Eau_codigo = sessoes.Eau_codigo;
             ses.Hev_codigo = sessoes.Hev_codigo;
-            ses.Tin_codigo = sessoes.Tin_codigo;
+            ses.Ses_sessao_automatico = sessoes.Ses_sessao_automatico;
 
             int retorno = SessoesDB.Insert(ses);
 

@@ -14,6 +14,5 @@ namespace API_PassCenter.Models.Classes {
         public string End_estado { get; set; }
         public string End_complemento { get; set; }
         public string End_pais { get; set; }
-        public TiposEnderecos Ten_codigo { get; set; }
     }
 }

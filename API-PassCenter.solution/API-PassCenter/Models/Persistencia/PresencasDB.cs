@@ -13,8 +13,8 @@ namespace API_PassCenter.Models.Persistencia {
             try {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "INSERT INTO presencas(pre_horario_entrada, pre_horario_saida, ide_codigo, ses_codigo, eve_codigo, tin_codigo)" +
-                    " VALUES(?pre_horario_entrada, ?pre_horario_saida, ?ide_codigo, ?ses_codigo, ?eve_codigo, ?tin_codigo);" +
+                string sql = "INSERT INTO presencas(pre_horario_entrada, pre_horario_saida, ide_codigo, ses_codigo, eve_codigo, Pre_sessao_automatico)" +
+                    " VALUES(?pre_horario_entrada, ?pre_horario_saida, ?ide_codigo, ?ses_codigo, ?eve_codigo, ?Pre_sessao_automatico);" +
                     "SELECT LAST_INSERT_ID();";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
@@ -24,7 +24,7 @@ namespace API_PassCenter.Models.Persistencia {
                 objCommand.Parameters.Add(Mapped.Parameter("?ide_codigo", presencas.Ide_codigo.Ide_codigo));
                 objCommand.Parameters.Add(Mapped.Parameter("?ses_codigo", presencas.Ses_codigo.Ses_codigo));
                 objCommand.Parameters.Add(Mapped.Parameter("?eve_codigo", presencas.Eve_codigo.Eve_codigo));
-                objCommand.Parameters.Add(Mapped.Parameter("?tin_codigo", presencas.Tin_codigo.Tin_codigo));
+                objCommand.Parameters.Add(Mapped.Parameter("?Pre_sessao_automatico", presencas.Pre_sessao_automatico));
                 
                 retorno = Convert.ToInt32(objCommand.ExecuteScalar());
 

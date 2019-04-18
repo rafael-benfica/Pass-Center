@@ -28,7 +28,6 @@ namespace API_PassCenter.Controllers {
             end.End_estado = endereco.End_estado;
             end.End_complemento = endereco.End_complemento;
             end.End_pais = endereco.End_pais;
-            end.Ten_codigo = endereco.Ten_codigo;
 
             int retorno = EnderecosDB.Insert(end);
 
@@ -75,27 +74,6 @@ namespace API_PassCenter.Controllers {
                 return Ok();
             }
         }
-
-        [HttpPost, Route("api/Enderecos/TiposEndereco")]
-        // POST: api/Endereco
-        public IHttpActionResult TiposEndereco([FromBody]TiposEnderecos tipos_endereco) {
-
-            if (autenticar.autenticacao(Request, 3) == null) {
-                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
-            }
-
-            TiposEnderecos tem = new TiposEnderecos();
-
-            tem.Ten_titulo = tipos_endereco.Ten_titulo;
-
-            if (TiposEnderecoDB.Insert(tem) == 0) {
-                return Ok();
-
-            } else {
-                return BadRequest();
-            }
-        }
-
         
     }
 }

@@ -25,7 +25,7 @@ namespace API_PassCenter.Controllers {
             pre.Ide_codigo = presencas.Ide_codigo;
             pre.Ses_codigo = presencas.Ses_codigo;
             pre.Eve_codigo = presencas.Eve_codigo;
-            pre.Tin_codigo = presencas.Tin_codigo;
+            pre.Pre_sessao_automatico = presencas.Pre_sessao_automatico;
 
             int retorno = PresencasDB.Insert(pre);
 

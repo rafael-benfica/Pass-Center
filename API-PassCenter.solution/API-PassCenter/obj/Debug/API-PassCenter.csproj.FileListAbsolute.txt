@@ -330,3 +330,6 @@ C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.s
 C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.dll
 C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.pdb
 D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.csprojAssemblyReference.cache
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\MySql.Data.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Google.Protobuf.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\MySql.Data.xml
