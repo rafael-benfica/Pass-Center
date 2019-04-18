@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS Passcenter;
+
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -104,6 +106,16 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `PassCenter`.`grades`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `PassCenter`.`grades` (
+  `gra_codigo` INT NOT NULL AUTO_INCREMENT,
+  `gra_nome` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`gra_codigo`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `PassCenter`.`usuarios`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `PassCenter`.`usuarios` (
@@ -117,10 +129,12 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`usuarios` (
   `usu_redefinir_senha` TINYINT NOT NULL,
   `pes_codigo` INT NOT NULL,
   `tus_codigo` INT NOT NULL,
+  `gra_codigo` INT NOT NULL,
   UNIQUE INDEX `login_UNIQUE` (`usu_login` ASC) VISIBLE,
   PRIMARY KEY (`usu_codigo`),
   INDEX `fk_usuarios_pessoas1_idx` (`pes_codigo` ASC) VISIBLE,
   INDEX `fk_usuarios_tipo_usuario1_idx` (`tus_codigo` ASC) VISIBLE,
+  INDEX `fk_usuarios_grades1_idx` (`gra_codigo` ASC) VISIBLE,
   CONSTRAINT `fk_usuarios_pessoas1`
     FOREIGN KEY (`pes_codigo`)
     REFERENCES `PassCenter`.`pessoas` (`pes_codigo`)
@@ -129,6 +143,11 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`usuarios` (
   CONSTRAINT `fk_usuarios_tipo_usuario1`
     FOREIGN KEY (`tus_codigo`)
     REFERENCES `PassCenter`.`tipos_usuarios` (`tus_codigo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_usuarios_grades1`
+    FOREIGN KEY (`gra_codigo`)
+    REFERENCES `PassCenter`.`grades` (`gra_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -410,6 +429,28 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`pagamentos` (
   CONSTRAINT `fk_pagamentos_planos1`
     FOREIGN KEY (`pla_codigo`)
     REFERENCES `PassCenter`.`planos` (`pla_codigo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `PassCenter`.`eventos_grades`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `PassCenter`.`eventos_grades` (
+  `gra_codigo` INT NOT NULL,
+  `eau_codigo` INT NOT NULL,
+  PRIMARY KEY (`gra_codigo`),
+  INDEX `fk_eventos_has_grades_grades1_idx` (`gra_codigo` ASC) VISIBLE,
+  INDEX `fk_eventos_grades_eventos_auditores1_idx` (`eau_codigo` ASC) VISIBLE,
+  CONSTRAINT `fk_eventos_has_grades_grades1`
+    FOREIGN KEY (`gra_codigo`)
+    REFERENCES `PassCenter`.`grades` (`gra_codigo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_eventos_grades_eventos_auditores1`
+    FOREIGN KEY (`eau_codigo`)
+    REFERENCES `PassCenter`.`eventos_auditores` (`eau_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
