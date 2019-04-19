@@ -1,5 +1,6 @@
 DROP DATABASE IF EXISTS Passcenter;
 
+
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -136,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`usuarios` (
   `usu_redefinir_senha` TINYINT NOT NULL,
   `pes_codigo` INT NOT NULL,
   `tus_codigo` INT NOT NULL,
-  `gra_codigo` INT NOT NULL,
+  `gra_codigo` INT NULL,
   UNIQUE INDEX `login_UNIQUE` (`usu_login` ASC) VISIBLE,
   PRIMARY KEY (`usu_codigo`),
   INDEX `fk_usuarios_pessoas1_idx` (`pes_codigo` ASC) VISIBLE,

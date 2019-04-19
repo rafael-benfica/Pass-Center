@@ -67,8 +67,8 @@ VALUES('Rua Soldado Amarilho Gonçalves Queiroz', '302', 'Ponte Grande', 'Guarul
 INSERT INTO pessoas (pes_nome, pes_sobrenomes, pes_data_nascimento, pes_cpf, pes_rg, pes_matricula, pes_sexo, pes_tel_residencial, pes_tel_celular, pes_info_adicionais, end_codigo, ins_codigo) 
 VALUES ('Diego', 'Daniel Cardoso', '1996-11-07','313.172.158-85', '15.498.605-7', '1802050', '1', '(11) 2840-1247', '(11) 99614-1502', '','6', '1');
 
-INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo) 
-VALUES ('aluno@teste.com', '5d68217d0c3ddfc029f1f8f2e61a80a8256342f27893ff0fe55da861e75325d6f7c805a26cae587f01aee7980700e8f06422c233a0e2a8e9bf26aad0c39e00c6', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '5', '5');
+INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_data_desativacao, usu_primeiro_login, usu_redefinir_senha, pes_codigo, tus_codigo, gra_codigo) 
+VALUES ('aluno@teste.com', '5d68217d0c3ddfc029f1f8f2e61a80a8256342f27893ff0fe55da861e75325d6f7c805a26cae587f01aee7980700e8f06422c233a0e2a8e9bf26aad0c39e00c6', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '5', '5', '1');
 
 -- Inserindo Tipos de Eventos
 INSERT INTO tipos_eventos (`tev_titulo`) VALUES ('Disciplina');
@@ -79,5 +79,8 @@ INSERT INTO eventos (eve_nome, eve_sigla, eve_descricao, eve_estado, eve_operaca
 
 INSERT INTO eventos_auditores (eau_periodo_identificacao, eau_estado, eau_data_abertura, pes_codigo, eve_codigo, ins_codigo) VALUES ('2018/01', '1', '2018-12-06', '4', '1', '1');
 
+-- Inserir Grade
+INSERT INTO grades VALUES (0,'1º Ano - E.M.', 1);
 
-
+-- Inserir Eventos Grades
+INSERT INTO eventos_grades VALUES (1, 1);

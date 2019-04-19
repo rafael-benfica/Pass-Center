@@ -36,7 +36,7 @@ namespace API_PassCenter.Controllers {
             eau.Eve_codigo = enventosAuditores.Eve_codigo;
             eau.Pes_codigo = enventosAuditores.Pes_codigo;
 
-            int retorno = EnventosAuditoresDB.Insert(eau);
+            int retorno = EventosAuditoresDB.Insert(eau);
 
             if (retorno == -2) {
                 return BadRequest();
@@ -55,7 +55,7 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
-            return Ok(EnventosAuditoresDB.Select(Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
+            return Ok(EventosAuditoresDB.Select(Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
         }
     }
 }

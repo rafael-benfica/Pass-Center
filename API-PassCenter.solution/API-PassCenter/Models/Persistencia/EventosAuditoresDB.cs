@@ -6,13 +6,13 @@ using System.Linq;
 using System.Web;
 
 namespace API_PassCenter.Models.Persistencia {
-    public class EnventosAuditoresDB {
+    public class EventosAuditoresDB {
         public static int Insert(EventosAuditores eau) {
             int retorno = 0;
             try {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "INSERT INTO enventos_auditores (eau_periodo_identificacao, eau_estado, eau_data_abertura, pes_codigo, eve_codigo, ins_codigo)" +
+                string sql = "INSERT INTO eventos_auditores (eau_periodo_identificacao, eau_estado, eau_data_abertura, pes_codigo, eve_codigo, ins_codigo)" +
                     " VALUES(?eau_periodo_identificacao, ?eau_estado, ?eau_data_abertura, ?pes_codigo, ?eve_codigo, ?ins_codigo);" +
                     "SELECT LAST_INSERT_ID();";
                 objConexao = Mapped.Connection();
@@ -47,7 +47,7 @@ namespace API_PassCenter.Models.Persistencia {
 
             objConexao = Mapped.Connection();
 
-            string sql = "select * from enventos_auditores " +
+            string sql = "select * from eventos_auditores " +
                 "inner join pessoas using (pes_codigo) " +
                 "inner join eventos using (eve_codigo) " +
                 "where pessoas.ins_codigo = ?ins_codigo";

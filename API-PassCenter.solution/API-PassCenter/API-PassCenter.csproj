@@ -254,7 +254,7 @@
     <Compile Include="Models\Persistencia\TiposEventosDB.cs" />
     <Compile Include="Models\Persistencia\TiposIdentificadoresDB.cs" />
     <Compile Include="Models\Persistencia\TotensDB.cs" />
-    <Compile Include="Models\Persistencia\EnventosAuditoresDB.cs" />
+    <Compile Include="Models\Persistencia\EventosAuditoresDB.cs" />
     <Compile Include="Models\Persistencia\TurmasDB.cs" />
     <Compile Include="Models\Persistencia\InstituicoesDB.cs" />
     <Compile Include="Models\Persistencia\UsuariosDB .cs" />
