@@ -7,7 +7,7 @@ using System.Web;
 
 namespace API_PassCenter.Models.Persistencia
 {
-    public class EventosGradesBD
+    public class EventosGradesDB
     {
         public static int Insert(EventosGrades eventosgrades)
         {

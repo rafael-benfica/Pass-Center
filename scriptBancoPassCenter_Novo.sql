@@ -111,7 +111,14 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `PassCenter`.`grades` (
   `gra_codigo` INT NOT NULL AUTO_INCREMENT,
   `gra_nome` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`gra_codigo`))
+  `ins_codigo` INT NOT NULL,
+  PRIMARY KEY (`gra_codigo`),
+  INDEX `fk_grades_instituicoes1_idx` (`ins_codigo` ASC) VISIBLE,
+  CONSTRAINT `fk_grades_instituicoes1`
+    FOREIGN KEY (`ins_codigo`)
+    REFERENCES `PassCenter`.`instituicoes` (`ins_codigo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -440,7 +447,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `PassCenter`.`eventos_grades` (
   `gra_codigo` INT NOT NULL,
   `eau_codigo` INT NOT NULL,
-  PRIMARY KEY (`gra_codigo`),
+  PRIMARY KEY (`gra_codigo`, `eau_codigo`),
   INDEX `fk_eventos_has_grades_grades1_idx` (`gra_codigo` ASC) VISIBLE,
   INDEX `fk_eventos_grades_eventos_auditores1_idx` (`eau_codigo` ASC) VISIBLE,
   CONSTRAINT `fk_eventos_has_grades_grades1`

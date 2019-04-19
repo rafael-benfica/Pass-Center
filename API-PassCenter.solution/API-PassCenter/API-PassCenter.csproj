@@ -197,6 +197,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\EventosGradesController.cs" />
+    <Compile Include="Controllers\GradesController.cs" />
     <Compile Include="Controllers\PlanosController .cs" />
     <Compile Include="Controllers\PresencasController.cs" />
     <Compile Include="Controllers\PagamentosController.cs" />
@@ -241,7 +243,7 @@
     <Compile Include="Models\PasetoToken\Token.cs" />
     <Compile Include="Models\PersistenciaAuxliar\LoginCredenciaisDB.cs" />
     <Compile Include="Models\ClassesAuxiliares\Senhas.cs" />
-    <Compile Include="Models\Persistencia\EventosGrades.cs" />
+    <Compile Include="Models\Persistencia\EventosGradesDB.cs" />
     <Compile Include="Models\Persistencia\GradesDB.cs" />
     <Compile Include="Models\Persistencia\PlanosDB.cs" />
     <Compile Include="Models\Persistencia\PresencasDB.cs" />

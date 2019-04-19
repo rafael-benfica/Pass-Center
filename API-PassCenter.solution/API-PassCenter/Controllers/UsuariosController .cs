@@ -35,6 +35,7 @@ namespace API_PassCenter.Controllers
             usu.Usu_redefinir_senha = false;
             usu.Pes_codigo = usuarios.Pes_codigo;
             usu.Tus_codigo = usuarios.Tus_codigo;
+            usu.Gra_codigo = usuarios.Gra_codigo;
 
             string senha = GeraSenha();
 

@@ -15,5 +15,6 @@ namespace API_PassCenter.Models.Classes {
         public bool Usu_redefinir_senha { get; set; }
         public Pessoas Pes_codigo { get; set; }
         public TiposUsuarios Tus_codigo { get; set; }
+        public Grades Gra_codigo { get; set; }
     }
 }
