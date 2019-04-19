@@ -28,8 +28,8 @@
     </div></li>
     <li><router-link :to="{ name: 'AlunoGeral' }" class=" waves-effect"><i class="icone material-icons">person</i>Alunos</router-link></li>
     <li><router-link :to="{ name: 'ProfessoresGeral' }" class=" waves-effect"><i class="icone material-icons">supervisor_account</i>Professores</router-link></li>
-    <li><router-link :to="{ name: 'TurmasGeral' }" class=" waves-effect"><i class="icone material-icons">folder_shared</i>Turmas</router-link></li>
     <li><router-link :to="{ name: 'DisciplinasGeral' }" class=" waves-effect"><i class="icone material-icons">book</i>Disciplinas</router-link></li>
+    <li><router-link :to="{ name: 'TurmasGeral' }" class=" waves-effect"><i class="icone material-icons">folder_shared</i>Turmas</router-link></li>
     <li><router-link :to="{ name: 'Totens' }" class=" waves-effect"><i class="icone material-icons">perm_device_information</i>Totens</router-link></li>
     <li><router-link :to="{ name: 'MeusDadosGerenteGeral' }" class=" waves-effect"><i class="icone material-icons">account_circle</i>Meus dados</router-link></li>
     <li><router-link :to="{ name: 'Financeiro' }" class=" waves-effect"><i class="icone material-icons">attach_money</i>Financeiro</router-link></li>
