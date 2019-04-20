@@ -223,7 +223,7 @@ export default {
     },
 
     addAsentes(usu_codigo) {
-      this.ausentes.push(usu_codigo);
+      this.ausentes.push("("+usu_codigo+")");
     }
   }
 };
