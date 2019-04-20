@@ -66,5 +66,35 @@ namespace API_PassCenter.Models.Persistencia {
             return ds;
 
         }
+
+        public static DataSet SelectDisciplinas(int pes_codigo)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "select * from eventos_auditores " +
+                "where pes_codigo = ?pes_codigo and eau_estado = 1";
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo", codigo_professor));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
     }
 }
