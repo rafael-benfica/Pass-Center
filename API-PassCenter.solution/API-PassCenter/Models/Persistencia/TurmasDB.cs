@@ -32,6 +32,41 @@ namespace API_PassCenter.Models.Persistencia {
             return retorno;
         }
 
+        public static DataSet SelectTurmas(int eau_codigo, int Pes_codigo)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "select usu.usu_codigo, pes.pes_codigo, concat(pes_nome, ' ', pes_sobrenomes) as 'nomes_concatenados', pes_matricula from turmas " +
+                "inner join eventos_auditores eau using (eau_codigo) " +
+                "inner join usuarios usu using (usu_codigo) " +
+                "inner join pessoas pes on usu.pes_codigo = pes.pes_codigo " +
+                "where eau_codigo = ?eau_codigo and eau.pes_codigo = ?pes_codigo;";
+
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?eau_codigo", eau_codigo));
+            objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo", Pes_codigo));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
+
         public static DataSet SelectEAU(int id)
         {
             //Imagine um DataSet como umamatriz de dados;
@@ -45,7 +80,7 @@ namespace API_PassCenter.Models.Persistencia {
             objConexao = Mapped.Connection();
 
             string sql = "select pes_codigo, concat(pes_nome, ' ', pes_sobrenomes) as 'nomes_concatenados', pes_matricula from turmas " +
-                "inner join usuarios using (usu_codigo) "+
+                "inner join usuarios using (usu_codigo) " +
                 "inner join pessoas using (pes_codigo) where eau_codigo = ?eau_codigo;";
 
             objCommand = Mapped.Command(sql, objConexao);

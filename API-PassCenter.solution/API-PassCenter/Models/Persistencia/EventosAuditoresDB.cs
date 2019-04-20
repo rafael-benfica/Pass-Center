@@ -80,10 +80,11 @@ namespace API_PassCenter.Models.Persistencia {
             objConexao = Mapped.Connection();
 
             string sql = "select * from eventos_auditores " +
+                "inner join eventos using (eve_codigo) " +
                 "where pes_codigo = ?pes_codigo and eau_estado = 1";
             objCommand = Mapped.Command(sql, objConexao);
 
-            objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo", codigo_professor));
+            objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo", pes_codigo));
 
             objDataAdapter = Mapped.Adapter(objCommand);
 

@@ -33,6 +33,22 @@ namespace API_PassCenter.Controllers {
             }
         }
 
+        [HttpGet, Route("api/Turmas")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetTurmas(int eau_codigo)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(TurmasDB.SelectTurmas(eau_codigo, Convert.ToInt32(credenciais.Pes_codigo)).Tables[0]);
+        }
+
+
         [HttpGet, Route("api/Turmas/EAU")]
         // GET: api/Instituicoes
         public IHttpActionResult GetEAU(int eau)

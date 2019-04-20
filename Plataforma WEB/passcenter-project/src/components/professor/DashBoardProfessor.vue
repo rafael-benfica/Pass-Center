@@ -8,7 +8,7 @@
     </div>
 
     <nav class="grupo-breadcrumb">
-      <div class="nav-wrapper">
+      <div class="nav-wrapper hide-on-small-only">
           <div class="ajuste col s12">
             <a v-for="(breadcrumbs, indice) in breadcrumbsLista" :key="indice" @click="levarPara(indice)" class="breadcrumb">
               {{ breadcrumbs.nome }}

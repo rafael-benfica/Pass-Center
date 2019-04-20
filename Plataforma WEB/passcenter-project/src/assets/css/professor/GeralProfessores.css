@@ -1,6 +1,6 @@
 
 .espacamento{
-    padding-top: 20px;
+    padding-top: 2vh;
 }
 
 .area-exibicao{
@@ -35,4 +35,13 @@
 }
 .icone{
     font-size: 3.8rem;
+}
+
+.ajuste{
+    margin-top: 5vh;
+}
+@media screen and (max-width: 600px) {
+    .ajuste{
+        margin-top: 3vh;
+    }
 }

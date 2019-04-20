@@ -61,9 +61,6 @@ namespace API_PassCenter.Controllers {
         [HttpGet, Route("api/EventosAuditores/Disciplinas")]
         public IHttpActionResult Disciplinas()
         {
-
-
-
             Indentificacao credenciais = autenticar.autenticacao(Request, 4);
 
             if (credenciais == null)

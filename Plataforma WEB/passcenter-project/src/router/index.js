@@ -38,8 +38,6 @@ import HistoricoCompletoDisciplinas from '@/components/aluno/HistoricoCompletoDi
 //Professor
 import MinhasDisciplinas from '@/components/professor/MinhasDisciplinas.vue'
 import ListaManual from '@/components/professor/ListaManual.vue'
-import ListaManual2 from '@/components/professor/ListaManual2.vue'
-import ListaManual3 from '@/components/professor/ListaManual3.vue'
 
 
 //Administrador
@@ -107,7 +105,7 @@ const rotas = new Router({
           component: MeusDados,
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
-            { nome: 'Meus nivel' }]
+            { nome: 'Meus Dados' }]
           }
         },
         {
@@ -178,7 +176,7 @@ const rotas = new Router({
           component: MeusDados,
           meta: {
             breadcrumbs: [{ nome: 'Gerente Geral' },
-            { nome: 'Meus nivel' }]
+            { nome: 'Meus Dados' }]
           }
         },
         {
@@ -259,7 +257,7 @@ const rotas = new Router({
           component: MeusDados,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-            { nome: 'Meus nivel' }]
+            { nome: 'Meus Dados' }]
           }
         },
         {
@@ -327,7 +325,7 @@ const rotas = new Router({
           component: MeusDados,
           meta: {
             breadcrumbs: [{ nome: 'Professor' },
-            { nome: 'Meus nivel' }]
+            { nome: 'Meus Dados' }]
           }
         },
         {
@@ -337,24 +335,6 @@ const rotas = new Router({
           meta: {
             breadcrumbs: [{ nome: 'Professor' },
             { nome: 'Lista de Presença Manual' }]
-          }
-        },
-        {
-          path: 'ListaManual2',
-          name: 'ListaManual2',
-          component: ListaManual2,
-          meta: {
-            breadcrumbs: [{ nome: 'Professor' },
-            { nome: 'Lista de Presença Manual > Interação Humano/Computador' }]
-          }
-        },
-        {
-          path: 'ListaManual3',
-          name: 'ListaManual3',
-          component: ListaManual3,
-          meta: {
-            breadcrumbs: [{ nome: 'Professor' },
-            { nome: 'Lista de Presença Manual > Interação Humano/Computador' }]
           }
         }
       ]
@@ -380,7 +360,7 @@ const rotas = new Router({
           component: MeusDados,
           meta: {
             breadcrumbs: [{ nome: 'Aluno' },
-            { nome: 'Meus nivel' }]
+            { nome: 'Meus Dados' }]
           }
         },
         {
