@@ -30,7 +30,7 @@ CREATE PROCEDURE `InserirPresenca`(in vEau_codigo int, in vPes_codigo int, in li
 			select count(*) into total from turmas
 			inner join eventos_auditores eau using (eau_codigo)
 			inner join usuarios usu using (usu_codigo)
-			where eau_codigo = _eau_codigo and eau.pes_codigo = _pes_codigo and usu.usu_codigo not in (select * from participantes_ausentes);
+			where eau_codigo = vEau_codigo and eau.pes_codigo = vPes_codigo and usu.usu_codigo not in (select * from participantes_ausentes);
 			
 			open c1;
 				while i<total do
@@ -38,16 +38,16 @@ CREATE PROCEDURE `InserirPresenca`(in vEau_codigo int, in vPes_codigo int, in li
 					-- varrendo registro por registro
 					fetch c1 into _ide_identificador;
                     -- Inserindo presenca
-					INSERT INTO presencas VALUES ('0', vPre_horario_entrada, vPre_horario_saida, 0, _ide_identificador, vSes_codigo);
+					INSERT INTO presencas VALUES (vSes_codigo, _ide_identificador, vPre_horario_entrada, vPre_horario_saida, 0);
 					set i = i + 1;
 				
 				end while;
 			close c1;
             
             -- Deletando tabela temporaria
-            drop temporary table teste;
+            drop temporary table participantes_ausentes;
         END;
 	END;
 $
 
-call InserirPresenca(1, 4,'(6)', '00:00:01', 1);
+call InserirPresenca(1, 4,'(0)', '00:00:01', '00:00:01', 1);

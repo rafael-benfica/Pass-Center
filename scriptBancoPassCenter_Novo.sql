@@ -1,6 +1,5 @@
 DROP DATABASE IF EXISTS Passcenter;
 
-
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -366,17 +365,14 @@ ENGINE = InnoDB;
 -- Table `PassCenter`.`presencas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `PassCenter`.`presencas` (
-  `pre_codigo` INT NOT NULL AUTO_INCREMENT,
+  `ses_codigo` INT NOT NULL,
+  `ide_codigo` INT NOT NULL,
   `pre_horario_entrada` DATETIME NOT NULL,
   `pre_horario_saida` DATETIME NULL,
   `pre_sessao_automatico` TINYINT(1) NOT NULL,
-  `ide_codigo` INT NULL,
-  `ses_codigo` INT NOT NULL,
-  `eve_codigo` INT NOT NULL,
-  PRIMARY KEY (`pre_codigo`),
+  PRIMARY KEY (`ses_codigo`, `ide_codigo`),
   INDEX `fk_presencas_cartoes1_idx` (`ide_codigo` ASC) VISIBLE,
   INDEX `fk_presencas_sessoes1_idx` (`ses_codigo` ASC) VISIBLE,
-  INDEX `fk_presencas_evento1_idx` (`eve_codigo` ASC) VISIBLE,
   CONSTRAINT `fk_presencas_cartoes1`
     FOREIGN KEY (`ide_codigo`)
     REFERENCES `PassCenter`.`identificadores` (`ide_codigo`)
@@ -385,11 +381,6 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`presencas` (
   CONSTRAINT `fk_presencas_sessoes1`
     FOREIGN KEY (`ses_codigo`)
     REFERENCES `PassCenter`.`sessoes` (`ses_codigo`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_presencas_evento1`
-    FOREIGN KEY (`eve_codigo`)
-    REFERENCES `PassCenter`.`eventos` (`eve_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
