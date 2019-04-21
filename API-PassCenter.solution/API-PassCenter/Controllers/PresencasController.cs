@@ -12,22 +12,18 @@ namespace API_PassCenter.Controllers {
     public class PresencasController : ApiController {
         [HttpPost, Route("api/Presencas")]
         // POST: api/Endereco
-        public IHttpActionResult Presencas([FromBody]Presencas presencas) {
+        public IHttpActionResult Presencas([FromBody]PresencasProcedure presencas) {
 
-            if (autenticar.autenticacao(Request, 5) == null) {
+            Indentificacao credenciais = autenticar.autenticacao(Request, 6);
+
+            if (credenciais == null)
+            {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
-            Presencas pre = new Presencas();
+            presencas.vPes_codigo.Pes_codigo = Convert.ToInt32(credenciais.Pes_codigo);
 
-            pre.Pre_horario_entrada = presencas.Pre_horario_entrada;
-            pre.Pre_horario_saida = presencas.Pre_horario_saida;
-            pre.Ide_codigo = presencas.Ide_codigo;
-            pre.Ses_codigo = presencas.Ses_codigo;
-            pre.Eve_codigo = presencas.Eve_codigo;
-            pre.Pre_sessao_automatico = presencas.Pre_sessao_automatico;
-
-            int retorno = PresencasDB.Insert(pre);
+            int retorno = PresencasDB.Insert(presencas);
 
             if (retorno == -2) {
                 return BadRequest();

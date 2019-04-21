@@ -217,6 +217,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClassesAuxiliares\PresencasProcedure.cs" />
     <Compile Include="Models\Classes\Enderecos.cs" />
     <Compile Include="Models\Classes\Eventos.cs" />
     <Compile Include="Models\Classes\EventosGrades.cs" />
