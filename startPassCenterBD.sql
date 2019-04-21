@@ -22,10 +22,6 @@ VALUES ('Cartão RFID');
 -- Inserir Grade
 INSERT INTO grades VALUES (0,'1º Ano - E.M.', 1);
 
--- Inserir Eventos Grades
-INSERT INTO eventos_grades VALUES (1, 1);
-
-
 -- Inserindo Usuários
 
 -- Inserindo Administrador
@@ -122,6 +118,10 @@ VALUES ('1', '0000-00-00 00:00:00', '1', 'Segunda-feira', '1');
 -- Inserido Turmas
 INSERT INTO turmas (usu_codigo, eau_codigo) 
 VALUES ('5', '1'), ('6', '1');
+
+-- Inserir Eventos Grades
+INSERT INTO eventos_grades VALUES (1, 1);
+
 
 -- Inserindo Sessao
 INSERT INTO sessoes (ses_codigo, ses_horario_inicio , ses_horario_fim, ses_sessao_automatico, hev_codigo, eau_codigo) 
