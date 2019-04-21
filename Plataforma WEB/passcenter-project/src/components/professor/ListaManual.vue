@@ -223,7 +223,12 @@ export default {
     },
 
     addAsentes(usu_codigo) {
-      this.ausentes.push("("+usu_codigo+")");
+      var pos = this.ausentes.indexOf(usu_codigo);
+      if (pos === -1) {
+        this.ausentes.push("(" + usu_codigo + ")");
+      } else {
+        this.ausentes.splice(pos, 1);
+      }
     }
   }
 };

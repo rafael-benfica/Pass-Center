@@ -4,7 +4,7 @@
 drop procedure if exists InserirPresenca;
 
 DELIMITER $
-CREATE PROCEDURE `InserirPresenca`(in vEau_codigo int, in vPes_codigo int, in list_of_ids text, in vPre_horario_entrada datetime, in vPre_horario_saida datetime, in vSes_codigo int)  
+CREATE PROCEDURE InserirPresenca(in vEau_codigo int, in vPes_codigo int, in list_of_ids text, in vPre_horario_entrada datetime, in vPre_horario_saida datetime, in vSes_codigo int)  
 	BEGIN
 			-- Declaracoes
 			declare _ide_identificador int;
