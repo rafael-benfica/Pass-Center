@@ -101,7 +101,7 @@ export default {
     return {
       disciplinas: [],
       lista: [],
-      ausentes: [],
+      ausentes: ["(0)"],
       hora: "",
       data: "",
       etapa: 1
@@ -223,9 +223,13 @@ export default {
     },
 
     addAsentes(usu_codigo) {
+     
+      usu_codigo = "(" +usu_codigo+ ")";
+
       var pos = this.ausentes.indexOf(usu_codigo);
-      if (pos === -1) {
-        this.ausentes.push("(" + usu_codigo + ")");
+
+      if (pos == -1) {
+        this.ausentes.push(usu_codigo);
       } else {
         this.ausentes.splice(pos, 1);
       }
