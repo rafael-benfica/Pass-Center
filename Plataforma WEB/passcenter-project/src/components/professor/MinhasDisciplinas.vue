@@ -15,7 +15,7 @@
           <div class="card-content">
             <span class="card-title tituloCard">{{ item.eve_nome }}</span>
             <p class="turmaCard">{{ item.eve_sigla }}</p>
-            <p class="horarioCard">{{ item.eau_periodo_identificacao }}</p>
+
           </div>
         </div>
       </div>
@@ -23,46 +23,80 @@
     <div id="modal1" class="modal bottom-sheet">
       <div class="modal-content">
         <h4 class="col s10 m12 l12 historico">Histórico</h4>
-
         <div class="row">
-          <div class="data col s4 m1 l1" v-for="item in 24" :key="item.id">
-            <div class="waves-effect waves-teal btn-large botaoDatas">22/11</div>
+          <div class="col s12 m3 l3 espacamento" v-for="item2 in disciplinas" :key="item2.id">
+
+
+            <div class="card">
+              <div class="card-content">
+
+                <span class="card-title tituloCard">{{item2.eau_periodo_identificacao }}</span>
+                <a
+              class="btn-floating halfway-fab waves-effect waves-light blue darken-1 btn modal-trigger botao"
+              href="#modal2"
+            >
+                  <i class="material-icons">assignment_turned_in</i>
+                </a>
+              </div>
+            </div>
+            
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+        </div>
       </div>
     </div>
-  </div>
-</template>
+    <div id="modal2" class="modal bottom-sheet">
+              <div class="modal-content">
+                  <h5 class="col s10 m12 l12 historico">Presenças</h5>
+                  <a
+              class="btn-floating waves-effect waves-light blue darken-1 btn"
+              
+            >
+                  <i class="material-icons">edit</i>
+                </a>
+                <a
+              class="btn-floating waves-effect waves-light blue darken-1 btn"
+              
+            >
+                  <i class="material-icons">font_download</i>
+                </a>
+                <div class="modal-footer">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+                </div>
+              </div>
+
+            </div>
+        </div>    
+  </template>
 
 <script>
-export default {
+  export default {
   name: "MinhasDisciplinas",
   data() {
-    return {
-      disciplinas: []
-    };
+  return {
+  disciplinas: []
+  };
   },
   mounted: function() {
-    $(document).ready(function() {
-      $(".modal").modal();
-    });
+  $(document).ready(function() {
+  $(".modal").modal();
+  });
 
-    this.$http.get("EventosAuditores/Disciplinas").then(
-      response => {
-        this.disciplinas = response.body;
-      },
-      response => {
-        console.log(
-          "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-            response.status
-        );
-      }
-    );
+  this.$http.get("EventosAuditores/Disciplinas").then(
+  response => {
+  this.disciplinas = response.body;
+  },
+  response => {
+  console.log(
+  "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+  response.status
+  );
   }
-};
+  );
+  }
+  };
 </script>
 
-<style src="./../../assets/css/professor/MinhasDisciplinas.css" scoped></style>
+<style src="./../../assets/css/professor/MinhasDisciplinas.css" scoped=""></style>
