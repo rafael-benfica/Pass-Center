@@ -1,7 +1,11 @@
 <template>
   <div class="fonte">
     <div class="row area-exibicao">
-      <div class="col s12 m3 l3 espacamento" v-for="item in disciplinas" :key="item.id">
+      <div
+        class="col s12 m3 l3 espacamento"
+        v-for="itemDisciplinas in disciplinas"
+        :key="itemDisciplinas.id"
+      >
         <!-- {{ item }} -->
         <div class="card">
           <div class="card-image">
@@ -9,13 +13,12 @@
               class="btn-floating halfway-fab waves-effect waves-light blue darken-1 btn modal-trigger botao"
               href="#modal1"
             >
-              <i class="material-icons">history</i>
+              <i class="material-icons" @click="carregarSessoes(itemDisciplinas.eau_codigo)">history</i>
             </a>
           </div>
           <div class="card-content">
-            <span class="card-title tituloCard">{{ item.eve_nome }}</span>
-            <p class="turmaCard">{{ item.eve_sigla }}</p>
-
+            <span class="card-title tituloCard">{{ itemDisciplinas.eve_nome }}</span>
+            <p class="turmaCard">{{ itemDisciplinas.eve_sigla }}</p>
           </div>
         </div>
       </div>
@@ -24,22 +27,26 @@
       <div class="modal-content">
         <h4 class="col s10 m12 l12 historico">Histórico</h4>
         <div class="row">
-          <div class="col s12 m3 l3 espacamento" v-for="item2 in disciplinas" :key="item2.id">
-
-
-            <div class="card">
-              <div class="card-content">
-
-                <span class="card-title tituloCard">{{item2.eau_periodo_identificacao }}</span>
-                <a
-              class="btn-floating halfway-fab waves-effect waves-light blue darken-1 btn modal-trigger botao"
+          <div
+            class="col s12 m3 l3 espacamento"
+            v-for="itemSessoes in sessoes"
+            :key="itemSessoes.id"
+          >
+            <div
+              class="card modal-trigger"
               href="#modal2"
+              @click="carregarlista(itemSessoes.ses_codigo)"
             >
-                  <i class="material-icons">assignment_turned_in</i>
+              <div class="card-content">
+                <span class="card-title tituloCard">{{ recebeData(itemSessoes.ses_horario_inicio) }}</span>
+                <a
+                  class="btn-floating halfway-fab waves-effect waves-light blue darken-1 btn botao"
+                >
+                  <i class="material-icons" v-if="itemSessoes.ses_sessao_automatico==0">edit</i>
+                  <i class="material-icons" v-else>font_download</i>
                 </a>
               </div>
             </div>
-            
           </div>
         </div>
         <div class="modal-footer">
@@ -47,56 +54,96 @@
         </div>
       </div>
     </div>
-    <div id="modal2" class="modal bottom-sheet">
-              <div class="modal-content">
-                  <h5 class="col s10 m12 l12 historico">Presenças</h5>
-                  <a
-              class="btn-floating waves-effect waves-light blue darken-1 btn"
-              
-            >
-                  <i class="material-icons">edit</i>
-                </a>
-                <a
-              class="btn-floating waves-effect waves-light blue darken-1 btn"
-              
-            >
-                  <i class="material-icons">font_download</i>
-                </a>
-                <div class="modal-footer">
-                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
-                </div>
-              </div>
-
-            </div>
-        </div>    
-  </template>
+    <div id="modal2" class="modal modal-fixed-footer">
+      <div class="modal-content row topo">
+        <div class="col s12 m12 l12">
+          <table>
+            <thead class="centro">
+              <tr>
+                <th>Nome do Aluno</th>
+                <th>Matrícula do Aluno</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in lista" :key="item.id">
+                <td>{{ item.nomes_concatenados }}</td>
+                <td>{{ item.pes_matricula }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+      </div>
+    </div>
+  </div>
+</template>
 
 <script>
-  export default {
+export default {
   name: "MinhasDisciplinas",
   data() {
-  return {
-  disciplinas: []
-  };
+    return {
+      disciplinas: [],
+      sessoes: [],
+      lista: []
+    };
   },
   mounted: function() {
-  $(document).ready(function() {
-  $(".modal").modal();
-  });
+    $(document).ready(function() {
+      $(".modal").modal();
+    });
 
-  this.$http.get("EventosAuditores/Disciplinas").then(
-  response => {
-  this.disciplinas = response.body;
+    this.$http.get("EventosAuditores/Disciplinas").then(
+      response => {
+        this.disciplinas = response.body;
+      },
+      response => {
+        console.log(
+          "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+            response.status
+        );
+      }
+    );
   },
-  response => {
-  console.log(
-  "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-  response.status
-  );
+  methods: {
+    recebeData(data) {
+      var horaEdata = data.split("T");
+
+      var data = horaEdata[0].split("-").reverse();
+
+      return data[0] + "/" + data[1] + "/" + data[2] + " - " + horaEdata[1];
+    },
+
+    carregarSessoes(id) {
+      this.$http.get("Sessoes", { params: { eau_codigo: id } }).then(
+        response => {
+          this.sessoes = response.body;
+        },
+        response => {
+          console.log(
+            "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+              response.status
+          );
+        }
+      );
+    },
+    carregarlista(id) {
+      this.$http.get("Presencas", { params: { ses_codigo: id } }).then(
+        response => {
+          this.lista = response.body;
+        },
+        response => {
+          console.log(
+            "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+              response.status
+          );
+        }
+      );
+    }
   }
-  );
-  }
-  };
+};
 </script>
 
 <style src="./../../assets/css/professor/MinhasDisciplinas.css" scoped=""></style>

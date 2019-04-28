@@ -4,7 +4,7 @@
       <!-- Etapa 01 -->
       <div v-if="etapa==1">
         <div class="col s12 m4 l4 espacamento" v-for="item in disciplinas" :key="item.id">
-          <div class="card" @click="carregarlista(item.eau_codigo); etapa++">
+          <div class="card" @click="vEau_codigo = item.eau_codigo; etapa++">
             <div class="card-content">
               <span class="card-title cardDisciplina">{{ item.eve_nome }}</span>
             </div>
@@ -22,35 +22,40 @@
           <div class="col offset-m1 m10 s12">
             <div class="row">
               <div class="col s12 m12 l12">
-                <h3 class="center-align">Entre com a data e a hora de início da aula</h3>
+                <h3 class="center-align">Entre com a data, a hora de início e a hora do fim da aula</h3>
               </div>
             </div>
 
             <div class="row">
               <div class="input-field col s12 m12 l12">
-                <input id="data" type="text" class="datepicker" v-model="data">
+                <input
+                  id="data"
+                  type="text"
+                  class="datepicker"
+                  v-model="data"
+                  placeholder="Entre com a data da Aula"
+                >
                 <label for="data">Data:</label>
               </div>
             </div>
 
             <div class="row">
-              <div class="input-field col s12 m12 l12">
-                <input id="hora" type="text" class="timepicker" v-model="hora">
-                <label for="hora">Horário:</label>
+              <div class="input-field col s12 m6 l6">
+                <input id="horaEntrada" type="text" class="timepickerInicio" v-model="horaEntrada">
+                <label for="horaEntrada">Horário do Início:</label>
+              </div>
+              <div class="input-field col s12 m6 l6">
+                <input id="horaFim" type="text" class="timepickerFim" v-model="horaFim">
+                <label for="horaFim">Horário do Fim:</label>
               </div>
             </div>
 
             <div class="row">
-              <div class="col s12 m12 l12 historico center-align">
-                <button
-                  class="btn waves-effect waves-light"
-                  type="submit"
-                  name="action"
-                  @click="etapa++"
-                >
-                  Search
-                  <i class="material-icons right">send</i>
-                </button>
+              <div class="col s12 m6 l6 historico center-align">
+                <a class="waves-effect waves-light btn red" @click="etapa--">Voltar</a>
+              </div>
+              <div class="col s12 m6 l6 historico center-align">
+                <a class="waves-effect waves-light btn green" @click="carregarlista(); etapa++">Avançar</a>
               </div>
             </div>
           </div>
@@ -58,7 +63,7 @@
       </form>
       <!-- Etapa 03 -->
 
-      <form class="col s12 card data2" onsubmit="return false" v-if="etapa==3">
+      <form class="col offset-m3 m6 s12 card" onsubmit="return false" v-if="etapa==3">
         <div class="row topo">
           <div class="col s12 m12 l12">
             <table>
@@ -66,7 +71,7 @@
                 <tr>
                   <th></th>
                   <th>Nome do Aluno</th>
-                  <th>Matrícula do do Aluno</th>
+                  <th>Matrícula do Aluno</th>
                 </tr>
               </thead>
               <tbody>
@@ -82,11 +87,12 @@
                 </tr>
               </tbody>
             </table>
-            <div class="col s12 m12 l12 historico data">
-              <button class="btn waves-effect waves-light" @click="confirmação()">Salvar</button>
-
-              <button class="btn waves-effect waves-light" type="submit" name="action">Cancelar</button>
-            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 m12 l12">
+            <a class="waves-effect waves-light btn red" @click="etapa--">Voltar</a>
+            <a class="waves-effect waves-light btn green" @click="enviarLista()">Salvar</a>
           </div>
         </div>
       </form>
@@ -102,8 +108,10 @@ export default {
       disciplinas: [],
       lista: [],
       ausentes: ["(0)"],
-      hora: "",
+      horaEntrada: "",
+      horaFim: "",
       data: "",
+      vEau_codigo: "",
       etapa: 1
     };
   },
@@ -186,10 +194,21 @@ export default {
       }
     });
 
-    $(".timepicker").timepicker({
+    $(".timepickerInicio").timepicker({
       twelveHour: false,
       onCloseEnd: function(params) {
-        self.atualizaHora();
+        self.atualizahoraEntrada();
+      },
+      i18n: {
+        done: "Pronto",
+        cancel: "Fechar"
+      }
+    });
+
+    $(".timepickerFim").timepicker({
+      twelveHour: false,
+      onCloseEnd: function(params) {
+        self.atualizaHoraFim();
       },
       i18n: {
         done: "Pronto",
@@ -204,27 +223,31 @@ export default {
       this.data = data;
     },
 
-    atualizaHora() {
-      this.hora = $("#hora").val();
+    atualizahoraEntrada() {
+      this.horaEntrada = $("#horaEntrada").val();
+    },
+    atualizaHoraFim() {
+      this.horaFim = $("#horaFim").val();
     },
 
-    carregarlista(id) {
-      this.$http.get("Turmas", { params: { eau_codigo: id } }).then(
-        response => {
-          this.lista = response.body;
-        },
-        response => {
-          console.log(
-            "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-              response.status
-          );
-        }
-      );
+    carregarlista() {
+      this.$http
+        .get("Turmas", { params: { eau_codigo: this.vEau_codigo } })
+        .then(
+          response => {
+            this.lista = response.body;
+          },
+          response => {
+            console.log(
+              "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+                response.status
+            );
+          }
+        );
     },
 
     addAsentes(usu_codigo) {
-     
-      usu_codigo = "(" +usu_codigo+ ")";
+      usu_codigo = "(" + usu_codigo + ")";
 
       var pos = this.ausentes.indexOf(usu_codigo);
 
@@ -233,6 +256,75 @@ export default {
       } else {
         this.ausentes.splice(pos, 1);
       }
+    },
+
+    enviaHora(horaX) {
+      var data = this.data.split("/").reverse();
+      return data[0] + "-" + data[1] + "-" + data[2] + " " + horaX;
+    },
+
+    enviarLista() {
+      const swalWithBootstrapButtons = swal.mixin({
+        confirmButtonClass: "btn green sepraracaoBotoes",
+        cancelButtonClass: "btn red sepraracaoBotoes",
+        buttonsStyling: false
+      });
+
+      swalWithBootstrapButtons({
+        title: "Todos os dados estão corretos?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sim, salve!",
+        cancelButtonText: "Não, cancele!",
+        reverseButtons: true
+      }).then(result => {
+        if (result.value) {
+          var dadosPresencas = {
+            vEau_codigo: {
+              Eau_codigo: Number(this.vEau_codigo)
+            },
+            list_of_ids: this.ausentes.toString(),
+            Pre_horario_entrada: this.enviaHora(this.horaEntrada),
+            Pre_horario_saida: this.enviaHora(this.horaFim),
+            Hev_codigo: {
+              Hev_codigo: 1
+            }
+          };
+
+          this.$http.post("Presencas", dadosPresencas).then(
+            response => {
+              swalWithBootstrapButtons(
+                "Salvo!",
+                "Todas as informações foram salvas.",
+                "success"
+              );
+            },
+            response => {
+              this.erro("Dados Evento", response.status);
+            }
+          );
+        } else if (result.dismiss === swal.DismissReason.cancel) {
+          swalWithBootstrapButtons(
+            "Okay!",
+            "Revise/altere o que for necessário ;)",
+            "info"
+          );
+        }
+      });
+    },
+
+    erro(msg, code) {
+      swal({
+        title: "Oops!",
+        text: "Algo deu errado! Os dados não foram salvos!",
+        type: "error"
+      }),
+        console.log(
+          "ERRO ao atualizar " +
+            msg +
+            "! Código de resposta (HTTP) do servidor: " +
+            code
+        );
     }
   }
 };

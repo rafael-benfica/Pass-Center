@@ -8,13 +8,17 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace API_PassCenter.Controllers {
-    public class SessoesController : ApiController {
+namespace API_PassCenter.Controllers
+{
+    public class SessoesController : ApiController
+    {
         [HttpPost, Route("api/Sessoes")]
-        // POST: api/Endereco
-        public IHttpActionResult Sessoes([FromBody]Sessoes sessoes) {
+        // POST: api/Sessoes
+        public IHttpActionResult Sessoes([FromBody]Sessoes sessoes)
+        {
 
-            if (autenticar.autenticacao(Request, 4) == null) {
+            if (autenticar.autenticacao(Request, 4) == null)
+            {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
@@ -29,11 +33,30 @@ namespace API_PassCenter.Controllers {
 
             int retorno = SessoesDB.Insert(ses);
 
-            if (retorno == -2) {
+            if (retorno == -2)
+            {
                 return BadRequest();
-            } else {
+            }
+            else
+            {
                 return Ok(retorno);
             }
+
+        }
+
+        [HttpGet, Route("api/Sessoes")]
+        // GET: api/Sessoes
+        public IHttpActionResult getSessoes(int eau_codigo)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(SessoesDB.Select(eau_codigo).Tables[0]);
 
         }
     }

@@ -45,3 +45,8 @@
         margin-top: 3vh;
     }
 }
+
+.listaCamada{
+    width: 40vw !important;
+    margin: auto;
+}

@@ -11,5 +11,6 @@ namespace API_PassCenter.Models.Classes {
         public DateTime Pre_horario_entrada { get; set; }
         public DateTime Pre_horario_saida { get; set; }
         public Sessoes Ses_codigo { get; set; }
+        public HorariosEventos Hev_codigo { get; set; }
     }
 }

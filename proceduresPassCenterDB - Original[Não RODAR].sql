@@ -1,51 +1,61 @@
 
--- Precedure MigrarAno
-drop procedure if exists MigrarAno;
 
 -- Precedure InserirPresenca
 drop procedure if exists InserirPresenca;
 
-
 DELIMITER $
-CREATE PROCEDURE InserirPresenca (IN vEau_codigo INT, IN vPes_codigo INT, IN list_of_ids TEXT, IN vPre_horario_entrada DATETIME, IN vPre_horario_saida DATETIME, IN vSes_codigo INT)
-BEGIN
+CREATE PROCEDURE InserirPresenca(in vEau_codigo int, in vPes_codigo int, in list_of_ids text, in vPre_horario_entrada datetime, in vPre_horario_saida datetime, in vSes_codigo int)  
+	BEGIN
 			-- Declaracoes
-			DECLARE _ide_identificador INT;
-			DECLARE fim INT DEFAULT 0;
+			declare _ide_identificador int;
+			declare i INT;
+			declare total INT;
+			
 			-- inicializacao
+			set i = 0;
+			set total = 0;
 			
 			-- Criando Tabela temporaria e realizando insercao dos IDs que não devem receber presencas
-			CREATE TEMPORARY TABLE IF NOT EXISTS participantes_ausentes(id TEXT);
-			SET @sql = CONCAT('insert into participantes_ausentes (id) values',list_of_ids,'');
+			create temporary table if not exists participantes_ausentes(id text);
+			set @sql = concat('insert into participantes_ausentes (id) values',list_of_ids,'');
 			PREPARE stmt1 FROM @sql;
 			EXECUTE stmt1;
+		
 		BEGIN
 			-- Declaracao do Cursor
-			DECLARE c1 CURSOR FOR SELECT ide_identificador FROM turmas
-			INNER JOIN eventos_auditores eau USING (eau_codigo)
-			INNER JOIN usuarios usu USING (usu_codigo)
-			INNER JOIN identificadores USING (usu_codigo)
-			WHERE eau_codigo = vEau_codigo AND eau.pes_codigo = vPes_codigo 
-			AND usu.usu_codigo NOT IN (SELECT * FROM participantes_ausentes);	
-            
-			DECLARE CONTINUE HANDLER FOR NOT FOUND SET fim=1;
-			SET fim = 0;
+			declare c1 cursor for select ide_identificador from turmas
+			inner join eventos_auditores eau using (eau_codigo)
+			inner join usuarios usu using (usu_codigo)
+			inner join identificadores using (usu_codigo)
+			where eau_codigo = vEau_codigo and eau.pes_codigo = vPes_codigo and usu.usu_codigo not in (select * from participantes_ausentes);
+		
+			-- Inserindo o total de registro na variavel de controle
+			select count(*) into total from turmas
+			inner join eventos_auditores eau using (eau_codigo)
+			inner join usuarios usu using (usu_codigo)
+			where eau_codigo = vEau_codigo and eau.pes_codigo = vPes_codigo and usu.usu_codigo not in (select * from participantes_ausentes);
 			
-			OPEN c1;
-			ideLoop:LOOP	
+			open c1;
+				while i<total do
+                
 					-- varrendo registro por registro
-					FETCH c1 INTO _ide_identificador;
-					IF fim = 1 THEN LEAVE ideLoop; END IF;
-					-- Inserindo presenca
+					fetch c1 into _ide_identificador;
+                    -- Inserindo presenca
 					INSERT INTO presencas VALUES (vSes_codigo, _ide_identificador, vPre_horario_entrada, vPre_horario_saida, 0);
-			END LOOP ideLoop;
-			CLOSE c1;
+					set i = i + 1;
+				
+				end while;
+			close c1;
             
             -- Deletando tabela temporaria
-            DROP TEMPORARY TABLE participantes_ausentes;
+            drop temporary table participantes_ausentes;
         END;
 	END;
 $
+
+
+-- Precedure MigrarAno
+drop procedure if exists MigrarAno;
 
 delimiter $
 CREATE PROCEDURE MigrarAno(in vInstituicao int, in vPeriodo varchar(45))

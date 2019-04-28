@@ -21,15 +21,61 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
-            presencas.vPes_codigo.Pes_codigo = Convert.ToInt32(credenciais.Pes_codigo);
+            //Seessao
+            Sessoes ses = new Sessoes();
+            ses.Eau_codigo = presencas.vEau_codigo;
+            ses.Ses_horario_inicio = presencas.Pre_horario_entrada;
+            ses.Ses_horario_fim = presencas.Pre_horario_saida;
+            ses.Ses_sessao_automatico = false;
+            ses.Hev_codigo = presencas.Hev_codigo;
+            presencas.Ses_codigo = ses;
 
-            int retorno = PresencasDB.Insert(presencas);
+            //Presenca
+            Pessoas pes = new Pessoas();
+            pes.Pes_codigo = Convert.ToInt32(credenciais.Pes_codigo);
+            presencas.vPes_codigo = pes;
 
-            if (retorno == -2) {
+
+            //DB
+
+            int retornoSessao = SessoesDB.InsertManual(ses);
+
+            if (retornoSessao == -2)
+            {
                 return BadRequest();
-            } else {
-                return Ok(retorno);
             }
+            else{
+
+                presencas.Ses_codigo.Ses_codigo = retornoSessao;
+
+                int retorno = PresencasDB.Insert(presencas);
+
+                if (retorno == -2)
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    return Ok(retorno);
+                }
+            }
+              
+
+        }
+
+        [HttpGet, Route("api/Presencas")]
+        // GET: api/Endereco
+        public IHttpActionResult GetPresencas(int ses_codigo)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(PresencasDB.Select(ses_codigo).Tables[0]);
 
         }
     }

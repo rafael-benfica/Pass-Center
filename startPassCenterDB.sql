@@ -113,7 +113,7 @@ INSERT INTO eventos_auditores (eau_periodo_identificacao, eau_estado, eau_data_a
 
 -- Inserindo Horario de Eventos
 INSERT INTO horarios_eventos (hev_codigo, hev_data_hora, hev_estado, hev_dia_semana, eve_codigo) 
-VALUES ('1', '0000-00-00 00:00:00', '1', 'Segunda-feira', '1');
+VALUES ('1', '2019-04-26 22:09:00', '1', 'Segunda-feira', '1');
 
 -- Inserido Turmas
 INSERT INTO turmas (usu_codigo, eau_codigo) 
@@ -125,4 +125,4 @@ INSERT INTO eventos_grades VALUES (1, 1);
 
 -- Inserindo Sessao
 INSERT INTO sessoes (ses_codigo, ses_horario_inicio , ses_horario_fim, ses_sessao_automatico, hev_codigo, eau_codigo) 
-VALUES ('1', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0', '1', '1');
+VALUES ('1', '2019-04-26 22:09:00', '2019-04-26 22:09:00', '0', '1', '1');
