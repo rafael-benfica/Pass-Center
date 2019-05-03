@@ -12,21 +12,14 @@ BEGIN
 			-- Declaracoes
 			DECLARE _ide_identificador INT;
 			DECLARE fim INT DEFAULT 0;
-			-- inicializacao
-			
-			-- Criando Tabela temporaria e realizando insercao dos IDs que não devem receber presencas
-			CREATE TEMPORARY TABLE IF NOT EXISTS participantes_ausentes(id TEXT);
-			SET @sql = CONCAT('insert into participantes_ausentes (id) values',list_of_ids,'');
-			PREPARE stmt1 FROM @sql;
-			EXECUTE stmt1;
-		BEGIN
+		
 			-- Declaracao do Cursor
 			DECLARE c1 CURSOR FOR SELECT ide_identificador FROM turmas
 			INNER JOIN eventos_auditores eau USING (eau_codigo)
 			INNER JOIN usuarios usu USING (usu_codigo)
 			INNER JOIN identificadores USING (usu_codigo)
 			WHERE eau_codigo = vEau_codigo AND eau.pes_codigo = vPes_codigo 
-			AND usu.usu_codigo NOT IN (SELECT * FROM participantes_ausentes);	
+			AND FIND_IN_SET(usu.usu_codigo, list_of_ids) = 0;
             
 			DECLARE CONTINUE HANDLER FOR NOT FOUND SET fim=1;
 			SET fim = 0;
@@ -40,10 +33,7 @@ BEGIN
 					INSERT INTO presencas VALUES (vSes_codigo, _ide_identificador, vPre_horario_entrada, vPre_horario_saida, 0);
 			END LOOP ideLoop;
 			CLOSE c1;
-            
-            -- Deletando tabela temporaria
-            DROP TEMPORARY TABLE participantes_ausentes;
-        END;
+       
 	END;
 $
 

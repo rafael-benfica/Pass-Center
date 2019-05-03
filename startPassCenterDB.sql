@@ -120,7 +120,7 @@ INSERT INTO turmas (usu_codigo, eau_codigo)
 VALUES ('5', '1'), ('6', '1');
 
 -- Inserir Eventos Grades
-INSERT INTO eventos_grades VALUES (1, 1);
+INSERT INTO eventos_grades VALUES (1, 1, 1);
 
 
 -- Inserindo Sessao

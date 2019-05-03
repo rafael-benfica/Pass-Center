@@ -439,6 +439,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `PassCenter`.`eventos_grades` (
   `gra_codigo` INT NOT NULL,
   `eau_codigo` INT NOT NULL,
+  `egr_estado` TINYINT(1) NOT NULL,
   PRIMARY KEY (`gra_codigo`, `eau_codigo`),
   INDEX `fk_eventos_has_grades_grades1_idx` (`gra_codigo` ASC) VISIBLE,
   INDEX `fk_eventos_grades_eventos_auditores1_idx` (`eau_codigo` ASC) VISIBLE,

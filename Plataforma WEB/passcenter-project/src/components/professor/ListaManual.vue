@@ -247,7 +247,6 @@ export default {
     },
 
     addAsentes(usu_codigo) {
-      usu_codigo = "(" + usu_codigo + ")";
 
       var pos = this.ausentes.indexOf(usu_codigo);
 
