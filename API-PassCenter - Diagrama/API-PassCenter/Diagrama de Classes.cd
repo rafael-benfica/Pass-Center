@@ -1,0 +1,553 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="API_PassCenter.Models.Classes.Enderecos">
+    <Position X="3.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAQAAAAAAIAAAAAAAAEAAAAAAAAAhACAIAAABAA=</HashCode>
+      <FileName>Models\Classes\Enderecos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Eventos">
+    <Position X="6.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AADAAAAAAAA4ABAAAAIAAAAAAAAAAAIAAAAAAAAAACA=</HashCode>
+      <FileName>Models\Classes\Eventos.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TiposEventos" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.EventosAuditores">
+    <Position X="10.25" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAJAAAAAAAEAAAAAAUAAAIAEAAAAEAgAAA=</HashCode>
+      <FileName>Models\Classes\EventosAuditores.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Eventos" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.EventosGrades">
+    <Position X="12.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAEAAAAAAAAEAAAI=</HashCode>
+      <FileName>Models\Classes\EventosGrades.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="EventosAuditores" />
+      <Property Name="Grades" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Grades">
+    <Position X="12" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Models\Classes\Grades.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Instituicoes" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.HorariosEventos">
+    <Position X="4" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAABAAAAAAAAIAAAAAAAAAIAAAAgAAIAAAA=</HashCode>
+      <FileName>Models\Classes\HorariosEventos.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Eventos" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Identificadores">
+    <Position X="14.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAGAAQAAiA=</HashCode>
+      <FileName>Models\Classes\Identificadores.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Usuarios" />
+      <Property Name="TiposIdentificadores" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Instituicoes">
+    <Position X="8" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAEAACAIAAAAgAAAAAAgAgAAAAAgAEAA=</HashCode>
+      <FileName>Models\Classes\Instituicoes.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Enderecos" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Pagamentos">
+    <Position X="2" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAIAAEAAAABAQAAAACAAAAAAAAAQgAAAAA=</HashCode>
+      <FileName>Models\Classes\Pagamentos.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Instituicoes" />
+      <Property Name="Planos" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Pessoas">
+    <Position X="5.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAQAAAoAAAAIAAIAAAABAAEAABAgAAAAAAhEAA=</HashCode>
+      <FileName>Models\Classes\Pessoas.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Enderecos" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Planos">
+    <Position X="2" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAgAQAAAABAAAAAAAAAAAAAAAEAQAAAAA=</HashCode>
+      <FileName>Models\Classes\Planos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Presencas">
+    <Position X="13" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAACAAAQAAAAAAIAAAAAgAAAAAABACAAAAAAA=</HashCode>
+      <FileName>Models\Classes\Presencas.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Identificadores" />
+      <Property Name="Sessoes" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Sessoes">
+    <Position X="9.75" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAACAAAAAAAAACAAAAAAQAAEAEABAgCAABAAA=</HashCode>
+      <FileName>Models\Classes\Sessoes.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="HorariosEventos" />
+      <Property Name="Totens" />
+      <Property Name="EventosAuditores" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.TiposEventos">
+    <Position X="4.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Classes\TiposEventos .cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.TiposIdentificadores">
+    <Position X="13.75" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Models\Classes\TiposIdentificadores .cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.TiposUsuarios">
+    <Position X="11.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAIAAAAA=</HashCode>
+      <FileName>Models\Classes\TiposUsuarios.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Totens">
+    <Position X="6.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAABAAAAAAAAAAAACAAAQAg=</HashCode>
+      <FileName>Models\Classes\Totens.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Turmas">
+    <Position X="9.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAQAAEAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\Classes\Turmas.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Usuarios" />
+      <Property Name="EventosAuditores" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.Usuarios">
+    <Position X="9" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAABAACDQABAAAAAAAgAAAAAAAAAIFgAAI=</HashCode>
+      <FileName>Models\Classes\Usuarios.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Pessoas" />
+      <Property Name="TiposUsuarios" />
+      <Property Name="Grades" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Classes.PresencasProcedure">
+    <Position X="12.5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEIAAAAAgAAAAAABAgBAAACAA=</HashCode>
+      <FileName>Models\ClassesAuxiliares\PresencasProcedure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.PersistenciaAuxliar.Senhas">
+    <Position X="10.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ClassesAuxiliares\Senhas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.PasetoToken.autenticar">
+    <Position X="1.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PasetoToken\autenticar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.PasetoToken.Indentificacao">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAABAAAAAAAAAAAAgAAAAIAgAAA=</HashCode>
+      <FileName>Models\PasetoToken\Indentificacao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.PasetoToken.LoginCredenciais">
+    <Position X="3.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PasetoToken\LoginCredenciais.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.PasetoToken.Token">
+    <Position X="6.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAEAAAAAEAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PasetoToken\Token.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.EnderecosDB">
+    <Position X="18.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\EnderecosDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.EventosAuditoresDB">
+    <Position X="24.75" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAAQAAAQAA=</HashCode>
+      <FileName>Models\Persistencia\EventosAuditoresDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.EventosDB">
+    <Position X="26.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAEAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\EventosDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.EventosGradesDB">
+    <Position X="26.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\EventosGradesDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.GradesDB">
+    <Position X="21" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\GradesDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.Horarios_EventosDB">
+    <Position X="21" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\Horarios_EventosDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.IdentificadoresDB">
+    <Position X="24.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\IdentificadoresDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.InstituicoesDB">
+    <Position X="18.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\InstituicoesDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.PagamentosDB">
+    <Position X="23" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\PagamentosDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.PessoasDB">
+    <Position X="26.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAACAAgCAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\PessoasDB .cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.PlanosDB">
+    <Position X="23" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\PlanosDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.PresencasDB">
+    <Position X="23" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\PresencasDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.SessoesDB">
+    <Position X="24.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAAAAQAAAAAQAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\SessoesDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.TiposEventosDB">
+    <Position X="24.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\TiposEventosDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.TiposIdentificadoresDB">
+    <Position X="18.75" Y="9.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\TiposIdentificadoresDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.TiposUsuariosDB">
+    <Position X="18.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\TiposUsuariosDB .cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.TotensDB">
+    <Position X="21" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\TotensDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.TurmasDB">
+    <Position X="23" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAACAAAIAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\TurmasDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.UsusariosDB">
+    <Position X="21" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEQAAAAAAAgACAAAAAAAACQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Persistencia\UsuariosDB .cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API_PassCenter.Models.Mapped">
+    <Position X="19.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAMAAAAABAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Mapped.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.EnderecosController">
+    <Position X="19.75" Y="12.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAEAg=</HashCode>
+      <FileName>Controllers\EnderecosController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.EventosAuditoresController">
+    <Position X="21.75" Y="12.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAQAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\EventosAuditoresController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.EventosController">
+    <Position X="26.25" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAhAABAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\EventosController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.EventosGradesController">
+    <Position X="21.75" Y="16.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\EventosGradesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.GradesController">
+    <Position X="18" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\GradesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.HomeController">
+    <Position X="20" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.IdentificadoresController">
+    <Position X="21.75" Y="14.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Controllers\IdentificadoresController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.InstituicoesController">
+    <Position X="24.25" Y="14.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\InstituicoesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.PagamentosController">
+    <Position X="18" Y="14.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\PagamentosController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.PessoasController">
+    <Position X="20" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAJAAAAACAAACAIAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Controllers\PessoasController .cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.PlanosController">
+    <Position X="18" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Controllers\PlanosController .cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.PresencasController">
+    <Position X="24.25" Y="12.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAA=</HashCode>
+      <FileName>Controllers\PresencasController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.SessoesController">
+    <Position X="24.25" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\SessoesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.TokensController">
+    <Position X="26.25" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TokensController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.TotensController">
+    <Position X="20" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TotensController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.TurmasController">
+    <Position X="26.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAACAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Controllers\TurmasController .cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Controllers.UsuariosController">
+    <Position X="18" Y="18" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>MAAAASAAAAAAEAAAAAAACAAAAAAAAAAAAAAAABAAEgg=</HashCode>
+      <FileName>Controllers\UsuariosController .cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API_PassCenter.Models.Persistencia.LoginCredenciaisDB">
+    <Position X="26.75" Y="9.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAACAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Models\PersistenciaAuxliar\LoginCredenciaisDB.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mapped" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

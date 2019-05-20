@@ -1,0 +1,449 @@
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\ApplicationInsights.config
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\API-PassCenter.dll.config
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\API-PassCenter.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\API-PassCenter.pdb
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\csc.exe
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\csc.exe.config
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\csc.rsp
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\csi.exe
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\csi.exe.config
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\csi.rsp
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.AppContext.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Console.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.Compression.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Claims.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.ValueTuple.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\vbc.exe
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\vbc.exe.config
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\vbc.rsp
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\VBCSCompiler.exe
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Antlr3.Runtime.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.Web.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Newtonsoft.Json.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Net.Http.Formatting.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.Helpers.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.WebHost.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.Mvc.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.Optimization.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.Razor.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Razor.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\WebGrease.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Newtonsoft.Json.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Net.Http.Formatting.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.Helpers.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.WebHost.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.Mvc.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.Optimization.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.Razor.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Razor.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Antlr3.Runtime.pdb
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.Web.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Net.Http.Formatting.resources.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Helpers.resources.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Http.resources.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Http.WebHost.resources.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Mvc.resources.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Optimization.resources.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Razor.resources.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.WebPages.resources.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.WebPages.Razor.resources.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.csprojAssemblyReference.cache
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.csproj.CoreCompileInputs.cache
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.csproj.CopyComplete
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.dll
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.pdb
+C:\Users\Rafael A. B. Silva\Desktop\API-PassCenter.solution\API-PassCenter\bin\XmlDocument.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\ApplicationInsights.config
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\API-PassCenter.dll.config
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\API-PassCenter.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\API-PassCenter.pdb
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\XmlDocument.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csc.exe
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csc.exe.config
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csc.rsp
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csi.exe
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csi.exe.config
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csi.rsp
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.AppContext.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Collections.Immutable.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Console.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.Compression.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.FileSystem.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.Pipes.AccessControl.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.Pipes.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Reflection.Metadata.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.AccessControl.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Claims.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Principal.Windows.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.ValueTuple.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.XPath.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\vbc.exe
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\vbc.exe.config
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\vbc.rsp
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\VBCSCompiler.exe
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\VBCSCompiler.exe.config
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Antlr3.Runtime.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.DependencyCollector.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.Web.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.WindowsServer.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.ApplicationInsights.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.Web.Infrastructure.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Newtonsoft.Json.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Diagnostics.DiagnosticSource.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Net.Http.Formatting.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Helpers.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.WebHost.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Mvc.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Optimization.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Razor.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Deployment.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Razor.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\WebGrease.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Newtonsoft.Json.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Net.Http.Formatting.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Helpers.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.WebHost.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Mvc.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Optimization.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Razor.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Deployment.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Razor.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Antlr3.Runtime.pdb
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Diagnostics.DiagnosticSource.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.DependencyCollector.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.WindowsServer.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.Web.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Net.Http.Formatting.resources.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Helpers.resources.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Http.resources.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Http.WebHost.resources.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Mvc.resources.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Optimization.resources.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Razor.resources.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.WebPages.resources.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.WebPages.Deployment.resources.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.WebPages.Razor.resources.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.csproj.CoreCompileInputs.cache
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.csproj.CopyComplete
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.pdb
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Paseto.Public.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Cors.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.Cors.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.Cors.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\ApplicationInsights.config
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\API-PassCenter.dll.config
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\API-PassCenter.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\API-PassCenter.pdb
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\XmlDocument.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csc.exe
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csc.exe.config
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csc.rsp
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csi.exe
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csi.exe.config
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csi.rsp
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.AppContext.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Console.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.Compression.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Claims.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.ValueTuple.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\vbc.exe
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\vbc.exe.config
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\vbc.rsp
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\VBCSCompiler.exe
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Antlr3.Runtime.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.Web.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Newtonsoft.Json.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Paseto.Public.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Net.Http.Formatting.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Cors.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Helpers.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.Cors.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.WebHost.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Mvc.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Optimization.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Razor.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Razor.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\WebGrease.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Net.Http.Formatting.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.Cors.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Newtonsoft.Json.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Helpers.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.WebHost.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Mvc.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Optimization.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Razor.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Razor.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Antlr3.Runtime.pdb
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.Web.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Net.Http.Formatting.resources.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Http.resources.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Helpers.resources.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Http.WebHost.resources.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Mvc.resources.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Optimization.resources.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Razor.resources.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.WebPages.resources.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.WebPages.Razor.resources.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.csprojAssemblyReference.cache
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.csproj.CoreCompileInputs.cache
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.csproj.CopyComplete
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.dll
+C:\Users\Rafael A. B. Silva\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.pdb
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.csprojAssemblyReference.cache
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\MySql.Data.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Google.Protobuf.dll
+D:\Windows\DataUsers\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\MySql.Data.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\ApplicationInsights.config
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\API-PassCenter.dll.config
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\API-PassCenter.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\API-PassCenter.pdb
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\XmlDocument.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csc.exe
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csc.exe.config
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csc.rsp
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csi.exe
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csi.exe.config
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\csi.rsp
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.AppContext.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Collections.Immutable.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Console.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.Compression.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.FileSystem.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.Pipes.AccessControl.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.IO.Pipes.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Reflection.Metadata.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.AccessControl.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Claims.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Security.Principal.Windows.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.ValueTuple.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.XPath.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\vbc.exe
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\vbc.exe.config
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\vbc.rsp
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\VBCSCompiler.exe
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\roslyn\VBCSCompiler.exe.config
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Antlr3.Runtime.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.DependencyCollector.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.Web.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.WindowsServer.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.ApplicationInsights.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AspNet.TelemetryCorrelation.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.Web.Infrastructure.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Newtonsoft.Json.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Paseto.Public.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Diagnostics.DiagnosticSource.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Net.Http.Formatting.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Cors.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Helpers.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.Cors.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.WebHost.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Mvc.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Optimization.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Razor.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Deployment.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Razor.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\WebGrease.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Google.Protobuf.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\MySql.Data.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Net.Http.Formatting.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.Cors.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Newtonsoft.Json.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Helpers.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Http.WebHost.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Mvc.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Optimization.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.Razor.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Deployment.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Web.WebPages.Razor.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Antlr3.Runtime.pdb
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\System.Diagnostics.DiagnosticSource.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AspNet.TelemetryCorrelation.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.DependencyCollector.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.WindowsServer.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.AI.Web.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Net.Http.Formatting.resources.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Http.resources.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Helpers.resources.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Http.WebHost.resources.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Mvc.resources.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Optimization.resources.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.Razor.resources.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.WebPages.resources.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.WebPages.Deployment.resources.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\bin\pt-br\System.Web.WebPages.Razor.resources.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.csprojAssemblyReference.cache
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.csproj.CoreCompileInputs.cache
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.csproj.CopyComplete
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.dll
+D:\Windows\DataUser\Documents\GitHub\Pass-Center-Testes\API-PassCenter.solution\API-PassCenter\obj\Debug\API-PassCenter.pdb
