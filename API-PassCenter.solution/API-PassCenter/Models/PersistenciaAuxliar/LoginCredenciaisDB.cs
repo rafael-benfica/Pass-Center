@@ -8,7 +8,7 @@ using System.Web;
 
 namespace API_PassCenter.Models.Persistencia {
     public class LoginCredenciaisDB {
-        public static DataSet Select(LoginCredenciais login)
+        public static DataSet SelectUsuarioSenha(LoginCredenciais login)
         {
             //Imagine um DataSet como umamatriz de dados;
 
@@ -28,6 +28,39 @@ namespace API_PassCenter.Models.Persistencia {
 
             objCommand.Parameters.Add(Mapped.Parameter("?usu_login", login.usu_login));
             objCommand.Parameters.Add(Mapped.Parameter("?usu_senha", login.usu_senha));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
+
+        public static DataSet SelectRFID(LoginCredenciais login)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "select usu_codigo, pes_codigo, pes_nome, end_codigo, ins_codigo, tus_codigo, usu_redefinir_senha from usuarios " +
+                "inner join pessoas using (pes_codigo) " +
+                "inner join identificadores using (usu_codigo) " +
+                "where ide_identificador = ?usu_login";
+
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_login", login.usu_login));
 
             objDataAdapter = Mapped.Adapter(objCommand);
 

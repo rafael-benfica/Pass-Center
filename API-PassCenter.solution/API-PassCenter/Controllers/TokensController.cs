@@ -18,17 +18,22 @@ namespace API_PassCenter.Controllers
         /// <param name="br"></param>
         /// <returns></returns>
         // POST: api/Token
-        
-        public IHttpActionResult Post([FromBody]LoginCredenciais login)
-        {
-            DataSet retorno = LoginCredenciaisDB.Select(login);
 
-            if (retorno.Tables[0].Rows.Count == 0) {
+        [HttpPost, Route("api/Tokens")]
+        public IHttpActionResult PlataformaWeb([FromBody]LoginCredenciais login)
+        {
+            DataSet retorno = LoginCredenciaisDB.SelectUsuarioSenha(login);
+
+            if (retorno.Tables[0].Rows.Count == 0)
+            {
                 return Content(HttpStatusCode.Unauthorized, "Combinação de login e senha inválidos!");
-            } else {
+            }
+            else
+            {
                 string tipoUser;
 
-                if (retorno.Tables[0].Rows[0]["usu_redefinir_senha"].ToString().Equals("1")){
+                if (retorno.Tables[0].Rows[0]["usu_redefinir_senha"].ToString().Equals("1"))
+                {
                     tipoUser = "6";
                 }
                 else
@@ -37,7 +42,36 @@ namespace API_PassCenter.Controllers
                 }
 
                 //return Ok(Token.GerarToken(retorno));
-                return Ok(new string[] { Token.GerarToken(retorno), tipoUser });
+                return Ok(new string[] { Token.GerarToken(retorno), tipoUser});
+            }
+
+
+        }
+
+        [HttpPost, Route("api/Tokens/Totem")]
+        public IHttpActionResult Totem([FromBody]LoginCredenciais login)
+        {
+            DataSet retorno = LoginCredenciaisDB.SelectRFID(login);
+
+            if (retorno.Tables[0].Rows.Count == 0)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Combinação de login e senha inválidos!");
+            }
+            else
+            {
+                string tipoUser;
+
+                if (retorno.Tables[0].Rows[0]["usu_redefinir_senha"].ToString().Equals("1"))
+                {
+                    tipoUser = "6";
+                }
+                else
+                {
+                    tipoUser = retorno.Tables[0].Rows[0]["tus_codigo"].ToString();
+                }
+
+                //return Ok(Token.GerarToken(retorno));
+                return Ok(new string[] { Token.GerarToken(retorno), tipoUser, retorno.Tables[0].Rows[0]["pes_nome"].ToString() });
             }
 
 

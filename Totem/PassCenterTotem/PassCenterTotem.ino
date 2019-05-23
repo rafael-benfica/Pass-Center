@@ -44,6 +44,7 @@ int estado = 0; /*  0 = Totem Genério: Aguardando especialização | Operaciona
                     5 = Totem Genério: Em erro
                 */
 String RFIDmaster = "";
+String token="";
 
 //Declarando Objetos
 LiquidCrystal_I2C lcd(0x3F, 16, 2); //Cria uma instância do Display LCD (definindo o endereço do display, linhas e colunas)
@@ -107,9 +108,9 @@ void setup()
   Serial.println("");
 
   Serial.println("############################### Inicialização ##################################");
-  Serial.println("#                           Self test: Inicializado                            #");
+  Serial.println("                         => Self test: Inicializado <=                          ");
   mfrc522.PCD_DumpVersionToSerial(); // Mostra a versão do PCD - MFRC522 Card Reader
-  Serial.println("#                           Self test: Finalizado!                             #");
+  Serial.println("                         => Self test: Finalizado! <=                           ");
   Serial.println("################################################################################");
 
   //cria uma tarefa que será executada na função checarRFID, com prioridade 1 e execução no núcleo 1
@@ -223,10 +224,20 @@ void requisicaoPessoa(String RFID)
     Serial.println();
     Serial.println("                     => ID do objeto: " + String(RFID) + " <=                     "); // Mostra o valor de ID
 
+    //Cria o JSON para o envio
+    const size_t capacity = JSON_OBJECT_SIZE(1);
+    DynamicJsonDocument credenciais(capacity);
+    
+    credenciais["usu_login"] = RFID;
+    char JSONmessageBuffer[300];
+    serializeJson(capacity, JSONmessageBuffer);     
+    
 
     HTTPClient http;            // Declaração do objeto para a requisição HTTP
+
     http.begin(api + "pessoa"); //Endereço para a requisição HTTP
-    int httpCode = http.GET();  //Realiza a requisição HTTP
+    http.addHeader("Content-Type", "application/json");  //Especifica content-type do cabeçalho
+    int httpCode = http.POST(JSONmessageBuffer); 
     
     Serial.println("                            => Resposta HTTP: " + String(httpCode) + "  <=          "); // Mostra a resposta HTTP da requisição
     
@@ -239,33 +250,35 @@ void requisicaoPessoa(String RFID)
       Serial.println("                       => Fim da resposta da Requisição <=                      ");
       
 
-      const size_t capacity = JSON_OBJECT_SIZE(2) + 30; //Determina a quantidade de memória para a ser alocada para converter o JSON
+      const size_t capacity = 1024; //Determina a quantidade de memória para a ser alocada para converter o JSON
       DynamicJsonDocument doc(capacity);                //Aloca memória para converter o JSON
 
       char json[payload.length()];                 //Instancia um Array de Chars
-      payload.toCharArray(json, payload.length()); //Converte o conteu do pauload para o Array
+      payload.toCharArray(json, payload.length()); //Converte o conteu do payload para o Array
 
       deserializeJson(doc, json); //Realiza a conversão do Json
 
-      const char *pes_nome = doc["pes_nome"];
-      int tus_codigo = doc["tus_codigo"];
+      const char* tokenJ = doc[0]; 
+      const char* tipoJ = doc[1];
+      const char* nomeJ = doc[2];
 
-      http.end(); //Libera os recursos alocados
+      token = String(tokenJ);
 
       Serial.println();
-      Serial.println("Olá, " + String(pes_nome));
-      Serial.println("O tipo do seu usuário é: " + String(tus_codigo));
+      Serial.println("Olá, " + String(nomeJ));
+      Serial.println("O tipo do seu usuário é: " + String(tipoJ));
+      Serial.println("O tipo do seu usuário é: " + token);
       Serial.println();
 
       RFIDmaster = RFID; // Define o Objeto RFID Master
       
-      if (tus_codigo == 4)
+      if (int(tipoJ) == 4)
       {
         estado = 1;
         Serial.println("         => Totem Especializado (1): Sessão inicializada pelo auditor <=        ");
         
       }
-      else if (tus_codigo == 3)
+      else if (int(tipoJ) == 3)
       {
         estado = 4;
         Serial.println("                 => Totem Especializado (4): Modo Cadastro; <=                  ");
@@ -302,10 +315,10 @@ Serial.println("############################ Requisição Auditor ##############
     {
 
       String payload = http.getString(); //Converte o retorno da requisição para String
-      Serial.println("############################ Requisição Auditor ################################");
-      Serial.println("                  => Início da resposta da Requisição <=                     ");
+      
+      Serial.println("                   => Início da resposta da Requisição <=                       ");
       Serial.println(payload);
-      Serial.println("                   => Fim da resposta da Requisição <=                      ");
+      Serial.println("                    => Fim da resposta da Requisição <=                         ");
 
       DynamicJsonDocument doc(1024); //Aloca memória para converter o JSON
 
@@ -329,6 +342,7 @@ Serial.println("############################ Requisição Auditor ##############
       Serial.println("    => Erro Durante a requisição HTTP: " + String(httpCode) + "  <=             "); // Mostra a resposta HTTP da requisição
     }
     http.end(); //Libera os recursos alocados
+    
     Serial.println("################################################################################");
   }
 }
