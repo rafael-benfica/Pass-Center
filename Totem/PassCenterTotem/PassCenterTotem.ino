@@ -196,9 +196,9 @@ void resetWiFI()
   if (!wifiManager.startConfigPortal("PassCenter - Totem", "12345678"))
   {
 
-    Serial.println("                          => Assistete Encerrado! <=                            ");
+    Serial.println("                         => Assistete Encerrado! <=                            ");
 
-    Serial.println("################################################################################");
+    Serial.println("###############################################################################");
 
     ESP.restart();
   }
@@ -206,25 +206,29 @@ void resetWiFI()
   digitalWrite(PIN, HIGH);
   delay(10000);
   digitalWrite(PIN, LOW);
-  Serial.println("             => Totem conectado com Sucesso a um ponto de Acesso! <=            ");
-  Serial.println("                             => Assistete Encerrado! <=                         ");
-  Serial.println("################################################################################");
+  Serial.println("             => Totem conectado com Sucesso a um ponto de Acesso! <=             ");
+  Serial.println("                             => Assistete Encerrado! <=                          ");
+  Serial.println("#################################################################################");
 }
 
 void requisicaoPessoa(String RFID)
 {
+
+  
+  
   if ((WiFi.status() == WL_CONNECTED)) //Verifica o estado de rede do Totem
   {
-    Serial.println("############################### Indentifica Pessoa ##############################");
     Serial.println();
-    Serial.println("                           => ID do objeto: " + String(RFID) + " <=                         "); // Mostra o valor de ID
+    Serial.println("############################ Indentifica Pessoa ################################");
+    Serial.println();
+    Serial.println("                     => ID do objeto: " + String(RFID) + " <=                     "); // Mostra o valor de ID
 
 
     HTTPClient http;            // Declaração do objeto para a requisição HTTP
     http.begin(api + "pessoa"); //Endereço para a requisição HTTP
     int httpCode = http.GET();  //Realiza a requisição HTTP
     
-    Serial.println("                         => Resposta HTTP: " + String(httpCode) + "  <=                       "); // Mostra a resposta HTTP da requisição
+    Serial.println("                            => Resposta HTTP: " + String(httpCode) + "  <=          "); // Mostra a resposta HTTP da requisição
     
     if (httpCode == 200) //Verifica o código de retorno
     {
@@ -250,7 +254,7 @@ void requisicaoPessoa(String RFID)
 
       Serial.println();
       Serial.println("Olá, " + String(pes_nome));
-      Serial.println("O tipo do seu usuário é: " + tus_codigo);
+      Serial.println("O tipo do seu usuário é: " + String(tus_codigo));
       Serial.println();
 
       RFIDmaster = RFID; // Define o Objeto RFID Master
@@ -271,9 +275,9 @@ void requisicaoPessoa(String RFID)
 
     else
     {
-      http.end(); //Libera os recursos alocados
-      Serial.println("                 => Erro Durante a requisição HTTP: " + String(httpCode) + "  <=                  "); // Mostra a resposta HTTP da requisição
+      Serial.println("    => Erro Durante a requisição HTTP: " + String(httpCode) + "  <=             "); // Mostra a resposta HTTP da requisição
     }
+    http.end(); //Libera os recursos alocados
     Serial.println("################################################################################");
   }
 }
@@ -282,26 +286,26 @@ void requisicaoAuditor()
 {
   if ((WiFi.status() == WL_CONNECTED)) //Verifica o estado de rede do Totem
   {
-
-Serial.println("############################### Requisição Auditor ##############################");
+Serial.println();
+Serial.println("############################ Requisição Auditor ################################");
     Serial.println();
 
 
     HTTPClient http;            // Declaração do objeto para a requisição HTTP
     http.begin(api + "disciplinas"); //Endereço para a requisição HTTP
     int httpCode = http.GET();  //Realiza a requisição HTTP
-    
-    Serial.println("                         => Resposta HTTP: " + String(httpCode) + "  <=                       "); // Mostra a resposta HTTP da requisição
+
+    Serial.println("                            => Resposta HTTP: " + String(httpCode) + "  <=          "); // Mostra a resposta HTTP da requisição
 
 
     if (httpCode == 200) //Verifica o código de retorno
     {
 
       String payload = http.getString(); //Converte o retorno da requisição para String
-      
-      Serial.println("                     => Início da resposta da Requisição <=                     ");
+      Serial.println("############################ Requisição Auditor ################################");
+      Serial.println("                  => Início da resposta da Requisição <=                     ");
       Serial.println(payload);
-      Serial.println("                       => Fim da resposta da Requisição <=                      ");
+      Serial.println("                   => Fim da resposta da Requisição <=                      ");
 
       DynamicJsonDocument doc(1024); //Aloca memória para converter o JSON
 
@@ -315,20 +319,16 @@ Serial.println("############################### Requisição Auditor ###########
       const char *disciplinas_eau_sigla = disciplinas["eau_sigla"]; // "Mat01"
       const char *disciplinas_eau_nome = disciplinas["eau_nome"];   // "Matemática 01"
 
-
-      Serial.println("Sigla: " + disciplinas_eau_codigo);
+      Serial.println("Sigla: " + String(disciplinas_eau_codigo));
       Serial.println("Sigla: " + String(disciplinas_eau_sigla));
       Serial.println("Nome: " + String(disciplinas_eau_nome));
-
-      
-      http.end(); //Libera os recursos alocados
     }
 
     else
     {
-      http.end(); //Libera os recursos alocados
-      Serial.println("                 => Erro Durante a requisição HTTP: " + String(httpCode) + "  <=                  "); // Mostra a resposta HTTP da requisição
+      Serial.println("    => Erro Durante a requisição HTTP: " + String(httpCode) + "  <=             "); // Mostra a resposta HTTP da requisição
     }
+    http.end(); //Libera os recursos alocados
     Serial.println("################################################################################");
   }
 }
