@@ -229,15 +229,16 @@ void requisicaoPessoa(String RFID)
     DynamicJsonDocument credenciais(capacity);
     
     credenciais["usu_login"] = RFID;
-    char JSONmessageBuffer[300];
-    serializeJson(capacity, JSONmessageBuffer);     
+    String oi;
+    serializeJson(credenciais, oi);     
+
     
 
     HTTPClient http;            // Declaração do objeto para a requisição HTTP
 
     http.begin(api + "pessoa"); //Endereço para a requisição HTTP
     http.addHeader("Content-Type", "application/json");  //Especifica content-type do cabeçalho
-    int httpCode = http.POST(JSONmessageBuffer); 
+    int httpCode = http.POST(oi); 
     
     Serial.println("                            => Resposta HTTP: " + String(httpCode) + "  <=          "); // Mostra a resposta HTTP da requisição
     
