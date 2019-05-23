@@ -123,7 +123,6 @@ void setup()
       nucleoUm);    /* Núcleo que executará a tarefa */
 
   delay(500); //tempo para a tarefa iniciar
-
 }
 
 void loop() {}
@@ -159,15 +158,21 @@ void checarRFID(void *pvParameters)
       {
       case 0:
         requisicaoPessoa(conteudo);
-        requisicaoAuditor();
-        Serial.println("Entrou");
+        if(estado==1){
+          requisicaoAuditor();
+        } else{
+          Serial.println("É Gerente de Cadastro");
+        }
         break;
       case 1:
         if (conteudo == RFIDmaster)
         {
-          Serial.println("Saiu!");
+          RFIDmaster="";
           estado = 0;
-        }else{
+          Serial.println("Saiu!");
+        }
+        else
+        {
           Serial.println();
           Serial.println("ID do objeto: " + conteudo); // Mostra o valor de ID
         }
@@ -210,19 +215,25 @@ void requisicaoPessoa(String RFID)
 {
   if ((WiFi.status() == WL_CONNECTED)) //Verifica o estado de rede do Totem
   {
-
+    Serial.println("############################### Indentifica Pessoa ##############################");
     Serial.println();
-    Serial.println("ID do objeto: " + RFID); // Mostra o valor de ID
+    Serial.println("                           => ID do objeto: " + RFID + " <=                         "); // Mostra o valor de ID
+
 
     HTTPClient http;            // Declaração do objeto para a requisição HTTP
     http.begin(api + "pessoa"); //Endereço para a requisição HTTP
     int httpCode = http.GET();  //Realiza a requisição HTTP
-
+    
+    Serial.println("                         => Resposta HTTP: " + httpCode + "  <=                       "); // Mostra a resposta HTTP da requisição
+    
     if (httpCode == 200) //Verifica o código de retorno
     {
-
       String payload = http.getString(); //Converte o retorno da requisição para String
-      Serial.println(httpCode);
+      
+      Serial.println("                     => Início da resposta da Requisição <=                     ");
+      Serial.println(payload);
+      Serial.println("                       => Fim da resposta da Requisição <=                      ");
+      
 
       const size_t capacity = JSON_OBJECT_SIZE(2) + 30; //Determina a quantidade de memória para a ser alocada para converter o JSON
       DynamicJsonDocument doc(capacity);                //Aloca memória para converter o JSON
@@ -235,27 +246,36 @@ void requisicaoPessoa(String RFID)
       const char *pes_nome = doc["pes_nome"];
       int tus_codigo = doc["tus_codigo"];
 
-      if (tus_codigo == 3)
-      {
-        RFIDmaster = RFID;
-        estado = 3;
-      }
-      else if (tus_codigo == 4)
-      {
-        RFIDmaster = RFID;
-        estado = 1;
-      }
+      http.end(); //Libera os recursos alocados
 
+      Serial.println();
       Serial.println("Olá, " + String(pes_nome));
+      Serial.println("O tipo do seu usuário é: " + tus_codigo);
+      Serial.println();
+
+      RFIDmaster = RFID; // Define o Objeto RFID Master
+      
+      if (tus_codigo == 4)
+      {
+        estado = 1;
+        Serial.println("         => Totem Especializado (1): Sessão inicializada pelo auditor <=        ");
+        
+      }
+      else if (tus_codigo == 3)
+      {
+        estado = 4;
+        Serial.println("                 => Totem Especializado (4): Modo Cadastro; <=                  ");
+      }
+      
     }
 
     else
     {
-      Serial.println("Erro Durante a requisição HTTP: " + httpCode);
+      http.end(); //Libera os recursos alocados
+      Serial.println("                 => Erro Durante a requisição HTTP: " + httpCode + "  <=                  "); // Mostra a resposta HTTP da requisição
     }
-    http.end(); //Libera os recursos alocados
+    Serial.println("################################################################################");
   }
-
 }
 
 void requisicaoAuditor()
@@ -263,16 +283,26 @@ void requisicaoAuditor()
   if ((WiFi.status() == WL_CONNECTED)) //Verifica o estado de rede do Totem
   {
 
-    HTTPClient http;             // Declaração do objeto para a requisição HTTP
+Serial.println("############################### Requisição Auditor ##############################");
+    Serial.println();
+    Serial.println("                           => ID do objeto: " + RFID +" <=                         "); // Mostra o valor de ID
+
+
+    HTTPClient http;            // Declaração do objeto para a requisição HTTP
     http.begin(api + "disciplinas"); //Endereço para a requisição HTTP
-    int httpCode = http.GET();   //Realiza a requisição HTTP
+    int httpCode = http.GET();  //Realiza a requisição HTTP
+    
+    Serial.println("                         => Resposta HTTP: " + httpCode + "  <=                       "); // Mostra a resposta HTTP da requisição
+
 
     if (httpCode == 200) //Verifica o código de retorno
     {
 
       String payload = http.getString(); //Converte o retorno da requisição para String
-      Serial.println(httpCode);
+      
+      Serial.println("                     => Início da resposta da Requisição <=                     ");
       Serial.println(payload);
+      Serial.println("                       => Fim da resposta da Requisição <=                      ");
 
       DynamicJsonDocument doc(1024); //Aloca memória para converter o JSON
 
@@ -281,26 +311,27 @@ void requisicaoAuditor()
 
       deserializeJson(doc, json); //Realiza a conversão do Json
 
-      
-        JsonObject disciplinas = doc[0];
-        int disciplinas_eau_codigo = disciplinas["eau_codigo"];       // 1
-        const char *disciplinas_eau_sigla = disciplinas["eau_sigla"]; // "Mat01"
-        const char *disciplinas_eau_nome = disciplinas["eau_nome"];   // "Matemática 01"
+      JsonObject disciplinas = doc[0];
+      int disciplinas_eau_codigo = disciplinas["eau_codigo"];       // 1
+      const char *disciplinas_eau_sigla = disciplinas["eau_sigla"]; // "Mat01"
+      const char *disciplinas_eau_nome = disciplinas["eau_nome"];   // "Matemática 01"
 
-        Serial.println("oioioi");
-        Serial.println(disciplinas_eau_codigo);
-        Serial.println("Sigla: " + String(disciplinas_eau_sigla));
-        Serial.println("Nome: " + String(disciplinas_eau_nome));
+
+      Serial.println("Sigla: " + disciplinas_eau_codigo);
+      Serial.println("Sigla: " + String(disciplinas_eau_sigla));
+      Serial.println("Nome: " + String(disciplinas_eau_nome));
+
       
+      http.end(); //Libera os recursos alocados
     }
 
     else
     {
-      Serial.println("Erro Durante a requisição HTTP: " + httpCode);
+      http.end(); //Libera os recursos alocados
+      Serial.println("                 => Erro Durante a requisição HTTP: " + httpCode + "  <=                  "); // Mostra a resposta HTTP da requisição
     }
-    http.end(); //Libera os recursos alocados
+    Serial.println("################################################################################");
   }
-
 }
 
 //callback que indica que o ESP entrou no modo AP
