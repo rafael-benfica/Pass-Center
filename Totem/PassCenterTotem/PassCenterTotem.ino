@@ -217,14 +217,14 @@ void requisicaoPessoa(String RFID)
   {
     Serial.println("############################### Indentifica Pessoa ##############################");
     Serial.println();
-    Serial.println("                           => ID do objeto: " + RFID + " <=                         "); // Mostra o valor de ID
+    Serial.println("                           => ID do objeto: " + String(RFID) + " <=                         "); // Mostra o valor de ID
 
 
     HTTPClient http;            // Declaração do objeto para a requisição HTTP
     http.begin(api + "pessoa"); //Endereço para a requisição HTTP
     int httpCode = http.GET();  //Realiza a requisição HTTP
     
-    Serial.println("                         => Resposta HTTP: " + httpCode + "  <=                       "); // Mostra a resposta HTTP da requisição
+    Serial.println("                         => Resposta HTTP: " + String(httpCode) + "  <=                       "); // Mostra a resposta HTTP da requisição
     
     if (httpCode == 200) //Verifica o código de retorno
     {
@@ -272,7 +272,7 @@ void requisicaoPessoa(String RFID)
     else
     {
       http.end(); //Libera os recursos alocados
-      Serial.println("                 => Erro Durante a requisição HTTP: " + httpCode + "  <=                  "); // Mostra a resposta HTTP da requisição
+      Serial.println("                 => Erro Durante a requisição HTTP: " + String(httpCode) + "  <=                  "); // Mostra a resposta HTTP da requisição
     }
     Serial.println("################################################################################");
   }
@@ -285,14 +285,13 @@ void requisicaoAuditor()
 
 Serial.println("############################### Requisição Auditor ##############################");
     Serial.println();
-    Serial.println("                           => ID do objeto: " + RFID +" <=                         "); // Mostra o valor de ID
 
 
     HTTPClient http;            // Declaração do objeto para a requisição HTTP
     http.begin(api + "disciplinas"); //Endereço para a requisição HTTP
     int httpCode = http.GET();  //Realiza a requisição HTTP
     
-    Serial.println("                         => Resposta HTTP: " + httpCode + "  <=                       "); // Mostra a resposta HTTP da requisição
+    Serial.println("                         => Resposta HTTP: " + String(httpCode) + "  <=                       "); // Mostra a resposta HTTP da requisição
 
 
     if (httpCode == 200) //Verifica o código de retorno
@@ -328,7 +327,7 @@ Serial.println("############################### Requisição Auditor ###########
     else
     {
       http.end(); //Libera os recursos alocados
-      Serial.println("                 => Erro Durante a requisição HTTP: " + httpCode + "  <=                  "); // Mostra a resposta HTTP da requisição
+      Serial.println("                 => Erro Durante a requisição HTTP: " + String(httpCode) + "  <=                  "); // Mostra a resposta HTTP da requisição
     }
     Serial.println("################################################################################");
   }
