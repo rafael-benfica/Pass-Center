@@ -21,10 +21,10 @@
 #include <LiquidCrystal_I2C.h> //LiquidCrystal I2C ( https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library )
 
 //Config Totem
-static String versao = "0.1";                                                               //Indica a versão do Fimewae
-static String api = "http://my-json-server.typicode.com/RafaABSilva/PassCenterJSONServer/"; //Indica o endereço base do servidor API
-static bool debug = false;                                                                  //Flag para ativar/desativar debug
-bool shouldSaveConfig = false;                                                              //Flag para indicar se foi salva uma nova configuração de rede
+static String versao = "0.1";               //Indica a versão do Fimewae
+static String api = "http://192.168.0.70/"; //Indica o endereço base do servidor API
+static bool debug = false;                  //Flag para ativar/desativar debug
+bool shouldSaveConfig = false;              //Flag para indicar se foi salva uma nova configuração de rede
 
 //Pinos
 const int PIN_AP = 2;   //Botão para abrir o Assitente de configuração do WiFi
@@ -44,7 +44,7 @@ int estado = 0; /*  0 = Totem Genério: Aguardando especialização | Operaciona
                     5 = Totem Genério: Em erro
                 */
 String RFIDmaster = "";
-String token="";
+String token = "";
 
 //Declarando Objetos
 LiquidCrystal_I2C lcd(0x3F, 16, 2); //Cria uma instância do Display LCD (definindo o endereço do display, linhas e colunas)
@@ -159,16 +159,19 @@ void checarRFID(void *pvParameters)
       {
       case 0:
         requisicaoPessoa(conteudo);
-        if(estado==1){
+        if (estado == 1)
+        {
           requisicaoAuditor();
-        } else{
+        }
+        else
+        {
           Serial.println("É Gerente de Cadastro");
         }
         break;
       case 1:
         if (conteudo == RFIDmaster)
         {
-          RFIDmaster="";
+          RFIDmaster = "";
           estado = 0;
           Serial.println("Saiu!");
         }
@@ -215,8 +218,6 @@ void resetWiFI()
 void requisicaoPessoa(String RFID)
 {
 
-  
-  
   if ((WiFi.status() == WL_CONNECTED)) //Verifica o estado de rede do Totem
   {
     Serial.println();
@@ -227,41 +228,38 @@ void requisicaoPessoa(String RFID)
     //Cria o JSON para o envio
     const size_t capacity = JSON_OBJECT_SIZE(1);
     DynamicJsonDocument credenciais(capacity);
-    
-    credenciais["usu_login"] = RFID;
+
+    credenciais["usu_login"] = String(RFID);
     String oi;
-    serializeJson(credenciais, oi);     
+    serializeJson(credenciais, oi);
+Serial.println("oi: "+oi);
+    HTTPClient http; // Declaração do objeto para a requisição HTTP
 
-    
+    http.begin(api + "pessoa");                         //Endereço para a requisição HTTP
+    http.addHeader("Content-Type", "application/json"); //Especifica content-type do cabeçalho
+    int httpCode = http.POST(oi);
 
-    HTTPClient http;            // Declaração do objeto para a requisição HTTP
-
-    http.begin(api + "pessoa"); //Endereço para a requisição HTTP
-    http.addHeader("Content-Type", "application/json");  //Especifica content-type do cabeçalho
-    int httpCode = http.POST(oi); 
-    
     Serial.println("                            => Resposta HTTP: " + String(httpCode) + "  <=          "); // Mostra a resposta HTTP da requisição
-    
+
     if (httpCode == 200) //Verifica o código de retorno
     {
       String payload = http.getString(); //Converte o retorno da requisição para String
-      
+
       Serial.println("                     => Início da resposta da Requisição <=                     ");
       Serial.println(payload);
       Serial.println("                       => Fim da resposta da Requisição <=                      ");
-      
 
-      const size_t capacity = 1024; //Determina a quantidade de memória para a ser alocada para converter o JSON
-      DynamicJsonDocument doc(capacity);                //Aloca memória para converter o JSON
+      const size_t capacity = 1024;      //Determina a quantidade de memória para a ser alocada para converter o JSON
+      DynamicJsonDocument doc(capacity); //Aloca memória para converter o JSON
 
       char json[payload.length()];                 //Instancia um Array de Chars
       payload.toCharArray(json, payload.length()); //Converte o conteu do payload para o Array
 
       deserializeJson(doc, json); //Realiza a conversão do Json
 
-      const char* tokenJ = doc[0]; 
-      const char* tipoJ = doc[1];
-      const char* nomeJ = doc[2];
+      const char *tokenJ = doc[0];
+      const char *tipoJ = doc[1];
+      const char *nomeJ = doc[2];
 
       token = String(tokenJ);
 
@@ -272,19 +270,17 @@ void requisicaoPessoa(String RFID)
       Serial.println();
 
       RFIDmaster = RFID; // Define o Objeto RFID Master
-      
+
       if (int(tipoJ) == 4)
       {
         estado = 1;
         Serial.println("         => Totem Especializado (1): Sessão inicializada pelo auditor <=        ");
-        
       }
       else if (int(tipoJ) == 3)
       {
         estado = 4;
         Serial.println("                 => Totem Especializado (4): Modo Cadastro; <=                  ");
       }
-      
     }
 
     else
@@ -300,23 +296,21 @@ void requisicaoAuditor()
 {
   if ((WiFi.status() == WL_CONNECTED)) //Verifica o estado de rede do Totem
   {
-Serial.println();
-Serial.println("############################ Requisição Auditor ################################");
+    Serial.println();
+    Serial.println("############################ Requisição Auditor ################################");
     Serial.println();
 
-
-    HTTPClient http;            // Declaração do objeto para a requisição HTTP
+    HTTPClient http;                 // Declaração do objeto para a requisição HTTP
     http.begin(api + "disciplinas"); //Endereço para a requisição HTTP
-    int httpCode = http.GET();  //Realiza a requisição HTTP
+    int httpCode = http.GET();       //Realiza a requisição HTTP
 
     Serial.println("                            => Resposta HTTP: " + String(httpCode) + "  <=          "); // Mostra a resposta HTTP da requisição
-
 
     if (httpCode == 200) //Verifica o código de retorno
     {
 
       String payload = http.getString(); //Converte o retorno da requisição para String
-      
+
       Serial.println("                   => Início da resposta da Requisição <=                       ");
       Serial.println(payload);
       Serial.println("                    => Fim da resposta da Requisição <=                         ");
@@ -343,7 +337,7 @@ Serial.println("############################ Requisição Auditor ##############
       Serial.println("    => Erro Durante a requisição HTTP: " + String(httpCode) + "  <=             "); // Mostra a resposta HTTP da requisição
     }
     http.end(); //Libera os recursos alocados
-    
+
     Serial.println("################################################################################");
   }
 }

@@ -481,7 +481,7 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="M:API_PassCenter.Controllers.TokensController.Post(API_PassCenter.Models.PasetoToken.LoginCredenciais)">
+        <member name="M:API_PassCenter.Controllers.TokensController.PlataformaWeb(API_PassCenter.Models.PasetoToken.LoginCredenciais)">
             <summary>
             Retorna um token para consumo da API.
             </summary>
