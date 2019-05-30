@@ -3,22 +3,27 @@ using API_PassCenter.Models.PasetoToken;
 using API_PassCenter.Models.Persistencia;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace API_PassCenter.Controllers {
-    public class TotensController : ApiController {
+namespace API_PassCenter.Controllers
+{
+    public class TotensController : ApiController
+    {
 
         [HttpPost, Route("api/Totens")]
         // POST: api/Instituicoes
-        public IHttpActionResult Post([FromBody]Totens totens) {
+        public IHttpActionResult Post([FromBody]Totens totens)
+        {
 
-            if (autenticar.autenticacao(Request, 2) == null) {
+            if (autenticar.autenticacao(Request, 2) == null)
+            {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
-            
+
             Totens tot = new Totens();
 
             tot.Tot_numero_serie = totens.Tot_numero_serie;
@@ -28,9 +33,12 @@ namespace API_PassCenter.Controllers {
 
             int retorno = TotensDB.Insert(tot);
 
-            if (retorno == -2) {
+            if (retorno == -2)
+            {
                 return BadRequest();
-            } else {
+            }
+            else
+            {
                 return Ok(retorno);
             }
         }
@@ -49,6 +57,7 @@ namespace API_PassCenter.Controllers {
             return Ok(TotensDB.getDisciplinas(Convert.ToInt32(credenciais.Pes_codigo)).Tables[0]);
 
         }
+
         [HttpPost, Route("api/Totens/Sessoes")]
         public IHttpActionResult Sessoes([FromBody]Sessoes sessao)
         {
@@ -80,5 +89,51 @@ namespace API_PassCenter.Controllers {
 
         }
 
+        [HttpPost, Route("api/Totens/Presenca")]
+        public IHttpActionResult Presenca([FromBody]Presencas presencas)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 6);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            DataSet id = IdentificadoresDB.getID(presencas.Ide_codigo);
+            if (id.Tables[0].Rows.Count > 0)
+            {
+
+
+
+                //Presenca
+                Presencas pre = new Presencas();
+                pre.Ses_codigo = presencas.Ses_codigo;
+
+                presencas.Ide_codigo.Ide_codigo = Convert.ToInt32(id.Tables[0].Rows[0]["ide_codigo"].ToString());
+
+                pre.Ide_codigo = presencas.Ide_codigo;
+                pre.Pre_horario_entrada = DateTime.Now;
+                pre.Pre_sessao_automatico = true;
+
+
+                int retorno = PresencasDB.InsertPresencaTotem(pre);
+
+                if (retorno == -2)
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    return Ok();
+                }
+
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
     }
 }
