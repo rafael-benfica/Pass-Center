@@ -33,5 +33,35 @@ namespace API_PassCenter.Models.Persistencia {
             }
             return retorno;
         }
+
+        public static DataSet getDisciplinas(int pes_codigo)
+        {
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "select eau_codigo, eve_sigla, eau_periodo_identificacao  from eventos_auditores " +
+                "inner join eventos using (eve_codigo) " +
+                "where pes_codigo = ?pes_codigo and eau_estado = 1";
+
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo", pes_codigo));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+        }
+
     }
 }

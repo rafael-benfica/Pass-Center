@@ -49,7 +49,7 @@ namespace API_PassCenter.Controllers
         public IHttpActionResult getSessoes(int eau_codigo)
         {
 
-            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
+            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
 
             if (credenciais == null)
             {
