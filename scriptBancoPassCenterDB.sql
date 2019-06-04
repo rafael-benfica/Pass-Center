@@ -112,11 +112,18 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`grades` (
   `gra_codigo` INT NOT NULL AUTO_INCREMENT,
   `gra_nome` VARCHAR(50) NOT NULL,
   `ins_codigo` INT NOT NULL,
+  `prox_grade` INT NULL,
   PRIMARY KEY (`gra_codigo`),
   INDEX `fk_grades_instituicoes1_idx` (`ins_codigo` ASC) VISIBLE,
+  INDEX `fk_grades_grades1_idx` (`prox_grade` ASC) VISIBLE,
   CONSTRAINT `fk_grades_instituicoes1`
     FOREIGN KEY (`ins_codigo`)
     REFERENCES `PassCenter`.`instituicoes` (`ins_codigo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_grades_grades1`
+    FOREIGN KEY (`prox_grade`)
+    REFERENCES `PassCenter`.`grades` (`gra_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -179,7 +186,6 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`eventos` (
   `eve_sigla` VARCHAR(6) NOT NULL,
   `eve_descricao` VARCHAR(220) NOT NULL,
   `eve_estado` TINYINT NOT NULL,
-  `eve_operacao` TINYINT NOT NULL,
   `ins_codigo` INT NOT NULL,
   `tev_codigo` INT NOT NULL,
   PRIMARY KEY (`eve_codigo`),
@@ -205,6 +211,7 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`eventos_auditores` (
   `eau_codigo` INT NOT NULL AUTO_INCREMENT,
   `eau_periodo_identificacao` VARCHAR(45) NOT NULL,
   `eau_estado` TINYINT NOT NULL,
+  `eau_operacao` TINYINT(1) NOT NULL,
   `eau_data_abertura` DATETIME NOT NULL,
   `eau_data_fechamento` DATETIME NULL,
   `pes_codigo` INT NULL,
@@ -317,12 +324,12 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`horarios_eventos` (
   `hev_data_hora` DATETIME NOT NULL,
   `hev_estado` TINYINT NOT NULL,
   `hev_dia_semana` VARCHAR(50) NOT NULL,
-  `eve_codigo` INT NOT NULL,
+  `eau_codigo` INT NOT NULL,
   PRIMARY KEY (`hev_codigo`),
-  INDEX `fk_horarios_eventos_evento1_idx` (`eve_codigo` ASC) VISIBLE,
-  CONSTRAINT `fk_horarios_eventos_evento1`
-    FOREIGN KEY (`eve_codigo`)
-    REFERENCES `PassCenter`.`eventos` (`eve_codigo`)
+  INDEX `fk_horarios_eventos_eventos_auditores1_idx` (`eau_codigo` ASC) VISIBLE,
+  CONSTRAINT `fk_horarios_eventos_eventos_auditores1`
+    FOREIGN KEY (`eau_codigo`)
+    REFERENCES `PassCenter`.`eventos_auditores` (`eau_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

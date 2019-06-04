@@ -7,7 +7,7 @@
         :key="itemDisciplinas.id"
       >
         <!-- {{ item }} -->
-        <div class="card">
+        <div class="card " :class="{ pulse: itemDisciplinas.eau_operacao}">
           <div class="card-image">
             <a
               class="btn-floating halfway-fab waves-effect waves-light blue darken-1 btn modal-trigger botao"
@@ -87,7 +87,8 @@ export default {
     return {
       disciplinas: [],
       sessoes: [],
-      lista: []
+      lista: [],
+      intervalo: 0
     };
   },
   mounted: function() {
@@ -98,6 +99,7 @@ export default {
     this.$http.get("EventosAuditores/Disciplinas").then(
       response => {
         this.disciplinas = response.body;
+        this.obtemDados();
       },
       response => {
         console.log(
@@ -106,8 +108,35 @@ export default {
         );
       }
     );
+
+  
   },
+
+  beforeDestroy() {
+    clearInterval(this.intervalo);
+  },
+
   methods: {
+    obtemDados: function() {
+      console.log("Obtendo dados...");
+
+      this.intervalo = setInterval(() => {
+        this.$http.get("EventosAuditores/Disciplinas").then(
+          response => {
+            this.disciplinas = response.body;
+            console.log("olaaa");
+          },
+          response => {
+            console.log(
+              "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+                response.status
+            );
+            clearInterval(this.intervalo);
+          }
+        );
+      }, 1000);
+    },
+
     recebeData(data) {
       var horaEdata = data.split("T");
 
