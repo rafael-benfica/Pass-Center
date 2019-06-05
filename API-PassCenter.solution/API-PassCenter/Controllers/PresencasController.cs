@@ -63,12 +63,31 @@ namespace API_PassCenter.Controllers {
 
         }
 
+        [HttpGet, Route("api/Presencas/live")]
+        // GET: api/Endereco
+        public IHttpActionResult GetPresencasLive(int eau_codigo)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+
+            int sessao_id = Convert.ToInt32(SessoesDB.Select(eau_codigo).Tables[0].Rows[0]["ses_codigo"].ToString());
+
+            return Ok(PresencasDB.Select(sessao_id).Tables[0]);
+
+        }
+
         [HttpGet, Route("api/Presencas")]
         // GET: api/Endereco
         public IHttpActionResult GetPresencas(int ses_codigo)
         {
 
-            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
+            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
 
             if (credenciais == null)
             {

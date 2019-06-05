@@ -10,5 +10,6 @@ namespace API_PassCenter.Models.Classes
         public int Gra_codigo { get; set; }
         public string Gra_nome { get; set; }
         public Instituicoes Ins_codigo { get; set; }
+        public int prox_grade { get; set; }
     }
 }

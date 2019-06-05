@@ -10,6 +10,7 @@ namespace API_PassCenter.Models.Classes {
         public DateTime Eau_data_abertura { get; set; }
         public DateTime Eau_date_fechamento { get; set; }
         public bool Eau_estado { get; set; }
+        public bool Eau_operacao { get; set; }
         public Instituicoes Ins_codigo { get; set; }
         public Eventos Eve_codigo { get; set; }
         public Pessoas Pes_codigo { get; set; }

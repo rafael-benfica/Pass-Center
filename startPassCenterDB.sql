@@ -107,7 +107,7 @@ INSERT INTO tipos_eventos (`tev_titulo`) VALUES ('Disciplina');
 INSERT INTO tipos_eventos (`tev_titulo`) VALUES ('Evento');
 
 -- Inserindo Evento
-INSERT INTO eventos (eve_nome, eve_sigla, eve_descricao, eve_estado, tev_codigo, ins_codigo) VALUES ('Matemática 1', 'Mat01', 'Aprender a Somar e Subtrair', '1', '0', '1');
+INSERT INTO eventos (eve_nome, eve_sigla, eve_descricao, eve_estado, tev_codigo, ins_codigo) VALUES ('Matemática 1', 'Mat01', 'Aprender a Somar e Subtrair', '1', '1', '1');
 
 INSERT INTO eventos_auditores (eau_periodo_identificacao, eau_estado, eau_operacao, eau_data_abertura, pes_codigo, eve_codigo, ins_codigo) VALUES ('2018/01', '1', '0', '2018-12-06', '4', '1', '1');
 

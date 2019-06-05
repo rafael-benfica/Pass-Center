@@ -10,7 +10,6 @@ namespace API_PassCenter.Models.Classes {
         public string Eve_sigla { get; set; }
         public string Eve_descricao { get; set; }
         public bool Eve_estado { get; set; }
-        public bool Eve_operacao { get; set; }
         public TiposEventos Tev_codigo { get; set; }
         public Instituicoes Ins_codigo { get; set; }
     }

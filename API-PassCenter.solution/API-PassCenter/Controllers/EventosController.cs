@@ -26,7 +26,6 @@ namespace API_PassCenter.Controllers {
             eve.Eve_sigla = eventos.Eve_sigla;
             eve.Eve_descricao = eventos.Eve_descricao;
             eve.Eve_estado = true;
-            eve.Eve_operacao = false;
             eve.Tev_codigo = eventos.Tev_codigo;
 
             Instituicoes ins = new Instituicoes();
@@ -90,7 +89,7 @@ namespace API_PassCenter.Controllers {
             hev.Hev_data_hora = horario_eventos.Hev_data_hora;
             hev.Hev_estado = horario_eventos.Hev_estado;
             hev.Hev_dia_semana = horario_eventos.Hev_dia_semana;
-            hev.Eve_codigo = horario_eventos.Eve_codigo;
+            hev.Eau_codigo = horario_eventos.Eau_codigo;
 
 
             int retorno = Horarios_EventosDB.Insert(hev);

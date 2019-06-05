@@ -9,6 +9,6 @@ namespace API_PassCenter.Models.Classes {
         public DateTime Hev_data_hora { get; set; }
         public bool Hev_estado { get; set; }
         public string Hev_dia_semana { get; set; }
-        public Eventos Eve_codigo { get; set; }
+        public EventosAuditores Eau_codigo { get; set; }
     }
 }

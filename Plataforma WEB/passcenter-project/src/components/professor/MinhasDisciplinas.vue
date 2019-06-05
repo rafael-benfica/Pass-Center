@@ -7,7 +7,11 @@
         :key="itemDisciplinas.id"
       >
         <!-- {{ item }} -->
-        <div class="card " :class="{ pulse: itemDisciplinas.eau_operacao}">
+        <div
+          class="card"
+          :class="{ pulse: itemDisciplinas.eau_operacao}"
+          @click="modalDisciplinaAtiva(itemDisciplinas)"
+        >
           <div class="card-image">
             <a
               class="btn-floating halfway-fab waves-effect waves-light blue darken-1 btn modal-trigger botao"
@@ -77,6 +81,45 @@
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
       </div>
     </div>
+    <!-- Modal Structure -->
+    <div id="modalDisciplinaAtiva" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <div class="row">
+          <div class="col s12 center-align">
+            <h4>{{disciplinasSelecionada.eve_nome}}</h4>
+          </div>
+          <div class="col s12 center-align">
+            <h5>Alunos Presentes</h5>
+          </div>
+        </div>
+
+        <table>
+          <thead class="centro">
+            <tr>
+              <th>Nome do Aluno</th>
+              <th>Matrícula do Aluno</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in alunosLive" :key="item.id">
+              <td>{{ item.nomes_concatenados }}</td>
+                  <td>{{ item.pes_matricula }}</td>
+              <td>
+                <a class="waves-effect waves-light btn red accent-4">
+                  <i class="material-icons left">close</i>Remover
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>{{disciplinasSelecionada}}</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -88,7 +131,9 @@ export default {
       disciplinas: [],
       sessoes: [],
       lista: [],
-      intervalo: 0
+      intervalo:{},
+      alunosLive:[],
+      disciplinasSelecionada: {}
     };
   },
   mounted: function() {
@@ -108,8 +153,6 @@ export default {
         );
       }
     );
-
-  
   },
 
   beforeDestroy() {
@@ -117,6 +160,26 @@ export default {
   },
 
   methods: {
+    modalDisciplinaAtiva(item) {
+      clearInterval(this.intervalo);
+      console.log(item);
+      this.disciplinasSelecionada = item;
+      var modal = document.querySelector("#modalDisciplinaAtiva");
+      var instance = M.Modal.init(modal, { dismissible: false, onCloseEnd: this.obtemDados() });
+      instance.open();
+
+      this.$http.get("Presencas/live", { params: { eau_codigo: item.eau_codigo } }).then(
+        response => {
+          this.alunosLive = response.body;
+        },
+        response => {
+          console.log(
+            "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+              response.status
+          );
+        }
+      );
+    },
     obtemDados: function() {
       console.log("Obtendo dados...");
 

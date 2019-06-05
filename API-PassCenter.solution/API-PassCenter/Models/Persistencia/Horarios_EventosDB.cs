@@ -12,7 +12,7 @@ namespace API_PassCenter.Models.Persistencia {
             try {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "INSERT INTO horarios_eventos(hev_data_hora, hev_estado, hev_dia_semana, eve_codigo)" +
+                string sql = "INSERT INTO horarios_eventos(hev_data_hora, hev_estado, hev_dia_semana, eau_codigo)" +
                     " VALUES(?hev_data_hora, ?hev_estado, ?hev_dia_semana, ?eve_codigo);" +
                     "SELECT LAST_INSERT_ID();";
                 objConexao = Mapped.Connection();
@@ -21,7 +21,7 @@ namespace API_PassCenter.Models.Persistencia {
                 objCommand.Parameters.Add(Mapped.Parameter("?hev_estado", hev.Hev_estado));
                 objCommand.Parameters.Add(Mapped.Parameter("?hev_dia_semana", hev.Hev_dia_semana));
                 //FK
-                objCommand.Parameters.Add(Mapped.Parameter("?eve_codigo", hev.Eve_codigo.Eve_codigo));
+                objCommand.Parameters.Add(Mapped.Parameter("?eau_codigo", hev.Eau_codigo.Eau_codigo));
 
                 retorno = Convert.ToInt32(objCommand.ExecuteScalar());
 

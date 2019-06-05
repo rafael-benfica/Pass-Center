@@ -12,13 +12,14 @@ namespace API_PassCenter.Models.Persistencia {
             try {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "INSERT INTO eventos_auditores (eau_periodo_identificacao, eau_estado, eau_data_abertura, pes_codigo, eve_codigo, ins_codigo)" +
-                    " VALUES(?eau_periodo_identificacao, ?eau_estado, ?eau_data_abertura, ?pes_codigo, ?eve_codigo, ?ins_codigo);" +
+                string sql = "INSERT INTO eventos_auditores (eau_periodo_identificacao, eau_estado, eau_data_abertura, pes_codigo, eve_codigo, eau_operacao, ins_codigo)" +
+                    " VALUES(?eau_periodo_identificacao, ?eau_estado, ?eau_data_abertura, ?pes_codigo, ?eve_codigo, ?eau_operacao, ?ins_codigo);" +
                     "SELECT LAST_INSERT_ID();";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
                 objCommand.Parameters.Add(Mapped.Parameter("?eau_periodo_identificacao", eau.Eau_periodo_identificacao));
                 objCommand.Parameters.Add(Mapped.Parameter("?eau_estado", eau.Eau_estado));
+                objCommand.Parameters.Add(Mapped.Parameter("?eau_operacao", eau.Eau_operacao));
                 objCommand.Parameters.Add(Mapped.Parameter("?eau_data_abertura", eau.Eau_data_abertura));
                 //FK
                 objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo", eau.Pes_codigo.Pes_codigo));

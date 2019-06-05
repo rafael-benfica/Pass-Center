@@ -12,8 +12,8 @@ namespace API_PassCenter.Models.Persistencia {
             try {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "INSERT INTO eventos(eve_nome, eve_sigla, eve_descricao, eve_estado, eve_operacao, tev_codigo, ins_codigo)" +
-                    " VALUES(?eve_nome, ?eve_sigla, ?eve_descricao, ?eve_estado, ?eve_operacao, ?tev_codigo, ?ins_codigo);" +
+                string sql = "INSERT INTO eventos(eve_nome, eve_sigla, eve_descricao, eve_estado, tev_codigo, ins_codigo)" +
+                    " VALUES(?eve_nome, ?eve_sigla, ?eve_descricao, ?eve_estado, ?tev_codigo, ?ins_codigo);" +
                     "SELECT LAST_INSERT_ID();";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
@@ -21,7 +21,6 @@ namespace API_PassCenter.Models.Persistencia {
                 objCommand.Parameters.Add(Mapped.Parameter("?eve_sigla", eventos.Eve_sigla));
                 objCommand.Parameters.Add(Mapped.Parameter("?eve_descricao", eventos.Eve_descricao));
                 objCommand.Parameters.Add(Mapped.Parameter("?eve_estado", eventos.Eve_estado));
-                objCommand.Parameters.Add(Mapped.Parameter("?eve_operacao", eventos.Eve_operacao));
                 //FK
                 objCommand.Parameters.Add(Mapped.Parameter("?tev_codigo", eventos.Tev_codigo.Tev_codigo));
                 objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", eventos.Ins_codigo.Ins_codigo));
