@@ -104,7 +104,7 @@
           <tbody>
             <tr v-for="item in alunosLive" :key="item.id">
               <td>{{ item.nomes_concatenados }}</td>
-                  <td>{{ item.pes_matricula }}</td>
+              <td>{{ item.pes_matricula }}</td>
               <td>
                 <a class="waves-effect waves-light btn red accent-4">
                   <i class="material-icons left">close</i>Remover
@@ -131,8 +131,8 @@ export default {
       disciplinas: [],
       sessoes: [],
       lista: [],
-      intervalo:{},
-      alunosLive:[],
+      intervalo: {},
+      alunosLive: [],
       disciplinasSelecionada: {}
     };
   },
@@ -156,29 +156,43 @@ export default {
   },
 
   beforeDestroy() {
-    clearInterval(this.intervalo);
+    this.para();
   },
 
   methods: {
-    modalDisciplinaAtiva(item) {
+    para() {
       clearInterval(this.intervalo);
+    },
+    modalDisciplinaAtiva(item) {
+      var self = this;
+
+      this.para();
+
       console.log(item);
       this.disciplinasSelecionada = item;
       var modal = document.querySelector("#modalDisciplinaAtiva");
-      var instance = M.Modal.init(modal, { dismissible: false, onCloseEnd: this.obtemDados() });
+      var instance = M.Modal.init(modal, {
+        dismissible: false,
+        onCloseStart: function() {
+          self.obtemDados();
+        }
+      });
       instance.open();
 
-      this.$http.get("Presencas/live", { params: { eau_codigo: item.eau_codigo } }).then(
-        response => {
-          this.alunosLive = response.body;
-        },
-        response => {
-          console.log(
-            "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-              response.status
-          );
-        }
-      );
+      this.$http
+        .get("Presencas/live", { params: { eau_codigo: item.eau_codigo } })
+        .then(
+          response => {
+            this.alunosLive = response.body;
+            console.log("Obteve Alunos!");
+          },
+          response => {
+            console.log(
+              "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+                response.status
+            );
+          }
+        );
     },
     obtemDados: function() {
       console.log("Obtendo dados...");
@@ -187,7 +201,7 @@ export default {
         this.$http.get("EventosAuditores/Disciplinas").then(
           response => {
             this.disciplinas = response.body;
-            console.log("olaaa");
+            console.log("Obteve Disciplinas!");
           },
           response => {
             console.log(

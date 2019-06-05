@@ -76,7 +76,7 @@ namespace API_PassCenter.Controllers {
             }
 
 
-            int sessao_id = Convert.ToInt32(SessoesDB.Select(eau_codigo).Tables[0].Rows[0]["ses_codigo"].ToString());
+            int sessao_id = Convert.ToInt32(SessoesDB.SelectLive(eau_codigo).Tables[0].Rows[0]["ses_codigo"].ToString());
 
             return Ok(PresencasDB.Select(sessao_id).Tables[0]);
 
