@@ -7,11 +7,7 @@
         :key="itemDisciplinas.id"
       >
         <!-- {{ item }} -->
-        <div
-          class="card"
-          :class="{ pulse: itemDisciplinas.eau_operacao}"
-          @click="modalDisciplinaAtiva(itemDisciplinas)"
-        >
+        <div class="card" :class="{ pulse: itemDisciplinas.eau_operacao}">
           <div class="card-image">
             <a
               class="btn-floating halfway-fab waves-effect waves-light blue darken-1 btn modal-trigger botao"
@@ -20,7 +16,7 @@
               <i class="material-icons" @click="carregarSessoes(itemDisciplinas.eau_codigo)">history</i>
             </a>
           </div>
-          <div class="card-content">
+          <div class="card-content" @click="modalDisciplinaAtiva(itemDisciplinas)">
             <span class="card-title tituloCard">{{ itemDisciplinas.eve_nome }}</span>
             <p class="turmaCard">{{ itemDisciplinas.eve_sigla }}</p>
           </div>
@@ -60,18 +56,37 @@
     </div>
     <div id="modal2" class="modal modal-fixed-footer">
       <div class="modal-content row topo">
+        <div class="row">
+          <div class="col s12 center-align">
+            <h4>{{ this.sessaoHistoricoData }}</h4>
+          </div>
+        </div>
         <div class="col s12 m12 l12">
           <table>
             <thead class="centro">
               <tr>
                 <th>Nome do Aluno</th>
                 <th>Matrícula do Aluno</th>
+                <th>Horário de entrada</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="item in lista" :key="item.id">
                 <td>{{ item.nomes_concatenados }}</td>
                 <td>{{ item.pes_matricula }}</td>
+                <td v-if="item.ses_codigo != null">{{ item.pre_horario_entrada.substr(11,5) }}</td>
+                <td v-else>Aluno Ausente</td>
+                <td v-if="item.ses_codigo != null">
+                  <a class="waves-effect waves-light btn red accent-4">
+                    <i class="material-icons left">close</i>Remover presença
+                  </a>
+                </td>
+                <td v-else>
+                  <a class="waves-effect waves-light btn green accent-4">
+                    <i class="material-icons left">check_circle</i>Adicionar presença
+                  </a>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -98,6 +113,7 @@
             <tr>
               <th>Nome do Aluno</th>
               <th>Matrícula do Aluno</th>
+              <th>Horário de entrada</th>
               <th></th>
             </tr>
           </thead>
@@ -105,9 +121,22 @@
             <tr v-for="item in alunosLive" :key="item.id">
               <td>{{ item.nomes_concatenados }}</td>
               <td>{{ item.pes_matricula }}</td>
-              <td>
-                <a class="waves-effect waves-light btn red accent-4">
-                  <i class="material-icons left">close</i>Remover
+              <td v-if="item.ses_codigo != null">{{ item.pre_horario_entrada.substr(11,5) }}</td>
+              <td v-else>Aluno Ausente</td>
+              <td v-if="item.ses_codigo != null">
+                <a
+                  class="waves-effect waves-light btn red accent-4"
+                  @click="adicionaRemoveAluno( item.ses_codigo, item.ide_codigo, 'remocao')"
+                >
+                  <i class="material-icons left">close</i>Remover presença
+                </a>
+              </td>
+              <td v-else>
+                <a
+                  class="waves-effect waves-light btn green accent-4"
+                  @click="adicionaRemoveAluno( item.ses_codigo, item.ide_codigo, 'adicao')"
+                >
+                  <i class="material-icons left">check_circle</i>Adicionar presença
                 </a>
               </td>
             </tr>
@@ -128,6 +157,7 @@ export default {
   name: "MinhasDisciplinas",
   data() {
     return {
+      sessaoHistoricoData: "",
       disciplinas: [],
       sessoes: [],
       lista: [],
@@ -160,6 +190,26 @@ export default {
   },
 
   methods: {
+    adicionaRemoveAluno(ses, ide, modo) {
+  alert("ses: "+ses+";ide: "+ ide + ";modo: "+modo);
+      var dados = {
+        ses_codigo: ses,
+        ide_codigo: ide
+      };
+
+      this.$http.post("Presencas/" + modo + "Participante", dados).then(
+        response => {
+          swalWithBootstrapButtons(
+            "Salvo!",
+            "Todas as informações foram salvas.",
+            "success"
+          );
+        },
+        response => {
+          this.erro("Dados de " + modo + "de Participante", response.status);
+        }
+      );
+    },
     para() {
       clearInterval(this.intervalo);
     },
@@ -219,7 +269,9 @@ export default {
 
       var data = horaEdata[0].split("-").reverse();
 
-      return data[0] + "/" + data[1] + "/" + data[2] + " - " + horaEdata[1];
+      this.sessaoHistoricoData =
+        data[0] + "/" + data[1] + "/" + data[2] + " - " + horaEdata[1];
+      return this.sessaoHistoricoData;
     },
 
     carregarSessoes(id) {
@@ -247,6 +299,19 @@ export default {
           );
         }
       );
+    },
+    erro(msg, code) {
+      swal({
+        title: "Oops!",
+        text: "Algo deu errado! Os dados não foram salvos!",
+        type: "error"
+      }),
+        console.log(
+          "ERRO ao atualizar " +
+            msg +
+            "! Código de resposta (HTTP) do servidor: " +
+            code
+        );
     }
   }
 };

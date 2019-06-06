@@ -76,15 +76,15 @@ namespace API_PassCenter.Controllers {
             }
 
 
-            int sessao_id = Convert.ToInt32(SessoesDB.SelectLive(eau_codigo).Tables[0].Rows[0]["ses_codigo"].ToString());
+            int ses_codigo = Convert.ToInt32(SessoesDB.SelectLive(eau_codigo).Tables[0].Rows[0]["ses_codigo"].ToString());
 
-            return Ok(PresencasDB.Select(sessao_id).Tables[0]);
+            return Ok(PresencasDB.Select(ses_codigo, eau_codigo).Tables[0]);
 
         }
 
         [HttpGet, Route("api/Presencas")]
         // GET: api/Endereco
-        public IHttpActionResult GetPresencas(int ses_codigo)
+        public IHttpActionResult GetPresencas(Sessoes ses)
         {
 
             Indentificacao credenciais = autenticar.autenticacao(Request, 4);
@@ -94,7 +94,7 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
-            return Ok(PresencasDB.Select(ses_codigo).Tables[0]);
+            return Ok(PresencasDB.Select(ses.Ses_codigo, ses.Eau_codigo.Eau_codigo).Tables[0]);
 
         }
     }

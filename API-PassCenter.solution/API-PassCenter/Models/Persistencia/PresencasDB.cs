@@ -70,7 +70,7 @@ namespace API_PassCenter.Models.Persistencia
             return retorno;
         }
 
-        public static DataSet Select(int ses_codigo)
+        public static DataSet Select(int ses_codigo, int eau_codigo)
         {
             //Imagine um DataSet como umamatriz de dados;
 
@@ -82,15 +82,17 @@ namespace API_PassCenter.Models.Persistencia
 
             objConexao = Mapped.Connection();
 
-            string sql = "select concat(pes_nome, ' ', pes_sobrenomes) as 'nomes_concatenados', pes_matricula from presencas " +
-                "inner join identificadores using (ide_codigo) " +
-                 "inner join usuarios using (usu_codigo) " +
-                "inner join pessoas using (pes_codigo) " +
-                "where ses_codigo = ?ses_codigo";
+            string sql = "select concat(pes_nome, ' ', pes_sobrenomes) as 'nomes_concatenados', pes_matricula, ses_codigo, pre_horario_entrada, ide_codigo from turmas " +
+                "left join usuarios using (usu_codigo) " +
+                 "inner join pessoas using (pes_codigo) " +
+                "inner join identificadores using (usu_codigo) " +
+                "left join (select * from presencas where ses_codigo = ?ses_codigo) as p using (ide_codigo) "+
+                "where eau_codigo = ?eau_codigo";
 
             objCommand = Mapped.Command(sql, objConexao);
 
             objCommand.Parameters.Add(Mapped.Parameter("?ses_codigo", ses_codigo));
+            objCommand.Parameters.Add(Mapped.Parameter("?eau_codigo", eau_codigo));
 
             objDataAdapter = Mapped.Adapter(objCommand);
 
