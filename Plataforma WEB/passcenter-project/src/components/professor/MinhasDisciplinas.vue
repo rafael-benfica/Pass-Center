@@ -32,11 +32,7 @@
             v-for="itemSessoes in sessoes"
             :key="itemSessoes.id"
           >
-            <div
-              class="card modal-trigger"
-              href="#modal2"
-              @click="carregarlista(itemSessoes.ses_codigo, itemSessoes.eau_codigo)"
-            >
+            <div class="card modal-trigger" href="#modal2" @click="carregarlista(itemSessoes)">
               <div class="card-content">
                 <span class="card-title tituloCard">{{ recebeData(itemSessoes.ses_horario_inicio) }}</span>
                 <a
@@ -78,12 +74,18 @@
                 <td v-if="item.ses_codigo != null">{{ item.pre_horario_entrada.substr(11,5) }}</td>
                 <td v-else>Aluno Ausente</td>
                 <td v-if="item.ses_codigo != null">
-                  <a class="waves-effect waves-light btn red accent-4">
+                  <a
+                    class="waves-effect waves-light btn red accent-4"
+                    @click="removeAlunoHistorico( item.ses_codigo, item.ide_codigo);"
+                  >
                     <i class="material-icons left">close</i>Remover presença
                   </a>
                 </td>
                 <td v-else>
-                  <a class="waves-effect waves-light btn green accent-4">
+                  <a
+                    class="waves-effect waves-light btn green accent-4"
+                    @click="adicionaAlunoHistorico( sessaoHistoricoObj.ses_codigo, item.ide_codigo);"
+                  >
                     <i class="material-icons left">check_circle</i>Adicionar presença
                   </a>
                 </td>
@@ -142,11 +144,9 @@
             </tr>
           </tbody>
         </table>
-
-        <p>{{disciplinasSelecionada}}</p>
       </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
       </div>
     </div>
   </div>
@@ -158,7 +158,7 @@ export default {
   data() {
     return {
       sessaoHistoricoData: "",
-      sessaoHistoricoCodigo: 0,
+      sessaoHistoricoObj: {},
       disciplinas: [],
       sessoes: [],
       lista: [],
@@ -215,6 +215,26 @@ export default {
         }
       );
     },
+
+    adicionaAlunoHistorico(ses, ide) {
+      var dados = {
+        ses_codigo: {
+          ses_codigo: ses
+        },
+        ide_codigo: {
+          ide_codigo: ide
+        }
+      };
+
+      this.$http.post("Presencas/Manuais", dados).then(
+        response => {
+          this.carregarlista(this.sessaoHistoricoObj);
+        },
+        response => {
+          this.erro("Dados de Adição de Participante", response.status);
+        }
+      );
+    },
     removeAluno(ses, ide) {
       var dados = {
         ses_codigo: {
@@ -234,10 +254,32 @@ export default {
           }
         );
     },
+    removeAlunoHistorico(ses, ide) {
+      var dados = {
+        ses_codigo: {
+          ses_codigo: ses
+        },
+        ide_codigo: ide
+      };
+
+      this.$http
+        .delete("Presencas/Manuais", {
+          params: { ses_codigo: ses, ide_codigo: ide }
+        })
+        .then(
+          response => {
+            this.carregarlista(this.sessaoHistoricoObj);
+          },
+          response => {
+            this.erro("Dados de Remoção de Participante", response.status);
+          }
+        );
+    },
     para() {
       clearInterval(this.intervalo);
     },
     modalDisciplinaAtiva(item) {
+      if(item.eau_operacao==true){
       var self = this;
 
       this.para();
@@ -270,6 +312,7 @@ export default {
             }
           );
       }, 1000);
+      }
     },
     obtemDados: function() {
       console.log("Obtendo dados...");
@@ -314,9 +357,16 @@ export default {
         }
       );
     },
-    carregarlista(ses, eau) {
+    carregarlista(item) {
+      this.sessaoHistoricoObj = item;
+
       this.$http
-        .get("Presencas", { params: { ses_codigo: ses, eau_codigo: eau } })
+        .get("Presencas", {
+          params: {
+            ses_codigo: this.sessaoHistoricoObj.ses_codigo,
+            eau_codigo: this.sessaoHistoricoObj.eau_codigo
+          }
+        })
         .then(
           response => {
             this.lista = response.body;

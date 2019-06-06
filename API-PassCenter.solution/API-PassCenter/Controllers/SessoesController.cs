@@ -44,6 +44,7 @@ namespace API_PassCenter.Controllers
 
         }
 
+
         [HttpGet, Route("api/Sessoes")]
         // GET: api/Sessoes
         public IHttpActionResult getSessoes(int eau_codigo)

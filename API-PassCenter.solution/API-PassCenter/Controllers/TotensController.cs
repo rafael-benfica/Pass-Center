@@ -71,12 +71,40 @@ namespace API_PassCenter.Controllers
 
             ses.Eau_codigo = sessao.Eau_codigo;
             ses.Ses_horario_inicio = DateTime.Now;
-            //ses.Tot_codigo = sessoes.Tot_codigo;
+            //ses.Tot_codigo = sessao.Tot_codigo;
             ses.Hev_codigo = sessao.Hev_codigo;
             ses.Ses_sessao_automatico = true;
             ses.Tot_codigo = sessao.Tot_codigo;
 
-            int retorno = SessoesDB.Insert(ses);
+            int retorno = SessoesDB.abreSessao(ses);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(retorno);
+            }
+
+        }
+
+        [HttpPost, Route("api/Totens/Sessoes/fechar")]
+        // POST: api/Sessoes
+        public IHttpActionResult fecharSessoes([FromBody]Sessoes sessoes)
+        {
+
+            if (autenticar.autenticacao(Request, 4) == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            Sessoes ses = new Sessoes();
+            ses.Ses_codigo = sessoes.Ses_codigo;
+            ses.Ses_horario_fim = DateTime.Now;
+            ses.Eau_codigo = sessoes.Eau_codigo;
+
+            int retorno = SessoesDB.fechaSessao(ses);
 
             if (retorno == -2)
             {
