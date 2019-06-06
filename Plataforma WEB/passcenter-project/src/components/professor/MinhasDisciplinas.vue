@@ -35,7 +35,7 @@
             <div
               class="card modal-trigger"
               href="#modal2"
-              @click="carregarlista(itemSessoes.ses_codigo)"
+              @click="carregarlista(itemSessoes.ses_codigo, itemSessoes.eau_codigo)"
             >
               <div class="card-content">
                 <span class="card-title tituloCard">{{ recebeData(itemSessoes.ses_horario_inicio) }}</span>
@@ -126,7 +126,7 @@
               <td v-if="item.ses_codigo != null">
                 <a
                   class="waves-effect waves-light btn red accent-4"
-                  @click="adicionaRemoveAluno( item.ses_codigo, item.ide_codigo, 'remocao')"
+                  @click="removeAluno( item.ses_codigo, item.ide_codigo)"
                 >
                   <i class="material-icons left">close</i>Remover presença
                 </a>
@@ -134,7 +134,7 @@
               <td v-else>
                 <a
                   class="waves-effect waves-light btn green accent-4"
-                  @click="adicionaRemoveAluno( item.ses_codigo, item.ide_codigo, 'adicao')"
+                  @click="adicionaAluno( item.ide_codigo, disciplinasSelecionada.eau_codigo)"
                 >
                   <i class="material-icons left">check_circle</i>Adicionar presença
                 </a>
@@ -158,6 +158,7 @@ export default {
   data() {
     return {
       sessaoHistoricoData: "",
+      sessaoHistoricoCodigo: 0,
       disciplinas: [],
       sessoes: [],
       lista: [],
@@ -190,25 +191,48 @@ export default {
   },
 
   methods: {
-    adicionaRemoveAluno(ses, ide, modo) {
-  alert("ses: "+ses+";ide: "+ ide + ";modo: "+modo);
-      var dados = {
-        ses_codigo: ses,
-        ide_codigo: ide
-      };
-
-      this.$http.post("Presencas/" + modo + "Participante", dados).then(
+    adicionaAluno(ide, eau) {
+      this.$http.get("Sessao/Live", { params: { eau_codigo: eau } }).then(
         response => {
-          swalWithBootstrapButtons(
-            "Salvo!",
-            "Todas as informações foram salvas.",
-            "success"
+          var dados = {
+            ses_codigo: {
+              ses_codigo: response.body
+            },
+            ide_codigo: {
+              ide_codigo: ide
+            }
+          };
+
+          this.$http.post("Presencas/Manuais", dados).then(
+            response => {},
+            response => {
+              this.erro("Dados de Adição de Participante", response.status);
+            }
           );
         },
         response => {
-          this.erro("Dados de " + modo + "de Participante", response.status);
+          this.erro("Dados de Adição de Participante", response.status);
         }
       );
+    },
+    removeAluno(ses, ide) {
+      var dados = {
+        ses_codigo: {
+          ses_codigo: ses
+        },
+        ide_codigo: ide
+      };
+
+      this.$http
+        .delete("Presencas/Manuais", {
+          params: { ses_codigo: ses, ide_codigo: ide }
+        })
+        .then(
+          response => {},
+          response => {
+            this.erro("Dados de Remoção de Participante", response.status);
+          }
+        );
     },
     para() {
       clearInterval(this.intervalo);
@@ -224,25 +248,28 @@ export default {
       var instance = M.Modal.init(modal, {
         dismissible: false,
         onCloseStart: function() {
+          clearInterval(self.intervalo);
           self.obtemDados();
         }
       });
       instance.open();
-
-      this.$http
-        .get("Presencas/live", { params: { eau_codigo: item.eau_codigo } })
-        .then(
-          response => {
-            this.alunosLive = response.body;
-            console.log("Obteve Alunos!");
-          },
-          response => {
-            console.log(
-              "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-                response.status
-            );
-          }
-        );
+      this.intervalo = setInterval(() => {
+        this.$http
+          .get("Presencas/live", { params: { eau_codigo: item.eau_codigo } })
+          .then(
+            response => {
+              this.alunosLive = response.body;
+              console.log("Obteve Alunos!");
+            },
+            response => {
+              console.log(
+                "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+                  response.status
+              );
+              clearInterval(this.intervalo);
+            }
+          );
+      }, 1000);
     },
     obtemDados: function() {
       console.log("Obtendo dados...");
@@ -287,18 +314,20 @@ export default {
         }
       );
     },
-    carregarlista(id) {
-      this.$http.get("Presencas", { params: { ses_codigo: id } }).then(
-        response => {
-          this.lista = response.body;
-        },
-        response => {
-          console.log(
-            "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-              response.status
-          );
-        }
-      );
+    carregarlista(ses, eau) {
+      this.$http
+        .get("Presencas", { params: { ses_codigo: ses, eau_codigo: eau } })
+        .then(
+          response => {
+            this.lista = response.body;
+          },
+          response => {
+            console.log(
+              "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+                response.status
+            );
+          }
+        );
     },
     erro(msg, code) {
       swal({

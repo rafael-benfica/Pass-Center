@@ -9,7 +9,7 @@ namespace API_PassCenter.Models.Persistencia
 {
     public class PresencasDB
     {
-        public static int Insert(PresencasProcedure presencas)
+        public static int InsertPresencaProcedure(PresencasProcedure presencas)
         {
             int retorno = 0;
             try
@@ -39,6 +39,65 @@ namespace API_PassCenter.Models.Persistencia
             }
             return retorno;
         }
+
+        public static int InsertPresenca(Presencas presencas)
+        {
+            int retorno = 0;
+            try
+            {
+                IDbConnection objConexao; // Abre a conexao
+                IDbCommand objCommand; // Cria o comando
+                string sql = "insert into presencas values(?Ses_codigo, ?Ide_codigo, ?Pre_horario_entrada, null, ?Pre_sessao_automatico);";
+                objConexao = Mapped.Connection();
+                objCommand = Mapped.Command(sql, objConexao);
+                objCommand.Parameters.Add(Mapped.Parameter("?Pre_horario_entrada", presencas.Pre_horario_entrada));
+                objCommand.Parameters.Add(Mapped.Parameter("?Pre_sessao_automatico", presencas.Pre_sessao_automatico));
+                //FK
+                objCommand.Parameters.Add(Mapped.Parameter("?Ses_codigo", presencas.Ses_codigo.Ses_codigo));
+                objCommand.Parameters.Add(Mapped.Parameter("?Ide_codigo", presencas.Ide_codigo.Ide_codigo));
+
+
+                retorno = Convert.ToInt32(objCommand.ExecuteScalar());
+
+                objConexao.Close();
+                objCommand.Dispose();
+                objConexao.Dispose();
+            }
+            catch (Exception e)
+            {
+                retorno = -2;
+            }
+            return retorno;
+        }
+
+        public static int deletePresenca(Presencas presencas)
+        {
+            int retorno = 0;
+            try
+            {
+                IDbConnection objConexao; // Abre a conexao
+                IDbCommand objCommand; // Cria o comando
+                string sql = "delete from presencas where ses_codigo = ?Ses_codigo and ide_codigo = ?Ide_codigo;";
+                objConexao = Mapped.Connection();
+                objCommand = Mapped.Command(sql, objConexao);
+                //FK e PK
+                objCommand.Parameters.Add(Mapped.Parameter("?Ses_codigo", presencas.Ses_codigo.Ses_codigo));
+                objCommand.Parameters.Add(Mapped.Parameter("?Ide_codigo", presencas.Ide_codigo.Ide_codigo));
+
+
+                retorno = Convert.ToInt32(objCommand.ExecuteScalar());
+
+                objConexao.Close();
+                objCommand.Dispose();
+                objConexao.Dispose();
+            }
+            catch (Exception e)
+            {
+                retorno = -2;
+            }
+            return retorno;
+        }
+
 
         public static int InsertPresencaTotem(Presencas presencas)
         {
@@ -87,7 +146,7 @@ namespace API_PassCenter.Models.Persistencia
                  "inner join pessoas using (pes_codigo) " +
                 "inner join identificadores using (usu_codigo) " +
                 "left join (select * from presencas where ses_codigo = ?ses_codigo) as p using (ide_codigo) "+
-                "where eau_codigo = ?eau_codigo";
+                "where eau_codigo = ?eau_codigo ORDER BY concat(pes_nome, ' ', pes_sobrenomes) ASC";
 
             objCommand = Mapped.Command(sql, objConexao);
 

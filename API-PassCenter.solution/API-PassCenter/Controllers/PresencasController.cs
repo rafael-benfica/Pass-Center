@@ -8,13 +8,16 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace API_PassCenter.Controllers {
-    public class PresencasController : ApiController {
+namespace API_PassCenter.Controllers
+{
+    public class PresencasController : ApiController
+    {
         [HttpPost, Route("api/Presencas")]
         // POST: api/Endereco
-        public IHttpActionResult Presencas([FromBody]PresencasProcedure presencas) {
+        public IHttpActionResult Presencas([FromBody]PresencasProcedure presencas)
+        {
 
-            Indentificacao credenciais = autenticar.autenticacao(Request, 6);
+            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
 
             if (credenciais == null)
             {
@@ -44,11 +47,12 @@ namespace API_PassCenter.Controllers {
             {
                 return BadRequest();
             }
-            else{
+            else
+            {
 
                 presencas.Ses_codigo.Ses_codigo = retornoSessao;
 
-                int retorno = PresencasDB.Insert(presencas);
+                int retorno = PresencasDB.InsertPresencaProcedure(presencas);
 
                 if (retorno == -2)
                 {
@@ -59,7 +63,74 @@ namespace API_PassCenter.Controllers {
                     return Ok(retorno);
                 }
             }
-              
+
+
+        }
+
+        [HttpPost, Route("api/Presencas/Manuais")]
+        // POST: api/Endereco
+        public IHttpActionResult adicionaParticipante([FromBody]Presencas presencas)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            presencas.Pre_horario_saida = presencas.Pre_horario_entrada = DateTime.Now;
+
+            presencas.Pre_sessao_automatico = false;
+
+            int retorno = PresencasDB.InsertPresenca(presencas);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(retorno);
+            }
+
+
+
+        }
+
+        [HttpDelete, Route("api/Presencas/Manuais")]
+        // POST: api/Endereco
+        public IHttpActionResult removeParticipante(int ses_codigo, int ide_codigo)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            Presencas presencas = new Presencas();
+
+            presencas.Ses_codigo = new Sessoes();
+
+            presencas.Ses_codigo.Ses_codigo = ses_codigo;
+
+            presencas.Ide_codigo = new Identificadores();
+            presencas.Ide_codigo.Ide_codigo = ide_codigo;
+
+            int retorno = PresencasDB.deletePresenca(presencas);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(retorno);
+            }
+
+
 
         }
 
@@ -84,7 +155,7 @@ namespace API_PassCenter.Controllers {
 
         [HttpGet, Route("api/Presencas")]
         // GET: api/Endereco
-        public IHttpActionResult GetPresencas(Sessoes ses)
+        public IHttpActionResult GetPresencas(int ses_codigo, int eau_codigo)
         {
 
             Indentificacao credenciais = autenticar.autenticacao(Request, 4);
@@ -94,7 +165,7 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
-            return Ok(PresencasDB.Select(ses.Ses_codigo, ses.Eau_codigo.Eau_codigo).Tables[0]);
+            return Ok(PresencasDB.Select(ses_codigo, eau_codigo).Tables[0]);
 
         }
     }
