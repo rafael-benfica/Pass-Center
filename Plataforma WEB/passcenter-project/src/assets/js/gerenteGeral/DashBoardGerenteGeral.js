@@ -1,14 +1,14 @@
 export default {
     name: 'DashBoardGerenteGeral',
-    data () {
+    data() {
         return {
             breadcrumbsLista: [],
             nome: "",
             matricula: ""
         }
     },
-  
-    mounted (){
+
+    mounted() {
         this.atualizarListaBreadcrumbs()
 
         $(document).ready(function () {
@@ -24,24 +24,25 @@ export default {
             console.log("ERRO Cabecalho! Código de resposta (HTTP) do servidor: " + response.status);
         });
     },
-  
-    watch:{
-        '$route'(){
+
+    watch: {
+        '$route'() {
             this.atualizarListaBreadcrumbs()
         }
     },
-  
+
     methods: {
-        logout(){
+        logout() {
             this.$store.commit('LOGOUT');
+            this.$router.push("/login");
         },
-        atualizarListaBreadcrumbs(){
+        atualizarListaBreadcrumbs() {
             this.breadcrumbsLista = this.$route.meta.breadcrumbs
         },
-  
-        levarPara(indice){
-           if(this.breadcrumbsLista[indice].link) this.$router.push(this.breadcrumbsLista[indice].link)
+
+        levarPara(indice) {
+            if (this.breadcrumbsLista[indice].link) this.$router.push(this.breadcrumbsLista[indice].link)
         }
     }
-}  
+}
 

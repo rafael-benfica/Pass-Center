@@ -34,6 +34,7 @@ export default {
     methods: {
         logout(){
             this.$store.commit('LOGOUT');
+            this.$router.push("/login");
         },
         atualizarListaBreadcrumbs(){
             this.breadcrumbsLista = this.$route.meta.breadcrumbs
