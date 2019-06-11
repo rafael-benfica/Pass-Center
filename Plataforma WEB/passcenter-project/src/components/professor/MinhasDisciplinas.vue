@@ -13,7 +13,10 @@
               class="btn-floating halfway-fab waves-effect waves-light blue darken-1 btn modal-trigger botao"
               href="#modal1"
             >
-              <i class="material-icons" @click="carregarSessoes(itemDisciplinas.eau_codigo)">history</i>
+              <i
+                class="material-icons"
+                @click="carregarSessoes(itemDisciplinas.eau_codigo); nomeHistorico = itemDisciplinas.eve_nome"
+              >history</i>
             </a>
           </div>
           <div class="card-content" @click="modalDisciplinaAtiva(itemDisciplinas)">
@@ -25,14 +28,19 @@
     </div>
     <div id="modal1" class="modal bottom-sheet">
       <div class="modal-content">
-        <h4 class="col s10 m12 l12 historico">Histórico</h4>
+        <h4 class="col s10 m12 l12 historico">{{ nomeHistorico }}</h4>
+        <h5 class="col s10 m12 l12 historico">Últimas Aulas</h5>
         <div class="row">
           <div
             class="col s12 m3 l3 espacamento"
             v-for="itemSessoes in sessoes"
             :key="itemSessoes.id"
           >
-            <div class="card modal-trigger" href="#modal2" @click="carregarlista(itemSessoes)">
+            <div
+              class="card modal-trigger"
+              href="#modal2"
+              @click="carregarlista(itemSessoes); dataHistorico = sessaoHistoricoObj.ses_horario_inicio;"
+            >
               <div class="card-content">
                 <span class="card-title tituloCard">{{ recebeData(itemSessoes.ses_horario_inicio) }}</span>
                 <a
@@ -54,7 +62,8 @@
       <div class="modal-content row topo">
         <div class="row">
           <div class="col s12 center-align">
-            <h4>{{ this.sessaoHistoricoData }}</h4>
+            <h3>{{ nomeHistorico }}</h3>
+            <h4>{{ this.recebeData(dataHistorico) }}</h4>
           </div>
         </div>
         <div class="col s12 m12 l12">
@@ -146,7 +155,8 @@
         </table>
       </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+        <a class="modal-close waves-effect waves-green btn" @click="fechaSessao(disciplinasSelecionada.eau_codigo)">Encerrar Sessão</a>
+        <a class="modal-close waves-effect waves-green btn-flat">Fechar</a>
       </div>
     </div>
   </div>
@@ -157,8 +167,9 @@ export default {
   name: "MinhasDisciplinas",
   data() {
     return {
-      sessaoHistoricoData: "",
       sessaoHistoricoObj: {},
+      dataHistorico: "",
+      nomeHistorico: "",
       disciplinas: [],
       sessoes: [],
       lista: [],
@@ -191,6 +202,34 @@ export default {
   },
 
   methods: {
+    fechaSessao(eau) {
+      this.$http.get("Sessao/Live", { params: { eau_codigo: eau } }).then(
+        response => {
+          var dados = {
+            ses_codigo: response.body,
+            eau_codigo: {
+              eau_codigo: eau
+            }
+          };
+
+          this.$http.post("Totens/Sessoes/fechar", dados).then(
+            response => {
+              swal({
+                title: "Tudo feito!",
+                text: "O Encerramento da disciplina foi realizado com sucesso!",
+                type: "success"
+              });
+            },
+            response => {
+              this.erro("Dados de Adição de Participante", response.status);
+            }
+          );
+        },
+        response => {
+          this.erro("Sessão in Live", response.status);
+        }
+      );
+    },
     adicionaAluno(ide, eau) {
       this.$http.get("Sessao/Live", { params: { eau_codigo: eau } }).then(
         response => {
@@ -211,7 +250,7 @@ export default {
           );
         },
         response => {
-          this.erro("Dados de Adição de Participante", response.status);
+          this.erro("Sessão in Live", response.status);
         }
       );
     },
@@ -279,23 +318,22 @@ export default {
       clearInterval(this.intervalo);
     },
     modalDisciplinaAtiva(item) {
-      if(item.eau_operacao==true){
-      var self = this;
+      if (item.eau_operacao == true) {
+        var self = this;
 
-      this.para();
+        this.para();
 
-      console.log(item);
-      this.disciplinasSelecionada = item;
-      var modal = document.querySelector("#modalDisciplinaAtiva");
-      var instance = M.Modal.init(modal, {
-        dismissible: false,
-        onCloseStart: function() {
-          clearInterval(self.intervalo);
-          self.obtemDados();
-        }
-      });
-      instance.open();
-      this.intervalo = setInterval(() => {
+        console.log(item);
+        this.disciplinasSelecionada = item;
+        var modal = document.querySelector("#modalDisciplinaAtiva");
+        var instance = M.Modal.init(modal, {
+          dismissible: false,
+          onCloseStart: function() {
+            clearInterval(self.intervalo);
+            self.obtemDados();
+          }
+        });
+        instance.open();
         this.$http
           .get("Presencas/live", { params: { eau_codigo: item.eau_codigo } })
           .then(
@@ -308,10 +346,26 @@ export default {
                 "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
                   response.status
               );
-              clearInterval(this.intervalo);
             }
           );
-      }, 1000);
+
+        this.intervalo = setInterval(() => {
+          this.$http
+            .get("Presencas/live", { params: { eau_codigo: item.eau_codigo } })
+            .then(
+              response => {
+                this.alunosLive = response.body;
+                console.log("Obteve Alunos!");
+              },
+              response => {
+                console.log(
+                  "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+                    response.status
+                );
+                clearInterval(this.intervalo);
+              }
+            );
+        }, 1000);
       }
     },
     obtemDados: function() {
@@ -339,9 +393,7 @@ export default {
 
       var data = horaEdata[0].split("-").reverse();
 
-      this.sessaoHistoricoData =
-        data[0] + "/" + data[1] + "/" + data[2] + " - " + horaEdata[1];
-      return this.sessaoHistoricoData;
+      return data[0] + "/" + data[1] + "/" + data[2] + " - " + horaEdata[1];
     },
 
     carregarSessoes(id) {
