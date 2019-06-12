@@ -38,6 +38,7 @@ import HistoricoCompletoDisciplinas from '@/components/aluno/HistoricoCompletoDi
 //Professor
 import MinhasDisciplinas from '@/components/professor/MinhasDisciplinas.vue'
 import ListaManual from '@/components/professor/ListaManual.vue'
+import HistoricoCompletoProfessor from '@/components/professor/HistoricoCompletoProfessor.vue'
 
 
 //Administrador
@@ -336,10 +337,19 @@ const rotas = new Router({
             breadcrumbs: [{ nome: 'Professor' },
             { nome: 'Lista de Presença Manual' }]
           }
+        },
+        {
+          path: 'HistoricoCompleto',
+          name: 'HistoricoCompletoProfessor',
+          component: HistoricoCompletoProfessor,
+          meta: {
+            breadcrumbs: [{ nome: 'Professor' },
+              { nome: 'Histórico Completo' }]
+          }
         }
       ]
     },
-
+    
     //Aluno
     {
       path: '/aluno',

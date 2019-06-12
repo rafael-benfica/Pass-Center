@@ -37,7 +37,8 @@ namespace API_PassCenter.Models.Persistencia {
             return retorno;
         }
 
-        public static DataSet Select(int instituicao) {
+        public static DataSet Select(int instituicao)
+        {
             //Imagine um DataSet como umamatriz de dados;
 
             DataSet ds = new DataSet();
@@ -55,6 +56,66 @@ namespace API_PassCenter.Models.Persistencia {
             objCommand = Mapped.Command(sql, objConexao);
 
             objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", instituicao));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
+        public static DataSet SelectPeriodosIdentificacao(int pessoa)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "SELECT eau_periodo_identificacao FROM " +
+                "eventos_auditores where pes_codigo = ?pes_codigo " +
+                "group by eau_periodo_identificacao;";
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo", pessoa));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
+        public static DataSet SelectDisciplinaHistorico(int pessoa, int identificacao)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "SELECT * FROM eventos_auditores inner join eventos using(eve_codigo) " +
+                "where eau_periodo_identificacao = ?eau_periodo_identificacao and pes_codigo = ?pes_codigo;";
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?eau_periodo_identificacao", pessoa));
+            objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo", identificacao));
 
             objDataAdapter = Mapped.Adapter(objCommand);
 

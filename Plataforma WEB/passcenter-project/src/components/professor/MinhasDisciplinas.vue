@@ -155,7 +155,10 @@
         </table>
       </div>
       <div class="modal-footer">
-        <a class="modal-close waves-effect waves-green btn" @click="fechaSessao(disciplinasSelecionada.eau_codigo)">Encerrar Sessão</a>
+        <a
+          class="modal-close waves-effect waves-green btn"
+          @click="fechaSessao(disciplinasSelecionada.eau_codigo)"
+        >Encerrar Sessão</a>
         <a class="modal-close waves-effect waves-green btn-flat">Fechar</a>
       </div>
     </div>

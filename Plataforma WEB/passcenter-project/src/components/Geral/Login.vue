@@ -112,9 +112,9 @@ export default {
       var isValidForm = form.checkValidity();
 
       if (isValidForm) {
-      var modal = document.querySelector(".modal");
-      var instance = M.Modal.init(modal, { dismissible: false });
-      instance.open();
+        var modal = document.querySelector(".modal");
+        var instance = M.Modal.init(modal, { dismissible: false });
+        instance.open();
 
         this.$http
           .post("Tokens", {
@@ -143,6 +143,12 @@ export default {
             response => {
               instance.close();
               console.log(
+                swal({
+                  title: "Oops!",
+                  text:
+                    "Algo deu errado! Entre em contato com os Administradores!",
+                  type: "error"
+                }),
                 "ERRO! Código de resposta (HTTP) do servidor: " +
                   response.status
               );

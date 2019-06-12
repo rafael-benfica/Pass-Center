@@ -8,16 +8,20 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace API_PassCenter.Controllers {
-    public class EventosAuditoresController : ApiController {
+namespace API_PassCenter.Controllers
+{
+    public class EventosAuditoresController : ApiController
+    {
 
         [HttpPost, Route("api/EventosAuditores")]
         // POST: api/Instituicoes
-        public IHttpActionResult Post([FromBody]EventosAuditores enventosAuditores) {
+        public IHttpActionResult Post([FromBody]EventosAuditores enventosAuditores)
+        {
 
             Indentificacao credenciais = autenticar.autenticacao(Request, 3);
 
-            if (credenciais == null) {
+            if (credenciais == null)
+            {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
@@ -38,20 +42,25 @@ namespace API_PassCenter.Controllers {
 
             int retorno = EventosAuditoresDB.Insert(eau);
 
-            if (retorno == -2) {
+            if (retorno == -2)
+            {
                 return BadRequest();
-            } else {
+            }
+            else
+            {
                 return Ok(retorno);
             }
         }
 
         [HttpGet, Route("api/EventosAuditores")]
         // GET: api/Instituicoes
-        public IHttpActionResult Get() {
+        public IHttpActionResult Get()
+        {
 
             Indentificacao credenciais = autenticar.autenticacao(Request, 3);
 
-            if (credenciais == null) {
+            if (credenciais == null)
+            {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
@@ -69,6 +78,35 @@ namespace API_PassCenter.Controllers {
             }
 
             return Ok(EventosAuditoresDB.SelectDisciplinas(Convert.ToInt32(credenciais.Pes_codigo)).Tables[0]);
+        }
+
+        [HttpGet, Route("api/EventosAuditores/PeriodosIdentificacao")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetPeriodosIdentificacao()
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(EventosAuditoresDB.SelectPeriodosIdentificacao(Convert.ToInt32(credenciais.Pes_codigo)).Tables[0]);
+        }
+        [HttpGet, Route("api/EventosAuditores/DisciplinasHistorico")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetDisciplinasHistorico(int identificacao)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(EventosAuditoresDB.SelectDisciplinaHistorico(Convert.ToInt32(credenciais.Pes_codigo), identificacao).Tables[0]);
         }
     }
 }
