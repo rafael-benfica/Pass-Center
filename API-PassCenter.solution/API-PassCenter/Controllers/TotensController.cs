@@ -53,8 +53,7 @@ namespace API_PassCenter.Controllers
             {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
-
-            return Ok(TotensDB.getDisciplinas(Convert.ToInt32(credenciais.Pes_codigo)).Tables[0] + TotensDB.getTotalDisciplinas(Convert.ToInt32(credenciais.Pes_codigo)).Tables[0]);
+            return Ok(TotensDB.getDisciplinas(Convert.ToInt32(credenciais.Pes_codigo)));
 
         }
 
