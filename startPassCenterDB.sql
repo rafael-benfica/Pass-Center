@@ -74,7 +74,7 @@ INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_da
 VALUES ('auditor@teste.com', '5d68217d0c3ddfc029f1f8f2e61a80a8256342f27893ff0fe55da861e75325d6f7c805a26cae587f01aee7980700e8f06422c233a0e2a8e9bf26aad0c39e00c6', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '4', '4');
 
 INSERT INTO identificadores (ide_estado, ide_identificador, usu_codigo, tid_codigo) 
-VALUES ('1', '0004', '4', '1');
+VALUES ('1', '17 59 8e 76', '4', '1');
 
 -- Inserindo Aluno
 INSERT INTO enderecos(end_logradouro, end_numero, end_bairro, end_municipio, end_cep, end_estado, end_complemento, end_pais)
@@ -87,7 +87,7 @@ INSERT INTO usuarios (usu_login, usu_senha, usu_estado, usu_data_criacao, usu_da
 VALUES ('aluno@teste.com', '5d68217d0c3ddfc029f1f8f2e61a80a8256342f27893ff0fe55da861e75325d6f7c805a26cae587f01aee7980700e8f06422c233a0e2a8e9bf26aad0c39e00c6', '1', '2018-01-12 00:00:00', '0001-01-01 00:00:00', '0', '0', '5', '5', '1');
 
 INSERT INTO identificadores (ide_estado, ide_identificador, usu_codigo, tid_codigo) 
-VALUES ('1', '0005', '5', '1');
+VALUES ('1', 'c7 24 92 76', '5', '1');
 
 -- Inserindo Aluno 2
 INSERT INTO enderecos(end_logradouro, end_numero, end_bairro, end_municipio, end_cep, end_estado, end_complemento, end_pais)
@@ -126,3 +126,5 @@ INSERT INTO eventos_grades VALUES (1, 1, 1);
 -- Inserindo Sessao
 INSERT INTO sessoes (ses_codigo, ses_horario_inicio , ses_horario_fim, ses_sessao_automatico, hev_codigo, eau_codigo) 
 VALUES ('1', '2019-04-26 22:09:00', '2019-04-26 22:09:00', '0', '1', '1');
+
+INSERT INTO totens (tot_nome, tot_numero_serie, tot_estado, tot_operacao, ins_codigo) VALUES ('Sala 11A', '2019061800001', '1', '0', '1');

@@ -16,7 +16,7 @@
 #include <LiquidCrystal_I2C.h> //LiquidCrystal I2C ( https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library )
 
 //Config Totem
-static String versao = "0.1";                   //Indica a versão do Fimewae
+static String versao = "0.10";                  //Indica a versão do Fimewae
 static String api = "http://192.168.0.70/api/"; //Indica o endereço base do servidor API
 static bool debug = false;                      //Flag para ativar/desativar debug
 bool shouldSaveConfig = false;                  //Flag para indicar se foi salva uma nova configuração de rede
@@ -25,9 +25,9 @@ bool shouldSaveConfig = false;                  //Flag para indicar se foi salva
 const int PIN_AP = 2;   //Botão para abrir o Assitente de configuração do WiFi
 const int SS_PIN = 5;   //Pino para o MFRC522 - Conectado ao pino D5 do ESP32
 const int RST_PIN = 36; //Pino para o MFRC522 - Conectado ao pino VP do ESP32
-const int BTNESQ = 18;  //Botão Esquerdo
-const int BTNDIR = 19;  //Botão Direirto
-const int BTNENT = 20;  //Botão Enter
+const int BTNESQ = 14;  //Botão Esquerdo
+const int BTNDIR = 12;  //Botão Direirto
+const int BTNENT = 13;  //Botão Enter
 
 //variáveis do sistema
 //variáveis que indicam os núcleos
@@ -41,6 +41,7 @@ int estado = 0; /*  0 = Totem Genério: Aguardando especialização | Operaciona
                 */
 String RFIDmaster = "";
 String token = "";
+String nomeAuditor = "";
 int sessao;
 int disciplina;
 
@@ -60,7 +61,7 @@ void setup()
   Serial.println("                      ################################");
   Serial.println("                      #                              #");
   Serial.println("                      #      PassCenter - Totem      #");
-  Serial.println("                      #        Fimeware v" + versao + "         #");
+  Serial.println("                      #        Fimeware v" + versao + "        #");
   Serial.println("                      #                              #");
   Serial.println("                      ################################");
 
@@ -73,27 +74,17 @@ void setup()
   pinMode(BTNDIR, INPUT);
   pinMode(BTNENT, INPUT);
   Serial.println("                      => Configurador: Inicializado... <=                       ");
-
-  Serial.println("               => Configurador: WifiManager - Configurando... <=                ");
-
-  // Configurando WifiManager
-  wifiManager.setDebugOutput(debug);                         //Por padrão as mensagens de Debug vão aparecer no monitor serial, caso queira desabilitá-la modifique a flag
-  wifiManager.setAPCallback(configModeCallback);             //Callback para quando entra em modo de configuração AP
-  wifiManager.setSaveConfigCallback(saveConfigCallback);     //Callback para quando se conecta em uma rede, ou seja, quando passa a trabalhar em modo estação
-  wifiManager.autoConnect("PassCenter - Totem", "12345678"); //Cria uma rede sem senha
-
-  Serial.println("                 => Configurador: WifiManager - Executado! <=                   ");
   Serial.println("                => Configurador: Inicializando Componentes... <=                ");
 
   lcd.begin();     //Inicializando o Display LCD
   lcd.backlight(); //Luz de fundo ativada
 
-  lcd.setCursor(0, 3);
+  lcd.setCursor(0, 0);
   lcd.print("PassCenter");
-  lcd.setCursor(1, 6);
+  lcd.setCursor(11, 0);
   lcd.print("v" + versao);
-  delay(100);
-  lcd.setCursor(1, 2);
+  delay(500);
+  lcd.setCursor(1, 1);
   lcd.print("Inicializando");
 
   Serial.println("                 => Configurador: Display LCD Inicializado!  <=                 ");
@@ -106,9 +97,18 @@ void setup()
 
   Serial.println("                   => Configurador: MFRC522 Inicializado!  <=                   ");
   Serial.println("                 => Configurador: Componentes Inicializados! <=                 ");
+  Serial.println("               => Configurador: WifiManager - Configurando... <=                ");
+
+  // Configurando WifiManager
+  wifiManager.setDebugOutput(debug);                         //Por padrão as mensagens de Debug vão aparecer no monitor serial, caso queira desabilitá-la modifique a flag
+  wifiManager.setAPCallback(configModeCallback);             //Callback para quando entra em modo de configuração AP
+  wifiManager.setSaveConfigCallback(saveConfigCallback);     //Callback para quando se conecta em uma rede, ou seja, quando passa a trabalhar em modo estação
+  wifiManager.autoConnect("PassCenter - Totem", "12345678"); //Cria uma rede sem senha
+
+  Serial.println("                 => Configurador: WifiManager - Executado! <=                   ");
   Serial.println("                     => Configurador: Rotina executada! <=                      ");
   Serial.println("################################################################################");
-  lcd.setCursor(1, 2);
+  lcd.setCursor(2, 1);
   lcd.print("Inicializado!");
 
   if (digitalRead(PIN_AP) == HIGH)
@@ -124,6 +124,12 @@ void setup()
   Serial.println("                         => Self test: Finalizado! <=                           ");
   Serial.println("################################################################################");
 
+  lcd.clear();
+  lcd.setCursor(3, 0);
+  lcd.print("PassCenter");
+  lcd.setCursor(2, 1);
+  lcd.print("Operacional!");
+
   //cria uma tarefa que será executada na função checarRFID, com prioridade 1 e execução no núcleo 1
   xTaskCreatePinnedToCore(
       RFIDtask,   /* função que implementa a tarefa */
@@ -135,9 +141,6 @@ void setup()
       nucleoUm);  /* Núcleo que executará a tarefa */
 
   delay(500); //tempo para a tarefa iniciar
-
-  lcd.setCursor(0, 2);
-  lcd.print("Operacional!");
 }
 
 // Bloco isolado
@@ -146,13 +149,14 @@ void loop() {}
 //Task de leitura de RFID
 void RFIDtask(void *pvParameters)
 {
+  lcd.clear();
+  lcd.setCursor(3, 0);
+  lcd.print("PassCenter");
+  lcd.setCursor(2, 1);
+  lcd.print("Passe a TAG!");
+
   while (true)
   {
-    lcd.clear();
-    lcd.setCursor(0, 3);
-    lcd.print("PassCenter");
-    lcd.setCursor(1, 1);
-    lcd.print("Passe a TAG");
 
     bool controle = true;
     if (!mfrc522.PICC_IsNewCardPresent())
@@ -254,6 +258,9 @@ void requisicaoPessoa(String RFID)
     Serial.println();
     Serial.println("                       => ID do objeto: " + String(RFID) + " <=                     "); // Mostra o valor de ID
 
+    lcd.setCursor(3, 1);
+    lcd.print("Aguarde...");
+
     //Cria o JSON para o envio
     DynamicJsonDocument credenciais(128);
 
@@ -291,16 +298,18 @@ void requisicaoPessoa(String RFID)
       token = String(tokenJ);
 
       Serial.println();
-      Serial.println("Olá, " + String(nomeJ));
+      Serial.println("Oi, " + String(nomeJ));
       Serial.println("O tipo do seu usuário é: " + String(tipoJ));
       Serial.println("O seu token de segurança é: " + token);
       Serial.println();
 
       RFIDmaster = RFID; // Define o Objeto RFID Master
+      nomeAuditor = String(nomeJ);
+      lcd.clear();
+      lcd.setCursor(2, 0);
+      lcd.print("Oi, " + nomeAuditor + "!");
+      delay(1000);
 
-      lcd.setCursor(1, 2);
-      lcd.print("Olá, " + String(nomeJ) + "!");
-      delay(200);
       if (String(tipoJ) == "4")
       {
         estado = 1;
@@ -357,54 +366,76 @@ void requisicaoAuditor()
 
       //Menu de Seleção
       int p = 0;
-      int tamanho = 2;
-      JsonObject disciplinas = doc[p];
+      int tamanho = doc["Table1"][0]["Total"];
+      JsonObject disciplinas = doc["Table"][p];
 
-      const char *eve_sigla = disciplinas["eve_sigla"];
-      const char *eau_periodo_identificacao = disciplinas["eau_periodo_identificacao"];
-
-      lcd.setCursor(0, 3);
+      const char *sigla = disciplinas["eve_sigla"];
+      const char *periodo_identificacao = disciplinas["eau_periodo_identificacao"];
+      lcd.clear();
+      lcd.setCursor(3, 0);
       lcd.print("Selecione:");
-      lcd.setCursor(1, 0);
-      lcd.print(String(eve_sigla) + "/" + String(eau_periodo_identificacao));
+      lcd.setCursor(0, 1);
+      lcd.print(String(sigla) + " | " + String(periodo_identificacao));
 
-      while (!BTNENT)
+      while (!digitalRead(BTNENT))
       {
         if (digitalRead(BTNDIR))
         {
-          if (p + 1 != tamanho)
+          if ((p + 1) != tamanho)
           {
-            disciplinas = doc[++p];
+            Serial.println("btn dir A:" + String(p));
+            disciplinas = doc["Table"][++p];
+            Serial.println("btn dir D:" + String(p));
           }
           else
           {
+            Serial.println("btn dir A:" + String(p));
             p = 0;
-            disciplinas = doc[p];
+            disciplinas = doc["Table"][p];
+            Serial.println("btn dir D:" + String(p));
           }
+
+          Serial.println(p);
+          const char *eve_sigla = disciplinas["eve_sigla"];
+          const char *eau_periodo_identificacao = disciplinas["eau_periodo_identificacao"];
+          lcd.clear();
+          lcd.setCursor(3, 0);
+          lcd.print("Selecione:");
+          lcd.setCursor(0, 1);
+          lcd.print(String(eve_sigla) + " | " + String(eau_periodo_identificacao));
         }
         else if (digitalRead(BTNESQ))
         {
-          if (p - 1 != 0)
+          if ((p - 1) >= 0)
           {
-            disciplinas = doc[--p];
+            disciplinas = doc["Table"][--p];
           }
           else
           {
             p = tamanho - 1;
-            disciplinas = doc[p];
+            disciplinas = doc["Table"][p];
           }
+          Serial.println(p);
+          const char *eve_sigla = disciplinas["eve_sigla"];
+          const char *eau_periodo_identificacao = disciplinas["eau_periodo_identificacao"];
+          lcd.clear();
+          lcd.setCursor(3, 0);
+          lcd.print("Selecione:");
+          lcd.setCursor(0, 1);
+          lcd.print(String(eve_sigla) + " | " + String(eau_periodo_identificacao));
         }
-
-        eve_sigla = disciplinas["eve_sigla"];
-        eau_periodo_identificacao = disciplinas["eau_periodo_identificacao"];
-
-        lcd.setCursor(1, 0);
-        lcd.print(String(eve_sigla) + "/" + String(eau_periodo_identificacao));
+        delay(200);
       }
       disciplina = disciplinas["eau_codigo"];
 
       //Abre a Sessão
       abreSessao();
+
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("PassCenter:ATIVO");
+      lcd.setCursor(2, 1);
+      lcd.print("Passe a TAG!");
     }
 
     else
@@ -510,6 +541,16 @@ void fechaSessao()
       Serial.println(payload);
       Serial.println("                       => Fim da resposta da Requisição <=                      ");
       Serial.println();
+
+      lcd.clear();
+      lcd.setCursor(1, 0);
+      lcd.print("Tchau, " + nomeAuditor + "!");
+      delay(2000);
+      lcd.clear();
+      lcd.setCursor(3, 0);
+      lcd.print("PassCenter");
+      lcd.setCursor(2, 1);
+      lcd.print("Passe a TAG!");
     }
 
     else
@@ -532,6 +573,9 @@ void gerarPresenca(String RFID)
     Serial.println("################################ Preseça ####################################");
     Serial.println();
     Serial.println("                       => ID do objeto: " + String(RFID) + " <=                     "); // Mostra o valor de ID
+
+    lcd.setCursor(3, 1);
+    lcd.print("Aguarde...");
 
     //Cria o JSON para o envio
     DynamicJsonDocument dados(256);
@@ -558,6 +602,8 @@ void gerarPresenca(String RFID)
     if (httpCode == 200) //Verifica o código de retorno
     {
       Serial.println("                                    => Presença OK <=                                     ");
+      lcd.setCursor(2, 1);
+      lcd.print("Registrado!");
     }
 
     else
@@ -567,6 +613,12 @@ void gerarPresenca(String RFID)
     http.end(); //Libera os recursos alocados
     Serial.println("##############################################################################");
     Serial.println();
+    delay(2000);
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("PassCenter:ATIVO");
+    lcd.setCursor(2, 1);
+    lcd.print("Passe a TAG!");
   }
 }
 
@@ -578,10 +630,10 @@ void configModeCallback(WiFiManager *myWiFiManager)
 {
   Serial.println(WiFi.softAPIP());                      //imprime o IP do AP
   Serial.println(myWiFiManager->getConfigPortalSSID()); //imprime o SSID criado da rede
-
-  lcd.setCursor(0, 2);
+  lcd.clear();
+  lcd.setCursor(2, 0);
   lcd.print("Config: WIFI");
-  lcd.setCursor(1, 2);
+  lcd.setCursor(2, 1);
   lcd.print(WiFi.softAPIP());
 }
 
@@ -590,9 +642,10 @@ void saveConfigCallback()
 {
   Serial.println("#                           Configurações Salvas !                             #");
   Serial.println(WiFi.softAPIP()); //imprime o IP do AP
-  lcd.setCursor(0, 2);
+  lcd.clear();
+  lcd.setCursor(2, 0);
   lcd.print("Config: WIFI");
-  lcd.setCursor(1, 2);
+  lcd.setCursor(2, 1);
   lcd.print("Configurado!");
 }
 
@@ -601,8 +654,9 @@ void saveConfigCallback()
 void erroHTTP(String code)
 {
   Serial.println("    => Erro Durante a requisição HTTP: " + code + "  <=             "); // Mostra a resposta HTTP da requisição
-  lcd.setCursor(0, 3);
+  lcd.clear();
+  lcd.setCursor(3, 0);
   lcd.print("Erro: HTTP");
-  lcd.setCursor(1, 6);
+  lcd.setCursor(6, 1);
   lcd.print(code);
 }
