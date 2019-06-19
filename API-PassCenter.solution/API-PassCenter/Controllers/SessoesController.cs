@@ -60,6 +60,21 @@ namespace API_PassCenter.Controllers
             return Ok(SessoesDB.Select(eau_codigo).Tables[0]);
 
         }
+        [HttpGet, Route("api/Sessoes/Historico")]
+        // GET: api/Sessoes
+        public IHttpActionResult getSessoesHistorico(int eau_codigo)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(SessoesDB.SelectHistorico(eau_codigo).Tables[0]);
+
+        }
 
         [HttpGet, Route("api/Sessao/Live")]
         // GET: api/Endereco

@@ -6,7 +6,6 @@
         v-for="itemDisciplinas in disciplinas"
         :key="itemDisciplinas.id"
       >
-        <!-- {{ item }} -->
         <div class="card" :class="{ pulse: itemDisciplinas.eau_operacao}">
           <div class="card-image">
             <a

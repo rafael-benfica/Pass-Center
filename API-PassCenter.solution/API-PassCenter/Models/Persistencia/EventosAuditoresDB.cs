@@ -98,7 +98,7 @@ namespace API_PassCenter.Models.Persistencia {
             return ds;
 
         }
-        public static DataSet SelectDisciplinaHistorico(int pessoa, int identificacao)
+        public static DataSet SelectDisciplinaHistorico(int pessoa, String identificacao)
         {
             //Imagine um DataSet como umamatriz de dados;
 
@@ -111,11 +111,11 @@ namespace API_PassCenter.Models.Persistencia {
             objConexao = Mapped.Connection();
 
             string sql = "SELECT * FROM eventos_auditores inner join eventos using(eve_codigo) " +
-                "where eau_periodo_identificacao = ?eau_periodo_identificacao and pes_codigo = ?pes_codigo;";
+                "where eau_periodo_identificacao = ?eau_periodo_identificacao and pes_codigo = ?pes_codigo and eau_estado = 0;";
             objCommand = Mapped.Command(sql, objConexao);
 
-            objCommand.Parameters.Add(Mapped.Parameter("?eau_periodo_identificacao", pessoa));
-            objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo", identificacao));
+            objCommand.Parameters.Add(Mapped.Parameter("?eau_periodo_identificacao", identificacao));
+            objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo", pessoa));
 
             objDataAdapter = Mapped.Adapter(objCommand);
 

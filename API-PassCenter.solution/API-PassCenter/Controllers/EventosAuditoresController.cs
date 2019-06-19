@@ -96,7 +96,7 @@ namespace API_PassCenter.Controllers
         }
         [HttpGet, Route("api/EventosAuditores/DisciplinasHistorico")]
         // GET: api/Instituicoes
-        public IHttpActionResult GetDisciplinasHistorico(int identificacao)
+        public IHttpActionResult GetDisciplinasHistorico(string identificacao)
         {
 
             Indentificacao credenciais = autenticar.autenticacao(Request, 4);

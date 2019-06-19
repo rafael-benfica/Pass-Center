@@ -157,6 +157,36 @@ namespace API_PassCenter.Models.Persistencia {
             return ds;
 
         }
+        public static DataSet SelectHistorico(int eau_codigo)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "select * from sessoes " +
+                "where eau_codigo = ?eau_codigo and ses_horario_fim is not null order by ses_horario_fim desc;";
+
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?eau_codigo", eau_codigo));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
 
         public static DataSet historico(int eau_codigo)
         {

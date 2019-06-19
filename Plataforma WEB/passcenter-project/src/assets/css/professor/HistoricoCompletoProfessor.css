@@ -1,0 +1,33 @@
+.fonte{
+    font-family: 'Roboto', sans-serif !important;
+}
+.espacamento{
+    padding-top: 20px;
+}
+.area-exibicao{
+    width: 88%;
+}
+.tituloCard{
+    font-weight: 900 !important;
+}
+.turmaCard{
+    font-weight: 400 !important;
+}
+.horarioCard{
+    font-weight: 100 !important;
+}
+.card-content{
+    text-align: center;
+}
+.historico{
+    text-align: center;
+}
+.data{
+    margin-top: 15px;
+}
+.data2{
+    margin-top: 25px;
+}
+.botaofe{
+    color: gray;
+}
