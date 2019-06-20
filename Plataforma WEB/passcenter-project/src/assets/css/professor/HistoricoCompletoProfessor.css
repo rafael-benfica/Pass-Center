@@ -31,3 +31,12 @@
 .botaofe{
     color: gray;
 }
+
+.ajuste{
+    margin-top: 5vh;
+}
+@media screen and (max-width: 600px) {
+    .ajuste{
+        margin-top: 3vh;
+    }
+}

@@ -21,6 +21,7 @@
 }
 .historico{
     text-align: center;
+    margin: 0px;
 }
 .data{
     margin-top: 15px;
@@ -30,4 +31,32 @@
 }
 .botaofe{
     color: gray;
+}
+
+@media screen and (max-width: 600px) {
+    .modal.modal-fixed-footer{
+        height: 100% !important;
+        max-height: 100% !important;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+.switch label input[type=checkbox][disabled]+.lever:after{
+    background-color: #F1F1F1 !important;
+    
+}
+.switch label input[type=checkbox][disabled]:checked+.lever:after {
+    background-color: #26a69a !important;
+}
+
+.switch input[type=checkbox][disabled]+.lever{
+    background-color: rgba(0,0,0,0.38);
+}
+
+.switch input[type=checkbox][disabled]:checked+.lever{
+        background-color: #84c7c1;
 }

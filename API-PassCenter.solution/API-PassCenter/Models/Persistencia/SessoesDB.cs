@@ -170,7 +170,7 @@ namespace API_PassCenter.Models.Persistencia {
             objConexao = Mapped.Connection();
 
             string sql = "select * from sessoes " +
-                "where eau_codigo = ?eau_codigo and ses_horario_fim is not null order by ses_horario_fim desc;";
+                "where eau_codigo = ?eau_codigo and ses_horario_fim is not null order by ses_horario_inicio desc;";
 
             objCommand = Mapped.Command(sql, objConexao);
 

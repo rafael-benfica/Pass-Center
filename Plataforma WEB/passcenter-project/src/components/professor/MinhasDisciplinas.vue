@@ -8,13 +8,10 @@
       >
         <div class="card" :class="{ pulse: itemDisciplinas.eau_operacao}">
           <div class="card-image">
-            <a
-              class="btn-floating halfway-fab waves-effect waves-light blue darken-1 btn modal-trigger botao"
-              href="#modal1"
-            >
+            <a class="btn-floating halfway-fab waves-effect waves-light blue darken-1 btn botao">
               <i
                 class="material-icons"
-                @click="carregarSessoes(itemDisciplinas.eau_codigo); nomeHistorico = itemDisciplinas.eve_nome"
+                @click="carregarSessoes(itemDisciplinas.eau_codigo); nomeHistorico = itemDisciplinas.eve_nome; eau_codigo=itemDisciplinas.eau_codigo;"
               >history</i>
             </a>
           </div>
@@ -25,10 +22,54 @@
         </div>
       </div>
     </div>
-    <div id="modal1" class="modal bottom-sheet">
+
+    <!-- Modal Sessões -->
+    <div id="modalSessoes" class="modal bottom-sheet modal-fixed-footer">
       <div class="modal-content">
-        <h4 class="col s10 m12 l12 historico">{{ nomeHistorico }}</h4>
-        <h5 class="col s10 m12 l12 historico">Últimas Aulas</h5>
+        <div class="row">
+          <div class="col offset-m3 m6 s12">
+            <h4 class="historico">{{ nomeHistorico }}</h4>
+            <br>
+            <h5 class="historico" v-if="verTodas">Todas as Aulas</h5>
+            <h5 class="historico" v-else>Últimas Aulas</h5>
+          </div>
+          <div class="col offset-m2 m1 s12">
+            <div class="row historico" v-show="!carregandoVerTodas">
+              <div class="col s12">
+                <h6>
+                  Ver todas
+                  <br>as Aulas
+                </h6>
+              </div>
+            </div>
+            <div class="row center-align">
+              <div class="switch col s12" v-show="!carregandoVerTodas">
+                <label v-if="!verTodas">
+                  <input type="checkbox" disabled>
+                  <span class="lever" @click="carregarTodasSessoes();"></span>
+                </label>
+                <label v-else>
+                  <input type="checkbox" checked disabled>
+                  <span class="lever" @click="carregarTodasSessoes();"></span>
+                </label>
+              </div>
+              <div v-show="carregandoVerTodas" class="preloader-wrapper active">
+                <div class="spinner-layer spinner-blue-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="gap-patch">
+                    <div class="circle"></div>
+                  </div>
+                  <div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="row">
           <div
             class="col s12 m3 l3 espacamento"
@@ -52,11 +93,13 @@
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn-flat">Fechar</a>
       </div>
     </div>
+
+    <!-- Modal Historico -->
     <div id="modal2" class="modal modal-fixed-footer">
       <div class="modal-content row topo">
         <div class="row">
@@ -103,10 +146,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+        <a class="modal-close waves-effect waves-green btn-flat">Fechar</a>
       </div>
     </div>
-    <!-- Modal Structure -->
+
+    <!-- Modal Live -->
     <div id="modalDisciplinaAtiva" class="modal modal-fixed-footer">
       <div class="modal-content">
         <div class="row">
@@ -172,12 +216,15 @@ export default {
       sessaoHistoricoObj: {},
       dataHistorico: "",
       nomeHistorico: "",
+      eau_codigo: 0,
       disciplinas: [],
       sessoes: [],
       lista: [],
       intervalo: {},
       alunosLive: [],
-      disciplinasSelecionada: {}
+      disciplinasSelecionada: {},
+      verTodas: false,
+      carregandoVerTodas: false
     };
   },
   mounted: function() {
@@ -191,10 +238,7 @@ export default {
         this.obtemDados();
       },
       response => {
-        console.log(
-          "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-            response.status
-        );
+        this.erro("Disciplinas", response.status);
       }
     );
   },
@@ -360,10 +404,7 @@ export default {
                 console.log("Obteve Alunos!");
               },
               response => {
-                console.log(
-                  "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-                    response.status
-                );
+                this.erro("Presenças Ao vivo", response.status);
                 clearInterval(this.intervalo);
               }
             );
@@ -380,10 +421,7 @@ export default {
             console.log("Obteve Disciplinas!");
           },
           response => {
-            console.log(
-              "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-                response.status
-            );
+            this.erro("Disciplinas Ao vivo", response.status);
             clearInterval(this.intervalo);
           }
         );
@@ -399,17 +437,65 @@ export default {
     },
 
     carregarSessoes(id) {
+      var self = this;
+
+      this.para();
+
+      var modal = document.querySelector("#modalSessoes");
+
+      var instance = M.Modal.init(modal, {
+        dismissible: false,
+        onCloseStart: function() {
+          clearInterval(self.intervalo);
+          self.obtemDados();
+        }
+      });
+
+      this.verTodas = false;
+
+      instance.open();
+
       this.$http.get("Sessoes", { params: { eau_codigo: id } }).then(
         response => {
           this.sessoes = response.body;
         },
         response => {
-          console.log(
-            "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-              response.status
-          );
+          this.erro("Últimas Sessões", response.status);
         }
       );
+    },
+    carregarTodasSessoes() {
+      if (!this.verTodas) {
+        this.verTodas = !this.verTodas;
+        this.carregandoVerTodas = true;
+        this.$http
+          .get("Sessoes/Historico", { params: { eau_codigo: this.eau_codigo } })
+          .then(
+            response => {
+              this.sessoes = response.body;
+              this.carregandoVerTodas = false;
+            },
+            response => {
+              this.erro("Todas as Sessões", response.status);
+              this.carregandoVerTodas = false;
+            }
+          );
+      } else {
+        this.carregandoVerTodas = true;
+        this.verTodas = !this.verTodas;
+        this.$http
+          .get("Sessoes", { params: { eau_codigo: this.eau_codigo } })
+          .then(
+            response => {
+              this.sessoes = response.body;
+              this.carregandoVerTodas = false;
+            },
+            response => {
+              this.erro("Últimas Sessões", response.status);
+              this.carregandoVerTodas = false;
+            }
+          );
+      }
     },
     carregarlista(item) {
       this.sessaoHistoricoObj = item;
@@ -426,17 +512,14 @@ export default {
             this.lista = response.body;
           },
           response => {
-            console.log(
-              "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-                response.status
-            );
+            this.erro("Lista", response.status);
           }
         );
     },
     erro(msg, code) {
       swal({
         title: "Oops!",
-        text: "Algo deu errado! Os dados não foram salvos!",
+        text: "Algo deu errado! Entre em contato com os Administradores.",
         type: "error"
       }),
         console.log(
