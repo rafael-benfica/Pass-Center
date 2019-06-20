@@ -60,6 +60,8 @@ namespace API_PassCenter.Controllers
             return Ok(SessoesDB.Select(eau_codigo).Tables[0]);
 
         }
+
+
         [HttpGet, Route("api/Sessoes/Historico")]
         // GET: api/Sessoes
         public IHttpActionResult getSessoesHistorico(int eau_codigo)

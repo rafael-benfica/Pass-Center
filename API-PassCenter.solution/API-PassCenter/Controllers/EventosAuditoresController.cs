@@ -94,6 +94,22 @@ namespace API_PassCenter.Controllers
 
             return Ok(EventosAuditoresDB.SelectPeriodosIdentificacao(Convert.ToInt32(credenciais.Pes_codigo)).Tables[0]);
         }
+
+        [HttpGet, Route("api/EventosAuditores/Participantes/PeriodosIdentificacao")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetParticipantesPeriodosIdentificacao()
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(EventosAuditoresDB.SelectParticipantesPeriodosIdentificacao(Convert.ToInt32(credenciais.Pes_codigo)).Tables[0]);
+        }
+
         [HttpGet, Route("api/EventosAuditores/DisciplinasHistorico")]
         // GET: api/Instituicoes
         public IHttpActionResult GetDisciplinasHistorico(string identificacao)
@@ -107,6 +123,21 @@ namespace API_PassCenter.Controllers
             }
 
             return Ok(EventosAuditoresDB.SelectDisciplinaHistorico(Convert.ToInt32(credenciais.Pes_codigo), identificacao).Tables[0]);
+        }
+
+        [HttpGet, Route("api/EventosAuditores/Participantes/DisciplinasHistorico")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetParticipantesDisciplinasHistorico(string identificacao)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(EventosAuditoresDB.SelectParticipantesDisciplinaHistorico(Convert.ToInt32(credenciais.Usu_codigo), identificacao).Tables[0]);
         }
     }
 }

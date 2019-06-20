@@ -5,11 +5,15 @@ using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace API_PassCenter.Models.Persistencia {
-    public class EventosAuditoresDB {
-        public static int Insert(EventosAuditores eau) {
+namespace API_PassCenter.Models.Persistencia
+{
+    public class EventosAuditoresDB
+    {
+        public static int Insert(EventosAuditores eau)
+        {
             int retorno = 0;
-            try {
+            try
+            {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
                 string sql = "INSERT INTO eventos_auditores (eau_periodo_identificacao, eau_estado, eau_data_abertura, pes_codigo, eve_codigo, eau_operacao, ins_codigo)" +
@@ -31,7 +35,9 @@ namespace API_PassCenter.Models.Persistencia {
                 objConexao.Close();
                 objCommand.Dispose();
                 objConexao.Dispose();
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 retorno = -2;
             }
             return retorno;
@@ -68,6 +74,7 @@ namespace API_PassCenter.Models.Persistencia {
             return ds;
 
         }
+
         public static DataSet SelectPeriodosIdentificacao(int pessoa)
         {
             //Imagine um DataSet como umamatriz de dados;
@@ -98,6 +105,36 @@ namespace API_PassCenter.Models.Persistencia {
             return ds;
 
         }
+        public static DataSet SelectParticipantesPeriodosIdentificacao(int usuario)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "SELECT eau_periodo_identificacao FROM eventos_auditores inner join turmas using(eau_codigo) " +
+                "where usu_codigo = ?usu_codigo " +
+                "group by eau_periodo_identificacao;";
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_codigo", usuario));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
         public static DataSet SelectDisciplinaHistorico(int pessoa, String identificacao)
         {
             //Imagine um DataSet como umamatriz de dados;
@@ -116,6 +153,37 @@ namespace API_PassCenter.Models.Persistencia {
 
             objCommand.Parameters.Add(Mapped.Parameter("?eau_periodo_identificacao", identificacao));
             objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo", pessoa));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
+
+        public static DataSet SelectParticipantesDisciplinaHistorico(int usuario, String identificacao)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "SELECT * FROM eventos_auditores inner join eventos using(eve_codigo) inner join turmas using(eau_codigo) " +
+                "where eau_periodo_identificacao = ?eau_periodo_identificacao and eau_estado = 0 and usu_codigo = ?usu_codigo;";
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?eau_periodo_identificacao", identificacao));
+            objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo", usuario));
 
             objDataAdapter = Mapped.Adapter(objCommand);
 

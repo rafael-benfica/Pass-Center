@@ -168,5 +168,37 @@ namespace API_PassCenter.Controllers
             return Ok(PresencasDB.Select(ses_codigo, eau_codigo).Tables[0]);
 
         }
+
+        [HttpGet, Route("api/Presencas/Participante")]
+        // GET: api/Endereco
+        public IHttpActionResult GetPresencas(int eau_periodo_identificacao)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(PresencasDB.SelectPresencas(Convert.ToInt32(credenciais.Usu_codigo)).Tables[0]);
+
+        }
+
+        [HttpGet, Route("api/Presencas/Participante/PorPeriodoIdentificacao")]
+        // GET: api/Endereco
+        public IHttpActionResult GetPresencasPorPeriodoIdentificacao(int eau_periodo_identificacao)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(PresencasDB.SelectPresencasPorPeriodoIdentificacao(eau_periodo_identificacao, Convert.ToInt32(credenciais.Usu_codigo)).Tables[0]);
+
+        }
     }
 }

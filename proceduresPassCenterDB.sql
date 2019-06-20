@@ -10,11 +10,11 @@ DELIMITER $
 CREATE PROCEDURE InserirPresenca (IN vEau_codigo INT, IN vPes_codigo INT, IN list_of_ids TEXT, IN vPre_horario_entrada DATETIME, IN vPre_horario_saida DATETIME, IN vSes_codigo INT)
 BEGIN
 			-- Declaracoes
-			DECLARE _ide_identificador INT;
+			DECLARE _ide_identificador int;
 			DECLARE fim INT DEFAULT 0;
 		
 			-- Declaracao do Cursor
-			DECLARE c1 CURSOR FOR SELECT ide_identificador FROM turmas
+			DECLARE c1 CURSOR FOR SELECT ide_codigo FROM turmas
 			INNER JOIN eventos_auditores eau USING (eau_codigo)
 			INNER JOIN usuarios usu USING (usu_codigo)
 			INNER JOIN identificadores USING (usu_codigo)
