@@ -42,7 +42,18 @@
           <hr>
           <div class="row">
             <form onsubmit="return false">
-              <div class="col s12 m6 l6">
+              <div class="input-field col s12 m4">
+                <select v-model="instituicao">
+                  <option value disabled selected>Selecione a Instituição</option>
+                  <option
+                    :value="item.ins_codigo"
+                    v-for="item in instituicoes"
+                    :key="item.id"
+                  >{{ item.ins_nome_fantasia }}</option>
+                </select>
+                <label>Instituição</label>
+              </div>
+              <div class="col s12 m4">
                 <div class="col s10 m10 l10 input-field">
                   <input
                     id="disciplina"
@@ -53,6 +64,7 @@
                   >
                   <label for="disciplina" class="active">Buscar Disciplina:</label>
                 </div>
+
                 <div class="col s2 m2 l2">
                   <a
                     class="btn-floating btn-large waves-effect waves-light iconeBG modal-trigger"
@@ -67,7 +79,7 @@
               </div>
             </form>
             <form onsubmit="return false">
-              <div class="col s12 m6 l6">
+              <div class="col s12 m4">
                 <div class="col s10 m10 l10 input-field">
                   <input
                     id="professor"
@@ -284,7 +296,11 @@ export default {
       nomeDisciplina: "",
       nomeAuditor: "",
       idEAU: 0,
-      alunosMatriculados: []
+      alunosMatriculados: [],
+
+      //Instituição
+      instituicoes: [],
+      instituicao: 0
     };
   },
 
@@ -293,7 +309,17 @@ export default {
 
     $(document).ready(function() {
       $(".modal").modal();
+       $("select").formSelect();
     });
+
+    this.$http.get("Instituicoes").then(
+      response => {
+        this.instituicoes = response.body;
+      },
+      response => {
+        this.erro("Instituições", response.status);
+      }
+    );
   },
 
   methods: {
@@ -437,8 +463,7 @@ export default {
                 "Aluno(a) adicionado(a) na Turma!",
                 "success"
               );
-              this.listarAlunosMatriculados(),
-              this.alunos = []; 
+              this.listarAlunosMatriculados(), (this.alunos = []);
             },
             response => {
               this.erro("Dados Evento", response.status);

@@ -12,11 +12,13 @@ namespace API_PassCenter.Controllers {
     public class EventosController : ApiController {
         [HttpPost, Route("api/Eventos")]
         // POST: api/Endereco
-        public IHttpActionResult Eventos([FromBody]Eventos eventos) {
+        public IHttpActionResult Eventos([FromBody]Eventos eventos)
+        {
 
             Indentificacao credenciais = autenticar.autenticacao(Request, 3);
 
-            if (credenciais == null) {
+            if (credenciais == null)
+            {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
@@ -35,9 +37,37 @@ namespace API_PassCenter.Controllers {
 
             int retorno = EventosDB.Insert(eve);
 
-            if (retorno == -2) {
+            if (retorno == -2)
+            {
                 return BadRequest();
-            } else {
+            }
+            else
+            {
+                return Ok(retorno);
+            }
+
+        }
+
+        [HttpPost, Route("api/Eventos/ADM")]
+        // POST: api/Endereco
+        public IHttpActionResult EventosADM([FromBody]Eventos eventos)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            int retorno = EventosDB.Insert(eventos);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
                 return Ok(retorno);
             }
 
