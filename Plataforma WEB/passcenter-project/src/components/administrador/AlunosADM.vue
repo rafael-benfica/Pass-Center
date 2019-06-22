@@ -3,20 +3,20 @@
     <form class="col s12 card data2" onsubmit="return false">
       <div class="row topo">
         <div class="col s12 m12 l12">
-          <h3 class="col s12 m12 l12 centro">Lista de Professores</h3>
+          <h3 class="col s12 m12 l12 centro">Lista de alunos</h3>
 
           <table>
             <thead class="centro">
               <tr>
-                <th>Nome do Professor</th>
-                <th>Matrícula do Professor</th>
-                <th>Telefone Residencial do Professor</th>
-                <th>Telefone Celular do Professor</th>
+                <th>Nome do Aluno</th>
+                <th>Matrícula do do Aluno</th>
+                <th>Telefone Residencial do Aluno</th>
+                <th>Telefone Celular do aluno</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in professores" :key="item.id" @click="verDados(index)">
+              <tr v-for="(item, index) in alunos" :key="item.id" @click="verDados(index)">
                 <td>{{ item.pes_nome +" "+ item.pes_sobrenomes }}</td>
                 <td>{{ "#"+item.pes_matricula }}</td>
                 <td>{{ item.pes_tel_residencial }}</td>
@@ -32,11 +32,11 @@
             class="col s12 m12 l12 centro waves-effect waves-light btn modal-trigger botaoVerMais"
             href="#modalAdd"
             @click="addDados()"
-          >Adicionar Professor</a>
+          >Adicionar aluno</a>
 
           <div id="modalVer" class="modal">
             <div class="modal-content">
-              <h4 class="centro">Professor</h4>
+              <h4 class="centro">Aluno</h4>
               <hr>
               <div class="row col s12 m12 l12">
                 <div class="row">
@@ -184,7 +184,7 @@
 
           <div id="modalAdd" class="modal">
             <div class="modal-content">
-              <h4 class="centro">Cadastrar Professor</h4>
+              <h4 class="centro">Cadastrar Aluno</h4>
               <hr>
               <div class="row col s12 m12 l12">
                 <div class="row">
@@ -359,10 +359,10 @@
 
 <script>
 export default {
-  name: "Professores",
+  name: "alunos",
   data() {
     return {
-      professores: [],
+      alunos: [],
       instituicoes: [],
       instituicao: 0,
       pessoa_codigo: "",
@@ -410,15 +410,12 @@ export default {
   },
   methods: {
     carregarDados() {
-      this.$http.get("Usuarios/porTipo", { params: { tipo: 4 } }).then(
+      this.$http.get("Usuario/porTipo/ADM", { params: { tipo: 5 } }).then(
         response => {
-          this.professores = response.body;
+          this.alunos = response.body;
         },
         response => {
-          console.log(
-            "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-              response.status
-          );
+          this.erro("Dados do Usuário", response.status);
         }
       );
     },
@@ -447,7 +444,7 @@ export default {
     },
 
     verDados(index) {
-      var dados = this.professores[index];
+      var dados = this.alunos[index];
 
       this.usuario_codigo = dados.usu_codigo;
       this.pessoa_codigo = dados.pes_codigo;
@@ -568,6 +565,7 @@ export default {
       this.tel_residencial = "";
       this.tel_celular = "";
       this.infoadd = "";
+      this.instituicao = 0;
 
       $(document).ready(function() {
         M.updateTextFields();
@@ -668,7 +666,10 @@ export default {
             pes_sexo: this.sexo,
             pes_tel_residencial: this.tel_residencial,
             pes_tel_celular: this.tel_celular,
-            pes_info_adicionais: this.infoadd
+            pes_info_adicionais: this.infoadd,
+            ins_codigo: {
+              ins_codigo: this.instituicao
+            }
           };
 
           var dodosEndereco = {
@@ -687,7 +688,7 @@ export default {
             usu_login: this.login
           };
 
-          this.$http.put("Pessoas", dodosPessoais).then(
+          this.$http.put("Pessoas/ADM", dodosPessoais).then(
             response => {
               this.$http.put("Enderecos", dodosEndereco).then(
                 response => {
@@ -787,10 +788,7 @@ export default {
                       pes_codigo: response.body
                     },
                     tus_codigo: {
-                      tus_codigo: 4
-                    },
-                    ins_codigo: {
-                      ins_codigo: this.instituicao
+                      tus_codigo: 5
                     }
                   };
 
@@ -868,12 +866,11 @@ export default {
           // Read more about handling dismissals
           result.dismiss === swal.DismissReason.cancel
         ) {
-          this.carregarDados(),
-            swalWithBootstrapButtons(
-              "Okay!",
-              "Revise/altere o que for necessário ;)",
-              "info"
-            );
+          swalWithBootstrapButtons(
+            "Okay!",
+            "Revise/altere o que for necessário ;)",
+            "info"
+          );
         }
       });
     },

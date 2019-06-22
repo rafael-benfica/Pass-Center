@@ -49,6 +49,30 @@ namespace API_PassCenter.Controllers {
             }
         }
 
+        [HttpPost, Route("api/Pessoas/ADM")]
+        // POST: api/Instituicoes
+        public IHttpActionResult PostADM([FromBody]Pessoas pessoas)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 1);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            int retorno = PessoasDB.Insert(pessoas);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(retorno);
+            }
+        }
+
         [HttpGet, Route("api/Pessoas")]
         // GET: api/Instituicoes
         public IHttpActionResult Get() {

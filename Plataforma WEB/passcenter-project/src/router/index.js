@@ -41,13 +41,13 @@ import HistoricoCompletoProfessor from '@/components/professor/HistoricoCompleto
 
 
 //Administrador
-import AlunoADM from '@/components/gerentes/AlunosGeral.vue'
-import DisciplinasADM from '@/components/gerentes/DisciplinasGeral.vue'
+import AlunosADM from '@/components/administrador/AlunosADM.vue'
+import DisciplinasADM from '@/components/administrador/DisciplinasADM.vue'
 import FinanceiroADM from '@/components/gerenteGeral/Financeiro.vue'
 import InstituicoesADM from '@/components/administrador/InstituicoesADM.vue'
-import ProfessoresADM from '@/components/gerentes/ProfessoresGeral.vue'
+import ProfessoresADM from '@/components/administrador/ProfessoresADM.vue'
 import TotensADM from '@/components/gerenteGeral/Totens.vue'
-import TurmasADM from '@/components/gerentes/TurmasGeral.vue'
+import TurmasADM from '@/components/administrador/TurmasADM.vue'
 
 
 Vue.use(Router)
@@ -82,9 +82,9 @@ const rotas = new Router({
       component: Administrador,
       children: [
         {
-          path: 'AlunoADM',
-          name: 'AlunoADM',
-          component: AlunoADM,
+          path: 'AlunosADM',
+          name: 'AlunosADM',
+          component: AlunosADM,
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
             { nome: 'Alunos' }]

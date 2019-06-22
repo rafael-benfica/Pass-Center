@@ -26,7 +26,7 @@
       <a href="#name"><span class="white-text name">{{ nome }}</span></a>
       <a href="#email"><span class="white-text email">ID #{{ matricula }}</span></a>
     </div></li>
-        <li><router-link :to="{ name: 'AlunoADM' }" class=" waves-effect"><i class="icone material-icons">person</i>Alunos</router-link></li>
+        <li><router-link :to="{ name: 'AlunosADM' }" class=" waves-effect"><i class="icone material-icons">person</i>Alunos</router-link></li>
         <li><router-link :to="{ name: 'ProfessoresADM' }" class=" waves-effect"><i class="icone material-icons">supervisor_account</i>Professores</router-link></li>
         <li><router-link :to="{ name: 'DisciplinasADM' }" class=" waves-effect"><i class="icone material-icons">book</i>Disciplinas</router-link></li>
         <li><router-link :to="{ name: 'TurmasADM' }" class=" waves-effect"><i class="icone material-icons">folder_shared</i>Turmas</router-link></li>

@@ -329,6 +329,20 @@ namespace API_PassCenter.Controllers
             return Ok(UsusariosDB.SelectByType(tipo, Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
         }
 
+        [HttpGet, Route("api/Usuario/porTipo/ADM")]
+        public IHttpActionResult selectPorTipoADM(int tipo)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 1);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(UsusariosDB.SelectByTypeADM(tipo).Tables[0]);
+        }
+
         private string GeraSenha()
         {
             //Maiusculas
