@@ -100,7 +100,7 @@ namespace API_PassCenter.Controllers
         public IHttpActionResult GetParticipantesPeriodosIdentificacao()
         {
 
-            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
 
             if (credenciais == null)
             {
@@ -130,7 +130,7 @@ namespace API_PassCenter.Controllers
         public IHttpActionResult GetParticipantesDisciplinasHistorico(string identificacao)
         {
 
-            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
 
             if (credenciais == null)
             {

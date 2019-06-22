@@ -1,12 +1,12 @@
-
+.fonte{
+    font-family: 'Roboto', sans-serif !important;
+}
 .espacamento{
     padding-top: 20px;
 }
-
 .area-exibicao{
     width: 88%;
 }
-
 .cardDisciplina{
     font-weight: 700 !important;
 }
@@ -22,29 +22,27 @@
     text-align: center;
     font-family: 'Poppins', sans-serif;
 }
-.botaoVerMais{
-    margin-top: 1rem;
+.card-content{
+    text-align: center;
 }
-.botaoDatas{
-    margin-top: 1rem;
-    pointer-events: none;
-    cursor: default;
+.historico{
+    text-align: center;
 }
-.margem{
-    margin-top: 100px;
+.data{
+    margin-top: 15px;
 }
-.icone{
-    font-size: 3.8rem;
+.data2{
+    margin-top: 25px;
 }
-
-.modalAjuste{
-    margin: 0px;
-    padding:0px;
+.botaofe{
+    color: gray;
 }
 
+.ajuste{
+    margin-top: 5vh;
+}
 @media screen and (max-width: 600px) {
-    .modal.modal-fixed-footer{
-        height: 100% !important;
-        max-height: 100% !important;
+    .ajuste{
+        margin-top: 3vh;
     }
 }

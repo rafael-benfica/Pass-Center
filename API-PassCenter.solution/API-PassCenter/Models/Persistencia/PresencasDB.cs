@@ -177,9 +177,9 @@ namespace API_PassCenter.Models.Persistencia
 
             objConexao = Mapped.Connection();
 
-            string sql = "SELECT eve_nome, eve_sigla, eau_periodo_identificacao, " +
-                "(select count(*) from sessoes where eau_codigo = e.eau_codigo) as 'Sessoes', " +
-                 "(select count(*) from presencas inner join sessoes using(ses_codigo) inner join identificadores using(ide_codigo) where usu_codigo = ?usu_codigo and eau_codigo = e.eau_codigo) as 'Presencas' " +
+            string sql = "SELECT eau_codigo, eve_nome, eve_sigla, eau_periodo_identificacao, " +
+                "(select count(*) from sessoes where eau_codigo = e.eau_codigo) as 'sessoes', " +
+                 "(select count(*) from presencas inner join sessoes using(ses_codigo) inner join identificadores using(ide_codigo) where usu_codigo = ?usu_codigo and eau_codigo = e.eau_codigo) as 'presencas' " +
                 "FROM eventos_auditores e inner join eventos using(eve_codigo) inner join turmas using(eau_codigo) " +
                 "where eau_estado = 1 and usu_codigo=?usu_codigo;";
 
@@ -199,7 +199,41 @@ namespace API_PassCenter.Models.Persistencia
 
         }
 
-        public static DataSet SelectPresencasPorPeriodoIdentificacao(int eau_periodo_identificacao, int usu_codigo)
+        public static DataSet SelectPresencasDiasFaltas(int usu_codigo, int eau_codigo)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "select * from sessoes where eau_codigo = ?eau_codigo and ses_codigo not in " +
+                "(select ses_codigo from presencas " +
+                 "inner join identificadores using (ide_codigo) " +
+                "inner join sessoes using(ses_codigo) where eau_codigo=?eau_codigo and usu_codigo=?usu_codigo);";
+
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_codigo", usu_codigo));
+            objCommand.Parameters.Add(Mapped.Parameter("?eau_codigo", eau_codigo));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
+
+        public static DataSet SelectPresencasPorPeriodoIdentificacao(string eau_periodo_identificacao, int usu_codigo)
         {
             //Imagine um DataSet como umamatriz de dados;
 
@@ -212,8 +246,8 @@ namespace API_PassCenter.Models.Persistencia
             objConexao = Mapped.Connection();
 
             string sql = "SELECT eve_nome, eve_sigla, eau_periodo_identificacao, " +
-                "(select count(*) from sessoes where eau_codigo = e.eau_codigo) as 'Sessoes', " +
-                 "(select count(*) from presencas inner join sessoes using(ses_codigo) inner join identificadores using(ide_codigo) where usu_codigo = ?usu_codigo and eau_codigo = e.eau_codigo) as 'Presencas' " +
+                "(select count(*) from sessoes where eau_codigo = e.eau_codigo) as 'sessoes', " +
+                 "(select count(*) from presencas inner join sessoes using(ses_codigo) inner join identificadores using(ide_codigo) where usu_codigo = ?usu_codigo and eau_codigo = e.eau_codigo) as 'presencas' " +
                 "FROM eventos_auditores e inner join eventos using(eve_codigo) inner join turmas using(eau_codigo) " +
                 "where eau_periodo_identificacao = ?eau_periodo_identificacao and eau_estado = 0 and usu_codigo=?usu_codigo;";
 

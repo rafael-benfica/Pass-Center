@@ -33,7 +33,6 @@ import MeusDados from '@/components/geral/MeusDados.vue'
 // Aluno
 import MinhasDisciplinasAluno from '@/components/aluno/MinhasDisciplinasAluno.vue'
 import HistoricoCompletoAluno from '@/components/aluno/HistoricoCompletoAluno.vue'
-import HistoricoCompletoDisciplinas from '@/components/aluno/HistoricoCompletoDisciplinas.vue'
 
 //Professor
 import MinhasDisciplinas from '@/components/professor/MinhasDisciplinas.vue'
@@ -380,16 +379,6 @@ const rotas = new Router({
           meta: {
             breadcrumbs: [{ nome: 'Aluno' },
             { nome: 'Histórico Completo' }]
-          }
-        },
-        {
-          path: 'HistoricoCompletoDisciplinas',
-          name: 'HistoricoCompletoDisciplinas',
-          component: HistoricoCompletoDisciplinas,
-          meta: {
-            breadcrumbs: [{ nome: 'Aluno' },
-            { nome: 'Histórico Completo' },
-            { nome: 'Disciplinas 20XX' }]
           }
         }
       ]

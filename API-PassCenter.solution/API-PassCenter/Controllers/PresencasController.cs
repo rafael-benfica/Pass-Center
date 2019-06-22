@@ -171,10 +171,10 @@ namespace API_PassCenter.Controllers
 
         [HttpGet, Route("api/Presencas/Participante")]
         // GET: api/Endereco
-        public IHttpActionResult GetPresencas(int eau_periodo_identificacao)
+        public IHttpActionResult GetPresencas()
         {
 
-            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
 
             if (credenciais == null)
             {
@@ -185,12 +185,29 @@ namespace API_PassCenter.Controllers
 
         }
 
-        [HttpGet, Route("api/Presencas/Participante/PorPeriodoIdentificacao")]
+
+        [HttpGet, Route("api/Presencas/Participante/diasFaltas")]
         // GET: api/Endereco
-        public IHttpActionResult GetPresencasPorPeriodoIdentificacao(int eau_periodo_identificacao)
+        public IHttpActionResult GetPresencasDiasFaltas(int eau_codigo)
         {
 
-            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(PresencasDB.SelectPresencasDiasFaltas(Convert.ToInt32(credenciais.Usu_codigo), eau_codigo).Tables[0]);
+
+        }
+
+        [HttpGet, Route("api/Presencas/Participante/PorPeriodoIdentificacao")]
+        // GET: api/Endereco
+        public IHttpActionResult GetPresencasPorPeriodoIdentificacao(string eau_periodo_identificacao)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
 
             if (credenciais == null)
             {

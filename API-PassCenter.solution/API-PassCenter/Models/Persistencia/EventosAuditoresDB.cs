@@ -183,7 +183,7 @@ namespace API_PassCenter.Models.Persistencia
             objCommand = Mapped.Command(sql, objConexao);
 
             objCommand.Parameters.Add(Mapped.Parameter("?eau_periodo_identificacao", identificacao));
-            objCommand.Parameters.Add(Mapped.Parameter("?pes_codigo", usuario));
+            objCommand.Parameters.Add(Mapped.Parameter("?usu_codigo", usuario));
 
             objDataAdapter = Mapped.Adapter(objCommand);
 
