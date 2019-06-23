@@ -19,16 +19,17 @@ namespace API_PassCenter.Controllers
         public IHttpActionResult Post([FromBody]Totens totens)
         {
 
-            if (autenticar.autenticacao(Request, 2) == null)
+            if (autenticar.autenticacao(Request, 1) == null)
             {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             Totens tot = new Totens();
 
+            tot.Tot_nome = totens.Tot_nome;
             tot.Tot_numero_serie = totens.Tot_numero_serie;
-            tot.Tot_estado = totens.Tot_estado;
-            tot.Tot_operacao = totens.Tot_operacao;
+            tot.Tot_estado = true;
+            tot.Tot_operacao = false;
             tot.Ins_codigo = totens.Ins_codigo;
 
             int retorno = TotensDB.Insert(tot);
@@ -42,6 +43,66 @@ namespace API_PassCenter.Controllers
                 return Ok(retorno);
             }
         }
+
+        [HttpGet, Route("api/Totens")]
+        // POST: api/Instituicoes
+        public IHttpActionResult Get()
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 2);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+            return Ok(TotensDB.select(Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
+
+        }
+
+        [HttpPut, Route("api/Totens")]
+        // POST: api/Instituicoes
+        public IHttpActionResult Put([FromBody]Totens totens)
+        {
+
+            if (autenticar.autenticacao(Request, 1) == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            Totens tot = new Totens();
+
+            tot.Tot_codigo = totens.Tot_codigo;
+            tot.Tot_nome = totens.Tot_nome;
+            tot.Tot_numero_serie = totens.Tot_numero_serie;
+            tot.Ins_codigo = totens.Ins_codigo;
+
+            int retorno = TotensDB.Update(tot);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(retorno);
+            }
+        }
+
+        [HttpGet, Route("api/Totens/ADM")]
+        // POST: api/Instituicoes
+        public IHttpActionResult GetADM()
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 1);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+            return Ok(TotensDB.selectADM().Tables[0]);
+
+        }
+
         [HttpGet, Route("api/Totens/Disciplinas")]
         // POST: api/Instituicoes
         public IHttpActionResult Disciplinas()

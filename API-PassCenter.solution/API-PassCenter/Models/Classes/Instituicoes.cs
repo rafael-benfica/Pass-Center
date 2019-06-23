@@ -13,6 +13,7 @@ namespace API_PassCenter.Models.Classes {
         public string Ins_cnpj { get; set; }
         public bool Ins_estado { get; set; }
         public int Ins_periodo_renovacao_dias { get; set; }
+        public string Ins_telefone { get; set; }
         public Enderecos End_codigo { get; set; }
 
     }

@@ -753,10 +753,7 @@ export default {
             end_cep: this.CEP,
             end_estado: this.estado,
             end_complemento: this.complemento,
-            end_pais: "BR",
-            ten_codigo: {
-              ten_codigo: "2"
-            }
+            end_pais: "BR"
           };
           
           this.$http.post("Enderecos", dadosEndereco).then(
@@ -886,8 +883,7 @@ export default {
       }),
         console.log(
           "ERRO em " + msg + "! Código de resposta (HTTP) do servidor: " + code
-        ),
-        this.carregarDados();
+        )
     }
   }
 };
