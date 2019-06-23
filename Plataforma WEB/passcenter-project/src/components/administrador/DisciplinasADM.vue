@@ -104,7 +104,7 @@ export default {
 
   methods: {
     carregarDados() {
-      this.$http.get("Eventos", { params: { tipo: 1 } }).then(
+      this.$http.get("Eventos/ADM", { params: { tipo: 1 } }).then(
         response => {
           this.disciplinas = response.body;
         },

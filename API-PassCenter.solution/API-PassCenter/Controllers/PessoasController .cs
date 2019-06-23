@@ -98,7 +98,22 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
-            return Ok(PessoasDB.SelectProfessoresNome(("%"+nome+"%"), Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
+            return Ok(PessoasDB.SelectProfessoresNome(("%" + nome + "%"), Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
+        }
+
+        [HttpGet, Route("api/Pessoas/Professores/ADM")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetProfessoresADM(string nome, int instituicao)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 1);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(PessoasDB.SelectProfessoresNome(("%" + nome + "%"), instituicao).Tables[0]);
         }
 
         [HttpPut, Route("api/Pessoas")]
@@ -150,6 +165,21 @@ namespace API_PassCenter.Controllers {
             }
 
             return Ok(PessoasDB.SelectByTypeAndName(("%" + nome + "%"), tipo, Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
+        }
+
+        [HttpGet, Route("api/Pessoas/PorTipoNome/ADM")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetByTypeAndNameADM(string nome, int tipo, int instituicao)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(PessoasDB.SelectByTypeAndName(("%" + nome + "%"), tipo, instituicao).Tables[0]);
         }
     }
 }

@@ -53,7 +53,7 @@ namespace API_PassCenter.Controllers {
         public IHttpActionResult EventosADM([FromBody]Eventos eventos)
         {
 
-            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+            Indentificacao credenciais = autenticar.autenticacao(Request, 1);
 
             if (credenciais == null)
             {
@@ -75,17 +75,34 @@ namespace API_PassCenter.Controllers {
 
         [HttpGet, Route("api/Eventos")]
         // GET: api/Instituicoes
-        public IHttpActionResult Get(int tipo) {
+        public IHttpActionResult Get(int tipo)
+        {
 
             Indentificacao credenciais = autenticar.autenticacao(Request, 5);
 
-            if (credenciais == null) {
+            if (credenciais == null)
+            {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             return Ok(EventosDB.Select(Convert.ToInt32(credenciais.Ins_codigo), tipo).Tables[0]);
         }
-        
+
+        [HttpGet, Route("api/Eventos/ADM")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetADM(int tipo)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 5);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(EventosDB.SelectADM(tipo).Tables[0]);
+        }
+
         [HttpPost, Route("api/Eventos/TiposEventos")]
         // POST: api/Endereco
         public IHttpActionResult TiposEventos([FromBody]TiposEventos tipo_eventos) {
@@ -145,6 +162,21 @@ namespace API_PassCenter.Controllers {
             }
 
             return Ok(EventosDB.SelectDisciplinasNome(("%" + nome + "%"), Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
+        }
+
+        [HttpGet, Route("api/Eventos/BuscarNomes/ADM")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetEventosNomesADM(string nome, int instituicao)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 1);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(EventosDB.SelectDisciplinasNome(("%" + nome + "%"), instituicao).Tables[0]);
         }
 
     }

@@ -67,6 +67,21 @@ namespace API_PassCenter.Controllers
             return Ok(EventosAuditoresDB.Select(Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
         }
 
+        [HttpGet, Route("api/EventosAuditores/ADM")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetADM()
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 1);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(EventosAuditoresDB.SelectADM().Tables[0]);
+        }
+
         [HttpGet, Route("api/EventosAuditores/Disciplinas")]
         public IHttpActionResult Disciplinas()
         {

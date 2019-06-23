@@ -46,6 +46,8 @@ import DisciplinasADM from '@/components/administrador/DisciplinasADM.vue'
 import FinanceiroADM from '@/components/gerenteGeral/Financeiro.vue'
 import InstituicoesADM from '@/components/administrador/InstituicoesADM.vue'
 import ProfessoresADM from '@/components/administrador/ProfessoresADM.vue'
+import GerentesCadastroADM from '@/components/administrador/GerentesCadastroADM.vue'
+import GerentesGeraisADM from '@/components/administrador/GerentesGeraisADM.vue'
 import TotensADM from '@/components/gerenteGeral/Totens.vue'
 import TurmasADM from '@/components/administrador/TurmasADM.vue'
 
@@ -133,6 +135,24 @@ const rotas = new Router({
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
             { nome: 'Professores' }]
+          }
+        },
+        {
+          path: 'GerentesCadastroADM',
+          name: 'GerentesCadastroADM',
+          component: GerentesCadastroADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+            { nome: 'Gerentes de Cadastro' }]
+          }
+        },
+        {
+          path: 'GerentesGeraisADM',
+          name: 'GerentesGeraisADM',
+          component: GerentesGeraisADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+            { nome: 'Gerentes Gerais' }]
           }
         },
         {
@@ -343,12 +363,12 @@ const rotas = new Router({
           component: HistoricoCompletoProfessor,
           meta: {
             breadcrumbs: [{ nome: 'Professor' },
-              { nome: 'Histórico Completo' }]
+            { nome: 'Histórico Completo' }]
           }
         }
       ]
     },
-    
+
     //Aluno
     {
       path: '/aluno',
@@ -456,13 +476,13 @@ rotas.beforeEach((to, from, next) => {
       next(encaminhar(parseInt(getCookie("TipoUser")), to.matched[0].path.toUpperCase()));
     } else {
 
-      if(from.matched.length != 0){
+      if (from.matched.length != 0) {
         var reme = from.matched[0].path.toUpperCase();
         if (reme != "/" && reme != "" && reme != "/LOGIN" && reme != "/ESQUECIMINHASENHA") {
           store.commit("LOGOUT");
           swal({
             title: "Tempo Esgotado!",
-            text:  "A sua sessão de 30 minutos esgotou! Por favor, faça login novamente.",
+            text: "A sua sessão de 30 minutos esgotou! Por favor, faça login novamente.",
             type: "info"
           });
         }
@@ -470,8 +490,8 @@ rotas.beforeEach((to, from, next) => {
       next("/Login");
     }
   } else {
-    
-    
+
+
 
     next(true);
   }

@@ -3,20 +3,20 @@
     <form class="col s12 card data2" onsubmit="return false">
       <div class="row topo">
         <div class="col s12 m12 l12">
-          <h3 class="col s12 m12 l12 centro">Lista de Professores</h3>
+          <h3 class="col s12 m12 l12 centro">Lista de Gerentes Gerais</h3>
 
           <table>
             <thead class="centro">
               <tr>
-                <th>Nome do Professor</th>
-                <th>Matrícula do Professor</th>
-                <th>Telefone Residencial do Professor</th>
-                <th>Telefone Celular do Professor</th>
+                <th>Nome do Gerente</th>
+                <th>Matrícula do Gerente</th>
+                <th>Telefone Residencial do Gerente</th>
+                <th>Telefone Celular do Gerente</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in professores" :key="item.id" @click="verDados(index)">
+              <tr v-for="(item, index) in gerentes" :key="item.id" @click="verDados(index)">
                 <td>{{ item.pes_nome +" "+ item.pes_sobrenomes }}</td>
                 <td>{{ "#"+item.pes_matricula }}</td>
                 <td>{{ item.pes_tel_residencial }}</td>
@@ -32,11 +32,11 @@
             class="col s12 m12 l12 centro waves-effect waves-light btn modal-trigger botaoVerMais"
             href="#modalAdd"
             @click="addDados()"
-          >Adicionar Professor</a>
+          >Adicionar Gerente</a>
 
           <div id="modalVer" class="modal">
             <div class="modal-content">
-              <h4 class="centro">Professor</h4>
+              <h4 class="centro">Gerente</h4>
               <hr>
               <div class="row col s12 m12 l12">
                 <div class="row">
@@ -184,7 +184,7 @@
 
           <div id="modalAdd" class="modal">
             <div class="modal-content">
-              <h4 class="centro">Cadastrar Professor</h4>
+              <h4 class="centro">Cadastrar Gerente</h4>
               <hr>
               <div class="row col s12 m12 l12">
                 <div class="row">
@@ -359,10 +359,10 @@
 
 <script>
 export default {
-  name: "Professores",
+  name: "Gerentees",
   data() {
     return {
-      professores: [],
+      gerentes: [],
       instituicoes: [],
       instituicao: 0,
       pessoa_codigo: "",
@@ -410,9 +410,9 @@ export default {
   },
   methods: {
     carregarDados() {
-      this.$http.get("Usuarios/porTipo", { params: { tipo: 4 } }).then(
+      this.$http.get("Usuarios/porTipo", { params: { tipo: 3 } }).then(
         response => {
-          this.professores = response.body;
+          this.gerentes = response.body;
         },
         response => {
           console.log(
@@ -447,7 +447,7 @@ export default {
     },
 
     verDados(index) {
-      var dados = this.professores[index];
+      var dados = this.gerentes[index];
 
       this.usuario_codigo = dados.usu_codigo;
       this.pessoa_codigo = dados.pes_codigo;
@@ -790,7 +790,7 @@ export default {
                       pes_codigo: response.body
                     },
                     tus_codigo: {
-                      tus_codigo: 4
+                      tus_codigo: 3
                     }
                   };
 

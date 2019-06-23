@@ -75,6 +75,35 @@ namespace API_PassCenter.Models.Persistencia
 
         }
 
+        public static DataSet SelectADM()
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "select * from eventos_auditores " +
+                "inner join pessoas using (pes_codigo) " +
+                "inner join eventos using (eve_codigo);";
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
+
         public static DataSet SelectPeriodosIdentificacao(int pessoa)
         {
             //Imagine um DataSet como umamatriz de dados;

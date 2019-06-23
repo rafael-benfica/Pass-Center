@@ -666,10 +666,7 @@ export default {
             pes_sexo: this.sexo,
             pes_tel_residencial: this.tel_residencial,
             pes_tel_celular: this.tel_celular,
-            pes_info_adicionais: this.infoadd,
-            ins_codigo: {
-              ins_codigo: this.instituicao
-            }
+            pes_info_adicionais: this.infoadd
           };
 
           var dodosEndereco = {
@@ -688,7 +685,7 @@ export default {
             usu_login: this.login
           };
 
-          this.$http.put("Pessoas/ADM", dodosPessoais).then(
+          this.$http.put("Pessoas", dodosPessoais).then(
             response => {
               this.$http.put("Enderecos", dodosEndereco).then(
                 response => {
@@ -775,10 +772,13 @@ export default {
                 pes_info_adicionais: this.infoadd,
                 end_codigo: {
                   end_codigo: response.body
+                },
+                ins_codigo: {
+                  ins_codigo: this.instituicao
                 }
               };
 
-              this.$http.post("Pessoas", dodosPessoais).then(
+              this.$http.post("Pessoas/ADM", dodosPessoais).then(
                 response => {
                   var dodosUsuario = {
                     usu_codigo: this.usuario_codigo,

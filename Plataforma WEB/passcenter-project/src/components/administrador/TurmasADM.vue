@@ -21,7 +21,7 @@
       <!-- Card Add -->
       <div class="col s12 m3 l3 espacamento">
         <a class="modal-trigger" href="#modalAdd">
-          <div class="card">
+          <div class="card" @click="addDados();">
             <div class="card-content">
               <br>
               <br>
@@ -184,7 +184,18 @@
 
           <div class="row">
             <form onsubmit="return false">
-              <div class="col s12 m12 l12">
+              <div class="input-field col s12 m4">
+                <select v-model="instituicao">
+                  <option value disabled selected>Selecione a Instituição</option>
+                  <option
+                    :value="item.ins_codigo"
+                    v-for="item in instituicoes"
+                    :key="item.id"
+                  >{{ item.ins_nome_fantasia }}</option>
+                </select>
+                <label>Instituição</label>
+              </div>
+              <div class="col s12 m8">
                 <div class="col s10 m10 l10 input-field">
                   <input
                     id="disciplina"
@@ -309,7 +320,7 @@ export default {
 
     $(document).ready(function() {
       $(".modal").modal();
-       $("select").formSelect();
+      $("select").formSelect();
     });
 
     this.$http.get("Instituicoes").then(
@@ -323,8 +334,18 @@ export default {
   },
 
   methods: {
+    addDados() {
+      this.professorBusca = "";
+      this.disciplinaBusc = "";
+      this.alunoBusca = "";
+      $(document).ready(function() {
+        M.updateTextFields();
+        $("select").formSelect();
+      });
+    },
+
     listarEventosAuditores() {
-      this.$http.get("EventosAuditores").then(
+      this.$http.get("EventosAuditores/ADM").then(
         response => {
           this.eventos_auditores = response.body;
         },
@@ -342,6 +363,11 @@ export default {
       this.nomeDisciplina = dados.eve_nome;
       this.nomeAuditor = dados.pes_nome;
       this.idEAU = dados.eau_codigo;
+
+      $(document).ready(function() {
+        M.updateTextFields();
+        $("select").formSelect();
+      });
 
       this.listarAlunosMatriculados();
     },
@@ -362,53 +388,46 @@ export default {
 
     buscarProfessores() {
       this.$http
-        .get("Pessoas/Professores", { params: { nome: this.professorBusca } })
+        .get("Pessoas/Professores/ADM", {
+          params: { nome: this.professorBusca, instituicao: this.instituicao }
+        })
         .then(
           response => {
             this.professores = response.body;
-            console.log(response.body);
           },
           response => {
-            console.log(
-              "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-                response.status
-            );
+            this.erro("buscar os professores", response.status);
           }
         );
     },
 
     buscarDisciplinas() {
       this.$http
-        .get("Eventos/BuscarNomes", { params: { nome: this.disciplinaBusca } })
+        .get("Eventos/BuscarNomes/ADM", {
+          params: { nome: this.disciplinaBusca, instituicao: this.instituicao }
+        })
         .then(
           response => {
             this.disciplinas = response.body;
             console.log(response.body);
           },
           response => {
-            console.log(
-              "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-                response.status
-            );
+            this.erro("buscar as disciplinas", response.status);
           }
         );
     },
 
     buscarAlunos() {
       this.$http
-        .get("Pessoas/PorTipoNome", {
-          params: { nome: this.alunoBusca, tipo: 5 }
+        .get("Pessoas/PorTipoNome/ADM", {
+          params: { nome: this.alunoBusca, tipo: 5, instituicao: this.instituicao }
         })
         .then(
           response => {
             this.alunos = response.body;
-            console.log(response.body);
           },
           response => {
-            console.log(
-              "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-                response.status
-            );
+            this.erro("buscar os alunos", response.status);
           }
         );
     },
@@ -466,7 +485,7 @@ export default {
               this.listarAlunosMatriculados(), (this.alunos = []);
             },
             response => {
-              this.erro("Dados Evento", response.status);
+              this.erro("criar turma", response.status);
             }
           );
         } else if (
@@ -541,10 +560,7 @@ export default {
         type: "error"
       }),
         console.log(
-          "ERRO ao atualizar " +
-            msg +
-            "! Código de resposta (HTTP) do servidor: " +
-            code
+          "ERRO ao " + msg + "! Código de resposta (HTTP) do servidor: " + code
         );
     }
   }
