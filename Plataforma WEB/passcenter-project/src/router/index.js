@@ -9,21 +9,13 @@ import GerenteCadastro from '@/components/gerenteCadastro/DashBoardGerenteCadast
 import GerenteGeral from '@/components/gerenteGeral/DashBoardGerenteGeral.vue'
 import Professor from '@/components/professor/DashBoardProfessor.vue'
 
-//Gerente Geral
-import AlunoGeral from '@/components/gerentes/AlunosGeral.vue'
-import DisciplinasGeral from '@/components/gerentes/DisciplinasGeral.vue'
-import Financeiro from '@/components/gerenteGeral/Financeiro.vue'
+//Compartilhado pelos Gerentes
+import AlunosGeral from '@/components/gerentes/AlunosGeral.vue'
 import ProfessoresGeral from '@/components/gerentes/ProfessoresGeral.vue'
-import Totens from '@/components/gerenteGeral/Totens.vue'
+import DisciplinasGeral from '@/components/gerentes/DisciplinasGeral.vue'
 import TurmasGeral from '@/components/gerentes/TurmasGeral.vue'
 
-//Cadastro
-import GerenteCadastroProfessores from '@/components/gerentes/ProfessoresGeral.vue'
-import GerenteCadastroTurma from '@/components/gerentes/TurmasGeral.vue'
-import GerenteCadastroMateria from '@/components/gerentes/DisciplinasGeral.vue'
-import FormularioAluno from '@/components/gerentes/AlunosGeral.vue'
-
-//Geral
+//Compartilhado por todos os componentes
 import Login from '@/components/geral/Login.vue'
 import RedefinirSenha from '@/components/geral/RedefinirSenha.vue'
 import EsqueciMinhaSenha from '@/components/geral/EsqueciMinhaSenha.vue'
@@ -39,6 +31,11 @@ import MinhasDisciplinas from '@/components/professor/MinhasDisciplinas.vue'
 import ListaManual from '@/components/professor/ListaManual.vue'
 import HistoricoCompletoProfessor from '@/components/professor/HistoricoCompletoProfessor.vue'
 
+//Gerente Geral
+import Financeiro from '@/components/gerenteGeral/Financeiro.vue'
+import Totens from '@/components/gerenteGeral/Totens.vue'
+import GerentesGerais from '@/components/gerenteGeral/GerentesGerais.vue'
+import GerentesCadastro from '@/components/gerenteGeral/GerentesCadastro.vue'
 
 //Administrador
 import AlunosADM from '@/components/administrador/AlunosADM.vue'
@@ -182,53 +179,17 @@ const rotas = new Router({
       component: GerenteGeral,
       children: [
         {
-          path: 'MinhasDisciplinas3',
-          name: 'MinhasDisciplinas3',
-          component: MinhasDisciplinas,
-          meta: {
-            breadcrumbs: [{ nome: 'Gerente Geral' },
-            { nome: 'Minhas Disciplinas' }]
-          }
-        },
-        {
-          path: 'MeusDadosGerenteGeral',
-          name: 'MeusDadosGerenteGeral',
-          component: MeusDados,
-          meta: {
-            breadcrumbs: [{ nome: 'Gerente Geral' },
-            { nome: 'Meus Dados' }]
-          }
-        },
-        {
-          path: 'AlunoGeral',
-          name: 'AlunoGeral',
-          component: AlunoGeral,
+          path: 'Alunos',
+          name: 'GerenteGeralAlunos',
+          component: AlunosGeral,
           meta: {
             breadcrumbs: [{ nome: 'Gerente Geral' },
             { nome: 'Aluno' }]
           }
         },
         {
-          path: 'DisciplinasGeral',
-          name: 'DisciplinasGeral',
-          component: DisciplinasGeral,
-          meta: {
-            breadcrumbs: [{ nome: 'Gerente Geral' },
-            { nome: 'Disciplinas' }]
-          }
-        },
-        {
-          path: 'Financeiro',
-          name: 'Financeiro',
-          component: Financeiro,
-          meta: {
-            breadcrumbs: [{ nome: 'Gerente Geral' },
-            { nome: 'Financeiro' }]
-          }
-        },
-        {
-          path: 'ProfessoresGeral',
-          name: 'ProfessoresGeral',
+          path: 'Professores',
+          name: 'GerenteGeralProfessores',
           component: ProfessoresGeral,
           meta: {
             breadcrumbs: [{ nome: 'Gerente Geral' },
@@ -236,8 +197,44 @@ const rotas = new Router({
           }
         },
         {
+          path: 'GerentesCadastro',
+          name: 'GerenteGeralGerentesCadastro',
+          component: GerentesCadastro,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+            { nome: 'Gerentes de Cadastro' }]
+          }
+        },
+        {
+          path: 'GerentesGerais',
+          name: 'GerenteGeralGerentesGerais',
+          component: GerentesGerais,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+            { nome: 'Gerentes Gerais' }]
+          }
+        },
+        {
+          path: 'Disciplinas',
+          name: 'GerenteGeralDisciplinas',
+          component: DisciplinasGeral,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+            { nome: 'Disciplinas' }]
+          }
+        },
+        {
+          path: 'Turmas',
+          name: 'GerenteGeralTurmas',
+          component: TurmasGeral,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+            { nome: 'Turmas' }]
+          }
+        },
+        {
           path: 'Totens',
-          name: 'Totens',
+          name: 'GerenteGeralTotens',
           component: Totens,
           meta: {
             breadcrumbs: [{ nome: 'Gerente Geral' },
@@ -245,12 +242,21 @@ const rotas = new Router({
           }
         },
         {
-          path: 'TurmasGeral',
-          name: 'TurmasGeral',
-          component: TurmasGeral,
+          path: 'Financeiro',
+          name: 'GerenteGeralFinanceiro',
+          component: Financeiro,
           meta: {
             breadcrumbs: [{ nome: 'Gerente Geral' },
-            { nome: 'Turmas' }]
+            { nome: 'Financeiro' }]
+          }
+        },
+        {
+          path: 'MeusDados',
+          name: 'GerenteGeralMeusDados',
+          component: MeusDados,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+            { nome: 'Meus Dados' }]
           }
         }
       ]
@@ -263,25 +269,17 @@ const rotas = new Router({
       component: GerenteCadastro,
       children: [
         {
-          path: 'MinhasDisciplinas2',
-          name: 'MinhasDisciplinas2',
-          component: MinhasDisciplinas,
+          path: 'Alunos',
+          name: 'GerenteCadastroAlunos',
+          component: AlunosGeral,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-            { nome: 'Minhas Disciplinas' }]
+            { nome: 'Alunos' },
+            ]
           }
         },
         {
-          path: 'MeusDadosGerenteCadastro',
-          name: 'MeusDadosGerenteCadastro',
-          component: MeusDados,
-          meta: {
-            breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-            { nome: 'Meus Dados' }]
-          }
-        },
-        {
-          path: 'GerenteCadastroProfessores',
+          path: 'Professores',
           name: 'GerenteCadastroProfessores',
           component: ProfessoresGeral,
           meta: {
@@ -290,36 +288,33 @@ const rotas = new Router({
           }
         },
         {
-          path: 'GerenteCadastroTurma',
-          name: 'GerenteCadastroTurma',
-          component: GerenteCadastroTurma,
+          path: 'Disciplinas',
+          name: 'GerenteCadastroDisciplinas',
+          component: DisciplinasGeral,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-
-            { nome: 'Turmas' }]
-          }
-        },
-        {
-          path: 'GerenteCadastroMateria',
-          name: 'GerenteCadastroMateria',
-          component: GerenteCadastroMateria,
-          meta: {
-            breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-
             { nome: 'Disciplinas' }]
           }
         },
         {
-          path: 'FormularioAluno',
-          name: 'FormularioAluno',
-          component: FormularioAluno,
+          path: 'Turmas',
+          name: 'GerenteCadastroTurmas',
+          component: TurmasGeral,
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
-
-            { nome: 'Alunos' },
-            ]
+            { nome: 'Turmas' }]
+          }
+        },
+        {
+          path: 'MeusDados',
+          name: 'GerenteCadastroMeusDados',
+          component: MeusDados,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente de Cadastro' },
+            { nome: 'Meus Dados' }]
           }
         }
+
 
       ]
 
