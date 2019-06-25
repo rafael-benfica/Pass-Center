@@ -397,7 +397,12 @@ const rotas = new Router({
           }
         }
       ]
-    }
+    },
+
+    {
+      path: '*',
+      component: Login
+    },
   ]
 })
 
