@@ -227,7 +227,7 @@
       </div>
     </div>
 
-    <!-- Modal Live -->
+    <!-- Modal Relatório -->
     <div id="modalRelatorio" class="modal modal-fixed-footer">
       <div class="modal-content">
         <div class="row">
@@ -271,6 +271,7 @@
         <a class="modal-close waves-effect waves-green btn-flat">Fechar</a>
       </div>
     </div>
+    
   </div>
 </template>
 
