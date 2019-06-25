@@ -177,7 +177,7 @@ namespace API_PassCenter.Models.Persistencia
             objConexao = Mapped.Connection();
 
             string sql = "SELECT * FROM eventos_auditores inner join eventos using(eve_codigo) " +
-                "where eau_periodo_identificacao = ?eau_periodo_identificacao and pes_codigo = ?pes_codigo and eau_estado = 0;";
+                "where eau_periodo_identificacao = ?eau_periodo_identificacao and pes_codigo = ?pes_codigo;";
             objCommand = Mapped.Command(sql, objConexao);
 
             objCommand.Parameters.Add(Mapped.Parameter("?eau_periodo_identificacao", identificacao));
