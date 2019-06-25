@@ -199,6 +199,44 @@ namespace API_PassCenter.Models.Persistencia
 
         }
 
+
+        public static DataSet SelectPresencasRelatorio(int eau_codigo)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "SELECT (select concat(pes_nome,' ', pes_sobrenomes) from pessoas inner join usuarios using(pes_codigo) where usu_codigo = t.usu_codigo) as 'nome', " +
+                "(select count(*) from sessoes where eau_codigo = e.eau_codigo) as 'sessoes', " +
+                 "(select count(*) from presencas inner join sessoes using(ses_codigo) inner join identificadores using(ide_codigo) where usu_codigo = t.usu_codigo and eau_codigo = e.eau_codigo) as 'presencas' " +
+                "FROM eventos_auditores e " +
+                "inner join eventos using(eve_codigo) "+
+                "inner join turmas t using(eau_codigo) "+
+                "inner join pessoas using(pes_codigo) "+
+                "where eau_codigo = ?eau_codigo and eau_estado = 1;";
+
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?eau_codigo", eau_codigo));
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
+
         public static DataSet SelectPresencasDiasFaltas(int usu_codigo, int eau_codigo)
         {
             //Imagine um DataSet como umamatriz de dados;
@@ -249,7 +287,7 @@ namespace API_PassCenter.Models.Persistencia
                 "(select count(*) from sessoes where eau_codigo = e.eau_codigo) as 'sessoes', " +
                  "(select count(*) from presencas inner join sessoes using(ses_codigo) inner join identificadores using(ide_codigo) where usu_codigo = ?usu_codigo and eau_codigo = e.eau_codigo) as 'presencas' " +
                 "FROM eventos_auditores e inner join eventos using(eve_codigo) inner join turmas using(eau_codigo) " +
-                "where eau_periodo_identificacao = ?eau_periodo_identificacao and eau_estado = 0 and usu_codigo=?usu_codigo;";
+                "where eau_periodo_identificacao = ?eau_periodo_identificacao and usu_codigo=?usu_codigo;";
 
             objCommand = Mapped.Command(sql, objConexao);
 

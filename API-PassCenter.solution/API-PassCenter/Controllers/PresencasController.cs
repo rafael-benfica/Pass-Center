@@ -169,6 +169,23 @@ namespace API_PassCenter.Controllers
 
         }
 
+
+        [HttpGet, Route("api/Presencas/Relatorio")]
+        // GET: api/Endereco
+        public IHttpActionResult GetPresencasRelatorio(int eau_codigo)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 4);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(PresencasDB.SelectPresencasRelatorio(eau_codigo).Tables[0]);
+
+        }
+
         [HttpGet, Route("api/Presencas/Participante")]
         // GET: api/Endereco
         public IHttpActionResult GetPresencas()

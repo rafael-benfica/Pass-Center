@@ -19,6 +19,9 @@
 .card-content{
     text-align: center;
 }
+.botaoVerMais{
+    margin-top: 1rem;
+}
 .historico{
     text-align: center;
     margin: 0px;
@@ -59,4 +62,8 @@
 
 .switch input[type=checkbox][disabled]:checked+.lever{
         background-color: #84c7c1;
+}
+
+.linha{
+    margin:0px; 
 }

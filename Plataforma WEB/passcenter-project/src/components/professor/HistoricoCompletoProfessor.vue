@@ -36,16 +36,37 @@
           v-for="itemDisciplinas in disciplinas"
           :key="itemDisciplinas.id"
         >
-          <div
-            class="card modal-trigger"
-            href="#modalSessoes"
-            @click="carregarSessoes(itemDisciplinas.eau_codigo); nomeHistorico = itemDisciplinas.eve_nome+' - '+ itemDisciplinas.eau_periodo_identificacao ;"
-          >
-            <div class="card-content">
+          <div class="card">
+            <div
+              class="card-content modal-trigger"
+              href="#modalSessoes"
+              @click="carregarSessoes(itemDisciplinas.eau_codigo); nomeHistorico = itemDisciplinas.eve_nome+' - '+ itemDisciplinas.eau_periodo_identificacao ;"
+            >
               <span class="card-title tituloCard">{{ itemDisciplinas.eve_nome }}</span>
               <p
                 class="turmaCard"
               >{{ itemDisciplinas.eve_sigla +" | "+ itemDisciplinas.eau_periodo_identificacao}}</p>
+            </div>
+            <div class="card-action center-align">
+              <div class="row linha" v-if="itemDisciplinas.eau_operacao">
+                <div class="col s12 m6">
+                  <a
+                    class="waves-effect waves-light btn"
+                    @click="carregarRelatorio(itemDisciplinas.eau_codigo); nomeHistorico = itemDisciplinas.eve_nome;"
+                  >Ver mais</a>
+                </div>
+                <div class="col s12 m6">
+                  <a
+                    class="waves-effect waves-light btn red"
+                    @click="modalDisciplinaAtiva(itemDisciplinas)"
+                  >Ao Vivo</a>
+                </div>
+              </div>
+              <a
+                v-else
+                class="waves-effect waves-light btn"
+                @click="carregarRelatorio(itemDisciplinas.eau_codigo); nomeHistorico = itemDisciplinas.eve_nome;"
+              >Ver mais</a>
             </div>
           </div>
         </div>
@@ -136,6 +157,51 @@
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Fechar</a>
       </div>
     </div>
+
+    <!-- Modal Relatório -->
+    <div id="modalRelatorio" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <div class="row">
+          <div class="col s12 center-align">
+            <h4>{{ nomeHistorico }}</h4>
+          </div>
+          <div class="col s12 center-align">
+            <h5>Relatório Geral</h5>
+          </div>
+        </div>
+
+        <table v-if="existeSessoes == true">
+          <thead class="centro">
+            <tr>
+              <th>Nome do Aluno</th>
+              <th>Presenças/Aulas</th>
+              <th>% Presenças/Aulas</th>
+              <th>% Faltas/Aulas</th>
+              <th>Faltas</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in relatorio" :key="item.id">
+              <td>{{ item.nome }}</td>
+              <td>{{ item.presencas + "/"+ item.sessoes }}</td>
+              <td>{{ ((item.presencas / item.sessoes)*100).toFixed(2) + "%" }}</td>
+              <td>{{ (((item.sessoes-item.presencas) / item.sessoes)*100).toFixed(2) + "%" }}</td>
+              <td>{{ item.sessoes - item.presencas }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="row center-align" v-else>
+          <div class="col s12">
+            <p>Ainda não existem dados para esta disciplina.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn-flat">Fechar</a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -151,7 +217,8 @@ export default {
       sessaoHistoricoObj: [],
       nomeHistorico: "",
       dataHistorico: "",
-      clicou: false
+      clicou: false,
+      existeSessoes: false
     };
   },
   mounted: function() {
@@ -175,6 +242,32 @@ export default {
   },
 
   methods: {
+    carregarRelatorio(eau) {
+      var modal = document.querySelector("#modalRelatorio");
+      var instance = M.Modal.init(modal, {
+        dismissible: false
+      });
+      instance.open();
+
+      this.$http
+        .get("Presencas/Relatorio", { params: { eau_codigo: eau } })
+        .then(
+          response => {
+            this.relatorio = response.body;
+
+            if (this.relatorio["0"].sessoes != 0) {
+              this.existeSessoes = true;
+            } else {
+              this.existeSessoes = false;
+            }
+
+            console.log("Obteve relatorio!");
+          },
+          response => {
+            this.erro("Disciplinas Ao vivo", response.status);
+          }
+        );
+    },
     obtemDisciplinas(periodo) {
       this.$http
         .get("EventosAuditores/DisciplinasHistorico", {

@@ -26,13 +26,15 @@
       <a href="#name"><span class="white-text name">{{ nome }}</span></a>
       <a href="#email"><span class="white-text email">ID #{{ matricula }}</span></a>
     </div></li>
-    <li><router-link :to="{ name: 'AlunoGeral' }" class=" waves-effect"><i class="icone material-icons">person</i>Alunos</router-link></li>
-    <li><router-link :to="{ name: 'ProfessoresGeral' }" class=" waves-effect"><i class="icone material-icons">supervisor_account</i>Professores</router-link></li>
-    <li><router-link :to="{ name: 'DisciplinasGeral' }" class=" waves-effect"><i class="icone material-icons">book</i>Disciplinas</router-link></li>
-    <li><router-link :to="{ name: 'TurmasGeral' }" class=" waves-effect"><i class="icone material-icons">folder_shared</i>Turmas</router-link></li>
-    <li><router-link :to="{ name: 'Totens' }" class=" waves-effect"><i class="icone material-icons">perm_device_information</i>Totens</router-link></li>
-    <li><router-link :to="{ name: 'MeusDadosGerenteGeral' }" class=" waves-effect"><i class="icone material-icons">account_circle</i>Meus dados</router-link></li>
-    <li><router-link :to="{ name: 'Financeiro' }" class=" waves-effect"><i class="icone material-icons">attach_money</i>Financeiro</router-link></li>
+    <li><router-link :to="{ name: 'GerenteGeralAlunos' }" class=" waves-effect"><i class="icone material-icons">person</i>Alunos</router-link></li>
+    <li><router-link :to="{ name: 'GerenteGeralProfessores' }" class=" waves-effect"><i class="icone material-icons">supervisor_account</i>Professores</router-link></li>
+    <li><router-link :to="{ name: 'GerenteGeralGerentesCadastro' }" class=" waves-effect"><i class="icone material-icons">supervisor_account</i>Gerentes de Cadastro</router-link></li>
+    <li><router-link :to="{ name: 'GerenteGeralGerentesGerais' }" class=" waves-effect"><i class="icone material-icons">supervisor_account</i>Gerentes Gerais</router-link></li>
+    <li><router-link :to="{ name: 'GerenteGeralDisciplinas' }" class=" waves-effect"><i class="icone material-icons">book</i>Disciplinas</router-link></li>
+    <li><router-link :to="{ name: 'GerenteGeralTurmas' }" class=" waves-effect"><i class="icone material-icons">folder_shared</i>Turmas</router-link></li>
+    <li><router-link :to="{ name: 'GerenteGeralTotens' }" class=" waves-effect"><i class="icone material-icons">perm_device_information</i>Totens</router-link></li>
+    <li><router-link :to="{ name: 'GerenteGeralFinanceiro' }" class=" waves-effect"><i class="icone material-icons">account_circle</i>Meus dados</router-link></li>
+    <li><router-link :to="{ name: 'GerenteGeralMeusDados' }" class=" waves-effect"><i class="icone material-icons">attach_money</i>Financeiro</router-link></li>
    <li class="center-align botao-sair" @click="logout()"><router-link :to="{ name: 'Login' }" class="waves-effect waves-light btn red darken-4">Sair</router-link></li>
   </ul>
 
