@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`instituicoes` (
   `ins_cnpj` VARCHAR(50) NOT NULL,
   `ins_estado` TINYINT NOT NULL,
   `ins_periodo_renovacao_dias` INT NOT NULL,
+  `ins_telefone` VARCHAR(45) NOT NULL,
   `end_codigo` INT NOT NULL,
   PRIMARY KEY (`ins_codigo`),
   UNIQUE INDEX `razao_social_UNIQUE` (`ins_razao_social` ASC) VISIBLE,

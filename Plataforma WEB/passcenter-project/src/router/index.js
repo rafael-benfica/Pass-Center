@@ -45,7 +45,7 @@ import InstituicoesADM from '@/components/administrador/InstituicoesADM.vue'
 import ProfessoresADM from '@/components/administrador/ProfessoresADM.vue'
 import GerentesCadastroADM from '@/components/administrador/GerentesCadastroADM.vue'
 import GerentesGeraisADM from '@/components/administrador/GerentesGeraisADM.vue'
-import TotensADM from '@/components/gerenteGeral/Totens.vue'
+import TotensADM from '@/components/administrador/TotensADM.vue'
 import TurmasADM from '@/components/administrador/TurmasADM.vue'
 
 

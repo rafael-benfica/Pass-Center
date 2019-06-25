@@ -11,8 +11,8 @@ INSERT INTO tipos_usuarios (`tus_titulo`) VALUES ('Aluno');
 -- Inserindo Instituição
 INSERT INTO enderecos(end_logradouro, end_numero, end_bairro, end_municipio, end_cep, end_estado, end_complemento, end_pais)
 VALUES('Av. Prof. João Rodrigues', '1501', 'Jardim Esperança', 'Guaratinguetá', '12518150', 'SP', 'complemento', 'Brasil');
-INSERT INTO instituicoes(ins_nome_fantasia, ins_razao_social, ins_inscricao_estadual, ins_cnpj, ins_estado, ins_periodo_renovacao_dias, end_codigo)
-VALUES('FATEC Guaratinguetá', 'Faculdade de Tecnologia Estadual de Guaratinguetá', '000.000.000.000', '00.000.000-0000-00', '1', '30', '1');
+INSERT INTO instituicoes(ins_nome_fantasia, ins_razao_social, ins_inscricao_estadual, ins_cnpj, ins_estado, ins_periodo_renovacao_dias, ins_telefone, end_codigo)
+VALUES('FATEC Guaratinguetá', 'Faculdade de Tecnologia Estadual de Guaratinguetá', '000.000.000.000', '00.000.000-0000-00', '1', '30', '(12) 3126-2643', '1');
 
 
 -- Inserindo Tipos de Identificadores

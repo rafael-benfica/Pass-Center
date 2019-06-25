@@ -13,17 +13,44 @@ namespace API_PassCenter.Controllers {
 
         [HttpPost, Route("api/Instituicoes")]
         // POST: api/Instituicoes
-        public IHttpActionResult Post([FromBody]Instituicoes instituicoes) {
+        public IHttpActionResult Post([FromBody]Instituicoes instituicoes)
+        {
 
-            if (autenticar.autenticacao(Request, 1) == null) {
+            if (autenticar.autenticacao(Request, 1) == null)
+            {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
             int retorno = InstituicoesDB.Insert(instituicoes);
 
-            if (retorno == -2) {
+            if (retorno == -2)
+            {
                 return BadRequest();
-            } else {
+            }
+            else
+            {
+                return Ok(retorno);
+            }
+        }
+
+        [HttpPut, Route("api/Instituicoes")]
+        // POST: api/Instituicoes
+        public IHttpActionResult Put([FromBody]Instituicoes instituicoes)
+        {
+
+            if (autenticar.autenticacao(Request, 1) == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            int retorno = InstituicoesDB.Update(instituicoes);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
                 return Ok(retorno);
             }
         }
@@ -42,6 +69,21 @@ namespace API_PassCenter.Controllers {
             }
 
             return Ok(InstituicoesDB.Select().Tables[0]);
+        }
+
+        [HttpGet, Route("api/Instituicoes/Endereco")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetInstituicaoEndereco()
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 1);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(InstituicoesDB.SelectInstituicaoEndereco().Tables[0]);
         }
 
     }
