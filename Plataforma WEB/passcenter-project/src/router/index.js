@@ -81,7 +81,7 @@ const rotas = new Router({
       component: Administrador,
       children: [
         {
-          path: 'AlunosADM',
+          path: 'Alunos',
           name: 'AlunosADM',
           component: AlunosADM,
           meta: {
@@ -90,12 +90,75 @@ const rotas = new Router({
           }
         },
         {
-          path: 'DisciplinasADM',
+          path: 'Professores',
+          name: 'ProfessoresADM',
+          component: ProfessoresADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+            { nome: 'Professores' }]
+          }
+        },
+        {
+          path: 'GerentesCadastro',
+          name: 'GerentesCadastroADM',
+          component: GerentesCadastroADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+            { nome: 'Gerentes de Cadastro' }]
+          }
+        },
+        {
+          path: 'GerentesGerais',
+          name: 'GerentesGeraisADM',
+          component: GerentesGeraisADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+            { nome: 'Gerentes Gerais' }]
+          }
+        },
+        {
+          path: 'Disciplinas',
           name: 'DisciplinasADM',
           component: DisciplinasADM,
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
             { nome: 'Disciplinas' }]
+          }
+        },
+        {
+          path: 'Turmas',
+          name: 'TurmasADM',
+          component: TurmasADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+            { nome: 'Turmas' }]
+          }
+        },
+        {
+          path: 'Totens',
+          name: 'TotensADM',
+          component: TotensADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+            { nome: 'Totens' }]
+          }
+        },
+        {
+          path: 'Financeiro',
+          name: 'FinanceiroADM',
+          component: FinanceiroADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+            { nome: 'Financeiro' }]
+          }
+        },
+        {
+          path: 'Instituicoes',
+          name: 'InstituicoesADM',
+          component: InstituicoesADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+            { nome: 'Instituições' }]
           }
         },
         {
@@ -105,69 +168,6 @@ const rotas = new Router({
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
             { nome: 'Meus Dados' }]
-          }
-        },
-        {
-          path: 'FinanceiroADM',
-          name: 'FinanceiroADM',
-          component: FinanceiroADM,
-          meta: {
-            breadcrumbs: [{ nome: 'Administrador' },
-            { nome: 'Financeiro' }]
-          }
-        },
-        {
-          path: 'InstituicoesADM',
-          name: 'InstituicoesADM',
-          component: InstituicoesADM,
-          meta: {
-            breadcrumbs: [{ nome: 'Administrador' },
-            { nome: 'Instituições' }]
-          }
-        },
-        {
-          path: 'ProfessoresADM',
-          name: 'ProfessoresADM',
-          component: ProfessoresADM,
-          meta: {
-            breadcrumbs: [{ nome: 'Administrador' },
-            { nome: 'Professores' }]
-          }
-        },
-        {
-          path: 'GerentesCadastroADM',
-          name: 'GerentesCadastroADM',
-          component: GerentesCadastroADM,
-          meta: {
-            breadcrumbs: [{ nome: 'Administrador' },
-            { nome: 'Gerentes de Cadastro' }]
-          }
-        },
-        {
-          path: 'GerentesGeraisADM',
-          name: 'GerentesGeraisADM',
-          component: GerentesGeraisADM,
-          meta: {
-            breadcrumbs: [{ nome: 'Administrador' },
-            { nome: 'Gerentes Gerais' }]
-          }
-        },
-        {
-          path: 'TotensADM',
-          name: 'TotensADM',
-          component: TotensADM,
-          meta: {
-            breadcrumbs: [{ nome: 'Administrador' },
-            { nome: 'Totens' }]
-          }
-        },
-        {
-          path: 'TurmasADM',
-          name: 'TurmasADM',
-          component: TurmasADM,
-          meta: {
-            breadcrumbs: [{ nome: 'Administrador' },
-            { nome: 'Turmas' }]
           }
         }
       ]
@@ -326,21 +326,12 @@ const rotas = new Router({
       component: Professor,
       children: [
         {
-          path: 'MinhasDisciplinasProfessor',
+          path: 'MinhasDisciplinas',
           name: 'MinhasDisciplinasProfessor',
           component: MinhasDisciplinas,
           meta: {
             breadcrumbs: [{ nome: 'Professor' },
             { nome: 'Minhas Disciplinas' }]
-          }
-        },
-        {
-          path: 'MeusDados',
-          name: 'MeusDadosProfessor',
-          component: MeusDados,
-          meta: {
-            breadcrumbs: [{ nome: 'Professor' },
-            { nome: 'Meus Dados' }]
           }
         },
         {
@@ -359,6 +350,15 @@ const rotas = new Router({
           meta: {
             breadcrumbs: [{ nome: 'Professor' },
             { nome: 'Histórico Completo' }]
+          }
+        },
+        {
+          path: 'MeusDados',
+          name: 'MeusDadosProfessor',
+          component: MeusDados,
+          meta: {
+            breadcrumbs: [{ nome: 'Professor' },
+            { nome: 'Meus Dados' }]
           }
         }
       ]
@@ -379,21 +379,21 @@ const rotas = new Router({
           }
         },
         {
+          path: 'HistoricoCompleto',
+          name: 'HistoricoCompletoAluno',
+          component: HistoricoCompletoAluno,
+          meta: {
+            breadcrumbs: [{ nome: 'Aluno' },
+            { nome: 'Histórico Completo' }]
+          }
+        },
+        {
           path: 'MeusDados',
           name: 'MeusDadosAluno',
           component: MeusDados,
           meta: {
             breadcrumbs: [{ nome: 'Aluno' },
             { nome: 'Meus Dados' }]
-          }
-        },
-        {
-          path: 'HistoricoCompletoAluno',
-          name: 'HistoricoCompletoAluno',
-          component: HistoricoCompletoAluno,
-          meta: {
-            breadcrumbs: [{ nome: 'Aluno' },
-            { nome: 'Histórico Completo' }]
           }
         }
       ]
