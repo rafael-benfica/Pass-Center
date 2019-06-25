@@ -399,6 +399,7 @@ const rotas = new Router({
       ]
     },
 
+    //Rota Padrão (404)
     {
       path: '*',
       component: Login
