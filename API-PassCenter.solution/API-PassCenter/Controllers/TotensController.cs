@@ -64,6 +64,33 @@ namespace API_PassCenter.Controllers
         public IHttpActionResult Put([FromBody]Totens totens)
         {
 
+            if (autenticar.autenticacao(Request, 2) == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            Totens tot = new Totens();
+
+            tot.Tot_codigo = totens.Tot_codigo;
+            tot.Tot_nome = totens.Tot_nome;
+
+            int retorno = TotensDB.Update(tot);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(retorno);
+            }
+        }
+
+        [HttpPut, Route("api/Totens/ADM")]
+        // POST: api/Instituicoes
+        public IHttpActionResult PutADM([FromBody]Totens totens)
+        {
+
             if (autenticar.autenticacao(Request, 1) == null)
             {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
@@ -76,7 +103,7 @@ namespace API_PassCenter.Controllers
             tot.Tot_numero_serie = totens.Tot_numero_serie;
             tot.Ins_codigo = totens.Ins_codigo;
 
-            int retorno = TotensDB.Update(tot);
+            int retorno = TotensDB.UpdateADM(tot);
 
             if (retorno == -2)
             {

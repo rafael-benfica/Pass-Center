@@ -41,11 +41,7 @@
           <i class="icone material-icons">view_comfy</i>Minhas Disciplinas
         </router-link>
       </li>
-      <li>
-        <router-link :to="{ name: 'MeusDadosProfessor' }" class="waves-effect">
-          <i class="icone material-icons">account_circle</i>Meus Dados
-        </router-link>
-      </li>
+
       <li>
         <router-link :to="{ name: 'ListaManual' }" class="waves-effect">
           <i class="icone material-icons">rate_review</i>Lista de Presença Manual
@@ -54,6 +50,11 @@
       <li>
         <router-link :to="{ name: 'HistoricoCompletoProfessor' }" class="waves-effect">
           <i class="icone material-icons">chrome_reader_mode</i>Histórico Completo
+        </router-link>
+      </li>
+      <li>
+        <router-link :to="{ name: 'MeusDadosProfessor' }" class="waves-effect">
+          <i class="icone material-icons">account_circle</i>Meus Dados
         </router-link>
       </li>
       <li class="center-align botao-sair" @click="logout()">

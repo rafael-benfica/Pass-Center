@@ -4,7 +4,6 @@
       <div class="row topo">
         <div class="col s12 m12 l12">
           <h3 class="col s12 m12 l12 centro">Lista de Gerentes Gerais</h3>
-
           <table>
             <thead class="centro">
               <tr>

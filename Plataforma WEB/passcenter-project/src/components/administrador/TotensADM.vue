@@ -205,7 +205,7 @@ export default {
             }
           };
 
-          this.$http.post("totens", dadosTotem).then(
+          this.$http.post("Totens", dadosTotem).then(
             response => {
               this.carregarDados();
               swalWithBootstrapButtons(
@@ -255,7 +255,7 @@ export default {
             }
           };
 
-                  this.$http.put("totens", dadosTotem).then(
+                  this.$http.put("Totens/ADM", dadosTotem).then(
                     response => {
                       this.carregarDados();
                       swalWithBootstrapButtons(

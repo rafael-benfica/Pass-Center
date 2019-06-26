@@ -73,6 +73,31 @@ namespace API_PassCenter.Models.Persistencia {
             {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
+                string sql = "UPDATE totens SET tot_nome=?tot_nome WHERE tot_codigo = ?tot_codigo;";
+                objConexao = Mapped.Connection();
+                objCommand = Mapped.Command(sql, objConexao);
+                objCommand.Parameters.Add(Mapped.Parameter("?tot_codigo", totens.Tot_codigo));
+                objCommand.Parameters.Add(Mapped.Parameter("?tot_nome", totens.Tot_nome));
+
+                retorno = Convert.ToInt32(objCommand.ExecuteScalar());
+
+                objConexao.Close();
+                objCommand.Dispose();
+                objConexao.Dispose();
+            }
+            catch (Exception e)
+            {
+                retorno = -2;
+            }
+            return retorno;
+        }
+        public static int UpdateADM(Totens totens)
+        {
+            int retorno = 0;
+            try
+            {
+                IDbConnection objConexao; // Abre a conexao
+                IDbCommand objCommand; // Cria o comando
                 string sql = "UPDATE totens SET tot_nome=?tot_nome, tot_numero_serie=?tot_numero_serie, ins_codigo=?ins_codigo WHERE tot_codigo = ?tot_codigo;";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
