@@ -33,8 +33,8 @@
     <li><router-link :to="{ name: 'GerenteGeralDisciplinas' }" class=" waves-effect"><i class="icone material-icons">book</i>Disciplinas</router-link></li>
     <li><router-link :to="{ name: 'GerenteGeralTurmas' }" class=" waves-effect"><i class="icone material-icons">folder_shared</i>Turmas</router-link></li>
     <li><router-link :to="{ name: 'GerenteGeralTotens' }" class=" waves-effect"><i class="icone material-icons">perm_device_information</i>Totens</router-link></li>
-    <li><router-link :to="{ name: 'GerenteGeralFinanceiro' }" class=" waves-effect"><i class="icone material-icons">account_circle</i>Meus dados</router-link></li>
-    <li><router-link :to="{ name: 'GerenteGeralMeusDados' }" class=" waves-effect"><i class="icone material-icons">attach_money</i>Financeiro</router-link></li>
+    <li><router-link :to="{ name: 'GerenteGeralMeusDados' }" class=" waves-effect"><i class="icone material-icons">account_circle</i>Meus dados</router-link></li>
+    <li><router-link :to="{ name: 'GerenteGeralFinanceiro' }" class=" waves-effect"><i class="icone material-icons">attach_money</i>Financeiro</router-link></li>
    <li class="center-align botao-sair" @click="logout()"><router-link :to="{ name: 'Login' }" class="waves-effect waves-light btn red darken-4">Sair</router-link></li>
   </ul>
 
