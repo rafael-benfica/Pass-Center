@@ -1,6 +1,10 @@
 <template>
 	<div>
+		
 		<div class="row area-exibicao">
+			<div class="col s1 offset-s11">
+			<a onclick="M.toast({html: 'Aqui é onde as disciplinas são listadas e cadastradas.'})" class="btn-floating"><i class="material-icons">help_outline</i></a>
+			  </div>
 			<div class="col s12 m4 l4 espacamento" v-for="item in disciplinas" :key="item.id">
 				<div class="card">
 					<div class="card-content">

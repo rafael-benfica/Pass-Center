@@ -390,7 +390,7 @@
 
   M.updateTextFields();
   $("select").formSelect();
-  <a onclick="M.toast({html: 'Aqui é onde os alunos são listados e cadastrados.'})" class="btn">Toast!</a>
+  
   });
   this.carregarDados();
   },
