@@ -77,6 +77,32 @@ namespace API_PassCenter.Models.Persistencia
             return retorno;
         }
 
+        public static int UpdateAtivarDesativar(Instituicoes instituicoes)
+        {
+            int retorno = 0;
+            try
+            {
+                IDbConnection objConexao; // Abre a conexao
+                IDbCommand objCommand; // Cria o comando
+                string sql = "UPDATE instituicoes set ins_estado = ?ins_estado WHERE ins_codigo = ?ins_codigo;";
+                objConexao = Mapped.Connection();
+                objCommand = Mapped.Command(sql, objConexao);
+                objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", instituicoes.Ins_codigo));
+                objCommand.Parameters.Add(Mapped.Parameter("?ins_estado", instituicoes.Ins_estado));
+
+                retorno = Convert.ToInt32(objCommand.ExecuteScalar());
+
+                objConexao.Close();
+                objCommand.Dispose();
+                objConexao.Dispose();
+            }
+            catch (Exception e)
+            {
+                retorno = -2;
+            }
+            return retorno;
+        }
+
 
         public static DataSet Select()
         {
@@ -90,7 +116,7 @@ namespace API_PassCenter.Models.Persistencia
 
             objConexao = Mapped.Connection();
 
-            string sql = "select * from instituicoes";
+            string sql = "select * from instituicoes where ins_codigo != 1;";
             objCommand = Mapped.Command(sql, objConexao);
 
 
@@ -117,7 +143,7 @@ namespace API_PassCenter.Models.Persistencia
 
             objConexao = Mapped.Connection();
 
-            string sql = "select * from instituicoes inner join enderecos using(end_codigo)";
+            string sql = "select * from instituicoes inner join enderecos using(end_codigo) where ins_codigo != 1;";
             objCommand = Mapped.Command(sql, objConexao);
 
 

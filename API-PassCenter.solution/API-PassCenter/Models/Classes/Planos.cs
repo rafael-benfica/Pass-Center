@@ -11,5 +11,6 @@ namespace API_PassCenter.Models.Classes {
         public double Pla_preco_totens { get; set; }
         public double Pla_preco_tags { get; set; }
         public bool Pla_estado { get; set; }
+        public Instituicoes Ins_codigo { get; set; }
     }
 }

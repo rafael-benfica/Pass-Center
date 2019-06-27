@@ -410,7 +410,7 @@ export default {
   },
   methods: {
     carregarDados() {
-      this.$http.get("Usuario/porTipo/ADM", { params: { tipo: 5 } }).then(
+      this.$http.get("Usuarios/porTipo/ADM", { params: { tipo: 5 } }).then(
         response => {
           this.alunos = response.body;
         },

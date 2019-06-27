@@ -12,6 +12,7 @@
                 <th>C.N.PJ.</th>
                 <th>I.E.</th>
                 <th>Telefone</th>
+                <th>Ação</th>
                 <th></th>
               </tr>
             </thead>
@@ -21,6 +22,18 @@
                 <td>{{ item.ins_cnpj }}</td>
                 <td>{{ item.ins_inscricao_estadual }}</td>
                 <td>{{ item.ins_telefone }}</td>
+                <td v-if="item.ins_estado">
+                  <a
+                    class="waves-effect waves-light btn red"
+                    @click="ativarDesativar(item.ins_codigo, false)"
+                  >Desativar</a>
+                </td>
+                <td v-else>
+                  <a
+                    class="waves-effect waves-light btn green"
+                    @click="ativarDesativar(item.ins_codigo, true)"
+                  >Ativar</a>
+                </td>
                 <td>
                   <a class="waves-effect waves-light btn modal-trigger" href="#modalVer">ver</a>
                 </td>
@@ -301,7 +314,7 @@ export default {
   data() {
     return {
       instituicoes: [],
-      instituicao:"",
+      instituicao: "",
       endereco_codigo: "",
       nomeFantasia: "",
       razaoSocial: "",
@@ -329,6 +342,61 @@ export default {
     this.carregarDados();
   },
   methods: {
+    ativarDesativar(ins, tipo) {
+      const swalWithBootstrapButtons = swal.mixin({
+        confirmButtonClass: "btn green sepraracaoBotoes",
+        cancelButtonClass: "btn red sepraracaoBotoes",
+        buttonsStyling: false
+      });
+
+      swalWithBootstrapButtons({
+        title: "Você tem certeza?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sim, faça!",
+        cancelButtonText: "Não, cancele!",
+        reverseButtons: true
+      }).then(result => {
+        if (result.value) {
+          var dodosInstituicao = {
+            ins_codigo: ins,
+            ins_estado: false
+          };
+
+          if (tipo) {
+            dodosInstituicao = {
+              ins_codigo: ins,
+              ins_estado: true
+            };
+          }
+
+          this.$http.put("Instituicoes/ativarDesativar", dodosInstituicao).then(
+            response => {
+              this.carregarDados();
+              swalWithBootstrapButtons(
+                "Alterado!",
+                "As alterações foram salvas.",
+                "success"
+              );
+            },
+            response => {
+              this.erro("Ativar ou Desativar uma instituição", response.status);
+            }
+          );
+        } else if (
+          // Read more about handling dismissals
+          result.dismiss === swal.DismissReason.cancel
+        ) {
+          this.carregarDados();
+          swalWithBootstrapButtons(
+            "Cancelado!",
+            "Alterações não enviadas!",
+            "error"
+          );
+        }
+      });
+    },
+
     carregarDados() {
       this.$http.get("Instituicoes/Endereco").then(
         response => {
@@ -495,7 +563,7 @@ export default {
                 ins_inscricao_estadual: this.IE,
                 ins_telefone: this.telefone,
                 ins_periodo_renovacao_dias: this.recorrencia,
-                end_codigo:{
+                end_codigo: {
                   end_codigo: response.body
                 }
               };
@@ -540,7 +608,7 @@ export default {
       }),
         console.log(
           "ERRO em " + msg + "! Código de resposta (HTTP) do servidor: " + code
-        )
+        );
     }
   }
 };

@@ -33,6 +33,7 @@
         <li><router-link :to="{ name: 'DisciplinasADM' }" class=" waves-effect"><i class="icone material-icons">book</i>Disciplinas</router-link></li>
         <li><router-link :to="{ name: 'TurmasADM' }" class=" waves-effect"><i class="icone material-icons">folder_shared</i>Turmas</router-link></li>
         <li><router-link :to="{ name: 'TotensADM' }" class=" waves-effect"><i class="icone material-icons">perm_device_information</i>Totens</router-link></li>
+        <li><router-link :to="{ name: 'PlanosADM' }" class=" waves-effect"><i class="icone material-icons">attach_money</i>Planos</router-link></li>
         <li><router-link :to="{ name: 'FinanceiroADM' }" class=" waves-effect"><i class="icone material-icons">attach_money</i>Financeiro</router-link></li>
         <li><router-link :to="{ name: 'InstituicoesADM' }" class=" waves-effect"><i class="icone material-icons">domain</i>Instituições</router-link></li>
         <li><router-link :to="{ name: 'MeusDadosAdministrador' }" class=" waves-effect"><i class="icone material-icons">account_circle</i>Meus dados</router-link></li>

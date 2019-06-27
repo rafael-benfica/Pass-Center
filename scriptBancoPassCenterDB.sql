@@ -404,11 +404,11 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`planos` (
   `pla_preco_totens` DOUBLE NOT NULL,
   `pla_preco_tags` DOUBLE NOT NULL,
   `pla_estado` TINYINT NOT NULL,
-  `instituicoes_ins_codigo` INT NOT NULL,
+  `ins_codigo` INT NOT NULL,
   PRIMARY KEY (`pla_codigo`),
-  INDEX `fk_planos_instituicoes1_idx` (`instituicoes_ins_codigo` ASC) VISIBLE,
+  INDEX `fk_planos_instituicoes1_idx` (`ins_codigo` ASC) VISIBLE,
   CONSTRAINT `fk_planos_instituicoes1`
-    FOREIGN KEY (`instituicoes_ins_codigo`)
+    FOREIGN KEY (`ins_codigo`)
     REFERENCES `PassCenter`.`instituicoes` (`ins_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

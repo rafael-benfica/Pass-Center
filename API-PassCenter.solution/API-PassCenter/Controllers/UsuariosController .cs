@@ -329,7 +329,7 @@ namespace API_PassCenter.Controllers
             return Ok(UsusariosDB.SelectByType(tipo, Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
         }
 
-        [HttpGet, Route("api/Usuario/porTipo/ADM")]
+        [HttpGet, Route("api/Usuarios/porTipo/ADM")]
         public IHttpActionResult selectPorTipoADM(int tipo)
         {
 

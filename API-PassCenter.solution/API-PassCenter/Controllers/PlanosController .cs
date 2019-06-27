@@ -18,15 +18,7 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
-            Planos pla = new Planos();
-
-            pla.Pla_qtd_totens = planos.Pla_qtd_totens;
-            pla.Pla_qtd_tags = planos.Pla_qtd_tags;
-            pla.Pla_preco_totens = planos.Pla_preco_totens;
-            pla.Pla_preco_tags = planos.Pla_preco_tags;
-            pla.Pla_estado = pla.Pla_estado;
-
-            int retorno = PlanosDB.Insert(pla);
+            int retorno = PlanosDB.Insert(planos);
 
             if (retorno == -2) {
                 return BadRequest();
@@ -35,5 +27,45 @@ namespace API_PassCenter.Controllers {
             }
 
         }
+
+
+        [HttpGet, Route("api/Planos")]
+        // GET: api/Instituicoes
+        public IHttpActionResult Get()
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 1);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(PlanosDB.Select().Tables[0]);
+        }
+
+        [HttpPut, Route("api/Planos")]
+        // POST: api/Instituicoes
+        public IHttpActionResult PutAtivar([FromBody]Planos planos)
+        {
+
+            if (autenticar.autenticacao(Request, 1) == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            int retorno = PlanosDB.UpdateAtivar(planos);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(retorno);
+            }
+        }
+
+
     }
 }

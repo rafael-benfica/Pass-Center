@@ -410,7 +410,7 @@ export default {
   },
   methods: {
     carregarDados() {
-      this.$http.get("Usuarios/porTipo", { params: { tipo: 3 } }).then(
+      this.$http.get("Usuarios/porTipo/ADM", { params: { tipo: 2 } }).then(
         response => {
           this.gerentes = response.body;
         },
@@ -790,7 +790,7 @@ export default {
                       pes_codigo: response.body
                     },
                     tus_codigo: {
-                      tus_codigo: 3
+                      tus_codigo: 2
                     }
                   };
 

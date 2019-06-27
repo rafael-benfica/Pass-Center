@@ -55,6 +55,27 @@ namespace API_PassCenter.Controllers {
             }
         }
 
+        [HttpPut, Route("api/Instituicoes/ativarDesativar")]
+        // POST: api/Instituicoes
+        public IHttpActionResult PutAtivarDesativar([FromBody]Instituicoes instituicoes)
+        {
+
+            if (autenticar.autenticacao(Request, 1) == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            int retorno = InstituicoesDB.UpdateAtivarDesativar(instituicoes);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(retorno);
+            }
+        }
 
         [HttpGet, Route("api/Instituicoes")]
         // GET: api/Instituicoes
@@ -70,6 +91,7 @@ namespace API_PassCenter.Controllers {
 
             return Ok(InstituicoesDB.Select().Tables[0]);
         }
+
 
         [HttpGet, Route("api/Instituicoes/Endereco")]
         // GET: api/Instituicoes

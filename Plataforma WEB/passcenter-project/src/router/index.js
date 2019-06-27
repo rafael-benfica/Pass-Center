@@ -40,7 +40,8 @@ import GerentesCadastro from '@/components/gerenteGeral/GerentesCadastro.vue'
 //Administrador
 import AlunosADM from '@/components/administrador/AlunosADM.vue'
 import DisciplinasADM from '@/components/administrador/DisciplinasADM.vue'
-import FinanceiroADM from '@/components/gerenteGeral/Financeiro.vue'
+import PlanosADM from '@/components/administrador/PlanosADM.vue'
+import FinanceiroADM from '@/components/administrador/FinanceiroADM.vue'
 import InstituicoesADM from '@/components/administrador/InstituicoesADM.vue'
 import ProfessoresADM from '@/components/administrador/ProfessoresADM.vue'
 import GerentesCadastroADM from '@/components/administrador/GerentesCadastroADM.vue'
@@ -141,6 +142,15 @@ const rotas = new Router({
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
             { nome: 'Totens' }]
+          }
+        },
+        {
+          path: 'Planos',
+          name: 'PlanosADM',
+          component: PlanosADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+            { nome: 'Planos' }]
           }
         },
         {
