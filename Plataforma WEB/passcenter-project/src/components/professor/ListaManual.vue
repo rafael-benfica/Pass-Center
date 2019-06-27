@@ -1,9 +1,6 @@
 <template>
   <div>
     <div class="row area-exibicao">
-      <div class="col s1 offset-s11">
-			<a onclick="M.toast({html: 'Aqui é onde se cria chamadas manuais para a disciplina selecionada.'})" class="btn-floating"><i class="material-icons">help_outline</i></a>
-			  </div>
       <!-- Etapa 01 -->
       <div v-if="etapa==1">
         <div class="col s12 m4 l4 espacamento" v-for="item in disciplinas" :key="item.id">
