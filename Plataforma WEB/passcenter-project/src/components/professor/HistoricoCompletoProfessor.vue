@@ -5,9 +5,12 @@
         <div class="row">
           <div class="col offset-m1 m10 s12">
             <div class="row">
-              <div class="col s12 m12 l12">
-                <h3 class="center-align">Qual Período você deseja buscar?</h3>
-              </div>
+            <h3 class="col s11 m11 l11 center">Qual Período você deseja buscar?</h3>
+            <div class="helpButton col s1 right-align">
+              <a onclick="M.toast({html: 'Aqui é onde se seleciona o periodo para seu historico completo.'})" class="btn-floating">
+                <i class="icone material-icons">help_outline</i>
+                </a>
+                </div>
             </div>
 
             <div class="row">
