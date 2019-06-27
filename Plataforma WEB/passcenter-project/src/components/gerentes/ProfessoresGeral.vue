@@ -3,7 +3,15 @@
     <form class="col s12 card data2" onsubmit="return false">
       <div class="row topo">
         <div class="col s12 m12 l12">
-          <h3 class="col s12 m12 l12 centro">Lista de Professores</h3>
+          <div class="row topo">
+
+            <h3 class="col s8 m8 l8 right-align">Lista de Professores</h3>
+            <div class="helpButton col s4 right-align">
+              <a onclick="M.toast({html: 'Aqui é onde os professores são listados e cadastrados.'})" class="btn-floating">
+                <i class="icone material-icons">help_outline</i>
+              </a>
+            </div>
+          </div>
 
           <table>
             <thead class="centro">
