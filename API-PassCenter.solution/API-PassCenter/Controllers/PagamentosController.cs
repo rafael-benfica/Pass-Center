@@ -14,19 +14,16 @@ namespace API_PassCenter.Controllers {
         // POST: api/Endereco
         public IHttpActionResult Pagamentos([FromBody]Pagamentos pagamentos) {
 
-            if (autenticar.autenticacao(Request, 2) == null) {
+            if (autenticar.autenticacao(Request, 1) == null) {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
-            Pagamentos pag = new Pagamentos();
+            Planos pla = new Planos();
+            pla.Pla_codigo = Convert.ToInt32(PlanosDB.SelectAtivo(pagamentos.Ins_codigo.Ins_codigo).Tables[0].Rows[0]["pla_codigo"]);
 
-            pag.Pag_data_criacao = pagamentos.Pag_data_criacao;
-            pag.Pag_data_vencimento = pagamentos.Pag_data_vencimento;
-            pag.Pag_data_pagamento = pagamentos.Pag_data_pagamento;
-            pag.Ins_codigo = pagamentos.Ins_codigo;
-            pag.Pla_codigo = pagamentos.Pla_codigo;
+            pagamentos.Pla_codigo = pla;
 
-            int retorno = PagamentosDB.Insert(pag);
+            int retorno = PagamentosDB.Insert(pagamentos);
 
             if (retorno == -2) {
                 return BadRequest();
@@ -36,9 +33,25 @@ namespace API_PassCenter.Controllers {
 
         }
 
+
         [HttpGet, Route("api/Pagamentos")]
         // GET: api/Instituicoes
         public IHttpActionResult Get()
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 2);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(PagamentosDB.Select(Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
+        }
+
+        [HttpGet, Route("api/Pagamentos/ADM")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetADM()
         {
 
             Indentificacao credenciais = autenticar.autenticacao(Request, 1);
@@ -48,7 +61,30 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
-            return Ok(PagamentosDB.Select().Tables[0]);
+            return Ok(PagamentosDB.SelectADM().Tables[0]);
+        }
+
+
+        [HttpPut, Route("api/Pagamentos")]
+        // POST: api/Instituicoes
+        public IHttpActionResult PutAtivar([FromBody]Pagamentos pagamentos)
+        {
+
+            if (autenticar.autenticacao(Request, 1) == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            int retorno = PagamentosDB.UpdateAtivar(pagamentos);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(retorno);
+            }
         }
     }
 }
