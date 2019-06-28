@@ -295,7 +295,6 @@ export default {
               }
             };
           }
-          console.log(dadosFinanceiro);
           this.$http.post("Pagamentos", dadosFinanceiro).then(
             response => {
               this.carregarDados();
