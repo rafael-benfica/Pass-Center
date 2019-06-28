@@ -9,30 +9,29 @@
             <thead class="centro">
               <tr>
                 <th>Nome da Instituição</th>
-                <th>Qtd. Tags</th>
-                <th>Qtd. Totens</th>
-                <th>Valor por TAG</th>
-                <th>Valor por Totem</th>
                 <th>Valor total</th>
+                <th>Data Criação</th>
+                <th>Data Vencimento</th>
+                <th>Data Pagamento</th>
                 <th>Ação</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="item in planos" :key="item.id">
                 <td>{{ item.ins_nome_fantasia}}</td>
-                <td>{{ item.pla_qtd_tags }}</td>
-                <td>{{ item.pla_qtd_totens }}</td>
-                <td>{{ "R$ "+item.pla_preco_tags }}</td>
-                <td>{{ "R$ "+item.pla_preco_totens }}</td>
                 <td>{{ "R$ "+((item.pla_qtd_tags * item.pla_preco_tags) + (item.pla_qtd_totens * item.pla_preco_totens)) }}</td>
-                <td v-if="item.pla_estado">
-                  <a class="waves-effect waves-light btn disabled">Ativo</a>
+                <td>{{ recebeData(item.pag_data_criacao) }}</td>
+                <td>{{ recebeData(item.pag_data_vencimento) }}</td>
+                <td v-if="item.pag_data_pagamento != null">{{ recebeData(item.pag_data_pagamento) }}</td>
+                <td v-else>Em aberto</td>
+                <td v-if="item.pag_data_pagamento != null">
+                  <a class="waves-effect waves-light btn disabled">Pago</a>
                 </td>
                 <td v-else>
                   <a
                     class="waves-effect waves-light btn green"
                     @click="confirmacaoUpdate(item.pla_codigo,  item.ins_codigo)"
-                  >Ativar</a>
+                  >Pago</a>
                 </td>
               </tr>
             </tbody>
@@ -50,70 +49,56 @@
               <hr>
 
               <div class="row">
-                <div class="col s12 m12 l12">
-                  <div class="input-field col s12 m4">
-                    <select v-model="instituicao">
-                      <option value disabled selected>Selecione a Instituição</option>
-                      <option
-                        :value="item.ins_codigo"
-                        v-for="item in instituicoes"
-                        :key="item.id"
-                      >{{ item.ins_nome_fantasia }}</option>
-                    </select>
-                    <label>Instituição</label>
+                <div class="col s6">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select v-model="instituicao">
+                        <option value disabled selected>Selecione a Instituição</option>
+                        <option
+                          :value="item.ins_codigo"
+                          v-for="item in instituicoes"
+                          :key="item.id"
+                        >{{ item.ins_nome_fantasia }}</option>
+                      </select>
+                      <label>Instituição</label>
+                    </div>
                   </div>
 
-                  <div class="input-field col s12 m4">
-                    <input id="qtdTags" type="number" min="0" class="validate" v-model="qtdTags">
-                    <label for="qtdTags">Qtd. TAGs:</label>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <select v-model="estado">
+                        <option value disabled selected>Selecione o Estado</option>
+                        <option value="true">Ativo</option>
+                        <option value="false">Inativo</option>
+                      </select>
+                      <label>Estado</label>
+                    </div>
                   </div>
+                </div>
 
-                  <div class="input-field col s12 m4">
-                    <input
-                      id="qtdTotens"
-                      type="number"
-                      min="0"
-                      class="validate"
-                      v-model="qtdTotens"
-                    >
-                    <label for="qtdTotens">Qtd. Totens:</label>
+              <div class="col s6 correcao">
+                <div class="row">
+                  <div class="col s12 m12 l12">
+
+                    <div class="input-field col s12 m6">
+                      <input id="qtdTags" type="date"  class="validate" v-model="qtdTags">
+                      <label for="qtdTags">Data Criação</label>
+                    </div>
+
+                    <div class="input-field col s12 m6 ">
+                      <input
+                        id="qtdTotens"
+                        type="date"
+                        class="validate"
+                        v-model="qtdTotens"
+                      >
+                      <label for="qtdTotens">Data Vencimento</label>
+                    </div>
+
+
                   </div>
                 </div>
               </div>
-
-              <div class="row">
-                <div class="col s12 m12 l12">
-                  <div class="input-field col s12 m4">
-                    <select v-model="estado">
-                      <option value disabled selected>Selecione o Estado</option>
-                      <option value="true">Ativo</option>
-                      <option value="false">Inativo</option>
-                    </select>
-                    <label>Estado</label>
-                  </div>
-
-                  <div class="input-field col s12 m4">
-                    <input
-                      id="precoTags"
-                      type="number"
-                      min="0"
-                      class="validate"
-                      v-model="precoTags"
-                    >
-                    <label for="precoTags">PreçoTAGs:</label>
-                  </div>
-
-                  <div class="input-field col s12 m4">
-                    <input
-                      id="precoTotens"
-                      type="number"
-                      min="0"
-                      class="validate"
-                      v-model="precoTotens"
-                    >
-                    <label for="precoTotens">Preço Totens:</label>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -167,13 +152,20 @@ export default {
     );
   },
   methods: {
+    recebeData(data) {
+      var array = data
+        .replace("T00:00:00", "")
+        .split("-")
+        .reverse();
+      return array[0] + "/" + array[1] + "/" + array[2];
+    },
     carregarDados() {
-      this.$http.get("Planos").then(
+      this.$http.get("Pagamentos").then(
         response => {
           this.planos = response.body;
         },
         response => {
-          this.erro("Planos", response.status);
+          this.erro("Pagamentos", response.status);
         }
       );
     },

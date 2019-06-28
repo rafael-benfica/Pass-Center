@@ -34,7 +34,7 @@ namespace API_PassCenter.Models.Persistencia
                 objCommand.Parameters.Add(Mapped.Parameter("?pla_qtd_totens", planos.Pla_qtd_totens));
                 objCommand.Parameters.Add(Mapped.Parameter("?pla_qtd_tags", planos.Pla_qtd_tags));
                 objCommand.Parameters.Add(Mapped.Parameter("?pla_preco_totens", planos.Pla_preco_totens));
-                objCommand.Parameters.Add(Mapped.Parameter("?pla_preco_tags", planos.Pla_qtd_tags));
+                objCommand.Parameters.Add(Mapped.Parameter("?pla_preco_tags", planos.Pla_preco_tags));
                 objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", planos.Ins_codigo.Ins_codigo));
 
                 retorno = Convert.ToInt32(objCommand.ExecuteScalar());

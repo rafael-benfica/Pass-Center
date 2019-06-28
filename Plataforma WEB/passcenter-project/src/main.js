@@ -9,6 +9,7 @@ Vue.use(VueResource);
 
 Vue.http.options.root = 'http://localhost:51474/api';
 //Vue.http.options.root = 'http://192.168.0.70/api';
+// Vue.http.options.root = 'http://192.168.33.41/api';
 
 Vue.config.productionTip = false
 

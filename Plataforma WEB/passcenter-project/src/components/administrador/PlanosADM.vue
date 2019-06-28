@@ -93,24 +93,12 @@
                   </div>
 
                   <div class="input-field col s12 m4">
-                    <input
-                      id="precoTags"
-                      type="number"
-                      min="0"
-                      class="validate"
-                      v-model="precoTags"
-                    >
+                    <input id="precoTags" type="text" class="validate" v-model="precoTags">
                     <label for="precoTags">PreçoTAGs:</label>
                   </div>
 
                   <div class="input-field col s12 m4">
-                    <input
-                      id="precoTotens"
-                      type="number"
-                      min="0"
-                      class="validate"
-                      v-model="precoTotens"
-                    >
+                    <input id="precoTotens" type="text" class="validate" v-model="precoTotens">
                     <label for="precoTotens">Preço Totens:</label>
                   </div>
                 </div>

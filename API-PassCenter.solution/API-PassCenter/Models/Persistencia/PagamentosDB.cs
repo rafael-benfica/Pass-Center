@@ -34,5 +34,33 @@ namespace API_PassCenter.Models.Persistencia {
             }
             return retorno;
         }
+
+        public static DataSet Select()
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "select * from pagamentos inner join planos pla using(pla_codigo) inner join instituicoes ins on pla.ins_codigo = ins.ins_codigo;";
+            objCommand = Mapped.Command(sql, objConexao);
+
+
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
     }
 }

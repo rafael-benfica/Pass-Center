@@ -35,5 +35,20 @@ namespace API_PassCenter.Controllers {
             }
 
         }
+
+        [HttpGet, Route("api/Pagamentos")]
+        // GET: api/Instituicoes
+        public IHttpActionResult Get()
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 1);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(PagamentosDB.Select().Tables[0]);
+        }
     }
 }

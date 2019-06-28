@@ -17,7 +17,7 @@
 
 //Config Totem
 static String versao = "0.10";                  //Indica a versão do Fimewae
-static String api = "http://192.168.0.70/api/"; //Indica o endereço base do servidor API
+static String api = "http://192.168.33.41/api/"; //Indica o endereço base do servidor API
 static bool debug = false;                      //Flag para ativar/desativar debug
 bool shouldSaveConfig = false;                  //Flag para indicar se foi salva uma nova configuração de rede
 
@@ -28,6 +28,7 @@ const int RST_PIN = 36; //Pino para o MFRC522 - Conectado ao pino VP do ESP32
 const int BTNESQ = 14;  //Botão Esquerdo
 const int BTNDIR = 12;  //Botão Direirto
 const int BTNENT = 13;  //Botão Enter
+const int BUZZER = 27;  //Buzzer
 
 //variáveis do sistema
 //variáveis que indicam os núcleos
@@ -73,6 +74,7 @@ void setup()
   pinMode(BTNESQ, INPUT);
   pinMode(BTNDIR, INPUT);
   pinMode(BTNENT, INPUT);
+  pinMode(BUZZER, OUTPUT);
   Serial.println("                      => Configurador: Inicializado... <=                       ");
   Serial.println("                => Configurador: Inicializando Componentes... <=                ");
 
@@ -171,6 +173,7 @@ void RFIDtask(void *pvParameters)
     if (controle)
     {
 
+  
       String conteudo = "";
       byte letra;
       // Rotina para despejar a matriz de bytes com os valores hexadecimais para Serial.
@@ -181,6 +184,10 @@ void RFIDtask(void *pvParameters)
       }
 
       conteudo.trim();
+      
+      digitalWrite(BUZZER,HIGH);
+      delay(100);
+      digitalWrite(BUZZER,LOW);
 
       switch (estado)
       {
@@ -219,7 +226,6 @@ void RFIDtask(void *pvParameters)
           Serial.println("Saiu!");
         }
       }
-      delay(1000);
     }
   }
 }
@@ -653,6 +659,9 @@ void saveConfigCallback()
 //informa erros HTTPs
 void erroHTTP(String code)
 {
+  digitalWrite(BUZZER,HIGH);
+      delay(1500);
+      digitalWrite(BUZZER,LOW);
   Serial.println("    => Erro Durante a requisição HTTP: " + code + "  <=             "); // Mostra a resposta HTTP da requisição
   lcd.clear();
   lcd.setCursor(3, 0);
