@@ -3,7 +3,7 @@
     <form class="col s12 card data2" onsubmit="return false">
       <div class="row topo">
         <div class="col s12 m12 l12">
-          <h3 class="col s12 m12 l12 centro">Lista de alunos</h3>
+          <h3 class="centro">Lista de alunos</h3>
 
           <table>
             <thead class="centro">

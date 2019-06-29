@@ -154,5 +154,21 @@ namespace API_PassCenter.Controllers
 
             return Ok(EventosAuditoresDB.SelectParticipantesDisciplinaHistorico(Convert.ToInt32(credenciais.Usu_codigo), identificacao).Tables[0]);
         }
+
+        [HttpGet, Route("api/EventosAuditores/BuscarNomes")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetEventosAuditoresNomes(string nome)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(EventosAuditoresDB.SelectPorNome(("%" + nome + "%"), Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
+        }
+
     }
 }

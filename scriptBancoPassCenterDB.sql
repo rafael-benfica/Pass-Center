@@ -113,17 +113,17 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`grades` (
   `gra_codigo` INT NOT NULL AUTO_INCREMENT,
   `gra_nome` VARCHAR(50) NOT NULL,
   `ins_codigo` INT NOT NULL,
-  `prox_grade` INT NULL,
+  `gra_prox_grade` INT NULL,
   PRIMARY KEY (`gra_codigo`),
   INDEX `fk_grades_instituicoes1_idx` (`ins_codigo` ASC) VISIBLE,
-  INDEX `fk_grades_grades1_idx` (`prox_grade` ASC) VISIBLE,
+  INDEX `fk_grades_grades1_idx` (`gra_prox_grade` ASC) VISIBLE,
   CONSTRAINT `fk_grades_instituicoes1`
     FOREIGN KEY (`ins_codigo`)
     REFERENCES `PassCenter`.`instituicoes` (`ins_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_grades_grades1`
-    FOREIGN KEY (`prox_grade`)
+    FOREIGN KEY (`gra_prox_grade`)
     REFERENCES `PassCenter`.`grades` (`gra_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
