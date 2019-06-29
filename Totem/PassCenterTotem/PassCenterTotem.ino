@@ -47,7 +47,7 @@ int sessao;
 int disciplina;
 
 //Declarando Objetos
-LiquidCrystal_I2C lcd(0x3F, 16, 2); //Cria uma instância do Display LCD (definindo o endereço do display, linhas e colunas)
+LiquidCrystal_I2C lcd(0x27, 16, 2); //Cria uma instância do Display LCD (definindo o endereço do display, linhas e colunas)
 MFRC522 mfrc522(SS_PIN, RST_PIN);   //Cria uma instância MFRC522.
 WiFiManager wifiManager;            //declaração do objeto wifiManager
 
