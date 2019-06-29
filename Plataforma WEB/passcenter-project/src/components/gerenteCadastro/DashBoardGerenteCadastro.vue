@@ -29,6 +29,8 @@
     <li><router-link :to="{ name: 'GerenteCadastroAlunos' }" class=" waves-effect"><i class="icone material-icons">person</i>Alunos</router-link></li>
     <li><router-link :to="{ name: 'GerenteCadastroProfessores' }" class=" waves-effect"><i class="icone material-icons">supervisor_account</i>Professores</router-link></li>
    <li><router-link :to="{ name: 'GerenteCadastroDisciplinas' }" class=" waves-effect"><i class="icone material-icons">book</i>Disciplinas</router-link></li>
+      <li><router-link :to="{ name: 'GerenteCadastroGrades' }" class=" waves-effect"><i class="icone material-icons">grid_on</i>Grades</router-link></li>
+
     <li><router-link :to="{ name: 'GerenteCadastroTurmas' }" class=" waves-effect"><i class="icone material-icons">folder_shared</i>Turmas</router-link></li>
     <li><router-link :to="{ name: 'GerenteCadastroMeusDados' }" class=" waves-effect"><i class="icone material-icons">account_circle</i>Meus Dados</router-link></li>
     <li class="center-align botao-sair" @click="logout()"><router-link :to="{ name: 'Login' }" class="waves-effect waves-light btn red darken-4">Sair</router-link></li>

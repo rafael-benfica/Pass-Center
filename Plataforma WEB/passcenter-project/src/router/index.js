@@ -13,6 +13,7 @@ import Professor from '@/components/professor/DashBoardProfessor.vue'
 import AlunosGeral from '@/components/gerentes/AlunosGeral.vue'
 import ProfessoresGeral from '@/components/gerentes/ProfessoresGeral.vue'
 import DisciplinasGeral from '@/components/gerentes/DisciplinasGeral.vue'
+import GradesGeral from '@/components/gerentes/GradesGeral.vue'
 import TurmasGeral from '@/components/gerentes/TurmasGeral.vue'
 
 //Compartilhado por todos os componentes
@@ -234,6 +235,15 @@ const rotas = new Router({
           }
         },
         {
+          path: 'Grades',
+          name: 'GerenteGeralGrades',
+          component: GradesGeral,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+            { nome: 'Grades' }]
+          }
+        },
+        {
           path: 'Turmas',
           name: 'GerenteGeralTurmas',
           component: TurmasGeral,
@@ -304,6 +314,15 @@ const rotas = new Router({
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
             { nome: 'Disciplinas' }]
+          }
+        },
+        {
+          path: 'Grades',
+          name: 'GerenteCadastroGrades',
+          component: GradesGeral,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente de Cadastro' },
+            { nome: 'Grades' }]
           }
         },
         {

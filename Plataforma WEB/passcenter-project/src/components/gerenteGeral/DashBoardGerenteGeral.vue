@@ -31,6 +31,7 @@
     <li><router-link :to="{ name: 'GerenteGeralGerentesCadastro' }" class=" waves-effect"><i class="icone material-icons">supervisor_account</i>Gerentes de Cadastro</router-link></li>
     <li><router-link :to="{ name: 'GerenteGeralGerentesGerais' }" class=" waves-effect"><i class="icone material-icons">supervisor_account</i>Gerentes Gerais</router-link></li>
     <li><router-link :to="{ name: 'GerenteGeralDisciplinas' }" class=" waves-effect"><i class="icone material-icons">book</i>Disciplinas</router-link></li>
+    <li><router-link :to="{ name: 'GerenteGeralGrades' }" class=" waves-effect"><i class="icone material-icons">grid_on</i>Grades</router-link></li>
     <li><router-link :to="{ name: 'GerenteGeralTurmas' }" class=" waves-effect"><i class="icone material-icons">folder_shared</i>Turmas</router-link></li>
     <li><router-link :to="{ name: 'GerenteGeralTotens' }" class=" waves-effect"><i class="icone material-icons">perm_device_information</i>Totens</router-link></li>
     <li><router-link :to="{ name: 'GerenteGeralMeusDados' }" class=" waves-effect"><i class="icone material-icons">account_circle</i>Meus dados</router-link></li>

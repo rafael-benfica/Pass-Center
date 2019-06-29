@@ -22,12 +22,13 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
-            Grades gra = new Grades();
+            Instituicoes ins = new Instituicoes();
 
-            gra.Gra_nome = grades.Gra_nome;
-            gra.Ins_codigo.Ins_codigo = Convert.ToInt32(credenciais.Ins_codigo);
+            ins.Ins_codigo = Convert.ToInt32(credenciais.Ins_codigo);
 
-            int retorno = GradesDB.Insert(gra);
+            grades.Ins_codigo = ins;
+
+            int retorno = GradesDB.Insert(grades);
 
             if (retorno == -2) {
                 return BadRequest();
@@ -35,5 +36,51 @@ namespace API_PassCenter.Controllers {
                 return Ok(retorno);
             }
         }
+
+        [HttpPut, Route("api/Grades")]
+        // POST: api/Instituicoes
+        public IHttpActionResult Put([FromBody]Grades grades)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            Instituicoes ins = new Instituicoes();
+
+            ins.Ins_codigo = Convert.ToInt32(credenciais.Ins_codigo);
+
+            grades.Ins_codigo = ins;
+
+            int retorno = GradesDB.Update(grades);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(retorno);
+            }
+        }
+
+        [HttpGet, Route("api/Grades")]
+        // GET: api/Instituicoes
+        public IHttpActionResult Get()
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(GradesDB.Select(Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
+        }
+
     }
 }

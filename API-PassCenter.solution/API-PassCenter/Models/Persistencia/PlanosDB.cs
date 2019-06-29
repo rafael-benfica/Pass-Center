@@ -65,6 +65,34 @@ namespace API_PassCenter.Models.Persistencia
             string sql = "select * from planos inner join instituicoes using(ins_codigo);";
             objCommand = Mapped.Command(sql, objConexao);
 
+            objDataAdapter = Mapped.Adapter(objCommand);
+
+            objDataAdapter.Fill(ds);
+
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+
+            return ds;
+
+        }
+
+        public static DataSet SelectAtivo(int ins)
+        {
+            //Imagine um DataSet como umamatriz de dados;
+
+            DataSet ds = new DataSet();
+
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            IDataAdapter objDataAdapter;
+
+            objConexao = Mapped.Connection();
+
+            string sql = "select pla_codigo from planos where ins_codigo = ?ins_codigo and pla_estado = true;";
+            objCommand = Mapped.Command(sql, objConexao);
+
+            objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", ins));
 
             objDataAdapter = Mapped.Adapter(objCommand);
 
