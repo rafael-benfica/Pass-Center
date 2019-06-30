@@ -33,6 +33,24 @@
 .margem{
     margin-top: 100px;
 }
+
+.iconeBG{
+    margin-top: 1rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    line-height: 3.5rem !important;
+
+}
+
 .icone{
     font-size: 3.8rem;
+}
+
+.iconeBusca{
+    line-height: 0rem !important;
+}
+
+.transparent{
+    border: 0px;
+    cursor: pointer;
 }

@@ -56,6 +56,13 @@ namespace API_PassCenter.Models.Persistencia
 
                 string sql = "UPDATE grades SET gra_nome = ?gra_nome, ins_codigo = ?ins_codigo, gra_prox_grade = ?gra_prox_grade where gra_codigo = ?gra_codigo;";
 
+                if (gra.Gra_prox_grade == 0)
+                {
+                    sql = "UPDATE grades SET gra_nome = ?gra_nome, ins_codigo = ?ins_codigo, gra_prox_grade = null where gra_codigo = ?gra_codigo;";
+
+                }
+
+
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
                 objCommand.Parameters.Add(Mapped.Parameter("?gra_codigo", gra.Gra_codigo));
@@ -105,6 +112,31 @@ namespace API_PassCenter.Models.Persistencia
 
             return ds;
 
+        }
+
+        public static int Delete(int gra_codigo)
+        {
+            int retorno = 0;
+            try
+            {
+                IDbConnection objConexao; // Abre a conexao
+                IDbCommand objCommand; // Cria o comando
+                string sql = "DELETE FROM grades where gra_codigo = ?gra_codigo;";
+                objConexao = Mapped.Connection();
+                objCommand = Mapped.Command(sql, objConexao);
+                //Fk
+                objCommand.Parameters.Add(Mapped.Parameter("?gra_codigo", gra_codigo));
+
+                objCommand.ExecuteNonQuery(); // utilizado quando cdigo não tem retorno, como seria o caso do SELECT
+                objConexao.Close();
+                objCommand.Dispose();
+                objConexao.Dispose();
+            }
+            catch (Exception e)
+            {
+                retorno = -2;
+            }
+            return retorno;
         }
 
     }

@@ -9,5 +9,6 @@ namespace API_PassCenter.Models.Classes
     {
         public Grades Gra_codigo { get; set; }
         public EventosAuditores Eau_codigo { get; set; }
+        public bool egr_estado { get; set; }
     }
 }

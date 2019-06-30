@@ -20,16 +20,48 @@ namespace API_PassCenter.Controllers {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
-            EventosGrades era = new EventosGrades();
-
-            era.Gra_codigo = eventosGrades.Gra_codigo;
-            era.Eau_codigo = eventosGrades.Eau_codigo;
-
-            int retorno = EventosGradesDB.Insert(era);
+            int retorno = EventosGradesDB.Insert(eventosGrades);
 
             if (retorno == -2) {
                 return BadRequest();
             } else {
+                return Ok(retorno);
+            }
+        }
+
+        [HttpGet, Route("api/EventosGrades")]
+        // GET: api/Instituicoes
+        public IHttpActionResult Get(int gra_codigo)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(EventosGradesDB.Select(Convert.ToInt32(credenciais.Ins_codigo), gra_codigo).Tables[0]);
+        }
+
+        [HttpDelete, Route("api/EventosGrades")]
+        // POST: api/Instituicoes
+        public IHttpActionResult Delete(int eau_codigo, int gra_codigo)
+        {
+
+            if (autenticar.autenticacao(Request, 3) == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            int retorno = EventosGradesDB.Delete(eau_codigo, gra_codigo);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
                 return Ok(retorno);
             }
         }

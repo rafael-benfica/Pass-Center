@@ -1,5 +1,4 @@
 DROP DATABASE IF EXISTS Passcenter;
-
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;

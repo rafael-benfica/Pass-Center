@@ -12,7 +12,11 @@
               <i class="material-icons">create</i>
             </a>
           </div>
-          <div class="card-content modal-trigger" href="#GerirGrade">
+          <div
+            class="card-content modal-trigger"
+            href="#GerirGrade"
+            @click="gradeSelecionada = item; carregarDisciplinasGrade();"
+          >
             <h3 class="cardDisciplina">{{ item.gra_nome }}</h3>
             <h5
               class="cardDisciplina"
@@ -43,20 +47,9 @@
         <hr />
 
         <div class="row">
-          <div class="input-field col s12 m6">
+          <div class="input-field col s12">
             <input id="nome" type="text" class="validate" v-model="nome" />
             <label for="nome">Nome:</label>
-          </div>
-          <div class="input-field col s12 m6">
-            <select v-model="prox_grade">
-              <option value disabled selected>Selecione a próxima Grade</option>
-              <option
-                :value="item.gra_codigo"
-                v-for="item in grades"
-                :key="item.id"
-              >{{ item.gra_nome }}</option>
-            </select>
-            <label>Próxima Grade</label>
           </div>
         </div>
 
@@ -64,7 +57,7 @@
           <a class="col s12 m4 l4 modal-close waves-effect waves-teal btn red">Cancelar</a>
           <p class="col s12 m4 l4"></p>
           <a
-            class="col s12 m4 l4 waves-effect waves-teal btn green"
+            class="col s12 m4 l4 modal-close waves-effect waves-teal btn green"
             @click="confirmacaoCriar()"
           >Confirmar</a>
         </div>
@@ -84,6 +77,7 @@
           <div class="input-field col s12 m6">
             <select v-model="prox_grade">
               <option value disabled selected>Selecione a próxima Grade</option>
+              <option value="0">Não existe</option>
               <option
                 :value="item.gra_codigo"
                 v-for="item in grades"
@@ -109,24 +103,28 @@
     <div id="GerirGrade" class="modal margem">
       <div class="modal-content">
         <h4 class="centro">Gerir Grade</h4>
+        <h5>{{ this.gradeSelecionada.gra_nome }}</h5>
         <hr />
 
-        <table>
+        <table v-if="this.disciplinasDaGrade.length != 0">
           <thead class="centro">
             <tr>
               <th>Nome da Sigla</th>
               <th>Nome da Disciplina</th>
-              <th>Nome do Professor(a)</th>
+              <th>Professor(a)</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="item in disciplinasDaGrade" :key="item.id">
-              <td>{{ "#"+item.eve_sigla }}</td>
-              <td>{{ "#"+item.eve_nome }}</td>
+              <td>{{ item.eve_sigla }}</td>
+              <td>{{ item.eve_nome }}</td>
               <td>{{ item.pes_nome +" "+ item.pes_sobrenomes }}</td>
               <td>
-                <a class="waves-effect waves-light btn red">Remover</a>
+                <a
+                  class="waves-effect waves-light btn red"
+                  @click="confirmacaoDeleteDisciplina(item.eau_codigo);"
+                >Remover</a>
               </td>
             </tr>
           </tbody>
@@ -138,13 +136,21 @@
           <a
             class="col s12 centro waves-effect waves-light btn modal-trigger botaoVerMais"
             href="#modalBuscaDisciplina"
-            @click="disciplinaBusca = '';"
+            @click="disciplinaBusca = ''; mostraResultadoBuscaDisciplina=false;"
           >Adicionar Disciplina</a>
         </div>
       </div>
 
       <div class="modal-footer row col s12 m12 l12">
-        <a class="col s12 m4 l4 modal-close waves-effect waves-teal btn red">Cancelar</a>
+        <div class="col s12 m5">
+          <a class="col s12 modal-close waves-effect waves-teal btn red">Cancelar</a>
+        </div>
+        <div class="col m5 offset-m2 s12">
+          <a
+            class="col s12 modal-close waves-effect waves-teal btn red darken-4"
+            @click="confirmacaoDeleteGrade()"
+          >Remover</a>
+        </div>
       </div>
     </div>
 
@@ -156,7 +162,7 @@
         <div class="row">
           <form onsubmit="return false">
             <div class="col s12">
-              <div class="col s10 m10 l10 input-field">
+              <div class="col s11 input-field">
                 <input
                   id="disciplina"
                   placeholder="Entre com o nome da Disciplina"
@@ -167,44 +173,50 @@
                 <label for="disciplina" class="active">Buscar Disciplina:</label>
               </div>
 
-              <div class="col s2 m2 l2">
+              <div class="col s1">
                 <a
                   class="btn-floating btn-large waves-effect waves-light iconeBG modal-trigger"
                   href="#modalBuscaDisciplina"
                   @click="buscarDisciplinas()"
                 >
-                  <i class="material-icons">search</i>
+                  <button class="transparent">
+                    <i class="material-icons iconeBusca">search</i>
+                  </button>
                 </a>
               </div>
             </div>
           </form>
         </div>
-        <div class="row">
+        <div class="row" v-if="mostraResultadoBuscaDisciplina">
           <div class="col s12">
             <table>
               <thead class="centro">
                 <tr>
                   <th>Sigla</th>
-                  <th>Nome</th>
+                  <th>Nome da Disciplina</th>
+                  <th>Professor(a)</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  v-for="(item, index) in disciplinas"
-                  :key="item.id"
-                  @click="buscarDisciplinasAtribuir(index)"
-                >
+                <tr v-for="item in disciplinas" :key="item.id">
                   <td>{{ item.eve_sigla }}</td>
                   <td>{{ item.eve_nome }}</td>
+                  <td>{{ item.pes_nome +" "+ item.pes_sobrenomes }}</td>
                   <td>
-                    <a class="waves-effect waves-light btn modal-close">Selecionar</a>
+                    <a
+                      class="waves-effect waves-light btn"
+                      @click="confirmacaoAddDisciplina(item)"
+                    >Selecionar</a>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
+      </div>
+      <div class="modal-footer row col s12">
+        <a class="col s12 modal-close waves-effect waves-teal btn red">Cancelar</a>
       </div>
     </div>
   </div>
@@ -218,10 +230,12 @@ export default {
       grades: [],
       disciplinas: [],
       disciplinasDaGrade: [],
+      gradeSelecionada: [],
       grade: 0,
       prox_grade: 0,
       nome: "",
-      disciplinaBusca: ""
+      disciplinaBusca: "",
+      mostraResultadoBuscaDisciplina: false
     };
   },
 
@@ -248,26 +262,26 @@ export default {
     },
 
     carregarDisciplinasGrade() {
-      this.$http.get("Grades").then(
-        response => {
-          this.disciplinasDaGrade = response.body;
-        },
-        response => {
-          console.log(
-            "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-              response.status
-          );
-        }
-      );
+      this.$http
+        .get("EventosGrades", {
+          params: { gra_codigo: this.gradeSelecionada.gra_codigo }
+        })
+        .then(
+          response => {
+            this.disciplinasDaGrade = response.body;
+          },
+          response => {
+            console.log(
+              "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+                response.status
+            );
+          }
+        );
     },
 
     addDados() {
       this.nome = "";
       this.prox_grade = 0;
-      $(document).ready(function() {
-        M.updateTextFields();
-        $("select").formSelect();
-      });
     },
 
     verDados(item) {
@@ -370,6 +384,52 @@ export default {
       });
     },
 
+    confirmacaoDeleteGrade() {
+      const swalWithBootstrapButtons = swal.mixin({
+        confirmButtonClass: "btn green sepraracaoBotoes",
+        cancelButtonClass: "btn red sepraracaoBotoes",
+        buttonsStyling: false
+      });
+
+      swalWithBootstrapButtons({
+        title: "Você tem certeza que deseja excluir?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sim, exclua!",
+        cancelButtonText: "Não, cancele!",
+        reverseButtons: true
+      }).then(result => {
+        if (result.value) {
+          this.$http
+            .delete("Grades", {
+              params: {
+                gra_codigo: this.gradeSelecionada.gra_codigo
+              }
+            })
+            .then(
+              response => {
+                this.carregarDados();
+                swalWithBootstrapButtons(
+                  "Pronto!",
+                  "As informações excluídas!",
+                  "success"
+                );
+              },
+              response => {
+                this.erro("Dados Exclusão Eventos Grades", response.status);
+              }
+            );
+        } else if (result.dismiss === swal.DismissReason.cancel) {
+          this.carregarDados(),
+            swalWithBootstrapButtons(
+              "Okay!",
+              "Revise/altere o que for necessário ;)",
+              "info"
+            );
+        }
+      });
+    },
+
     buscarDisciplinas() {
       this.$http
         .get("EventosAuditores/BuscarNomes", {
@@ -378,7 +438,7 @@ export default {
         .then(
           response => {
             this.disciplinas = response.body;
-            console.log(response.body);
+            this.mostraResultadoBuscaDisciplina = true;
           },
           response => {
             this.erro("buscar as disciplinas", response.status);
@@ -386,6 +446,102 @@ export default {
         );
     },
 
+    confirmacaoAddDisciplina(item) {
+      const swalWithBootstrapButtons = swal.mixin({
+        confirmButtonClass: "btn green sepraracaoBotoes",
+        cancelButtonClass: "btn red sepraracaoBotoes",
+        buttonsStyling: false
+      });
+
+      swalWithBootstrapButtons({
+        title: "Todos os dados estão corretos?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sim, Crie!",
+        cancelButtonText: "Não, cancele!",
+        reverseButtons: true
+      }).then(result => {
+        if (result.value) {
+          var dadosEventosGrades = {
+            gra_codigo: {
+              gra_codigo: this.gradeSelecionada.gra_codigo
+            },
+            eau_codigo: {
+              eau_codigo: item.eau_codigo
+            },
+            egr_estado: true
+          };
+
+          this.$http.post("EventosGrades", dadosEventosGrades).then(
+            response => {
+              this.carregarDisciplinasGrade();
+              swalWithBootstrapButtons(
+                "Salvo!",
+                "Todas as informações foram salvas.",
+                "success"
+              );
+            },
+            response => {
+              this.erro("Dados Grade", response.status);
+            }
+          );
+        } else if (result.dismiss === swal.DismissReason.cancel) {
+          this.carregarDados(),
+            swalWithBootstrapButtons(
+              "Okay!",
+              "Revise/altere o que for necessário ;)",
+              "info"
+            );
+        }
+      });
+    },
+
+    confirmacaoDeleteDisciplina(codigo) {
+      const swalWithBootstrapButtons = swal.mixin({
+        confirmButtonClass: "btn green sepraracaoBotoes",
+        cancelButtonClass: "btn red sepraracaoBotoes",
+        buttonsStyling: false
+      });
+
+      swalWithBootstrapButtons({
+        title: "Você tem certeza que deseja excluir?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sim, exclua!",
+        cancelButtonText: "Não, cancele!",
+        reverseButtons: true
+      }).then(result => {
+        if (result.value) {
+          this.$http
+            .delete("EventosGrades", {
+              params: {
+                gra_codigo: this.gradeSelecionada.gra_codigo,
+                eau_codigo: codigo
+              }
+            })
+            .then(
+              response => {
+                this.carregarDisciplinasGrade();
+                swalWithBootstrapButtons(
+                  "Pronto!",
+                  "As informações excluídas!",
+                  "success"
+                );
+              },
+              response => {
+                this.erro("Dados Exclusão Eventos Grades", response.status);
+              }
+            );
+        } else if (result.dismiss === swal.DismissReason.cancel) {
+          this.carregarDados(),
+            swalWithBootstrapButtons(
+              "Okay!",
+              "Revise/altere o que for necessário ;)",
+              "info"
+            );
+        }
+      });
+    },
     erro(msg, code) {
       swal({
         title: "Oops!",
