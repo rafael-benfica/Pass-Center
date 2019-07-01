@@ -380,6 +380,7 @@ export default {
         }
       );
     },
+
     adicionaAluno(ide, eau) {
       this.$http.get("Sessao/Live", { params: { eau_codigo: eau } }).then(
         response => {
@@ -424,6 +425,7 @@ export default {
         }
       );
     },
+
     removeAluno(ses, ide) {
       var dados = {
         ses_codigo: {
@@ -443,6 +445,7 @@ export default {
           }
         );
     },
+
     removeAlunoHistorico(ses, ide) {
       var dados = {
         ses_codigo: {
@@ -464,9 +467,11 @@ export default {
           }
         );
     },
+
     para() {
       clearInterval(this.intervalo);
     },
+
     modalDisciplinaAtiva(item) {
       if (item.eau_operacao == true) {
         var self = this;
@@ -515,6 +520,7 @@ export default {
         }, 1000);
       }
     },
+
     obtemDados: function() {
       console.log("Obtendo dados...");
 
@@ -568,6 +574,7 @@ export default {
         }
       );
     },
+
     carregarTodasSessoes() {
       if (!this.verTodas) {
         this.verTodas = !this.verTodas;
@@ -601,6 +608,7 @@ export default {
           );
       }
     },
+
     carregarlista(item) {
       this.sessaoHistoricoObj = item;
 
@@ -620,6 +628,7 @@ export default {
           }
         );
     },
+    
     erro(msg, code) {
       swal({
         title: "Oops!",

@@ -340,7 +340,6 @@ export default {
         .then(
           response => {
             this.professores = response.body;
-            console.log(response.body);
           },
           response => {
             console.log(
@@ -357,7 +356,6 @@ export default {
         .then(
           response => {
             this.disciplinas = response.body;
-            console.log(response.body);
           },
           response => {
             console.log(

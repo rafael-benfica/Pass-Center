@@ -16,10 +16,13 @@ namespace API_PassCenter.Models.Persistencia
             {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "INSERT INTO identificadores(ide_estado, ide_identificador, usu_codigo, tid_codigo) " +
+                string sql = "DELETE FROM atrelar_tag where ata_codigo = ?ide_codigo; " +
+                    "UPDATE identificadores set ide_estado = false where usu_codigo = ?usu_codigo or ide_identificador = ?ide_identificador; " +
+                    "INSERT INTO identificadores(ide_estado, ide_identificador, usu_codigo, tid_codigo) " +
                     "VALUES(?ide_estado, ?ide_identificador, ?usu_codigo, ?tid_codigo)";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
+                objCommand.Parameters.Add(Mapped.Parameter("?ide_codigo", ide.Ide_codigo));
                 objCommand.Parameters.Add(Mapped.Parameter("?ide_estado", ide.Ide_estado));
                 objCommand.Parameters.Add(Mapped.Parameter("?ide_identificador", ide.Ide_identificador));
                 //Fk
@@ -48,7 +51,7 @@ namespace API_PassCenter.Models.Persistencia
 
             objConexao = Mapped.Connection();
             string sql = "select ide_codigo from identificadores " +
-                    "where ide_identificador = ?ide_identificador";
+                    "where ide_identificador = ?ide_identificador and ide_estado = true";
 
             objCommand = Mapped.Command(sql, objConexao);
 

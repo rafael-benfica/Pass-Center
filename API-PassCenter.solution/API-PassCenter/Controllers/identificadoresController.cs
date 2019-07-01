@@ -20,10 +20,13 @@ namespace API_PassCenter.Controllers {
 
             Identificadores ide = new Identificadores();
 
-            ide.Ide_estado = identificadores.Ide_estado;
+            ide.Ide_codigo = identificadores.Ide_codigo;
+            ide.Ide_estado = true;
             ide.Ide_identificador = identificadores.Ide_identificador;
             ide.Usu_codigo = identificadores.Usu_codigo;
-            ide.Tid_codigo = identificadores.Tid_codigo;
+            TiposIdentificadores tid = new TiposIdentificadores();
+            tid.Tid_codigo = 1;
+            ide.Tid_codigo = tid;
 
             int retorno = IdentificadoresDB.Insert(ide);
 

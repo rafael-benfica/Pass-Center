@@ -15,6 +15,7 @@ import ProfessoresGeral from '@/components/gerentes/ProfessoresGeral.vue'
 import DisciplinasGeral from '@/components/gerentes/DisciplinasGeral.vue'
 import GradesGeral from '@/components/gerentes/GradesGeral.vue'
 import TurmasGeral from '@/components/gerentes/TurmasGeral.vue'
+import AtrelarIdentificadoresGeral from '@/components/gerentes/AtrelarIdentificadoresGeral.vue'
 
 //Compartilhado por todos os componentes
 import Login from '@/components/geral/Login.vue'
@@ -262,6 +263,15 @@ const rotas = new Router({
           }
         },
         {
+          path: 'AtrelarIdentificadores',
+          name: 'GerenteGeralAtrelarIdentificadores',
+          component: AtrelarIdentificadoresGeral,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+            { nome: 'Atrelar Identificadores' }]
+          }
+        },
+        {
           path: 'Financeiro',
           name: 'GerenteGeralFinanceiro',
           component: Financeiro,
@@ -323,6 +333,15 @@ const rotas = new Router({
           meta: {
             breadcrumbs: [{ nome: 'Gerente de Cadastro' },
             { nome: 'Grades' }]
+          }
+        },
+        {
+          path: 'AtrelarIdentificadores',
+          name: 'GerenteCadastroAtrelarIdentificadores',
+          component: AtrelarIdentificadoresGeral,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente de Cadastro' },
+            { nome: 'Atrelar Identificadores' }]
           }
         },
         {

@@ -218,9 +218,6 @@ namespace API_PassCenter.Controllers
             DataSet id = IdentificadoresDB.getID(presencas.Ide_codigo);
             if (id.Tables[0].Rows.Count > 0)
             {
-
-
-
                 //Presenca
                 Presencas pre = new Presencas();
                 pre.Ses_codigo = presencas.Ses_codigo;

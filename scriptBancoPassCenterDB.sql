@@ -1,4 +1,5 @@
 DROP DATABASE IF EXISTS Passcenter;
+
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -458,6 +459,23 @@ CREATE TABLE IF NOT EXISTS `PassCenter`.`eventos_grades` (
   CONSTRAINT `fk_eventos_grades_eventos_auditores1`
     FOREIGN KEY (`eau_codigo`)
     REFERENCES `PassCenter`.`eventos_auditores` (`eau_codigo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `PassCenter`.`atrelar_tag`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `PassCenter`.`atrelar_tag` (
+  `ata_codigo` INT NOT NULL AUTO_INCREMENT,
+  `ata_identificador` VARCHAR(45) NOT NULL,
+  `ins_codigo` INT NOT NULL,
+  PRIMARY KEY (`ata_codigo`),
+  INDEX `fk_atrelar_tag_instituicoes1_idx` (`ins_codigo` ASC) VISIBLE,
+  CONSTRAINT `fk_atrelar_tag_instituicoes1`
+    FOREIGN KEY (`ins_codigo`)
+    REFERENCES `PassCenter`.`instituicoes` (`ins_codigo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

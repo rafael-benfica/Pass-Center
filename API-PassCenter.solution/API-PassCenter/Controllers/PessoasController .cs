@@ -86,6 +86,21 @@ namespace API_PassCenter.Controllers {
             return Ok(PessoasDB.SelectID(Convert.ToInt32(credenciais.Pes_codigo)).Tables[0]);
         }
 
+        [HttpGet, Route("api/Pessoas/Todas")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetTodas(string nome)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(PessoasDB.SelectTodas(("%" + nome + "%"), Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
+        }
+
         [HttpGet, Route("api/Pessoas/Professores")]
         // GET: api/Instituicoes
         public IHttpActionResult GetProfessores(string nome)

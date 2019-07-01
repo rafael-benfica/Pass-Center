@@ -197,6 +197,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AtrelarTagController.cs" />
     <Compile Include="Controllers\EventosGradesController.cs" />
     <Compile Include="Controllers\GradesController.cs" />
     <Compile Include="Controllers\PlanosController .cs" />
@@ -218,6 +219,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ClassesAuxiliares\PresencasProcedure.cs" />
+    <Compile Include="Models\Classes\AtrelarTag.cs" />
     <Compile Include="Models\Classes\Enderecos.cs" />
     <Compile Include="Models\Classes\Eventos.cs" />
     <Compile Include="Models\Classes\EventosGrades.cs" />
@@ -254,6 +256,7 @@
     <Compile Include="Models\Persistencia\IdentificadoresDB.cs" />
     <Compile Include="Models\Persistencia\TiposEventosDB.cs" />
     <Compile Include="Models\Persistencia\TiposIdentificadoresDB.cs" />
+    <Compile Include="Models\Persistencia\AtrelarTagDB.cs" />
     <Compile Include="Models\Persistencia\TotensDB.cs" />
     <Compile Include="Models\Persistencia\EventosAuditoresDB.cs" />
     <Compile Include="Models\Persistencia\TurmasDB.cs" />
