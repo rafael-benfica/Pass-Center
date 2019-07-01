@@ -49,6 +49,7 @@ import ProfessoresADM from '@/components/administrador/ProfessoresADM.vue'
 import GerentesCadastroADM from '@/components/administrador/GerentesCadastroADM.vue'
 import GerentesGeraisADM from '@/components/administrador/GerentesGeraisADM.vue'
 import TotensADM from '@/components/administrador/TotensADM.vue'
+import AtrelarIdentificadoresADM from '@/components/administrador/AtrelarIdentificadoresADM.vue'
 import TurmasADM from '@/components/administrador/TurmasADM.vue'
 
 
@@ -135,6 +136,15 @@ const rotas = new Router({
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
             { nome: 'Turmas' }]
+          }
+        },
+        {
+          path: 'AtrelarIdentificadores',
+          name: 'AtrelarIdentificadoresADM',
+          component: AtrelarIdentificadoresADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Administrador' },
+            { nome: 'Atrelar Identificadores' }]
           }
         },
         {

@@ -12,7 +12,7 @@ namespace API_PassCenter.Controllers
 {
     public class AtrelarTagController : ApiController
     {
-        // POST: Adiciona Tipo de Usuário 
+
         [HttpPost, Route("api/AtrelarTag")]
         public IHttpActionResult post([FromBody]AtrelarTag ata)
         {
@@ -24,6 +24,7 @@ namespace API_PassCenter.Controllers
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
+            ata.Ins_codigo.Ins_codigo = Convert.ToInt32(credenciais.Ins_codigo);
 
             if (AtrelarTagDB.Insert(ata) == 0)
             {
@@ -36,7 +37,6 @@ namespace API_PassCenter.Controllers
             }
         }
 
-        // POST: Adiciona Tipo de Usuário 
         [HttpGet, Route("api/AtrelarTag")]
         public IHttpActionResult get()
         {
@@ -50,6 +50,21 @@ namespace API_PassCenter.Controllers
 
 
             return Ok(AtrelarTagDB.Select(Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
+        }
+
+        [HttpGet, Route("api/AtrelarTag/ADM")]
+        public IHttpActionResult getADM(int ins_codigo)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 1);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+
+            return Ok(AtrelarTagDB.Select(ins_codigo).Tables[0]);
         }
     }
 }
