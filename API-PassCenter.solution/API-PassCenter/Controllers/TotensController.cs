@@ -158,7 +158,6 @@ namespace API_PassCenter.Controllers
 
             ses.Eau_codigo = sessao.Eau_codigo;
             ses.Ses_horario_inicio = DateTime.Now;
-            //ses.Tot_codigo = sessao.Tot_codigo;
             ses.Hev_codigo = sessao.Hev_codigo;
             ses.Ses_sessao_automatico = true;
             ses.Tot_codigo = sessao.Tot_codigo;

@@ -43,12 +43,14 @@ namespace API_PassCenter.Models.Persistencia {
             {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "UPDATE eventos_auditores SET eau_operacao = 1 where eau_codigo = ?eau_codigo; INSERT INTO sessoes(ses_horario_inicio, eau_codigo, hev_codigo, Ses_sessao_automatico) " +
+                string sql = "UPDATE totens SET tot_operacao = 1 WHERE tot_codigo = ?tot_codigo; " +
+                    "UPDATE eventos_auditores SET eau_operacao = 1 where eau_codigo = ?eau_codigo; INSERT INTO sessoes(ses_horario_inicio, eau_codigo, hev_codigo, Ses_sessao_automatico) " +
                     "VALUES(?ses_horario_inicio, ?eau_codigo, ?hev_codigo, ?Ses_sessao_automatico); " +
                     "SELECT LAST_INSERT_ID();";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
                 objCommand.Parameters.Add(Mapped.Parameter("?ses_horario_inicio", sessoes.Ses_horario_inicio));
+                objCommand.Parameters.Add(Mapped.Parameter("?tot_codigo", sessoes.Tot_codigo.Tot_codigo));
                 //FK
                 objCommand.Parameters.Add(Mapped.Parameter("?eau_codigo", sessoes.Eau_codigo.Eau_codigo));
                 objCommand.Parameters.Add(Mapped.Parameter("?hev_codigo", sessoes.Hev_codigo.Hev_codigo));
@@ -74,7 +76,8 @@ namespace API_PassCenter.Models.Persistencia {
             {
                 IDbConnection objConexao; // Abre a conexao
                 IDbCommand objCommand; // Cria o comando
-                string sql = "UPDATE eventos_auditores SET eau_operacao = 0 where eau_codigo = ?eau_codigo; UPDATE sessoes SET ses_horario_fim = ?ses_horario_fim WHERE ses_codigo = ?ses_codigo;";
+                string sql = "update totens set tot_operacao=0 where tot_codigo = (select tot_codigo from sessoes where ses_codigo=?ses_codigo); " +
+                    "UPDATE eventos_auditores SET eau_operacao = 0 where eau_codigo = ?eau_codigo; UPDATE sessoes SET ses_horario_fim = ?ses_horario_fim WHERE ses_codigo = ?ses_codigo;";
                 objConexao = Mapped.Connection();
                 objCommand = Mapped.Command(sql, objConexao);
                 objCommand.Parameters.Add(Mapped.Parameter("?ses_horario_fim", sessoes.Ses_horario_fim));

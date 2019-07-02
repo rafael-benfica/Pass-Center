@@ -34,18 +34,18 @@
                   class="datepicker"
                   v-model="data"
                   placeholder="Entre com a data da Aula"
-                >
+                />
                 <label for="data">Data:</label>
               </div>
             </div>
 
             <div class="row">
               <div class="input-field col s12 m6 l6">
-                <input id="horaEntrada" type="text" class="timepickerInicio" v-model="horaEntrada">
+                <input id="horaEntrada" type="text" class="timepickerInicio" v-model="horaEntrada" />
                 <label for="horaEntrada">Horário do Início:</label>
               </div>
               <div class="input-field col s12 m6 l6">
-                <input id="horaFim" type="text" class="timepickerFim" v-model="horaFim">
+                <input id="horaFim" type="text" class="timepickerFim" v-model="horaFim" />
                 <label for="horaFim">Horário do Fim:</label>
               </div>
             </div>
@@ -55,7 +55,10 @@
                 <a class="waves-effect waves-light btn red" @click="etapa--">Voltar</a>
               </div>
               <div class="col s12 m6 l6 historico center-align">
-                <a class="waves-effect waves-light btn green" @click="carregarlista(); etapa++">Avançar</a>
+                <a
+                  class="waves-effect waves-light btn green"
+                  @click="carregarlista(); etapa++"
+                >Avançar</a>
               </div>
             </div>
           </div>
@@ -78,7 +81,7 @@
                 <tr v-for="item in lista" :key="item.id">
                   <td>
                     <label>
-                      <input type="checkbox" checked="checked" @click="addAsentes(item.usu_codigo)">
+                      <input type="checkbox" checked="checked" @click="addAsentes(item.usu_codigo)" />
                       <span></span>
                     </label>
                   </td>
@@ -92,7 +95,7 @@
         <div class="row">
           <div class="col s12 m12 l12">
             <a class="waves-effect waves-light btn red" @click="etapa--">Voltar</a>
-            <a class="waves-effect waves-light btn green" @click="enviarLista()">Salvar</a>
+            <a class="waves-effect waves-light btn green" @click="enviarLista();">Salvar</a>
           </div>
         </div>
       </form>
@@ -102,7 +105,7 @@
 
 <script>
 export default {
-  name: "MinhasDisciplinasAluno",
+  name: "ListaManual",
   data() {
     return {
       disciplinas: [],
@@ -116,17 +119,7 @@ export default {
     };
   },
   mounted: function() {
-    this.$http.get("EventosAuditores/Disciplinas").then(
-      response => {
-        this.disciplinas = response.body;
-      },
-      response => {
-        console.log(
-          "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
-            response.status
-        );
-      }
-    );
+    this.obtemDados();
 
     var ano = new Date().getFullYear();
 
@@ -217,7 +210,120 @@ export default {
     });
   },
 
+  watch: {
+    etapa(value) {
+      if (value == 2) {
+
+        this.horaEntrada = this.horaFim = this.data = "";
+
+        var ano = new Date().getFullYear();
+
+        var self = this;
+
+        $(".datepicker").datepicker({
+          format: "dd/mm/yyyy",
+          yearRange: [ano - 100, ano],
+          maxDate: new Date(),
+          defaultDate: new Date(),
+          setDefaultDate: true,
+          onClose: function(params) {
+            self.atualizaData();
+          },
+          i18n: {
+            months: [
+              "Janeiro",
+              "Fevereiro",
+              "Março",
+              "Abril",
+              "Maio",
+              "Junho",
+              "Julho",
+              "Agosto",
+              "Setembro",
+              "Outubro",
+              "Novembro",
+              "Dezembro"
+            ],
+            monthsShort: [
+              "Jan",
+              "Fev",
+              "Mar",
+              "Abr",
+              "Mai",
+              "Jun",
+              "Jul",
+              "Ago",
+              "Set",
+              "Out",
+              "Nov",
+              "Dez"
+            ],
+            weekdays: [
+              "Domingo",
+              "Segunda",
+              "Terça",
+              "Quarta",
+              "Quinta",
+              "Sexta",
+              "Sabádo"
+            ],
+            weekdaysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+            weekdaysAbbrev: ["D", "S", "T", "Q", "Q", "S", "S"],
+            today: "Hoje",
+            clear: "Limpar",
+            close: "Pronto",
+            labelMonthNext: "Próximo mês",
+            labelMonthPrev: "Mês anterior",
+            labelMonthSelect: "Selecione um mês",
+            labelYearSelect: "Selecione um ano",
+            selectMonths: true,
+            cancel: "Fechar",
+            clear: "Limpar"
+          }
+        });
+
+        $(".timepickerInicio").timepicker({
+          twelveHour: false,
+          onCloseEnd: function(params) {
+            self.atualizahoraEntrada();
+          },
+          i18n: {
+            done: "Pronto",
+            cancel: "Fechar"
+          }
+        });
+
+        $(".timepickerFim").timepicker({
+          twelveHour: false,
+          onCloseEnd: function(params) {
+            self.atualizaHoraFim();
+          },
+          i18n: {
+            done: "Pronto",
+            cancel: "Fechar"
+          }
+        });
+        $(document).ready(function() {
+          M.updateTextFields();
+        });
+      }
+    }
+  },
+
   methods: {
+    obtemDados() {
+      this.$http.get("EventosAuditores/Disciplinas").then(
+        response => {
+          this.disciplinas = response.body;
+        },
+        response => {
+          console.log(
+            "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+              response.status
+          );
+        }
+      );
+    },
     atualizaData() {
       var data = $("#data").val();
       this.data = data;
@@ -247,7 +353,6 @@ export default {
     },
 
     addAsentes(usu_codigo) {
-
       var pos = this.ausentes.indexOf(usu_codigo);
 
       if (pos == -1) {
@@ -297,6 +402,9 @@ export default {
                 "Todas as informações foram salvas.",
                 "success"
               );
+
+              
+        this.etapa = 1;
             },
             response => {
               this.erro("Dados Evento", response.status);
