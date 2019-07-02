@@ -2,7 +2,7 @@
   <div>
     <div class="row area-exibicao">
       <div class="row espacamento">
-        <div class="col s2">
+        <div class="col s3">
           <div class="card">
             <div class="card-content">
               <div class="input-field">
@@ -199,7 +199,9 @@ export default {
       console.log("Obtendo dados...");
       this.intervalo = setInterval(() => {
         this.$http
-          .get("AtrelarTag/ADM", { params: { ins_codigo: this.instituicao.ins_codigo } })
+          .get("AtrelarTag/ADM", {
+            params: { ins_codigo: this.instituicao.ins_codigo }
+          })
           .then(
             response => {
               this.identificadores = response.body;

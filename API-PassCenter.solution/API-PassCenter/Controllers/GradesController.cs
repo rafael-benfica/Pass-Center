@@ -43,6 +43,30 @@ namespace API_PassCenter.Controllers
             }
         }
 
+        [HttpPost, Route("api/Grades/ADM")]
+        // POST: api/Instituicoes
+        public IHttpActionResult PostADM([FromBody]Grades grades)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 1);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            int retorno = GradesDB.Insert(grades);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(retorno);
+            }
+        }
+
         [HttpPut, Route("api/Grades")]
         // POST: api/Instituicoes
         public IHttpActionResult Put([FromBody]Grades grades)
@@ -73,6 +97,30 @@ namespace API_PassCenter.Controllers
             }
         }
 
+        [HttpPut, Route("api/Grades/ADM")]
+        // POST: api/Instituicoes
+        public IHttpActionResult PutADM([FromBody]Grades grades)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            int retorno = GradesDB.Update(grades);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(retorno);
+            }
+        }
+
         [HttpGet, Route("api/Grades")]
         // GET: api/Instituicoes
         public IHttpActionResult Get()
@@ -86,6 +134,21 @@ namespace API_PassCenter.Controllers
             }
 
             return Ok(GradesDB.Select(Convert.ToInt32(credenciais.Ins_codigo)).Tables[0]);
+        }
+
+        [HttpGet, Route("api/Grades/ADM")]
+        // GET: api/Instituicoes
+        public IHttpActionResult GetADM(int ins_codigo)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 1);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            return Ok(GradesDB.Select(ins_codigo).Tables[0]);
         }
 
         [HttpDelete, Route("api/Grades")]

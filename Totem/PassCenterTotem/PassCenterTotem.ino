@@ -200,6 +200,11 @@ void RFIDtask(void *pvParameters)
         else if (estado == 4)
         {
           Serial.println("É Gerente de Cadastro");
+          lcd.clear();
+          lcd.setCursor(0, 0);
+          lcd.print("PassCenter:ATIVO");
+          lcd.setCursor(2, 1);
+          lcd.print("Passe a TAG!");
         }
         else
         {
@@ -224,6 +229,8 @@ void RFIDtask(void *pvParameters)
           RFIDmaster = "";
           estado = 0;
           Serial.println("Saiu!");
+        }else{
+          enviarTAG(conteudo);
         }
       }
     }
@@ -628,6 +635,63 @@ void gerarPresenca(String RFID)
   }
 }
 
+//Envia o ID da TAG
+void enviarTAG(String RFID)
+{
+
+  if ((WiFi.status() == WL_CONNECTED)) //Verifica o estado de rede do Totem
+  {
+    Serial.println();
+    Serial.println("############################### Envio Tag ###################################");
+    Serial.println();
+    Serial.println("                       => ID do objeto: " + String(RFID) + " <=                     "); // Mostra o valor de ID
+
+    lcd.setCursor(3, 1);
+    lcd.print("Aguarde...");
+
+    //Cria o JSON para o envio
+    DynamicJsonDocument dados(256);
+
+    dados["ata_identificador"] = "oi";
+    JsonObject ins_codigo = dados.createNestedObject("ins_codigo");
+    ins_codigo["ins_codigo"] = 2;
+
+    String requisicao;
+
+    serializeJson(dados, requisicao);
+
+    Serial.println(requisicao);
+    HTTPClient http; // Declaração do objeto para a requisição HTTP
+
+    http.begin(api + "Totens/Presenca");                //Endereço para a requisição HTTP
+    http.addHeader("Content-Type", "application/json"); //Especifica content-type do cabeçalho
+    http.addHeader("Authorization", token);             //Especifica content-type do cabeçalho
+    int httpCode = http.POST(requisicao);
+
+    Serial.println("                          => Resposta HTTP: " + String(httpCode) + "  <=          "); // Mostra a resposta HTTP da requisição
+
+    if (httpCode == 200) //Verifica o código de retorno
+    {
+      Serial.println("                                      => Envio OK <=                                      ");
+      lcd.setCursor(2, 1);
+      lcd.print("Registrado!");
+    }
+
+    else
+    {
+      erroHTTP(String(httpCode));
+    }
+    http.end(); //Libera os recursos alocados
+    Serial.println("##############################################################################");
+    Serial.println();
+    delay(2000);
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("PassCenter:ATIVO");
+    lcd.setCursor(2, 1);
+    lcd.print("Passe a TAG!");
+  }
+}
 //Callbacks e Etc
 
 //Callbacks

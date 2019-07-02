@@ -42,6 +42,7 @@ import GerentesCadastro from '@/components/gerenteGeral/GerentesCadastro.vue'
 //Administrador
 import AlunosADM from '@/components/administrador/AlunosADM.vue'
 import DisciplinasADM from '@/components/administrador/DisciplinasADM.vue'
+import GradesADM from '@/components/administrador/GradesADM.vue'
 import PlanosADM from '@/components/administrador/PlanosADM.vue'
 import FinanceiroADM from '@/components/administrador/FinanceiroADM.vue'
 import InstituicoesADM from '@/components/administrador/InstituicoesADM.vue'
@@ -127,6 +128,15 @@ const rotas = new Router({
           meta: {
             breadcrumbs: [{ nome: 'Administrador' },
             { nome: 'Disciplinas' }]
+          }
+        },
+        {
+          path: 'Grades',
+          name: 'GradesADM',
+          component: GradesADM,
+          meta: {
+            breadcrumbs: [{ nome: 'Gerente Geral' },
+            { nome: 'Grades' }]
           }
         },
         {

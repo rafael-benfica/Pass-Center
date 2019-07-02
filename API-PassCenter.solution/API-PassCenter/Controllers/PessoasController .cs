@@ -1,4 +1,5 @@
 ﻿using API_PassCenter.Models.Classes;
+using API_PassCenter.Models.ClassesAuxiliares;
 using API_PassCenter.Models.PasetoToken;
 using API_PassCenter.Models.Persistencia;
 using System;
@@ -45,6 +46,35 @@ namespace API_PassCenter.Controllers {
             if (retorno == -2) {
                 return BadRequest();
             } else {
+                return Ok(retorno);
+            }
+        }
+
+        [HttpPost, Route("api/Pessoas/Procedure")]
+        // POST: api/Instituicoes
+        public IHttpActionResult PostProcedure([FromBody]PessoaProcedure pessoas)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+
+            Instituicoes ins = new Instituicoes();
+            pessoas.Ins_codigo = Convert.ToInt32(credenciais.Ins_codigo);
+
+
+            int retorno = PessoasDB.Insert(pessoas);
+
+            if (retorno == -2)
+            {
+                return BadRequest();
+            }
+            else
+            {
                 return Ok(retorno);
             }
         }
