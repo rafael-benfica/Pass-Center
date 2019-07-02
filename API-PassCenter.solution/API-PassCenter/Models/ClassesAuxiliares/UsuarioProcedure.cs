@@ -6,7 +6,7 @@ using System.Web;
 
 namespace API_PassCenter.Models.ClassesAuxiliares
 {
-    public class PessoaProcedure
+    public class UsuarioProcedure
     {
         public int End_codigo { get; set; }
         public string End_logradouro { get; set; }

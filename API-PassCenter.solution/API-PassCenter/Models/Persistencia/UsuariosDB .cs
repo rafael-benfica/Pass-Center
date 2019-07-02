@@ -1,4 +1,5 @@
 ﻿using API_PassCenter.Models.Classes;
+using API_PassCenter.Models.ClassesAuxiliares;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,6 +8,74 @@ using System.Web;
 
 namespace API_PassCenter.Models.Persistencia {
     public class UsusariosDB {
+
+        public static int InsertProcedure(UsuarioProcedure usuario)
+        {
+            int retorno = 0;
+            try
+            {
+                IDbConnection objConexao; // Abre a conexao
+                IDbCommand objCommand; // Cria o comando
+
+
+                string sql = "call InserirUsuario(?end_logradouro, ?end_numero, ?end_bairro, ?end_municipio, ?end_cep, ?end_estado, ?end_complemento, ?end_pais, " +
+                    "?pes_nome, ?pes_sobrenomes, ?pes_data_nascimento, ?pes_cpf, ?pes_rg, ?pes_matricula, ?pes_sexo, ?pes_tel_residencial, ?pes_tel_celular, ?pes_info_adicionais, ?ins_codigo, " +
+                    "?usu_login, ?usu_senha, ?usu_data_criacao, ?tus_codigo, ?gra_codigo);";
+
+
+                objConexao = Mapped.Connection();
+                objCommand = Mapped.Command(sql, objConexao);
+
+                //Endereço
+                objCommand.Parameters.Add(Mapped.Parameter("?end_logradouro", usuario.End_logradouro));
+                objCommand.Parameters.Add(Mapped.Parameter("?end_numero", usuario.End_numero));
+                objCommand.Parameters.Add(Mapped.Parameter("?end_bairro", usuario.End_bairro));
+                objCommand.Parameters.Add(Mapped.Parameter("?end_municipio", usuario.End_municipio));
+                objCommand.Parameters.Add(Mapped.Parameter("?end_cep", usuario.End_cep));
+                objCommand.Parameters.Add(Mapped.Parameter("?end_estado", usuario.End_estado));
+                objCommand.Parameters.Add(Mapped.Parameter("?end_complemento", usuario.End_complemento));
+                objCommand.Parameters.Add(Mapped.Parameter("?end_pais", usuario.End_pais));
+
+                //Pessoa
+                objCommand.Parameters.Add(Mapped.Parameter("?pes_nome", usuario.Pes_nome));
+                objCommand.Parameters.Add(Mapped.Parameter("?pes_sobrenomes", usuario.Pes_sobrenomes));
+                objCommand.Parameters.Add(Mapped.Parameter("?pes_data_nascimento", usuario.Pes_data_nascimento));
+                objCommand.Parameters.Add(Mapped.Parameter("?pes_cpf", usuario.Pes_cpf));
+                objCommand.Parameters.Add(Mapped.Parameter("?pes_rg", usuario.Pes_rg));
+                objCommand.Parameters.Add(Mapped.Parameter("?pes_matricula", usuario.Pes_matricula));
+                objCommand.Parameters.Add(Mapped.Parameter("?pes_sexo", usuario.Pes_sexo));
+                objCommand.Parameters.Add(Mapped.Parameter("?pes_tel_residencial", usuario.Pes_tel_residencial));
+                objCommand.Parameters.Add(Mapped.Parameter("?pes_tel_celular", usuario.Pes_tel_celular));
+                objCommand.Parameters.Add(Mapped.Parameter("?pes_info_adicionais", usuario.Pes_info_adicionais));
+                objCommand.Parameters.Add(Mapped.Parameter("?ins_codigo", usuario.Ins_codigo));
+
+                //Usuário
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_login", usuario.Usu_login));
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_senha", usuario.Usu_senha));
+                objCommand.Parameters.Add(Mapped.Parameter("?usu_data_criacao", usuario.Usu_data_criacao));
+                objCommand.Parameters.Add(Mapped.Parameter("?tus_codigo", usuario.Tus_codigo));
+                if (usuario.Gra_codigo != 0)
+                {
+                    objCommand.Parameters.Add(Mapped.Parameter("?gra_codigo", usuario.Gra_codigo));
+                }
+                else
+                {
+                    objCommand.Parameters.Add(Mapped.Parameter("?gra_codigo", null));
+                }
+
+                retorno = Convert.ToInt32(objCommand.ExecuteScalar());
+
+                objConexao.Close();
+                objCommand.Dispose();
+                objConexao.Dispose();
+            }
+            catch (Exception e)
+            {
+                retorno = -2;
+            }
+            return retorno;
+        }
+
         public static int Insert(Usuarios usuarios) {
             int retorno = 0;
             try {

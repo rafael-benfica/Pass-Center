@@ -1,4 +1,5 @@
 ﻿using API_PassCenter.Models.Classes;
+using API_PassCenter.Models.ClassesAuxiliares;
 using API_PassCenter.Models.PasetoToken;
 using API_PassCenter.Models.Persistencia;
 using API_PassCenter.Models.PersistenciaAuxliar;
@@ -16,6 +17,129 @@ namespace API_PassCenter.Controllers
 {
     public class UsuariosController : ApiController
     {
+        [HttpPost, Route("api/Usuarios/Procedure")]
+        // POST: Insere usuarios
+        public IHttpActionResult UsuariosProcedure([FromBody]UsuarioProcedure usu)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            usu.Ins_codigo = Convert.ToInt32(credenciais.Ins_codigo);
+            usu.Usu_data_criacao = DateTime.UtcNow;
+
+            string senha = GeraSenha();
+
+            SHA512 sha512 = SHA512Managed.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(senha);
+            byte[] hash = sha512.ComputeHash(bytes);
+            usu.Usu_senha = GetStringFromHash(hash);
+
+            int retorno = UsusariosDB.InsertProcedure(usu);
+
+            if (retorno != 0)
+            {
+                return BadRequest();
+            }
+            else
+            {
+
+                System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                client.Credentials = new System.Net.NetworkCredential("nao.responder.passcenter@gmail.com", "fatec2019");
+                MailMessage mail = new MailMessage();
+                mail.Sender = new System.Net.Mail.MailAddress(usu.Usu_login, "Pass Center");
+                mail.From = new MailAddress("nao.responder.passcenter@gmail.com", "Pass Center");
+                mail.To.Add(new MailAddress(usu.Usu_login, "Você"));
+                mail.Subject = "Pass Center";
+                mail.Body = "Olá, é um prazer te conhecer!<br/>Bom, para começar, aqui está a sua senha: " + senha + "<br/><br/>Se precisar de alguma ajuda, entre em contato com a gente!<br/>Um grande abraço da Equipe Pass Center =D";
+                mail.IsBodyHtml = true;
+                mail.Priority = MailPriority.High;
+                try
+                {
+                    client.Send(mail);
+                }
+                catch (System.Exception erro)
+                {
+                    return BadRequest();
+                    //trata erro
+                }
+                finally
+                {
+                    mail = null;
+                }
+
+                return Ok(retorno);
+            }
+
+        }
+
+        [HttpPost, Route("api/Usuarios/Procedure/ADM")]
+        // POST: Insere usuarios
+        public IHttpActionResult UsuariosProcedureADM([FromBody]UsuarioProcedure usu)
+        {
+
+            Indentificacao credenciais = autenticar.autenticacao(Request, 3);
+
+            if (credenciais == null)
+            {
+                return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
+            }
+
+            usu.Usu_data_criacao = DateTime.UtcNow;
+
+            string senha = GeraSenha();
+
+            SHA512 sha512 = SHA512Managed.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(senha);
+            byte[] hash = sha512.ComputeHash(bytes);
+            usu.Usu_senha = GetStringFromHash(hash);
+
+            int retorno = UsusariosDB.InsertProcedure(usu);
+
+            if (retorno != 0)
+            {
+                return BadRequest();
+            }
+            else
+            {
+
+                System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                client.Credentials = new System.Net.NetworkCredential("nao.responder.passcenter@gmail.com", "fatec2019");
+                MailMessage mail = new MailMessage();
+                mail.Sender = new System.Net.Mail.MailAddress(usu.Usu_login, "Pass Center");
+                mail.From = new MailAddress("nao.responder.passcenter@gmail.com", "Pass Center");
+                mail.To.Add(new MailAddress(usu.Usu_login, "Você"));
+                mail.Subject = "Pass Center";
+                mail.Body = "Olá, é um prazer te conhecer!<br/>Bom, para começar, aqui está a sua senha: " + senha + "<br/><br/>Se precisar de alguma ajuda, entre em contato com a gente!<br/>Um grande abraço da Equipe Pass Center =D";
+                mail.IsBodyHtml = true;
+                mail.Priority = MailPriority.High;
+                try
+                {
+                    client.Send(mail);
+                }
+                catch (System.Exception erro)
+                {
+                    return BadRequest();
+                    //trata erro
+                }
+                finally
+                {
+                    mail = null;
+                }
+
+                return Ok(retorno);
+            }
+
+        }
+
         [HttpPost, Route("api/Usuarios")]
         // POST: Insere usuarios
         public IHttpActionResult Usuarios([FromBody]Usuarios usuarios)
@@ -30,7 +154,7 @@ namespace API_PassCenter.Controllers
 
             usu.Usu_login = usuarios.Usu_login;
             usu.Usu_estado = true;
-            usu.Usu_data_criacao = DateTime.UtcNow; ;
+            usu.Usu_data_criacao = DateTime.UtcNow;
             usu.Usu_primeiro_login = true;
             usu.Usu_redefinir_senha = true;
             usu.Pes_codigo = usuarios.Pes_codigo;

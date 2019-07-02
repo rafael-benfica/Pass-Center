@@ -33,7 +33,7 @@ INSERT INTO grades (gra_nome, ins_codigo) VALUES ('1º Ano - E.M.', 2);
 
 -- Inserindo Administrador
 INSERT INTO enderecos(end_logradouro, end_numero, end_bairro, end_municipio, end_cep, end_estado, end_complemento, end_pais)
-VALUES('Rua Teerã', '930', 'Parque da Lapa', 'São Paulo', '05301000', '1', '', 'Brasil');
+VALUES('Rua Teerã', '930', 'Parque da Lapa', 'São Paulo', '05301000', 'SP', '', 'Brasil');
 
 INSERT INTO pessoas (pes_nome, pes_sobrenomes, pes_data_nascimento, pes_cpf, pes_rg, pes_matricula, pes_sexo, pes_tel_residencial, pes_tel_celular, pes_info_adicionais, end_codigo, ins_codigo) 
 VALUES ('Filipe', 'Márcio Ferreira', '1996-02-01', '240.436.648-34', '48.085.566-3', '1802010', '1', '(11) 2511-5724', '(11) 98403-6407', '','2', '1');

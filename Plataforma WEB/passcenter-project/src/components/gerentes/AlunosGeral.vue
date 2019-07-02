@@ -363,8 +363,8 @@ export default {
   data() {
     return {
       alunos: [],
-      grades:[],
-      grade:0,
+      grades: [],
+      grade: 0,
       pessoa_codigo: "",
       endereco_codigo: "",
       usuario_codigo: "",
@@ -746,7 +746,7 @@ export default {
         reverseButtons: true
       }).then(result => {
         if (result.value) {
-          var dodosEndereco = {
+          const dodosUsuario = {
             end_codigo: this.endereco_codigo,
             end_logradouro: this.logradouro,
             end_numero: this.numero,
@@ -756,67 +756,34 @@ export default {
             end_estado: this.estado,
             end_complemento: this.complemento,
             end_pais: "BR",
-            ten_codigo: {
-              ten_codigo: "2"
-            }
+            ten_codigo: "2",
+            pes_matricula: this.matricula,
+            pes_nome: this.nome,
+            pes_sobrenomes: this.sobrenomes,
+            pes_data_nascimento: this.enviaData(),
+            pes_cpf: this.CPF,
+            pes_rg: this.RG,
+            pes_sexo: this.sexo,
+            pes_tel_residencial: this.tel_residencial,
+            pes_tel_celular: this.tel_celular,
+            pes_info_adicionais: this.infoadd,
+            usu_login: this.login,
+            usu_senha: this.senha,
+            tus_codigo: 5,
+            gra_codigo: this.grade
           };
 
-          this.$http.post("Enderecos", dodosEndereco).then(
+          this.$http.post("Usuarios/Procedure", dodosUsuario).then(
             response => {
-              const dodosPessoais = {
-                pes_matricula: this.matricula,
-                pes_nome: this.nome,
-                pes_sobrenomes: this.sobrenomes,
-                pes_data_nascimento: this.enviaData(),
-                pes_cpf: this.CPF,
-                pes_rg: this.RG,
-                pes_sexo: this.sexo,
-                pes_tel_residencial: this.tel_residencial,
-                pes_tel_celular: this.tel_celular,
-                pes_info_adicionais: this.infoadd,
-                end_codigo: {
-                  end_codigo: response.body
-                }
-              };
-
-              this.$http.post("Pessoas", dodosPessoais).then(
-                response => {
-                  var dodosUsuario = {
-                    usu_codigo: this.usuario_codigo,
-                    usu_login: this.login,
-                    usu_senha: this.senha,
-                    pes_codigo: {
-                      pes_codigo: response.body
-                    },
-                    tus_codigo: {
-                      tus_codigo: 5
-                    },
-                    gra_codigo:{
-                      gra_codigo: this.grade
-                    }
-                  };
-
-                  this.$http.post("Usuarios", dodosUsuario).then(
-                    response => {
-                      this.carregarDados();
-                      swalWithBootstrapButtons(
-                        "Salvo!",
-                        "Todas as informações foram salvas.",
-                        "success"
-                      );
-                    },
-                    response => {
-                      this.erro("Dados do Usuário", response.status);
-                    }
-                  );
-                },
-                response => {
-                  this.erro("Dados Pessoais", response.status);
-                }
+              this.carregarDados();
+              swalWithBootstrapButtons(
+                "Salvo!",
+                "Todas as informações foram salvas.",
+                "success"
               );
             },
             response => {
-              this.erro("Endereço", response.status);
+              this.erro("Dados do Usuário", response.status);
             }
           );
         } else if (

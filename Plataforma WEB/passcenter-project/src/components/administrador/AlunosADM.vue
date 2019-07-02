@@ -37,15 +37,15 @@
           <div id="modalVer" class="modal">
             <div class="modal-content">
               <h4 class="centro">Aluno</h4>
-              <hr>
+              <hr />
               <div class="row col s12 m12 l12">
                 <div class="row">
                   <div class="input-field col s12 m4">
-                    <input id="nome" type="text" class="validate" v-model="nome">
+                    <input id="nome" type="text" class="validate" v-model="nome" />
                     <label for="nome">Nome</label>
                   </div>
                   <div class="input-field col s12 m6">
-                    <input id="sobrenome" type="text" class="validate" v-model="sobrenomes">
+                    <input id="sobrenome" type="text" class="validate" v-model="sobrenomes" />
                     <label for="sobrenome">Sobrenome</label>
                   </div>
                   <div class="input-field col s12 m2">
@@ -54,17 +54,17 @@
                       type="text"
                       class="datepicker"
                       v-model="data_nascimento"
-                    >
+                    />
                     <label for="data_nascimento">Data de Nascimento</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s12 m4">
-                    <input id="cpf" type="text" class="validate" v-model="CPF">
+                    <input id="cpf" type="text" class="validate" v-model="CPF" />
                     <label for="cpf">CPF</label>
                   </div>
                   <div class="input-field col s12 m4">
-                    <input id="rg" type="text" class="validate" v-model="RG">
+                    <input id="rg" type="text" class="validate" v-model="RG" />
                     <label for="rg">RG</label>
                   </div>
                   <div class="input-field col s12 m4">
@@ -79,25 +79,25 @@
                 </div>
                 <div class="row">
                   <div class="input-field col s12 m3">
-                    <input id="bairro" type="text" class="validate" v-model="bairro">
+                    <input id="bairro" type="text" class="validate" v-model="bairro" />
                     <label for="bairro">Bairro</label>
                   </div>
                   <div class="input-field col s12 m5">
-                    <input id="rua" type="text" class="validate" v-model="logradouro">
+                    <input id="rua" type="text" class="validate" v-model="logradouro" />
                     <label for="rua">Rua</label>
                   </div>
                   <div class="input-field col s12 m2">
-                    <input id="numero" type="text" class="validate" v-model="numero">
+                    <input id="numero" type="text" class="validate" v-model="numero" />
                     <label for="numero">Número</label>
                   </div>
                   <div class="input-field col s12 m2">
-                    <input id="cep" type="text" class="validate" v-model="CEP">
+                    <input id="cep" type="text" class="validate" v-model="CEP" />
                     <label for="cep">CEP</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s12 m5">
-                    <input id="municipio" type="text" class="validate" v-model="municipio">
+                    <input id="municipio" type="text" class="validate" v-model="municipio" />
                     <label for="municipio">Município</label>
                   </div>
                   <div class="input-field col s12 m3">
@@ -134,7 +134,7 @@
                     <label>Estado:</label>
                   </div>
                   <div class="input-field col s12 m4">
-                    <input id="Complemento" type="text" class="validate" v-model="complemento">
+                    <input id="Complemento" type="text" class="validate" v-model="complemento" />
                     <label for="Complemento">Complemento</label>
                   </div>
                 </div>
@@ -145,15 +145,15 @@
                       type="text"
                       class="validate"
                       v-model="tel_residencial"
-                    >
+                    />
                     <label for="tel_residencial">Telefone Residencial:</label>
                   </div>
                   <div class="input-field col s12 m4">
-                    <input id="tel_celular" type="text" class="validate" v-model="tel_celular">
+                    <input id="tel_celular" type="text" class="validate" v-model="tel_celular" />
                     <label for="tel_celular">Telefone Celular:</label>
                   </div>
                   <div class="input-field col s12 m4">
-                    <input id="email" type="email" class="validate" v-model="login">
+                    <input id="email" type="email" class="validate" v-model="login" />
                     <label for="email">Email</label>
                   </div>
                 </div>
@@ -185,7 +185,7 @@
           <div id="modalAdd" class="modal">
             <div class="modal-content">
               <h4 class="centro">Cadastrar Aluno</h4>
-              <hr>
+              <hr />
               <div class="row col s12 m12 l12">
                 <div class="row">
                   <div class="input-field col s12 m3">
@@ -200,15 +200,15 @@
                     <label>Instituição</label>
                   </div>
                   <div class="input-field col s12 m2">
-                    <input id="matriculaModalAdd" type="text" class="validate" v-model="matricula">
+                    <input id="matriculaModalAdd" type="text" class="validate" v-model="matricula" />
                     <label for="matriculalAdd">Matrícula</label>
                   </div>
                   <div class="input-field col s12 m3">
-                    <input id="nomeModalAdd" type="text" class="validate" v-model="nome">
+                    <input id="nomeModalAdd" type="text" class="validate" v-model="nome" />
                     <label for="nomeModalAdd">Nome</label>
                   </div>
                   <div class="input-field col s12 m4">
-                    <input id="sobrenomeModalAdd" type="text" class="validate" v-model="sobrenomes">
+                    <input id="sobrenomeModalAdd" type="text" class="validate" v-model="sobrenomes" />
                     <label for="sobrenomeModalAdd">Sobrenome</label>
                   </div>
                 </div>
@@ -219,15 +219,15 @@
                       type="text"
                       class="datepicker"
                       v-model="data_nascimento"
-                    >
+                    />
                     <label for="data_nascimentoModalAdd">Data de Nascimento</label>
                   </div>
                   <div class="input-field col s12 m3">
-                    <input id="cpfModalAdd" type="text" class="validate" v-model="CPF">
+                    <input id="cpfModalAdd" type="text" class="validate" v-model="CPF" />
                     <label for="cpfModalAdd">CPF</label>
                   </div>
                   <div class="input-field col s12 m3">
-                    <input id="rgModalAdd" type="text" class="validate" v-model="RG">
+                    <input id="rgModalAdd" type="text" class="validate" v-model="RG" />
                     <label for="rgModalAdd">RG</label>
                   </div>
                   <div class="input-field col s12 m3">
@@ -242,25 +242,25 @@
                 </div>
                 <div class="row">
                   <div class="input-field col s12 m3">
-                    <input id="bairroModalAdd" type="text" class="validate" v-model="bairro">
+                    <input id="bairroModalAdd" type="text" class="validate" v-model="bairro" />
                     <label for="bairroModalAdd">Bairro</label>
                   </div>
                   <div class="input-field col s12 m5">
-                    <input id="ruaModalAdd" type="text" class="validate" v-model="logradouro">
+                    <input id="ruaModalAdd" type="text" class="validate" v-model="logradouro" />
                     <label for="ruaModalAdd">Rua</label>
                   </div>
                   <div class="input-field col s12 m2">
-                    <input id="numeroModalAdd" type="text" class="validate" v-model="numero">
+                    <input id="numeroModalAdd" type="text" class="validate" v-model="numero" />
                     <label for="numeroModalAdd">Número</label>
                   </div>
                   <div class="input-field col s12 m2">
-                    <input id="cepModalAdd" type="text" class="validate" v-model="CEP">
+                    <input id="cepModalAdd" type="text" class="validate" v-model="CEP" />
                     <label for="cepModalAdd">CEP</label>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="input-field col s12 m5">
-                    <input id="municipioModalAdd" type="text" class="validate" v-model="municipio">
+                  <div class="input-field col s12 m3">
+                    <input id="municipioModalAdd" type="text" class="validate" v-model="municipio" />
                     <label for="municipioModalAdd">Município</label>
                   </div>
                   <div class="input-field col s12 m3">
@@ -296,14 +296,25 @@
                     </select>
                     <label>Estado:</label>
                   </div>
-                  <div class="input-field col s12 m4">
+                  <div class="input-field col s12 m3">
                     <input
                       id="ComplementoModalAdd"
                       type="text"
                       class="validate"
                       v-model="complemento"
-                    >
+                    />
                     <label for="ComplementoModalAdd">Complemento</label>
+                  </div>
+                  <div class="input-field col s12 m3">
+                    <select v-model="grade">
+                      <option value disabled selected>Selecione a Grade</option>
+                      <option
+                        :value="item.gra_codigo"
+                        v-for="item in grades"
+                        :key="item.id"
+                      >{{ item.gra_nome }}</option>
+                    </select>
+                    <label>Próxima Grade</label>
                   </div>
                 </div>
                 <div class="row">
@@ -313,7 +324,7 @@
                       type="text"
                       class="validate"
                       v-model="tel_residencial"
-                    >
+                    />
                     <label for="tel_residencialModalAdd">Telefone Residencial:</label>
                   </div>
                   <div class="input-field col s12 m4">
@@ -322,11 +333,11 @@
                       type="text"
                       class="validate"
                       v-model="tel_celular"
-                    >
+                    />
                     <label for="tel_celularModalAdd">Telefone Celular:</label>
                   </div>
                   <div class="input-field col s12 m4">
-                    <input id="emailModalAdd" type="email" class="validate" v-model="login">
+                    <input id="emailModalAdd" type="email" class="validate" v-model="login" />
                     <label for="emailModalAdd">Email</label>
                   </div>
                 </div>
@@ -364,6 +375,8 @@ export default {
     return {
       alunos: [],
       instituicoes: [],
+      grades: [],
+      grade: 0,
       instituicao: 0,
       pessoa_codigo: "",
       endereco_codigo: "",
@@ -407,6 +420,23 @@ export default {
         this.erro("Instituições", response.status);
       }
     );
+  },
+
+  watch: {
+    instituicao(value) {
+      this.$http.get("Grades/ADM", { params: { ins_codigo: value } }).then(
+        response => {
+          this.grades = response.body;
+          $(document).ready(function() {
+            M.updateTextFields();
+            $("select").formSelect();
+          });
+        },
+        response => {
+           this.erro("Dados das Grades", response.status);
+        }
+      );
+    }
   },
   methods: {
     carregarDados() {
@@ -742,7 +772,7 @@ export default {
         reverseButtons: true
       }).then(result => {
         if (result.value) {
-          var dodosEndereco = {
+          const dodosUsuario = {
             end_codigo: this.endereco_codigo,
             end_logradouro: this.logradouro,
             end_numero: this.numero,
@@ -751,65 +781,36 @@ export default {
             end_cep: this.CEP,
             end_estado: this.estado,
             end_complemento: this.complemento,
-            end_pais: "BR"
+            end_pais: "BR",
+            ten_codigo: "2",
+            pes_matricula: this.matricula,
+            pes_nome: this.nome,
+            pes_sobrenomes: this.sobrenomes,
+            pes_data_nascimento: this.enviaData(),
+            pes_cpf: this.CPF,
+            pes_rg: this.RG,
+            pes_sexo: this.sexo,
+            pes_tel_residencial: this.tel_residencial,
+            pes_tel_celular: this.tel_celular,
+            pes_info_adicionais: this.infoadd,
+            ins_codigo: this.instituicao,
+            usu_login: this.login,
+            usu_senha: this.senha,
+            tus_codigo: 5,
+            gra_codigo: this.grade
           };
 
-          this.$http.post("Enderecos", dodosEndereco).then(
+          this.$http.post("Usuarios/Procedure/ADM", dodosUsuario).then(
             response => {
-              const dodosPessoais = {
-                pes_matricula: this.matricula,
-                pes_nome: this.nome,
-                pes_sobrenomes: this.sobrenomes,
-                pes_data_nascimento: this.enviaData(),
-                pes_cpf: this.CPF,
-                pes_rg: this.RG,
-                pes_sexo: this.sexo,
-                pes_tel_residencial: this.tel_residencial,
-                pes_tel_celular: this.tel_celular,
-                pes_info_adicionais: this.infoadd,
-                end_codigo: {
-                  end_codigo: response.body
-                },
-                ins_codigo: {
-                  ins_codigo: this.instituicao
-                }
-              };
-
-              this.$http.post("Pessoas/ADM", dodosPessoais).then(
-                response => {
-                  var dodosUsuario = {
-                    usu_codigo: this.usuario_codigo,
-                    usu_login: this.login,
-                    usu_senha: this.senha,
-                    pes_codigo: {
-                      pes_codigo: response.body
-                    },
-                    tus_codigo: {
-                      tus_codigo: 5
-                    }
-                  };
-
-                  this.$http.post("Usuarios", dodosUsuario).then(
-                    response => {
-                      this.carregarDados();
-                      swalWithBootstrapButtons(
-                        "Salvo!",
-                        "Todas as informações foram salvas.",
-                        "success"
-                      );
-                    },
-                    response => {
-                      this.erro("Dados do Usuário", response.status);
-                    }
-                  );
-                },
-                response => {
-                  this.erro("Dados Pessoais", response.status);
-                }
+              this.carregarDados();
+              swalWithBootstrapButtons(
+                "Salvo!",
+                "Todas as informações foram salvas.",
+                "success"
               );
             },
             response => {
-              this.erro("Endereço", response.status);
+              this.erro("Dados do Usuário", response.status);
             }
           );
         } else if (
@@ -880,7 +881,7 @@ export default {
       }),
         console.log(
           "ERRO em " + msg + "! Código de resposta (HTTP) do servidor: " + code
-        )
+        );
     }
   }
 };

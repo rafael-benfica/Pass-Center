@@ -1,6 +1,8 @@
-drop procedure inserir;
-delimiter |
-create procedure inserir(
+-- Precedure InserirPessoa
+drop procedure if exists InserirPessoa;
+
+delimiter $
+create procedure InserirPessoa(
   in `end_logradouroP` VARCHAR(120),
   in `end_numeroP` VARCHAR(10),
   in `end_bairroP` VARCHAR(50),
@@ -25,13 +27,14 @@ create procedure inserir(
   in `usu_loginP` VARCHAR(50),
   in `usu_senhaP` TEXT,
   in `usu_data_criacaoP` DATETIME,
-  in` tus_codigoP` INT,
+  in `tus_codigoP` INT,
   in `gra_codigoP` INT
 )
 
 begin
 declare `end_codigoP` INT;
 declare `pes_codigoP` INT;
+declare `usu_codigoP` INT;
 declare excessao smallint default 0;
 declare continue handler for sqlexception set excessao = 1;
 
@@ -51,10 +54,9 @@ declare continue handler for sqlexception set excessao = 1;
                 if(excessao = 0) then
              
                 INSERT INTO `passcenter`.`usuarios` (`usu_login`, `usu_senha`, `usu_estado`, `usu_data_criacao`, `usu_data_desativacao`, `usu_primeiro_login`, `usu_redefinir_senha`, `pes_codigo`, `tus_codigo`, `gra_codigo`) 
-                VALUES ('1', '1', '1', '2018-01-12 00:00:00', '2018-01-12 00:00:00', '1', '1', pes_codigoP, tus_codigoP, '1');
-
-
-                    
+                VALUES (usu_loginP, usu_senhaP, '1', usu_data_criacaoP, null, '1', '1', pes_codigoP, tus_codigoP, gra_codigoP);
+				select last_insert_id() into usu_codigoP;
+                
                     if(excessao = 0) then
 						select '0' as msg;
                         commit;
@@ -76,5 +78,7 @@ declare continue handler for sqlexception set excessao = 1;
             rollback;
         end if;
 
-
+		call passcenter.matricular(usu_codigoP, gra_codigoP);
+        
 end
+$
