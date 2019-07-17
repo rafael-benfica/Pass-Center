@@ -23,8 +23,9 @@ namespace API_PassCenter.Controllers
             {
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
-
-            ata.Ins_codigo.Ins_codigo = Convert.ToInt32(credenciais.Ins_codigo);
+            Instituicoes ins = new Instituicoes();
+            ins.Ins_codigo = Convert.ToInt32(credenciais.Ins_codigo);
+            ata.Ins_codigo = ins;
 
             if (AtrelarTagDB.Insert(ata) == 0)
             {

@@ -328,7 +328,7 @@ void requisicaoPessoa(String RFID)
         estado = 1;
         Serial.println("         => Totem Especializado (1): Sessão inicializada pelo auditor <=        ");
       }
-      else if (String(tipoJ) == "3")
+      else if (String(tipoJ) == "3" || String(tipoJ) == "2")
       {
         estado = 4;
         Serial.println("                 => Totem Especializado (4): Modo Cadastro; <=                  ");
@@ -652,9 +652,7 @@ void enviarTAG(String RFID)
     //Cria o JSON para o envio
     DynamicJsonDocument dados(256);
 
-    dados["ata_identificador"] = "oi";
-    JsonObject ins_codigo = dados.createNestedObject("ins_codigo");
-    ins_codigo["ins_codigo"] = 2;
+    dados["ata_identificador"] = String(RFID);
 
     String requisicao;
 
@@ -663,7 +661,7 @@ void enviarTAG(String RFID)
     Serial.println(requisicao);
     HTTPClient http; // Declaração do objeto para a requisição HTTP
 
-    http.begin(api + "Totens/Presenca");                //Endereço para a requisição HTTP
+    http.begin(api + "AtrelarTag");                //Endereço para a requisição HTTP
     http.addHeader("Content-Type", "application/json"); //Especifica content-type do cabeçalho
     http.addHeader("Authorization", token);             //Especifica content-type do cabeçalho
     int httpCode = http.POST(requisicao);
