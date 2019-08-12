@@ -498,7 +498,7 @@ export default {
             },
             response => {
               console.log(
-                "ERRO ao carregar os Dados! Código de resposta (HTTP) do servidor: " +
+                "ERRO ao carregar os Alunos ao vivo! Código de resposta (HTTP) do servidor: " +
                   response.status
               );
             }
@@ -513,8 +513,11 @@ export default {
                 console.log("Obteve Alunos!");
               },
               response => {
-                this.erro("Presenças Ao vivo", response.status);
-                clearInterval(this.intervalo);
+                console.log(
+                "ERRO ao carregar os Alunos ao vivo! Código de resposta (HTTP) do servidor: " +
+                  response.status
+              );
+                instance.close();
               }
             );
         }, 1000);

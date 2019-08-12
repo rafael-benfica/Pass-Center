@@ -146,11 +146,14 @@ namespace API_PassCenter.Controllers
                 return Content(HttpStatusCode.Unauthorized, "Credenciais Invalidas ou Ausentes!");
             }
 
-
+            try { 
             int ses_codigo = Convert.ToInt32(SessoesDB.SelectLive(eau_codigo).Tables[0].Rows[0]["ses_codigo"].ToString());
 
             return Ok(PresencasDB.Select(ses_codigo, eau_codigo).Tables[0]);
-
+            }
+            catch {
+                return Content(HttpStatusCode.Gone, "Esta sessão foi encerrada!");
+            }
         }
 
         [HttpGet, Route("api/Presencas")]

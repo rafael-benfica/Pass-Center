@@ -17,7 +17,7 @@
 
 //Config Totem
 static String versao = "0.10";                  //Indica a versão do Fimewae
-static String api = "http://192.168.33.41/api/"; //Indica o endereço base do servidor API
+static String api = "http://192.168.0.70/api/"; //Indica o endereço base do servidor API
 static bool debug = false;                      //Flag para ativar/desativar debug
 bool shouldSaveConfig = false;                  //Flag para indicar se foi salva uma nova configuração de rede
 
@@ -42,7 +42,7 @@ int estado = 0; /*  0 = Totem Genério: Aguardando especialização | Operaciona
                 */
 String RFIDmaster = "";
 String token = "";
-String nomeAuditor = "";
+String nome = "";
 int sessao;
 int disciplina;
 
@@ -216,6 +216,8 @@ void RFIDtask(void *pvParameters)
         {
           fechaSessao();
           RFIDmaster = "";
+          token = "";
+          nome = "";
           estado = 0;
         }
         else
@@ -226,8 +228,19 @@ void RFIDtask(void *pvParameters)
       case 4:
         if (conteudo == RFIDmaster)
         {
-          RFIDmaster = "";
           estado = 0;
+          lcd.clear();
+          lcd.setCursor(1, 0);
+          lcd.print("Tchau, " + nome + "!");
+          delay(2000);
+          lcd.clear();
+          lcd.setCursor(3, 0);
+          lcd.print("PassCenter");
+          lcd.setCursor(2, 1);
+          lcd.print("Passe a TAG!");
+          RFIDmaster = "";
+          token = "";
+          nome = "";
           Serial.println("Saiu!");
         }else{
           enviarTAG(conteudo);
@@ -317,10 +330,10 @@ void requisicaoPessoa(String RFID)
       Serial.println();
 
       RFIDmaster = RFID; // Define o Objeto RFID Master
-      nomeAuditor = String(nomeJ);
+      nome = String(nomeJ);
       lcd.clear();
       lcd.setCursor(2, 0);
-      lcd.print("Oi, " + nomeAuditor + "!");
+      lcd.print("Oi, " + nome + "!");
       delay(1000);
 
       if (String(tipoJ) == "4")
@@ -557,7 +570,7 @@ void fechaSessao()
 
       lcd.clear();
       lcd.setCursor(1, 0);
-      lcd.print("Tchau, " + nomeAuditor + "!");
+      lcd.print("Tchau, " + nome + "!");
       delay(2000);
       lcd.clear();
       lcd.setCursor(3, 0);
