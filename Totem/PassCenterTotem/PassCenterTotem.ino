@@ -16,7 +16,7 @@
 #include <LiquidCrystal_I2C.h> //LiquidCrystal I2C ( https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library )
 
 //Config Totem
-static String versao = "0.14";                  //Indica a versão do Fimewae
+static String versao = "0.15";                  //Indica a versão do Fimewae
 static String api = "http://192.168.0.70/api/"; //Indica o endereço base do servidor API
 static bool debug = false;                      //Flag para ativar/desativar debug
 bool shouldSaveConfig = false;                  //Flag para indicar se foi salva uma nova configuração de rede
@@ -61,7 +61,7 @@ void setup()
   Serial.println("                      ################################");
   Serial.println("                      #                              #");
   Serial.println("                      #      PassCenter - Totem      #");
-  Serial.println("                      #        Fimeware v" + versao + "        #");
+  Serial.println("                      #        Firmware v" + versao + "        #");
   Serial.println("                      #                              #");
   Serial.println("                      ################################");
 
@@ -83,9 +83,9 @@ void setup()
   lcd.print("PassCenter");
   lcd.setCursor(11, 0);
   lcd.print("v" + versao);
-  delay(500);
   lcd.setCursor(1, 1);
   lcd.print("Inicializando");
+  delay(1000);
 
   Serial.println("                 => Configurador: Display LCD Inicializado!  <=                 ");
 
