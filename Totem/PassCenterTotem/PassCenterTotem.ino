@@ -16,13 +16,12 @@
 #include <LiquidCrystal_I2C.h> //LiquidCrystal I2C ( https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library )
 
 //Config Totem
-static String versao = "0.12";                  //Indica a versão do Fimewae
+static String versao = "0.13";                  //Indica a versão do Fimewae
 static String api = "http://192.168.0.70/api/"; //Indica o endereço base do servidor API
 static bool debug = false;                      //Flag para ativar/desativar debug
 bool shouldSaveConfig = false;                  //Flag para indicar se foi salva uma nova configuração de rede
 
 //Pinos
-const int PIN_AP = 2;   //Botão para abrir o Assitente de configuração do WiFi
 const int SS_PIN = 5;   //Pino para o MFRC522 - Conectado ao pino D5 do ESP32
 const int RST_PIN = 36; //Pino para o MFRC522 - Conectado ao pino VP do ESP32
 const int BTNESQ = 14;  //Botão Esquerdo
@@ -70,7 +69,6 @@ void setup()
 
   Serial.println("############################### Inicialização ##################################");
   //Desinindo a operação dos pinos
-  pinMode(PIN_AP, INPUT);
   pinMode(BTNESQ, INPUT);
   pinMode(BTNDIR, INPUT);
   pinMode(BTNENT, INPUT);
@@ -113,7 +111,7 @@ void setup()
   lcd.setCursor(2, 1);
   lcd.print("Inicializado!");
 
-  if (digitalRead(PIN_AP) == HIGH)
+  if (digitalRead(BTNENT) == HIGH)
   {
     resetWiFI();
   }
