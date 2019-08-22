@@ -520,7 +520,7 @@ export default {
                 instance.close();
               }
             );
-        }, 1000);
+        }, 500);
       }
     },
 
