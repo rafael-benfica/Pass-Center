@@ -16,7 +16,7 @@
 #include <LiquidCrystal_I2C.h> //LiquidCrystal I2C ( https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library )
 
 //Config Totem
-static String versao = "0.13";                  //Indica a versão do Fimewae
+static String versao = "0.14";                  //Indica a versão do Fimewae
 static String api = "http://192.168.0.70/api/"; //Indica o endereço base do servidor API
 static bool debug = false;                      //Flag para ativar/desativar debug
 bool shouldSaveConfig = false;                  //Flag para indicar se foi salva uma nova configuração de rede
@@ -370,7 +370,12 @@ void requisicaoPessoa(String RFID)
       lcd.print("PassCenter");
       lcd.setCursor(0, 1);
       lcd.print("Não Autorizado");
-      delay(500);
+      delay(1000);
+      lcd.clear();
+      lcd.setCursor(3, 0);
+      lcd.print("PassCenter");
+      lcd.setCursor(2, 1);
+      lcd.print("Passe a TAG!");
     }
 
     else
@@ -755,12 +760,12 @@ void saveConfigCallback()
 void erroHTTP(String code)
 {
   digitalWrite(BUZZER, HIGH);
-  delay(1500);
   Serial.println("    => Erro Durante a requisição HTTP: " + code + "  <=             "); // Mostra a resposta HTTP da requisição
   lcd.clear();
   lcd.setCursor(3, 0);
   lcd.print("Erro: HTTP");
   lcd.setCursor(6, 1);
   lcd.print(code);
+  delay(1500);
   digitalWrite(BUZZER, LOW);
 }
