@@ -173,7 +173,6 @@ void RFIDtask(void *pvParameters)
     if (controle)
     {
 
-  
       String conteudo = "";
       byte letra;
       // Rotina para despejar a matriz de bytes com os valores hexadecimais para Serial.
@@ -184,10 +183,10 @@ void RFIDtask(void *pvParameters)
       }
 
       conteudo.trim();
-      
-      digitalWrite(BUZZER,HIGH);
+
+      digitalWrite(BUZZER, HIGH);
       delay(100);
-      digitalWrite(BUZZER,LOW);
+      digitalWrite(BUZZER, LOW);
 
       switch (estado)
       {
@@ -215,10 +214,20 @@ void RFIDtask(void *pvParameters)
         if (conteudo == RFIDmaster)
         {
           fechaSessao();
+          estado = 0;
+          lcd.clear();
+          lcd.setCursor(1, 0);
+          lcd.print("Tchau, " + nome + "!");
+          delay(2000);
+          lcd.clear();
+          lcd.setCursor(3, 0);
+          lcd.print("PassCenter");
+          lcd.setCursor(2, 1);
+          lcd.print("Passe a TAG!");
           RFIDmaster = "";
           token = "";
           nome = "";
-          estado = 0;
+          Serial.println("Saiu!");
         }
         else
         {
@@ -242,7 +251,9 @@ void RFIDtask(void *pvParameters)
           token = "";
           nome = "";
           Serial.println("Saiu!");
-        }else{
+        }
+        else
+        {
           enviarTAG(conteudo);
         }
       }
@@ -283,7 +294,9 @@ void requisicaoPessoa(String RFID)
     Serial.println("############################ Indentifica Pessoa ###############################");
     Serial.println();
     Serial.println("                       => ID do objeto: " + String(RFID) + " <=                     "); // Mostra o valor de ID
-
+    lcd.clear();
+    lcd.setCursor(3, 0);
+    lcd.print("PassCenter");
     lcd.setCursor(3, 1);
     lcd.print("Aguarde...");
 
@@ -567,16 +580,6 @@ void fechaSessao()
       Serial.println(payload);
       Serial.println("                       => Fim da resposta da Requisição <=                      ");
       Serial.println();
-
-      lcd.clear();
-      lcd.setCursor(1, 0);
-      lcd.print("Tchau, " + nome + "!");
-      delay(2000);
-      lcd.clear();
-      lcd.setCursor(3, 0);
-      lcd.print("PassCenter");
-      lcd.setCursor(2, 1);
-      lcd.print("Passe a TAG!");
     }
 
     else
@@ -599,7 +602,9 @@ void gerarPresenca(String RFID)
     Serial.println("################################ Preseça ####################################");
     Serial.println();
     Serial.println("                       => ID do objeto: " + String(RFID) + " <=                     "); // Mostra o valor de ID
-
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("PassCenter:ATIVO");
     lcd.setCursor(3, 1);
     lcd.print("Aguarde...");
 
@@ -628,6 +633,9 @@ void gerarPresenca(String RFID)
     if (httpCode == 200) //Verifica o código de retorno
     {
       Serial.println("                                    => Presença OK <=                                     ");
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("PassCenter:ATIVO");
       lcd.setCursor(2, 1);
       lcd.print("Registrado!");
     }
@@ -674,7 +682,7 @@ void enviarTAG(String RFID)
     Serial.println(requisicao);
     HTTPClient http; // Declaração do objeto para a requisição HTTP
 
-    http.begin(api + "AtrelarTag");                //Endereço para a requisição HTTP
+    http.begin(api + "AtrelarTag");                     //Endereço para a requisição HTTP
     http.addHeader("Content-Type", "application/json"); //Especifica content-type do cabeçalho
     http.addHeader("Authorization", token);             //Especifica content-type do cabeçalho
     int httpCode = http.POST(requisicao);
@@ -734,13 +742,13 @@ void saveConfigCallback()
 //informa erros HTTPs
 void erroHTTP(String code)
 {
-  digitalWrite(BUZZER,HIGH);
-      delay(1500);
-      digitalWrite(BUZZER,LOW);
+  digitalWrite(BUZZER, HIGH);
+  delay(1500);
   Serial.println("    => Erro Durante a requisição HTTP: " + code + "  <=             "); // Mostra a resposta HTTP da requisição
   lcd.clear();
   lcd.setCursor(3, 0);
   lcd.print("Erro: HTTP");
   lcd.setCursor(6, 1);
   lcd.print(code);
+  digitalWrite(BUZZER, LOW);
 }
