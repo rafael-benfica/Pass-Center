@@ -16,7 +16,7 @@
 #include <LiquidCrystal_I2C.h> //LiquidCrystal I2C ( https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library )
 
 //Config Totem
-static String versao = "0.10";                  //Indica a versão do Fimewae
+static String versao = "0.12";                  //Indica a versão do Fimewae
 static String api = "http://192.168.0.70/api/"; //Indica o endereço base do servidor API
 static bool debug = false;                      //Flag para ativar/desativar debug
 bool shouldSaveConfig = false;                  //Flag para indicar se foi salva uma nova configuração de rede
@@ -131,6 +131,7 @@ void setup()
   lcd.print("PassCenter");
   lcd.setCursor(2, 1);
   lcd.print("Operacional!");
+  delay(300);
 
   //cria uma tarefa que será executada na função checarRFID, com prioridade 1 e execução no núcleo 1
   xTaskCreatePinnedToCore(
@@ -334,31 +335,44 @@ void requisicaoPessoa(String RFID)
       const char *tipoJ = doc[1];
       const char *nomeJ = doc[2];
 
-      token = String(tokenJ);
+      if (String(tipoJ) == "2" || String(tipoJ) == "3" || String(tipoJ) == "4")
+      {
 
-      Serial.println();
-      Serial.println("Oi, " + String(nomeJ));
-      Serial.println("O tipo do seu usuário é: " + String(tipoJ));
-      Serial.println("O seu token de segurança é: " + token);
-      Serial.println();
+        token = String(tokenJ);
 
-      RFIDmaster = RFID; // Define o Objeto RFID Master
-      nome = String(nomeJ);
+        Serial.println();
+        Serial.println("Oi, " + String(nomeJ));
+        Serial.println("O tipo do seu usuário é: " + String(tipoJ));
+        Serial.println("O seu token de segurança é: " + token);
+        Serial.println();
+
+        RFIDmaster = RFID; // Define o Objeto RFID Master
+        nome = String(nomeJ);
+        lcd.clear();
+        lcd.setCursor(2, 0);
+        lcd.print("Oi, " + nome + "!");
+        delay(1000);
+
+        if (String(tipoJ) == "4")
+        {
+          estado = 1;
+          Serial.println("         => Totem Especializado (1): Sessão inicializada pelo auditor <=        ");
+        }
+        else if (String(tipoJ) == "3" || String(tipoJ) == "2")
+        {
+          estado = 4;
+          Serial.println("                 => Totem Especializado (4): Modo Cadastro; <=                  ");
+        }
+      }
+    }
+    else
+    {
       lcd.clear();
-      lcd.setCursor(2, 0);
-      lcd.print("Oi, " + nome + "!");
-      delay(1000);
-
-      if (String(tipoJ) == "4")
-      {
-        estado = 1;
-        Serial.println("         => Totem Especializado (1): Sessão inicializada pelo auditor <=        ");
-      }
-      else if (String(tipoJ) == "3" || String(tipoJ) == "2")
-      {
-        estado = 4;
-        Serial.println("                 => Totem Especializado (4): Modo Cadastro; <=                  ");
-      }
+      lcd.setCursor(3, 0);
+      lcd.print("PassCenter");
+      lcd.setCursor(0, 1);
+      lcd.print("Não Autorizado");
+      delay(500);
     }
 
     else
