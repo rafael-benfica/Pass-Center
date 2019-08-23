@@ -6,8 +6,6 @@
         <input type="checkbox" checked id="switch" />
         <label class="pause-play-icon" for="switch"></label>
 
-        <input type="checkbox" id="reset" />
-        <label class="reset-icon" for="reset"></label>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfejixd0upXhPogUSfYNLrWQqjomAxpW-q1N8lzn9hWdz0eww/viewform?usp=sf_link" target="_blank"><i class="icone material-icons link">rate_review</i></a>
         <div class="clock">
           <div class="hours"></div>
@@ -39,7 +37,6 @@ export default {
   top:5%;
   left: 43%;
   color: #FFF;
-  
   border-width: 2px;
   border-color: #FFF;
   border-style: solid;
@@ -291,7 +288,7 @@ export default {
     position: absolute;
     border: 5px solid ;
     border-radius: 50%;
-    left: 35%;
+    left: 43%;
     top: 76%;
     bottom: 22%;
     height: 40px;
