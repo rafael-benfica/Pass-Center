@@ -57,8 +57,8 @@ export default {
     background: white;
     border-radius: 3px;
     position: fixed;
-    top: 88%;
-    left: 91%;
+    top: 85%;
+    left: 90%;
     opacity: 0.05;
     transition: 0.5s;
     -webkit-transform: translate(-50%,-50%) ;
