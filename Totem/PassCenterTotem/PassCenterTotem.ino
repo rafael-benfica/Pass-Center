@@ -16,8 +16,8 @@
 #include <LiquidCrystal_I2C.h> //LiquidCrystal I2C ( https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library )
 
 //Config Totem
-static String versao = "0.15";                  //Indica a versão do Fimewae
-static String api = "http://192.168.0.70/api/"; //Indica o endereço base do servidor API
+static String versao = "0.16";                  //Indica a versão do Firmware
+static String api = "http://192.168.35.234/api/"; //Indica o endereço base do servidor API
 static bool debug = false;                      //Flag para ativar/desativar debug
 bool shouldSaveConfig = false;                  //Flag para indicar se foi salva uma nova configuração de rede
 
@@ -362,22 +362,22 @@ void requisicaoPessoa(String RFID)
           Serial.println("                 => Totem Especializado (4): Modo Cadastro; <=                  ");
         }
       }
-    }
-    else
-    {
-      lcd.clear();
-      lcd.setCursor(3, 0);
-      lcd.print("PassCenter");
-      lcd.setCursor(0, 1);
-      lcd.print("Não Autorizado");
-      delay(1000);
-      lcd.clear();
-      lcd.setCursor(3, 0);
-      lcd.print("PassCenter");
-      lcd.setCursor(2, 1);
-      lcd.print("Passe a TAG!");
-    }
+      else
+      {
 
+        lcd.clear();
+        lcd.setCursor(3, 0);
+        lcd.print("PassCenter");
+        lcd.setCursor(0, 1);
+        lcd.print("Oi, " + String(nomeJ) + "!");
+        delay(1000);
+        lcd.clear();
+        lcd.setCursor(3, 0);
+        lcd.print("PassCenter");
+        lcd.setCursor(2, 1);
+        lcd.print("Passe a TAG!");
+      }
+    }
     else
     {
       erroHTTP(String(httpCode));
@@ -656,6 +656,17 @@ void gerarPresenca(String RFID)
       lcd.setCursor(2, 1);
       lcd.print("Registrado!");
     }
+    else if(httpCode == 400)
+      {
+        digitalWrite(BUZZER, HIGH);
+        lcd.clear();
+        lcd.setCursor(3, 0);
+        lcd.print("PassCenter");
+        lcd.setCursor(3, 1);
+        lcd.print("Duplicado!");
+        delay(1000);
+        digitalWrite(BUZZER, LOW);
+      }
 
     else
     {
